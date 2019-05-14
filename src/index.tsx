@@ -1,6 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
+/*
+<link href="../node_modules/normalize.css/normalize.css" rel="stylesheet" />
+<link href="../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css" rel="stylesheet" />
+<link href="../node_modules/@blueprintjs/core/lib/css/blueprint.css" rel="stylesheet" />
+*/
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
