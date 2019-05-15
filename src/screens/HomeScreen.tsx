@@ -3,7 +3,7 @@ import Schemadata from "../models/Schemadata";
 import { observer } from 'mobx-react';
 
 /**
- * 
+ * Home screen
  */
 @observer
 class HomeScreen extends Component
@@ -14,19 +14,21 @@ class HomeScreen extends Component
      */
     componentDidMount()
     {
-        Schemadata.fetchOne('5cd9bf7fa7aa340bb626b0e1');
+        Schemadata.findOneById('5cd9bf7fa7aa340bb626b0e1');
     }
 
     /**
      * 
      */
-    render()
+    public render()
     {
-
         return Schemadata.loading ? (<div>Loading ...</div>) : (
             <div>
-                {Object.keys(Schemadata.entry).map( (k : string) => <div><b>{k}</b> "{Schemadata.entry[k]}" </div> )}
-
+                {
+                    Object.keys(Schemadata.document).map( 
+                        (k : string) => <div><b>{k}</b> "{Schemadata.document[k]}" </div> 
+                    )
+                }
             </div>
         );
 
