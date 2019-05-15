@@ -4,8 +4,15 @@ This is the front-end of the tool developed for Deluxe's big data platform.
 The objective is to have a simple and easy GUI for managing the schemas and
 meta-data coming from the source systems we are integrating in our datalake.
 
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Instalation
+
+```
+git clone https://github.com/aselvais/dlxmetadatamanager-client.git
+yarn install
+yarn start
+```
 
 ## Available Scripts
 
