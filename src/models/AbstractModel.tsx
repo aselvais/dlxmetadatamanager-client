@@ -18,11 +18,11 @@ abstract class AbstractModel
     /**
      * Entry (one document) selected or loaded (by findOne for eg)
      */
-    @observable public document : any = {};
+    @observable public document : null | object = null;
     /**
      * Collection (array) of documents/entries
      */
-    @observable public collection : Array<any> = [];
+    @observable public collection : null | Array<any> = null;
 
 
     /**
@@ -50,17 +50,26 @@ abstract class AbstractModel
             });
     }
 
+    /**
+     * Performs a query on a collection or a view and returns a cursor object.
+     */
+    public find(where : object = {"where": {"_id": "5cd9bf89a7aa340bb626b1e1"}}) {
+        this.loading = true;
+        fetch(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
+            .then(response => response.json())
+            .then(data => { 
+                this.collection = data;
+                this.loading = false;
+            });
+    }
+
+
     /* ---------------------------------------------------------------------------------- */
 
     /**
      * Wraps count to return a count of the number of documents in a collection or a view.
      */
     public count() {} 
-
-    /**
-     * Performs a query on a collection or a view and returns a cursor object.
-     */
-    public find() {} 
 
     /**
      * Performs a query and returns a single document.

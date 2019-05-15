@@ -84,9 +84,17 @@ interface schemadataSchema {
 class Schemadata extends AbstractModel
 {
     protected name : string = 'schemadata';
-    public entry : schemadataSchema = {};
-    public collection : Array<schemadataSchema> = [];
+    public entry : schemadataSchema | null = null;
+    public collection : Array<schemadataSchema> | null = null;
 
+    /**
+     * 
+     * @param tableName 
+     */
+    public getTableMetaData(tableName : string = '') : void
+    {
+        this.find({"where": {"TABLE_NAME": tableName}});
+    }
 }
 
 export default new Schemadata();
