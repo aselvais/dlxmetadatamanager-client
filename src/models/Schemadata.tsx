@@ -95,6 +95,7 @@ class Schemadata extends AbstractModel
     {
         this.find({"where": {"TABLE_NAME": tableName}});
     }
+
 }
 
 export default new Schemadata();

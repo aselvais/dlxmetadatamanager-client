@@ -23,7 +23,11 @@ abstract class AbstractModel
      * Collection (array) of documents/entries
      */
     @observable public collection : null | Array<any> = null;
-
+    /**
+     * Container for the aggregations. The key will be the field and the 
+     * value is the aggragated data
+     */
+    @observable public aggragateddata : object = {};
 
     /**
      * Returns the full URL of the API to call
@@ -63,6 +67,29 @@ abstract class AbstractModel
             });
     }
 
+    /**
+     * Provides access to the aggregation pipeline.
+     */
+    public aggregate(onField : string = '') {
+        this.loading = true;
+        fetch(this.getApiUrl() + '/aggregation?field=' + encodeURI(onField))
+            .then(response => response.json())
+            .then(data => { 
+                this.aggragateddata[onField] = data.aggregation;
+                this.loading = false;
+            });
+    }
+
+    /* ----------------------------------- UTILS  --------------------------------------- */
+
+    /**
+     * Returns the aggregation labels (only if the data is present)
+     * @param onField 
+     */
+    public getAggregationLabels(onField : string = '') : Array<string>
+    {
+        return this.aggragateddata[onField] ? this.aggragateddata[onField].map(e => e._id) : [];
+    }
 
     /* ---------------------------------------------------------------------------------- */
 
@@ -154,11 +181,6 @@ abstract class AbstractModel
      * the number of documents in a collection or a view.
      */
     public countDocuments() {} 
-
-    /**
-     * Provides access to the aggregation pipeline.
-     */
-    public aggregate() {} 
 
 
     /* ---------------------------------------------------------------------------------- */
