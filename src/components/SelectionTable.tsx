@@ -47,6 +47,8 @@ class SelectionTable extends Component {
      */
     render()
     {
+        return null;
+        /*
         return (
             <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped">
             <tbody>
@@ -54,6 +56,8 @@ class SelectionTable extends Component {
             </tbody>
          </table>
         );
+        */
+       
     }
 
 }

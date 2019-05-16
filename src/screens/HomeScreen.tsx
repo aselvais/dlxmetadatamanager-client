@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Schemadata from "../models/Schemadata";
 import { observer } from 'mobx-react';
-//import { Button, InputGroup } from "@blueprintjs/core";
 
 /**
  * Home screen
@@ -10,6 +9,7 @@ import { observer } from 'mobx-react';
 class HomeScreen extends Component
 {
     state = {tableName: 'customers'};
+    aggrFields : Array<string> = ['TABLE_SCHEMA', 'OWNER', 'DATA_TYPE'];
 
     /**
      * Load some data when the components are available
@@ -17,9 +17,7 @@ class HomeScreen extends Component
     public componentDidMount()
     {
         Schemadata.aggregate('TABLE_NAME');
-        Schemadata.aggregate('TABLE_SCHEMA');
-        Schemadata.aggregate('OWNER');
-        Schemadata.aggregate('DATA_TYPE');
+        this.aggrFields.map(e => Schemadata.aggregate(e) );
     }
 
     /**
@@ -32,28 +30,34 @@ class HomeScreen extends Component
 
     /**
      * 
+     * @param onField 
      */
-    public render()
+    getDropDownJSX(onField : string = '')
+    {
+        return(
+            <div>
+                <div>{onField} : </div>
+                <div className="bp3-select">
+                    <select>{Schemadata.getAggregationLabels(onField).map(k => <option key={k} value={k}>{k}</option>)}</select>
+                </div>
+            </div>
+        );
+    }
+
+    /**
+     * 
+     */
+    public render(): any[]
     {
         let jsx = [];
-        
-        jsx.push(<div><div>TABLE_SCHEMA : </div><div className="bp3-select">
-            <select>{Schemadata.getAggregationLabels('TABLE_SCHEMA').map(k => <option key={k} value={k}>{k}</option>)}
-            </select></div></div>);
-        jsx.push(<div><div>OWNER : </div><div className="bp3-select">
-        <select>{Schemadata.getAggregationLabels('OWNER').map(k => <option key={k} value={k}>{k}</option>)}
-        </select></div></div>);
-        jsx.push(<div><div>DATA_TYPE : </div><div className="bp3-select">
-        <select>{Schemadata.getAggregationLabels('DATA_TYPE').map(k => <option key={k} value={k}>{k}</option>)}
-        </select></div></div>);
+        this.aggrFields.map( e => jsx.push(this.getDropDownJSX(e)) );
 
-        jsx.push(<div><div>TABLE_NAME : </div><div className="bp3-select">
+        jsx.push(
+            <div><div>TABLE_NAME : </div><div className="bp3-select">
             <select onChange={e => this.setState({tableName: e.target.value}, () =>this.loadData() )}>
                 {Schemadata.getAggregationLabels('TABLE_NAME').map(k => <option key={k} value={k}>{k}</option>)}
-            </select></div></div>);
-
-        // jsx.push(<div><InputGroup onChange={e => this.setState({tableName: e.target.value}) } value={this.state.tableName} /></div>);
-        // jsx.push(<div><Button icon="refresh" onClick={() => this.loadData() } >Refresh</Button></div>);
+            </select></div></div>
+        );
         if (Schemadata.loading) {
             jsx.push(<div>Loading ...</div>);
         } else {

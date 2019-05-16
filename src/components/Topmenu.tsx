@@ -19,6 +19,8 @@ class Topmenu extends Component {
    */
   render() {
 
+    return null;
+    /*
     return (
         <Navbar className="bp3-dark">
             <Navbar.Group align={Alignment.LEFT}>
@@ -28,7 +30,7 @@ class Topmenu extends Component {
             </Navbar.Group>
         </Navbar>
     );
-
+      */
   }
 
 

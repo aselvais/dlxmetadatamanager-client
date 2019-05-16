@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 
+interface Props {
+    data: Array<object>;
+}
+
+
 /**
  * 
  */
-class Grid extends Component {
+class Grid extends Component<Props> {
 
     /**
      * 
      * @param {*} row 
      * @param {*} i 
      */
-    getHeaderJsx(row, i)
+    getHeaderJsx(row: object)
     {
         let keys = Object.keys(row);
-        return ( <tr key={i}>{keys.map(e => <th key={e+i}>{e}</th>)}</tr> );
+        return ( <tr>{keys.map(e => <th key={e}>{e}</th>)}</tr> );
     }
 
     /**
@@ -31,10 +36,13 @@ class Grid extends Component {
      * 
      */
     render() {
+        return null;
+        /*
         if (this.props.data.length === 0) {
             return (
                 <div className="progress">
-                <div className="progress-bar progress-bar-striped progress-bar-animated progbar" role="progressbar" ariaValuenow="75" ariaValuemin="0" ariaValuemax="100"></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-animated progbar" 
+                    role="progressbar" ariaValuenow="75" ariaValuemin="0" ariaValuemax="100"></div>
                 </div>
             );
         } else {
@@ -51,6 +59,7 @@ class Grid extends Component {
                 </div>
             );
         }
+        */
     }
 
 

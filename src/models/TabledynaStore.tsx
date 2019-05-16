@@ -18,6 +18,7 @@ class TabledynaStore {
      */
     _combineData(b={}, source='')
     {
+        /*
         let toret = {};
         let a = this.previous_data;
         // headers
@@ -65,6 +66,7 @@ class TabledynaStore {
             toret.data = b.data;
         }
         return toret;
+        */
     }
 
     /**
@@ -72,6 +74,7 @@ class TabledynaStore {
      */
     getAPIdata(apiUrl='', resetTable=true, source='')
     {
+        /*
         this.previous_data = toJS(this.data);
         this.data = {};
         this.selection = [];
@@ -106,6 +109,7 @@ class TabledynaStore {
             this.data = {};
             this.loading = false;
         });
+        */
     }
 
     /**
@@ -114,6 +118,7 @@ class TabledynaStore {
      */
     _getSelectedData(IRegion=[])
     {
+        /*
         let retCols = [];
         for(let r=0; r < IRegion.length; r++)
         {
@@ -132,6 +137,7 @@ class TabledynaStore {
             }
         }
         return retCols;
+        */
     }
 
     /**
@@ -140,6 +146,7 @@ class TabledynaStore {
      */
     _computeSelection(IRegion=[])
     {
+        /*
         let d = [];
         try {
             d = this._getSelectedData(IRegion).map((c,idx) => {
@@ -160,6 +167,7 @@ class TabledynaStore {
             // console.warn(e);
         }
         this.selection = d;
+        */
     }
 
     /**
@@ -169,6 +177,7 @@ class TabledynaStore {
      */
     sortColumn(idx=0, asc=true)
     {
+        /*
         let d = toJS(this.data.data);
         if (typeof(d[0][idx]) == 'number')
         {
@@ -178,7 +187,7 @@ class TabledynaStore {
         {
             this.data.data = asc ? d.sort((a, b) => ('' + a[idx]).localeCompare('' + b[idx])) : d.sort((a, b) => ('' + b[idx]).localeCompare('' + a[idx]));
         }
-
+        */
     };
 
 

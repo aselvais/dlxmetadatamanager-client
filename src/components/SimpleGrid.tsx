@@ -37,6 +37,8 @@ class SimpleGrid extends Component
      */
     render()
     {
+        return null;
+        /*
         if (this.props.data && this.props.data.length === 0) {
             return (<div><Spinner/></div>);
         } else {
@@ -53,6 +55,7 @@ class SimpleGrid extends Component
                 </div>
             );
         }
+        */
     }
 
 }

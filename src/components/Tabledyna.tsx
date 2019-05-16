@@ -9,7 +9,6 @@ import {
     ColumnHeaderCell,
     TableLoadingOption 
 } from "@blueprintjs/table";
-import {observer} from "mobx-react";
 import navStore from '../models/NavStore';
 import SelectionTable from './SelectionTable';
 
@@ -43,6 +42,7 @@ class Tabledyna extends Component {
      */
     _format_field(v, columnIndex=0)
     {
+        /*
         let fields_currency = ['tax_amount','taxable_revenue','job_total','exemptsales'];
         let colname = '';
         let formatter;
@@ -60,6 +60,7 @@ class Tabledyna extends Component {
             formatter = new Intl.NumberFormat('en-US', {});
         }
         return formatter.format(v);
+        */
     }
 
     /**
@@ -69,8 +70,10 @@ class Tabledyna extends Component {
      */
     cellRenderer(rowIndex, columnIndex)
     {
+        /*
         let d = tabledynaStore.data.data[rowIndex][columnIndex];
         return (<Cell>{(typeof(d) == 'number') ? this._format_field(d, columnIndex) : d }</Cell>);
+        */
     };
 
     /**
@@ -78,6 +81,7 @@ class Tabledyna extends Component {
      */
     renderBodyContextMenu(context)
     {
+        /*
         return (
             <Menu>
                 <CopyCellsMenuItem
@@ -86,6 +90,7 @@ class Tabledyna extends Component {
                     text="Copy" />
             </Menu>
         );
+        */
     }
 
     /**
@@ -94,10 +99,12 @@ class Tabledyna extends Component {
      */
     columnHeaderCellRenderer(colIdx=0)
     {
+        /*
         return <ColumnHeaderCell 
                     name={tabledynaStore.data.headers[colIdx]} 
                     menuRenderer={sortColumn => this.renderColContextMenu(sortColumn)} 
                 />;
+        */
     }
 
     /**
@@ -106,12 +113,14 @@ class Tabledyna extends Component {
      */
     renderColContextMenu(idx) 
     {
+        /*
         return (
             <Menu>
                 <MenuItem icon="sort-asc" onClick={() => tabledynaStore.sortColumn(idx, true)} text="Sort Asc" />
                 <MenuItem icon="sort-desc" onClick={() => tabledynaStore.sortColumn(idx, false)} text="Sort Desc" />
             </Menu>
         );
+        */
     }
 
     /**
@@ -119,6 +128,8 @@ class Tabledyna extends Component {
      */
     render() 
     {
+        return null;
+        /*
         if (tabledynaStore && 
             tabledynaStore.data.headers && 
             tabledynaStore.data.headers.length > 0 && 
@@ -153,8 +164,9 @@ class Tabledyna extends Component {
                 </ResizeSensor>
             );
         } else return null;
+        */
     }
 
 }
 
-export default observer(Tabledyna);
+export default Tabledyna;
