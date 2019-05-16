@@ -88,7 +88,7 @@ abstract class AbstractModel
      */
     public getAggregationLabels(onField : string = '') : Array<string>
     {
-        return this.aggragateddata[onField] ? this.aggragateddata[onField].map(e => e._id) : [];
+        return this.aggragateddata[onField] ? this.aggragateddata[onField].map(e => e._id).sort() : [];
     }
 
     /* ---------------------------------------------------------------------------------- */

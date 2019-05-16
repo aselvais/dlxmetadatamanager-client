@@ -1,0 +1,8 @@
+body {
+    overflow-y: scroll;
+    background-color: #30404d;
+}
+.mainContentSpace
+{
+    padding: 20px;
+}
