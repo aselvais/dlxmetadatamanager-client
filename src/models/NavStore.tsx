@@ -1,4 +1,13 @@
-import {decorate, observable, action} from "mobx";
+import { observable, action } from "mobx";
+import { IconName } from "@blueprintjs/core";
+
+interface MenuItem {
+    name: string,
+    label: string,
+    active: boolean,
+    icon: IconName,
+    menuVisible: boolean
+};
 
 /**
  * 
@@ -9,28 +18,35 @@ class NavStore
     /**
      * 
      */
-    items = [
-        {name: 'MainGrid', label: 'Explore Files', active: false, icon: 'home'},
-        {name: 'UploadFile', label: 'Upload File', active: false, icon: 'upload'},
-        {name: 'ViewOutput', label: 'Output Files', active: false, icon: 'export'},
-        {name: 'ViewTaxreport', label: 'Tax Report', active: false, icon: 'pivot-table'},
-        {name: 'ViewDbreport', label: 'Explore DB Data', active: false, icon: 'list-columns'}
+    @observable items : Array<MenuItem> = [
+        {name: 'LoadingScreen', label: 'Loading', active: false, icon: 'home', menuVisible: false},
+        
+        {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true},
+        {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true},
+        {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: true},
+        {name: 'TypesScreen', label: 'Types', active: false, icon: 'tag', menuVisible: true},
+        {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: true},
+        {name: 'DataScreen', label: 'Data', active: false, icon: 'database', menuVisible: true},
+
+        {name: 'ConfigScreen', label: 'Config', active: false, icon: 'cog', menuVisible: false},
+        {name: 'ProfileScreen', label: 'Profile', active: false, icon: 'user', menuVisible: false},
+
     ];
-    active = 'ViewTaxreport';
+    @observable active : string = 'LoadingScreen';
 
     /**
      * 
      */
-    constructor()
+    public constructor()
     {
         this.setActive(this.active);
     }
 
     /**
-     * 
-     * @param {*} name 
+     * Set the active item by its name
+     * @param name 
      */
-    setActive(name='')
+    @action public setActive(name : string ='') : void
     {
         for (let i=0; i < this.items.length; i++)
         {
@@ -39,24 +55,19 @@ class NavStore
         }
     }
 
-    getActive()
+    /**
+     * Get the name of the active item
+     */
+    public getActive() : MenuItem
     {
         for (let i=0; i < this.items.length; i++)
         {
             if (this.items[i].active === true) return this.items[i];
         }
         return this.items[0];
-
     }
 
 
 }
-// configure MobX
-decorate(NavStore, {
-    items: observable,
-    active: observable,
-    setActive: action
-});
 
-const navStore = new NavStore();
-export default navStore;
+export default new NavStore();

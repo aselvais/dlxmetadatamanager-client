@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Schemadata from "../models/Schemadata";
 import { observer } from 'mobx-react';
+import { ControlGroup, Spinner } from "@blueprintjs/core";
 
 /**
  * Home screen
@@ -10,15 +11,6 @@ class HomeScreen extends Component
 {
     state = {tableName: 'customers'};
     aggrFields : Array<string> = ['TABLE_SCHEMA', 'OWNER', 'DATA_TYPE'];
-
-    /**
-     * Load some data when the components are available
-     */
-    public componentDidMount()
-    {
-        Schemadata.aggregate('TABLE_NAME');
-        this.aggrFields.map(e => Schemadata.aggregate(e) );
-    }
 
     /**
      * 
@@ -46,20 +38,38 @@ class HomeScreen extends Component
 
     /**
      * 
+     * @param tablename 
+     */
+    isTableNameSelected(tablename:string='') : boolean
+    {
+        if (Schemadata.collection && Schemadata.collection.length > 0)
+        {
+            return (Schemadata.collection[0]['TABLE_NAME'] === tablename);
+        }
+        return false;
+    }
+
+    /**
+     * 
      */
     public render(): any[]
     {
         let jsx = [];
-        this.aggrFields.map( e => jsx.push(this.getDropDownJSX(e)) );
+        let formsJsx = [];
+        this.aggrFields.map( e => formsJsx.push(this.getDropDownJSX(e)) );
 
-        jsx.push(
+        formsJsx.push(
             <div><div>TABLE_NAME : </div><div className="bp3-select">
             <select onChange={e => this.setState({tableName: e.target.value}, () =>this.loadData() )}>
-                {Schemadata.getAggregationLabels('TABLE_NAME').map(k => <option key={k} value={k}>{k}</option>)}
+                {Schemadata.getAggregationLabels('TABLE_NAME').map(k => <option key={k} value={k} selected={this.isTableNameSelected(k)}>{k}</option>)}
             </select></div></div>
         );
+
+
+        jsx.push(<ControlGroup style={{paddingBottom: 15}} fill={false} vertical={false}>{formsJsx}</ControlGroup>);
+
         if (Schemadata.loading) {
-            jsx.push(<div>Loading ...</div>);
+            jsx.push(<div style={{ textAlign: 'center', padding: 30}}><Spinner /></div>);
         } else {
             if (Schemadata.document != null) 
             {

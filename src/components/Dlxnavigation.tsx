@@ -8,10 +8,14 @@ import {
     NavbarGroup,
     NavbarHeading,
 } from "@blueprintjs/core";
+import logo from '../assets/images/Deluxe_swish.png';
+import { observer } from "mobx-react";
+import NavStore from '../models/NavStore';
 
 /**
  * 
  */
+@observer
 class Dlxnavigation extends Component
 {
     /**
@@ -22,10 +26,33 @@ class Dlxnavigation extends Component
         return (
             <Navbar>
                 <NavbarGroup align={Alignment.LEFT}>
-                    <NavbarHeading>DLX Meta-data manager</NavbarHeading>
+                    
+                    <NavbarHeading  onClick={() => NavStore.setActive('HomeScreen')}>
+                        <img src={logo} alt="Deluxe logo" height={20} style={{ paddingRight: 7 }} />
+                        Meta-data manager
+                    </NavbarHeading>
+
                     <NavbarDivider />
-                    <Button className={Classes.MINIMAL} icon="home" text="Home" />
-                    <Button className={Classes.MINIMAL} icon="document" text="Files" />
+                    {
+                        NavStore.items.map( i => i.menuVisible ? 
+                        <Button 
+                            className={Classes.MINIMAL} 
+                            icon={i.icon} 
+                            text={i.label}
+                            active={i.active} 
+                            onClick={() => NavStore.setActive(i.name)}
+                        /> : null)
+                    }
+                </NavbarGroup>
+                <NavbarGroup align={Alignment.RIGHT}>
+                    <NavbarDivider />
+                    {[7,8].map(i => <Button 
+                    className={Classes.MINIMAL} 
+                    icon={NavStore.items[i].icon} 
+                    active={NavStore.items[i].active} 
+                    onClick={() => NavStore.setActive(NavStore.items[i].name)}/>) }
+
+                    
                 </NavbarGroup>
             </Navbar>
         );
