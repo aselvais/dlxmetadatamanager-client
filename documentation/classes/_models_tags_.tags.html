@@ -96,6 +96,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#aggragateddata" class="tsd-kind-icon">aggragateddata</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_models_tags_.tags.html#collection" class="tsd-kind-icon">collection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#document" class="tsd-kind-icon">document</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_tags_.tags.html#entry" class="tsd-kind-icon">entry</a></li>
@@ -128,6 +129,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#findoneandreplace" class="tsd-kind-icon">find<wbr>One<wbr>And<wbr>Replace</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#findoneandupdate" class="tsd-kind-icon">find<wbr>One<wbr>And<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#findonebyid" class="tsd-kind-icon">find<wbr>One<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#getaggregationlabels" class="tsd-kind-icon">get<wbr>Aggregation<wbr>Labels</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_models_tags_.tags.html#getapiurl" class="tsd-kind-icon">get<wbr>Api<wbr>Url</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#getindexes" class="tsd-kind-icon">get<wbr>Indexes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_tags_.tags.html#getsharddistribution" class="tsd-kind-icon">get<wbr>Shard<wbr>Distribution</a></li>
@@ -159,6 +161,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="aggragateddata" class="tsd-anchor"></a>
+					<h3>aggragateddata</h3>
+					<div class="tsd-signature tsd-kind-icon">aggragateddata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#aggragateddata">aggragateddata</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L30">models/AbstractModel.tsx:30</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Container for the aggregations. The key will be the field and the
+							value is the aggragated data</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 					<a name="collection" class="tsd-anchor"></a>
 					<h3>collection</h3>
@@ -166,18 +185,18 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#collection">collection</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/Tags.tsx#L21">models/Tags.tsx:21</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/Tags.tsx#L21">models/Tags.tsx:21</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="document" class="tsd-anchor"></a>
 					<h3>document</h3>
-					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#document">document</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L21">models/AbstractModel.tsx:21</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L21">models/AbstractModel.tsx:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,7 +211,7 @@
 					<div class="tsd-signature tsd-kind-icon">entry<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_tags_.tagsschema.html" class="tsd-signature-type">tagsSchema</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/Tags.tsx#L20">models/Tags.tsx:20</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/Tags.tsx#L20">models/Tags.tsx:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -203,7 +222,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#loading">loading</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L17">models/AbstractModel.tsx:17</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L17">models/AbstractModel.tsx:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -219,7 +238,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/Tags.tsx#L19">models/Tags.tsx:19</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/Tags.tsx#L19">models/Tags.tsx:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -230,14 +249,14 @@
 					<a name="aggregate" class="tsd-anchor"></a>
 					<h3>aggregate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">aggregate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">aggregate<span class="tsd-signature-symbol">(</span>onField<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#aggregate">aggregate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L152">models/AbstractModel.tsx:152</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L73">models/AbstractModel.tsx:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,6 +264,12 @@
 									<p>Provides access to the aggregation pipeline.</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> onField: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -260,7 +285,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#bulkwrite">bulkWrite</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L160">models/AbstractModel.tsx:160</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L191">models/AbstractModel.tsx:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,7 +308,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#count">count</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L58">models/AbstractModel.tsx:58</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L99">models/AbstractModel.tsx:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +331,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#countdocuments">countDocuments</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L147">models/AbstractModel.tsx:147</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L183">models/AbstractModel.tsx:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +355,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#createindex">createIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L170">models/AbstractModel.tsx:170</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L201">models/AbstractModel.tsx:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -353,7 +378,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#createindexes">createIndexes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L175">models/AbstractModel.tsx:175</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L206">models/AbstractModel.tsx:206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -376,7 +401,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#datasize">dataSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L180">models/AbstractModel.tsx:180</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L211">models/AbstractModel.tsx:211</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -399,7 +424,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#deletemany">deleteMany</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L78">models/AbstractModel.tsx:78</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L114">models/AbstractModel.tsx:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -422,7 +447,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#deleteone">deleteOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L73">models/AbstractModel.tsx:73</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L109">models/AbstractModel.tsx:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -445,7 +470,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#distinct">distinct</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L185">models/AbstractModel.tsx:185</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L216">models/AbstractModel.tsx:216</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -468,7 +493,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#drop">drop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L190">models/AbstractModel.tsx:190</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L221">models/AbstractModel.tsx:221</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -491,7 +516,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#dropindex">dropIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L195">models/AbstractModel.tsx:195</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L226">models/AbstractModel.tsx:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -514,7 +539,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#dropindexes">dropIndexes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L200">models/AbstractModel.tsx:200</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L231">models/AbstractModel.tsx:231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -537,7 +562,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#estimateddocumentcount">estimatedDocumentCount</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L165">models/AbstractModel.tsx:165</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L196">models/AbstractModel.tsx:196</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -560,7 +585,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#explain">explain</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L205">models/AbstractModel.tsx:205</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L236">models/AbstractModel.tsx:236</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -576,14 +601,14 @@
 					<a name="find" class="tsd-anchor"></a>
 					<h3>find</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>where<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L63">models/AbstractModel.tsx:63</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L60">models/AbstractModel.tsx:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -591,6 +616,12 @@
 									<p>Performs a query on a collection or a view and returns a cursor object.</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> where: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{&quot;where&quot;: {&quot;_id&quot;: &quot;5cd9bf89a7aa340bb626b1e1&quot;}}</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -606,7 +637,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#findandmodify">findAndModify</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L136">models/AbstractModel.tsx:136</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L172">models/AbstractModel.tsx:172</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -629,7 +660,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#findone">findOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L68">models/AbstractModel.tsx:68</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L104">models/AbstractModel.tsx:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -652,7 +683,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#findoneanddelete">findOneAndDelete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L126">models/AbstractModel.tsx:126</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L162">models/AbstractModel.tsx:162</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -675,7 +706,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#findoneandreplace">findOneAndReplace</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L131">models/AbstractModel.tsx:131</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L167">models/AbstractModel.tsx:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -698,7 +729,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#findoneandupdate">findOneAndUpdate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L210">models/AbstractModel.tsx:210</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L241">models/AbstractModel.tsx:241</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -721,7 +752,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#findonebyid">findOneById</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L42">models/AbstractModel.tsx:42</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L46">models/AbstractModel.tsx:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -744,6 +775,37 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getaggregationlabels" class="tsd-anchor"></a>
+					<h3>get<wbr>Aggregation<wbr>Labels</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Aggregation<wbr>Labels<span class="tsd-signature-symbol">(</span>onField<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#getaggregationlabels">getAggregationLabels</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L89">models/AbstractModel.tsx:89</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the aggregation labels (only if the data is present)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> onField: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="getapiurl" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Api<wbr>Url</h3>
@@ -755,7 +817,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#getapiurl">getApiUrl</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L32">models/AbstractModel.tsx:32</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L36">models/AbstractModel.tsx:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -787,7 +849,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#getindexes">getIndexes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L215">models/AbstractModel.tsx:215</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L246">models/AbstractModel.tsx:246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -810,7 +872,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#getsharddistribution">getShardDistribution</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L221">models/AbstractModel.tsx:221</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L252">models/AbstractModel.tsx:252</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -834,7 +896,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#getshardversion">getShardVersion</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L226">models/AbstractModel.tsx:226</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L257">models/AbstractModel.tsx:257</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -857,7 +919,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#insert">insert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L141">models/AbstractModel.tsx:141</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L177">models/AbstractModel.tsx:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -880,7 +942,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#insertmany">insertMany</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L88">models/AbstractModel.tsx:88</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L124">models/AbstractModel.tsx:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -903,7 +965,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#insertone">insertOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L83">models/AbstractModel.tsx:83</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L119">models/AbstractModel.tsx:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -926,7 +988,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#iscapped">isCapped</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L231">models/AbstractModel.tsx:231</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L262">models/AbstractModel.tsx:262</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -949,7 +1011,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#latencystats">latencyStats</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L236">models/AbstractModel.tsx:236</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L267">models/AbstractModel.tsx:267</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -972,7 +1034,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#mapreduce">mapReduce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L241">models/AbstractModel.tsx:241</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L272">models/AbstractModel.tsx:272</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -995,7 +1057,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#reindex">reIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L246">models/AbstractModel.tsx:246</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L277">models/AbstractModel.tsx:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1018,7 +1080,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L93">models/AbstractModel.tsx:93</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L129">models/AbstractModel.tsx:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1041,7 +1103,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#renamecollection">renameCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L251">models/AbstractModel.tsx:251</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L282">models/AbstractModel.tsx:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1064,7 +1126,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#replaceone">replaceOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L98">models/AbstractModel.tsx:98</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L134">models/AbstractModel.tsx:134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1087,7 +1149,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#save">save</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L121">models/AbstractModel.tsx:121</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L157">models/AbstractModel.tsx:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1111,7 +1173,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#stats">stats</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L256">models/AbstractModel.tsx:256</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L287">models/AbstractModel.tsx:287</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1134,7 +1196,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#storagesize">storageSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L262">models/AbstractModel.tsx:262</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L293">models/AbstractModel.tsx:293</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1158,7 +1220,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#totalindexsize">totalIndexSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L268">models/AbstractModel.tsx:268</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L299">models/AbstractModel.tsx:299</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1182,7 +1244,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#totalsize">totalSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L274">models/AbstractModel.tsx:274</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L305">models/AbstractModel.tsx:305</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1206,7 +1268,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L115">models/AbstractModel.tsx:115</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L151">models/AbstractModel.tsx:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1229,7 +1291,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#updatemany">updateMany</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L108">models/AbstractModel.tsx:108</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L144">models/AbstractModel.tsx:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1252,7 +1314,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#updateone">updateOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L103">models/AbstractModel.tsx:103</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L139">models/AbstractModel.tsx:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1275,7 +1337,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#validate">validate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L284">models/AbstractModel.tsx:284</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L315">models/AbstractModel.tsx:315</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1298,7 +1360,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_abstractmodel_.abstractmodel.html#watch">watch</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4380fee/src/models/AbstractModel.tsx#L279">models/AbstractModel.tsx:279</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/d1f9a3a/src/models/AbstractModel.tsx#L310">models/AbstractModel.tsx:310</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1325,6 +1387,21 @@
 						<a href="../modules/_components_dlxnavigation_.html">"components/<wbr>Dlxnavigation"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_components_grid_.html">"components/<wbr>Grid"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_components_selectiontable_.html">"components/<wbr>Selection<wbr>Table"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_components_simplegrid_.html">"components/<wbr>Simple<wbr>Grid"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_components_tabledyna_.html">"components/<wbr>Tabledyna"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_components_topmenu_.html">"components/<wbr>Topmenu"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -1340,10 +1417,16 @@
 						<a href="../modules/_models_fields_.html">"models/<wbr>Fields"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_models_navstore_.html">"models/<wbr>Nav<wbr>Store"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_models_origins_.html">"models/<wbr>Origins"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_models_schemadata_.html">"models/<wbr>Schemadata"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_models_tabledynastore_.html">"models/<wbr>Tabledyna<wbr>Store"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_models_tables_.html">"models/<wbr>Tables"</a>
@@ -1366,6 +1449,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_models_tags_.tags.html" class="tsd-kind-icon">Tags</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_models_tags_.tags.html#aggragateddata" class="tsd-kind-icon">aggragateddata</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_models_tags_.tags.html#collection" class="tsd-kind-icon">collection</a>
 							</li>
@@ -1446,6 +1532,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_models_tags_.tags.html#findonebyid" class="tsd-kind-icon">find<wbr>One<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_models_tags_.tags.html#getaggregationlabels" class="tsd-kind-icon">get<wbr>Aggregation<wbr>Labels</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_models_tags_.tags.html#getapiurl" class="tsd-kind-icon">get<wbr>Api<wbr>Url</a>
