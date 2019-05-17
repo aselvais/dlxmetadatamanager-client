@@ -35,7 +35,7 @@ class Dlxnavigation extends Component
                     <NavbarDivider />
                     {
                         NavStore.items.map( i => i.menuVisible ? 
-                        <Button 
+                        <Button key={i.name}
                             className={Classes.MINIMAL} 
                             icon={i.icon} 
                             text={i.label}
@@ -47,12 +47,12 @@ class Dlxnavigation extends Component
                 <NavbarGroup align={Alignment.RIGHT}>
                     <NavbarDivider />
                     {[7,8].map(i => <Button 
-                    className={Classes.MINIMAL} 
-                    icon={NavStore.items[i].icon} 
-                    active={NavStore.items[i].active} 
-                    onClick={() => NavStore.setActive(NavStore.items[i].name)}/>) }
-
-                    
+                            key={NavStore.items[i].name}
+                            className={Classes.MINIMAL} 
+                            icon={NavStore.items[i].icon} 
+                            active={NavStore.items[i].active} 
+                            onClick={() => NavStore.setActive(NavStore.items[i].name)}
+                        />) }
                 </NavbarGroup>
             </Navbar>
         );

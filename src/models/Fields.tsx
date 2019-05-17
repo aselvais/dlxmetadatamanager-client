@@ -1,20 +1,6 @@
 import AbstractModel from "./AbstractModel";
+import { fieldsSchema } from "./interfaces";
 
-/**
- * Description of a databases document
- */
-interface fieldsSchema {
-    [key:string]: any,
-    "name"?: string,
-    "datatype"?: string,
-    "datalength"?: number,
-    "charset"?: string,
-    "tables_id"?: string,
-    "schemadata_id"?: string,
-    "documentation"?: string,
-    "properties"?: object,
-    "tags"?: Array<string>
-};
 
 /**
  * Singleton model for Databases
@@ -22,7 +8,7 @@ interface fieldsSchema {
 class Fields extends AbstractModel
 {
     protected name : string = 'fields';
-    public entry : fieldsSchema = {};
+    public document : fieldsSchema = {};
     public collection : Array<fieldsSchema> = [];
 
 }

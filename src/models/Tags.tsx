@@ -1,15 +1,5 @@
 import AbstractModel from "./AbstractModel";
-
-/**
- * Description of a tags document
- */
-interface tagsSchema {
-    [key:string]: any,
-    "name"?: string,
-    "tags_id"?: string,
-    "type"?: string,
-    "properties"?: object  
-};
+import { tagsSchema } from "./interfaces";
 
 /**
  * Singleton model for Tags
@@ -17,7 +7,7 @@ interface tagsSchema {
 class Tags extends AbstractModel
 {
     protected name : string = 'tags';
-    public entry : tagsSchema = {};
+    public document : tagsSchema = {};
     public collection : Array<tagsSchema> = [];
 
 }

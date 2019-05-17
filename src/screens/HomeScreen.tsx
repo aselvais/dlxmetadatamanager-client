@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Schemadata from "../models/Schemadata";
 import { observer } from 'mobx-react';
 import { ControlGroup, Spinner } from "@blueprintjs/core";
+import Translator from "../libs/translate/Translator";
 
 /**
  * Home screen
@@ -30,7 +31,9 @@ class HomeScreen extends Component
             <div>
                 <div>{onField} : </div>
                 <div className="bp3-select">
-                    <select>{Schemadata.getAggregationLabels(onField).map(k => <option key={k} value={k}>{k}</option>)}</select>
+                    <select>{
+                        Schemadata.getAggregationLabels(onField).map(k => <option key={k} value={k}>{k}</option>)
+                    }</select>
                 </div>
             </div>
         );
@@ -77,7 +80,7 @@ class HomeScreen extends Component
             }
             if (Schemadata.collection != null && Schemadata.collection.length > 0) 
             {
-                let header = (<tr>{Object.keys(Schemadata.collection[0]).map( (k : string) => <th key={k}>{k}</th> )}</tr>);
+                let header = (<tr>{Object.keys(Schemadata.collection[0]).map( (k : string) => <th key={k}>{Translator.t(k)}</th> )}</tr>);
                 let rows = Schemadata.collection.map(e => <tr>{Object.keys(e).map( (k : string) => <td>{e[k]}</td> )}</tr>);
                 jsx.push(
                     <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">

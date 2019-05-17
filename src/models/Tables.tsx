@@ -1,14 +1,5 @@
 import AbstractModel from "./AbstractModel";
-
-/**
- * Description of a databases document
- */
-interface tablesSchema {
-    [key:string]: any,
-    "name"?: string,
-    "storageengine"?: string,
-    "databases_id"?: string  
-};
+import { tablesSchema } from "./interfaces";
 
 /**
  * Singleton model for Tables
@@ -16,9 +7,8 @@ interface tablesSchema {
 class Tables extends AbstractModel
 {
     protected name : string = 'tables';
-    public entry : tablesSchema = {};
+    public document : tablesSchema = {};
     public collection : Array<tablesSchema> = [];
-
 }
 
 export default new Tables();

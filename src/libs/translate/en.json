@@ -1,0 +1,22 @@
+{
+    "zcdc_source_system_database_name": "Database",
+    "zcdc_source_system_schema_name": "Schema",
+    "zcdc_source_system_table_name": "Table",
+    "TABLE_NAME": "Table",
+    "DATA_LENGTH": "Data Length",
+    "COLUMN_NAME": "Column",
+    "DATA_TYPE": "Type",
+    "CHARACTER_SET_NAME": "Charset",
+    "zcdc_organization": "Organization",
+    "zcdc_source_system": "Source",
+    "zcdc_source_system_engine_type": "Engine",
+    "zcdc_destination_staging_area": "Destination",
+    "zcdc_source_system_offset_column_name": "Offset column",
+    "zcdc_source_system_table_primary_key_names": "Primary Key(s)",
+    "zcdc_destination_partition_column_1_name": "Partition Column 1",
+    "zcdc_destination_partition_column_2_name": "Partition Column 1",
+    "zcdc_streamsets_job": "Streamsets Job",
+    "zcdc_source_system_engine_port": "Port",
+    "zcdc_source_system_engine_instance": "Engine instance",
+    "zcdc_streamsets_topology": "Streamsets Topology"
+}

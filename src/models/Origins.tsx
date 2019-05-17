@@ -1,14 +1,5 @@
 import AbstractModel from "./AbstractModel";
-
-/**
- * Description of a databases document
- */
-interface originsSchema {
-    [key:string]: any,
-    "name"?: string,
-    "host"?: string,
-    "organization"?: string  
-};
+import { originsSchema } from "./interfaces";
 
 /**
  * Singleton model for Origins
@@ -16,7 +7,7 @@ interface originsSchema {
 class Origins extends AbstractModel
 {
     protected name : string = 'origins';
-    public entry : originsSchema = {};
+    public document : originsSchema = {};
     public collection : Array<originsSchema> = [];
 
 }

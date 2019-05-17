@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Schemadata from "../models/Schemadata";
 import { observer } from "mobx-react";
 import NavStore from "../models/NavStore";
+import Schemadata from "../models/Schemadata";
 import { ProgressBar } from "@blueprintjs/core";
 import logo from '../assets/images/Deluxe_enterprise_logo_RGB.png';
 

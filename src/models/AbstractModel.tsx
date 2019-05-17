@@ -43,15 +43,21 @@ abstract class AbstractModel
      * @param id 
      * @doto Set loding to false if there is a failure
      */
-    public findOneById(id : string = '') : void
+    public findOneById(id : string = '', emptyCache : boolean = false) : void
     {
-        this.loading = true;
-        fetch(this.getApiUrl(id))
-            .then(response => response.json())
-            .then(data => { 
-                this.document = data;
-                this.loading = false;
-            });
+        // @ts-ignore
+        if (!emptyCache && (this.document.id && this.document.id === id))
+        {
+            console.debug('"' + this.name + '" document "' + id + '" from cache... Use emptyCache to renew it.');
+        } else {
+            this.loading = true;
+            fetch(this.getApiUrl(id))
+                .then(response => response.json())
+                .then(data => { 
+                    this.document = data;
+                    this.loading = false;
+                });    
+        }
     }
 
     /**
@@ -96,91 +102,91 @@ abstract class AbstractModel
     /**
      * Wraps count to return a count of the number of documents in a collection or a view.
      */
-    public count() {} 
+    private count() {} 
 
     /**
      * Performs a query and returns a single document.
      */
-    public findOne() {} 
+    private findOne() {} 
     
     /**
      * Deletes a single document in a collection.
      */
-    public deleteOne() {} 
+    private deleteOne() {} 
 
     /**
      * Deletes multiple documents in a collection.
      */
-    public deleteMany() {} 
+    private deleteMany() {} 
 
     /**
      * Inserts a new document in a collection.
      */
-    public insertOne() {} 
+    private insertOne() {} 
 
     /**
      * Inserts several new document in a collection.
      */
-    public insertMany() {} 
+    private insertMany() {} 
 
     /**
      * Deletes documents from a collection.
      */
-    public remove() {}
+    private remove() {}
 
     /**
      * Replaces a single document in a collection.
      */
-    public replaceOne() {}
+    private replaceOne() {}
 
     /**
      * Modifies a single document in a collection.
      */
-    public updateOne() {}
+    private updateOne() {}
 
     /**
      * Modifies multiple documents in a collection.
      */
-    public updateMany() {}
+    private updateMany() {}
 
     /* ---------------------------------------------------------------------------------- */
 
     /**
      * Modifies a document in a collection.
      */
-    public update() {} 
+    private update() {} 
 
     /**
      * Provides a wrapper around an insert() and update() 
      * to insert new documents.
      */
-    public save() {} 
+    private save() {} 
 
     /**
      * Finds a single document and deletes it.
      */
-    public findOneAndDelete() {} 
+    private findOneAndDelete() {} 
 
     /**
      * Finds a single document and replaces it.
      */
-    public findOneAndReplace() {} 
+    private findOneAndReplace() {} 
 
     /**
      * Atomically modifies and returns a single document.
      */
-    public findAndModify() {} 
+    private findAndModify() {} 
 
     /**
      * Creates a new document in a collection.
      */
-    public insert() {} 
+    private insert() {} 
 
     /**
      * Wraps the $group aggregation stage with a $sum expression to return a count of 
      * the number of documents in a collection or a view.
      */
-    public countDocuments() {} 
+    private countDocuments() {} 
 
 
     /* ---------------------------------------------------------------------------------- */
@@ -188,131 +194,131 @@ abstract class AbstractModel
     /**
      * Provides bulk write operation functionality.
      */
-    public bulkWrite() {}
+    private bulkWrite() {}
 
     /**
      * Wraps count to return an approximate count of the documents in a collection or a view.
      */
-    public estimatedDocumentCount() {} 
+    private estimatedDocumentCount() {} 
 
     /**
      * Builds an index on a collection.
      */
-    public createIndex() {} 
+    private createIndex() {} 
 
     /**
      * Builds one or more indexes on a collection.
      */
-    public createIndexes() {} 
+    private createIndexes() {} 
 
     /**
      * Returns the size of the collection. Wraps the size field in the output of the collStats.
      */
-    public dataSize() {} 
+    private dataSize() {} 
 
     /**
      * Returns an array of documents that have distinct values for the specified field.
      */
-    public distinct() {} 
+    private distinct() {} 
 
     /**
      * Removes the specified collection from the database.
      */
-    public drop() {} 
+    private drop() {} 
 
     /**
      * Removes a specified index on a collection.
      */
-    public dropIndex() {} 
+    private dropIndex() {} 
 
     /**
      * Removes all indexes on a collection.
      */
-    public dropIndexes() {} 
+    private dropIndexes() {} 
 
     /**
      * Returns information on the query execution of various methods.
      */
-    public explain() {} 
+    private explain() {} 
 
     /**
      * Finds a single document and updates it.
      */
-    public findOneAndUpdate() {} 
+    private findOneAndUpdate() {} 
 
     /**
      * Returns an array of documents that describe the existing indexes on a collection.
      */
-    public getIndexes() {} 
+    private getIndexes() {} 
 
     /**
      * For collections in sharded clusters, public getShardDistribution() {} // 
      * reports data of chunk distribution.
      */
-    public getShardDistribution() {} 
+    private getShardDistribution() {} 
 
     /**
      * Internal diagnostic method for sharded cluster.
      */
-    public getShardVersion() {} 
+    private getShardVersion() {} 
 
     /**
      * Reports if a collection is a capped collection.
      */
-    public isCapped() {} 
+    private isCapped() {} 
 
     /**
      * Returns latency statistics for a collection.
      */
-    public latencyStats() {} 
+    private latencyStats() {} 
 
     /**
      * Performs map-reduce style data aggregation.
      */
-    public mapReduce() {} 
+    private mapReduce() {} 
 
     /**
      * Rebuilds all existing indexes on a collection.
      */
-    public reIndex() {} 
+    private reIndex() {} 
 
     /**
      * Changes the name of a collection.
      */
-    public renameCollection() {} 
+    private renameCollection() {} 
 
     /**
      * Reports on the state of a collection. Provides a wrapper around the collStats.
      */
-    public stats() {} 
+    private stats() {} 
 
     /**
      * Reports the total size used by the collection in bytes. Provides a wrapper around 
      * the storageSize field of the collStats output.
      */
-    public storageSize() {} 
+    private storageSize() {} 
 
     /**
      * Reports the total size used by the indexes on a collection. Provides a wrapper 
      * around the totalIndexSize field of the collStats output.
      */
-    public totalIndexSize() {} 
+    private totalIndexSize() {} 
 
     /**
      * Reports the total size of a collection, including the size of all documents 
      * and all indexes on a collection.
      */
-    public totalSize() {} 
+    private totalSize() {} 
 
     /**
      * Establishes a Change Stream on a collection.
      */
-    public watch() {} 
+    private watch() {} 
 
     /**
      * Performs diagnostic operations on a collection.
      */
-    public validate() {} 
+    private validate() {} 
 
 
 }

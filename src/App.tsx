@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import NavStore from './models/NavStore';
 import LoadingScreen from './screens/LoadingScreen';
 import Titlebar from './components/Titlebar';
+import ProfileScreen from './screens/ProfileScreen';
 
 /**
  * 
@@ -27,7 +28,8 @@ class App extends Component
         <div className="mainContentSpace">
           { (activeMenu.name === 'LoadingScreen') ? null : <Titlebar /> }
           { (activeMenu.name === 'LoadingScreen') ? <LoadingScreen /> : null }
-          { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }          
+          { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
+          { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
         </div>
       </div>
     );

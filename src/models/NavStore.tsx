@@ -1,13 +1,5 @@
 import { observable, action } from "mobx";
-import { IconName } from "@blueprintjs/core";
-
-interface MenuItem {
-    name: string,
-    label: string,
-    active: boolean,
-    icon: IconName,
-    menuVisible: boolean
-};
+import { MenuItem } from "../models/interfaces";
 
 /**
  * 
