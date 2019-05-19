@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>databasesSchema | dlxmetadatamanager-client</title>
+	<title>UsersSchema | dlxmetadatamanager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_models_databases_.html">&quot;models/Databases&quot;</a>
+					<a href="../modules/_models_interfaces_.html">&quot;models/interfaces&quot;</a>
 				</li>
 				<li>
-					<a href="_models_databases_.databasesschema.html">databasesSchema</a>
+					<a href="_models_interfaces_.usersschema.html">UsersSchema</a>
 				</li>
 			</ul>
-			<h1>Interface databasesSchema</h1>
+			<h1>Interface UsersSchema</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Description of a databases document</p>
+						<p>Users schema</p>
 					</div>
 				</div>
 			</section>
@@ -80,16 +80,16 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">databasesSchema</span>
+						<span class="target">UsersSchema</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-external-module">
 				<h3 class="tsd-before-signature">Indexable</h3>
 				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Description of a databases document</p>
+						<p>Users schema</p>
 					</div>
 				</div>
 			</section>
@@ -97,57 +97,79 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_models_databases_.databasesschema.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_models_databases_.databasesschema.html#origins_id" class="tsd-kind-icon">origins_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_models_databases_.databasesschema.html#storageengine" class="tsd-kind-icon">storageengine</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_models_databases_.databasesschema.html#vendorbrand" class="tsd-kind-icon">vendorbrand</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.usersschema.html#email" class="tsd-kind-icon">email</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.usersschema.html#emailverified" class="tsd-kind-icon">email<wbr>Verified</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.usersschema.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.usersschema.html#password" class="tsd-kind-icon">password</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.usersschema.html#realm" class="tsd-kind-icon">realm</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.usersschema.html#username" class="tsd-kind-icon">username</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="email" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> email</h3>
+					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/69b5b92/src/models/Databases.tsx#L8">models/Databases.tsx:8</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/570e632/src/models/interfaces.tsx#L107">models/interfaces.tsx:107</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="origins_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> origins_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">origins_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="emailverified" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> email<wbr>Verified</h3>
+					<div class="tsd-signature tsd-kind-icon">email<wbr>Verified<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/69b5b92/src/models/Databases.tsx#L9">models/Databases.tsx:9</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/570e632/src/models/interfaces.tsx#L108">models/interfaces.tsx:108</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="storageengine" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> storageengine</h3>
-					<div class="tsd-signature tsd-kind-icon">storageengine<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/69b5b92/src/models/Databases.tsx#L11">models/Databases.tsx:11</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/570e632/src/models/interfaces.tsx#L103">models/interfaces.tsx:103</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="vendorbrand" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> vendorbrand</h3>
-					<div class="tsd-signature tsd-kind-icon">vendorbrand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="password" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
+					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/69b5b92/src/models/Databases.tsx#L10">models/Databases.tsx:10</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/570e632/src/models/interfaces.tsx#L106">models/interfaces.tsx:106</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="realm" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> realm</h3>
+					<div class="tsd-signature tsd-kind-icon">realm<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/570e632/src/models/interfaces.tsx#L104">models/interfaces.tsx:104</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="username" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> username</h3>
+					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/570e632/src/models/interfaces.tsx#L105">models/interfaces.tsx:105</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -159,103 +181,70 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_app_.html">"<wbr>App"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_dlxnavigation_.html">"components/<wbr>Dlxnavigation"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_grid_.html">"components/<wbr>Grid"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_selectiontable_.html">"components/<wbr>Selection<wbr>Table"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_simplegrid_.html">"components/<wbr>Simple<wbr>Grid"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_tabledyna_.html">"components/<wbr>Tabledyna"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_titlebar_.html">"components/<wbr>Titlebar"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_topmenu_.html">"components/<wbr>Topmenu"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_abstractmodel_.html">"models/<wbr>Abstract<wbr>Model"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_config_.html">"models/<wbr>Config"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_models_databases_.html">"models/<wbr>Databases"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_fields_.html">"models/<wbr>Fields"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_navstore_.html">"models/<wbr>Nav<wbr>Store"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_origins_.html">"models/<wbr>Origins"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_schemadata_.html">"models/<wbr>Schemadata"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_tabledynastore_.html">"models/<wbr>Tabledyna<wbr>Store"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_tables_.html">"models/<wbr>Tables"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_tags_.html">"models/<wbr>Tags"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_screens_homescreen_.html">"screens/<wbr>Home<wbr>Screen"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_screens_loadingscreen_.html">"screens/<wbr>Loading<wbr>Screen"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_screens_searchscreen_.html">"screens/<wbr>Search<wbr>Screen"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_serviceworker_.html">"service<wbr>Worker"</a>
+						<a href="../modules/_models_interfaces_.html">"models/interfaces"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_models_databases_.databases.html" class="tsd-kind-icon">Databases</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.menuitem.html" class="tsd-kind-icon">Menu<wbr>Item</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_models_databases_.databasesschema.html" class="tsd-kind-icon">databases<wbr>Schema</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.usersschema.html" class="tsd-kind-icon">Users<wbr>Schema</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_models_databases_.databasesschema.html#name" class="tsd-kind-icon">name</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.usersschema.html#email" class="tsd-kind-icon">email</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_models_databases_.databasesschema.html#origins_id" class="tsd-kind-icon">origins_<wbr>id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.usersschema.html#emailverified" class="tsd-kind-icon">email<wbr>Verified</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_models_databases_.databasesschema.html#storageengine" class="tsd-kind-icon">storageengine</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.usersschema.html#id" class="tsd-kind-icon">id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_models_databases_.databasesschema.html#vendorbrand" class="tsd-kind-icon">vendorbrand</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.usersschema.html#password" class="tsd-kind-icon">password</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.usersschema.html#realm" class="tsd-kind-icon">realm</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.usersschema.html#username" class="tsd-kind-icon">username</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.databasesschema.html" class="tsd-kind-icon">databases<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.fieldsschema.html" class="tsd-kind-icon">fields<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.formconfigschema.html" class="tsd-kind-icon">form<wbr>Config<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.formelemobjconfigschema.html" class="tsd-kind-icon">form<wbr>Elem<wbr>Obj<wbr>Config<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.formelementconfigschema.html" class="tsd-kind-icon">form<wbr>Element<wbr>Config<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.originsschema.html" class="tsd-kind-icon">origins<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.schemadataschema.html" class="tsd-kind-icon">schemadata<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.tablesschema.html" class="tsd-kind-icon">tables<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_models_interfaces_.tagsschema.html" class="tsd-kind-icon">tags<wbr>Schema</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

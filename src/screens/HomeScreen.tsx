@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Schemadata from "../models/Schemadata";
 import { observer } from 'mobx-react';
-import { ControlGroup, Spinner } from "@blueprintjs/core";
+import { ControlGroup, Spinner, Dialog } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
+import { schemadataSchema } from "../models/interfaces";
+import FieldeditionForm from "../components/FieldeditionForm";
 
 /**
  * Home screen
@@ -10,7 +12,15 @@ import Translator from "../libs/translate/Translator";
 @observer
 class HomeScreen extends Component
 {
-    state = {tableName: 'customers'};
+    public state = {
+        autoFocus: true,
+        canEscapeKeyClose: true,
+        canOutsideClickClose: true,
+        enforceFocus: true,
+        isOpen: false,
+        usePortal: true,
+        tableName: 'customers'
+    };
     aggrFields : Array<string> = ['TABLE_SCHEMA', 'OWNER', 'DATA_TYPE'];
 
     /**
@@ -54,6 +64,19 @@ class HomeScreen extends Component
 
     /**
      * 
+     * @param row 
+     */
+    selectRow(row : schemadataSchema = {})
+    {
+        Schemadata.document = row;
+        this.handleOpen();
+    }
+
+    private handleOpen = () => this.setState({ isOpen: true });
+    private handleClose = () => this.setState({ isOpen: false });
+
+    /**
+     * 
      */
     public render(): any[]
     {
@@ -74,15 +97,18 @@ class HomeScreen extends Component
         if (Schemadata.loading) {
             jsx.push(<div style={{ textAlign: 'center', padding: 30}}><Spinner /></div>);
         } else {
+            /*
             if (Schemadata.document != null) 
             {
                 jsx.push(<div>{Object.keys(Schemadata.document).map( (k : string) => <div><b>{k}</b> "{Schemadata.document[k]}" </div> )}</div>);
             }
+            */
             if (Schemadata.collection != null && Schemadata.collection.length > 0) 
             {
                 let header = (<tr>{Object.keys(Schemadata.collection[0]).map( (k : string) => <th key={k}>{Translator.t(k)}</th> )}</tr>);
-                let rows = Schemadata.collection.map(e => <tr>{Object.keys(e).map( (k : string) => <td>{e[k]}</td> )}</tr>);
+                let rows = Schemadata.collection.map(e => <tr onClick={() => this.selectRow(e)}>{Object.keys(e).map( (k : string) => <td>{e[k]}</td> )}</tr>);
                 jsx.push(
+                    <div>
                     <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                         <thead>
                             {header}
@@ -91,6 +117,14 @@ class HomeScreen extends Component
                             {rows}
                         </tbody>
                     </table>
+                    <Dialog
+                        icon="info-sign"
+                        onClose={this.handleClose}
+                        title="Field edition"
+                        {...this.state}>
+                    <FieldeditionForm />
+                    </Dialog>
+                    </div>
                 );
             }
         }

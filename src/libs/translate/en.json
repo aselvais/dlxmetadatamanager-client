@@ -18,5 +18,11 @@
     "zcdc_streamsets_job": "Streamsets Job",
     "zcdc_source_system_engine_port": "Port",
     "zcdc_source_system_engine_instance": "Engine instance",
-    "zcdc_streamsets_topology": "Streamsets Topology"
+    "zcdc_streamsets_topology": "Streamsets Topology",
+
+    "realm":"Group",
+    "username":"Username",
+    "email":"E-mail",
+    "password1":"Password",
+    "password2":"Re-type password"
 }

@@ -10,12 +10,26 @@ class Users extends AbstractModel
     public document : UsersSchema = {};
     public collection : Array<UsersSchema> = [];
     public formConfig : formConfigSchema = {
-        "id" : false,
-        "realm" : { shape: "select"},
-        "username" : { shape: "text"},
-        "password" : { shape: "password"},
-        "email" : { shape: "email"},
-        "emailVerified" : false
+        showButton: true,
+        fill: true,
+        vertical: true,
+        elements: {
+            "id" : false,
+            "realm" : { 
+                shape: "select", 
+                options: {
+                    'root': 'root',
+                    'admin': 'admin',
+                    'editor': 'editor',
+                    'viewer': 'viewer',
+                }
+            },
+            "username" : { shape: "text"},
+            "password1" : { shape: "password"},
+            "password2" : { shape: "password"},
+            "email" : { shape: "email"},
+            "emailVerified" : false    
+        }
     };
 
 }

@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup } from "@blueprintjs/core";
+import Translator from "../../libs/translate/Translator";
+import FieldeditionForm from "../FieldeditionForm";
 
 interface formProps {
     data: object,
-    config?: object
+    config: formConfigSchema
 };
 
 /**
@@ -11,18 +15,109 @@ interface formProps {
 class Form extends Component<formProps, any>
 {
 
+    /**
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    getDefaultFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup>
+                <Label>{Translator.t(key)}</Label>
+                <InputGroup type="text" name={key} value={v} />
+            </FormGroup>
+        );
+    }
+
+    /**
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    getPasswordFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup>
+                <Label>{Translator.t(key)}</Label>
+                <InputGroup rightElement={(<Icon icon="lock" />)} type="password" name={key} value={v} />
+            </FormGroup>        
+        );
+    }
+
+    /**
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    getSelectFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup>
+                <Label>{Translator.t(key)}</Label>
+                <div className="bp3-select">
+                    <select>
+                        <option selected={v ? false : true}>Choose an item...</option>
+                        {Object.keys(c.options).map(k => <option value={k} selected={(v === k) ? true : false}>{Translator.t(c.options[k])}</option>)}
+                    </select>
+                </div>
+            </FormGroup>        
+        );
+    }
+
+    /**
+     * 
+     * @param key 
+     */
     getFormElement(key : string = '')
     {
-        let o = this.props.data[key] ? this.props.data[key] : null;
-        let c = (this.props.config && typeof this.props.config[key] !== 'undefined') ? this.props.config[key] : null;
-
-        if (!o || c === false) return null;
-        return (
-            <div>
-                <div>{key}</div>
-                <div> <input type="text" name={key} value={o}/> </div>
-            </div>
-        );
+        let v = this.props.data[key] ? this.props.data[key] : null;
+        // @ts-ignore
+        let c : formElementConfigSchema = (this.props.config && this.props.config.elements && typeof this.props.config.elements[key] !== 'undefined') ? this.props.config.elements[key] : false;
+        if (!c) return null;
+        else if (c.shape) {
+            switch(c.shape) {
+                case 'text':
+                    return this.getDefaultFormElementJSX(key, v, c);
+                case 'select':
+                    return this.getSelectFormElementJSX(key, v, c);
+                case 'password':
+                    return this.getPasswordFormElementJSX(key, v, c);
+                /*
+                case 'email':
+                    return null;
+                case 'checkbow':
+                    return null;
+                case 'radio':
+                    return null;
+                case 'slider':
+                    return null;
+                case 'switch':
+                    return null;
+                case 'file':
+                    return null;
+                case 'numeric':
+                    return null;
+                case 'textarea':
+                    return null;
+                case 'tag':
+                    return null;
+                case 'datetime':
+                    return null;
+                case 'timezone':
+                    return null;
+                case 'submit':
+                    return null;
+                */
+                default:
+                    return this.getDefaultFormElementJSX(key, v, c);
+            }
+        } else {
+            return this.getDefaultFormElementJSX(key, v, c);
+        }
     }
 
 
@@ -31,8 +126,24 @@ class Form extends Component<formProps, any>
      */
     render()
     {
-        let form = Object.keys(this.props.data).map(k => this.getFormElement(k));
-        return (<div>{form}</div>);
+        let form = [];
+        if (this.props.config && this.props.config.elements)
+        {}
+        else {
+            // @ts-ignore
+            this.props.config.elements = [];
+            Object.keys(this.props.data).map( d => this.props.config.elements[d] = {shape: 'text'} );
+        }
+        form = Object.keys(this.props.config.elements).map(k => this.getFormElement(k));
+        if (this.props.config.showButton !== false)
+        {
+            form.push(<Button icon="plus" text={Translator.t('Submit')} />);
+        }
+        return (
+            <ControlGroup fill={this.props.config.fill} vertical={this.props.config.vertical}>
+            {form}
+            </ControlGroup>
+        );    
     }
 }
 

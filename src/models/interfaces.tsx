@@ -181,15 +181,23 @@ export interface MenuItem {
  * Form element configuration shape
  */
 export interface formElementConfigSchema {
-    shape: 'text' | 'select' | 'password' | 'email' | 'checkbow' | 'radio' | 'slider' | 'switch' | 'file' | 'numeric' | 'textarea'  | 'tag'  | 'datetime'  | 'timezone',
+    shape: 'text' | 'select' | 'password' | 'email' | 'checkbow' | 'radio' | 'slider' | 'switch' | 'file' | 'numeric' | 'textarea'  | 'tag'  | 'datetime'  | 'timezone' | 'submit',
     showLabel?: boolean,
     options?: object
 };
+
+export interface formElemObjConfigSchema {
+    [key:string]: formElementConfigSchema | boolean,
+}
 
 /**
  * Form config shape.
  * This is used to set form element GUI for the data coming from an JSON object
  */
 export interface formConfigSchema {
-    [key:string]: formElementConfigSchema | boolean,
+    [key:string]: string | boolean | formElemObjConfigSchema,
+    showButton?: boolean,
+    fill?: boolean,
+    vertical?: boolean,
+    elements?: formElemObjConfigSchema
 };
