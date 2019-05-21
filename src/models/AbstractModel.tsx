@@ -30,6 +30,14 @@ abstract class AbstractModel
     @observable public aggragateddata : object = {};
 
     /**
+     * 
+     */
+    public getName() : string
+    {
+        return this.name;
+    }
+
+    /**
      * Returns the full URL of the API to call
      * @param id Id of the document to return/use
      */
@@ -63,7 +71,7 @@ abstract class AbstractModel
     /**
      * Performs a query on a collection or a view and returns a cursor object.
      */
-    public find(where : object = {"where": {"_id": "5cd9bf89a7aa340bb626b1e1"}}) {
+    public find(where : object = {} /*{"where": {"_id": "5cd9bf89a7aa340bb626b1e1"}}*/) {
         this.loading = true;
         fetch(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
             .then(response => response.json())

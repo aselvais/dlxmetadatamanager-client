@@ -7,6 +7,9 @@ import NavStore from './models/NavStore';
 import LoadingScreen from './screens/LoadingScreen';
 import Titlebar from './components/Titlebar';
 import ProfileScreen from './screens/ProfileScreen';
+import SearchScreen from './screens/SearchScreen';
+import Users from './models/Users';
+import LoginScreen from './screens/LoginScreen';
 
 /**
  * 
@@ -22,17 +25,29 @@ class App extends Component
   {
     let activeMenu = NavStore.getActive();
 
-    return (
-      <div className="globalContainer bp3-dark">
-          { (activeMenu.name === 'LoadingScreen') ? null : <Dlxnavigation /> }
-        <div className="mainContentSpace">
-          { (activeMenu.name === 'LoadingScreen') ? null : <Titlebar /> }
-          { (activeMenu.name === 'LoadingScreen') ? <LoadingScreen /> : null }
-          { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
-          { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
+    if (Users.getToken() !== null)
+    {
+      return (
+        <div className="globalContainer bp3-dark">
+            { (activeMenu.name === 'LoadingScreen') ? null : <Dlxnavigation /> }
+          <div className="mainContentSpace">
+            { (activeMenu.name === 'LoadingScreen') ? null : <Titlebar /> }
+            { (activeMenu.name === 'LoadingScreen') ? <LoadingScreen /> : null }
+            { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
+            { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
+            { (activeMenu.name === 'SearchScreen') ? <SearchScreen /> : null }
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="globalContainer bp3-dark">
+          <LoginScreen />
+        </div>
+      );
+    }
+
+
 
   }
 

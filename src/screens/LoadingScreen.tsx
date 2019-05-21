@@ -44,7 +44,6 @@ class LoadingScreen extends Component
                 <ProgressBar intent='primary' value={this.perc} />
                 <div style={{padding: 10}}>Loading ... {this.perc.toFixed(0)+'%'}</div>
             </div>
-
         );
     }
 

@@ -7,8 +7,15 @@ import {UsersSchema, formConfigSchema} from './interfaces';
 class Users extends AbstractModel
 {
     protected name : string = 'Users';
+    /**
+     * Token we receive from the auth API
+     */
+    private token : string | null = '45565446556645'; // null;
     public document : UsersSchema = {};
     public collection : Array<UsersSchema> = [];
+    /**
+     * Edition form configuration
+     */
     public formConfig : formConfigSchema = {
         showButton: true,
         fill: true,
@@ -31,6 +38,25 @@ class Users extends AbstractModel
             "emailVerified" : false    
         }
     };
+    /**
+     * Login form configuration
+     */
+    public formConfigLogin : formConfigSchema = {
+        showButton: true,
+        fill: true,
+        vertical: true,
+        elements: {
+            "username" : { shape: "text"},
+            "password" : { shape: "password"}
+        }
+    };
+    /**
+     * Returns the token if any
+     */
+    public getToken() : string | null
+    {
+        return this.token;
+    }
 
 }
 

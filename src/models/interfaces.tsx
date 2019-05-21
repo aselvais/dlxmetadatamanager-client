@@ -201,3 +201,12 @@ export interface formConfigSchema {
     vertical?: boolean,
     elements?: formElemObjConfigSchema
 };
+
+/**
+ * Config for the standard datagrid (HTML version)
+ */
+export interface gridConfig {
+    [key:string]: any,
+    showOnly?: Array<string>,
+    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'delete'>
+};

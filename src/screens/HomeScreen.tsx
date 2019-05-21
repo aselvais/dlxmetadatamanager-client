@@ -38,7 +38,7 @@ class HomeScreen extends Component
     getDropDownJSX(onField : string = '')
     {
         return(
-            <div>
+            <div key={onField}>
                 <div>{onField} : </div>
                 <div className="bp3-select">
                     <select>{
@@ -69,11 +69,8 @@ class HomeScreen extends Component
     selectRow(row : schemadataSchema = {})
     {
         Schemadata.document = row;
-        this.handleOpen();
+        this.setState({ isOpen: true });
     }
-
-    private handleOpen = () => this.setState({ isOpen: true });
-    private handleClose = () => this.setState({ isOpen: false });
 
     /**
      * 
@@ -85,45 +82,30 @@ class HomeScreen extends Component
         this.aggrFields.map( e => formsJsx.push(this.getDropDownJSX(e)) );
 
         formsJsx.push(
-            <div><div>TABLE_NAME : </div><div className="bp3-select">
+            <div key={'TABLE_NAME'}><div>TABLE_NAME : </div><div className="bp3-select">
             <select onChange={e => this.setState({tableName: e.target.value}, () =>this.loadData() )}>
-                {Schemadata.getAggregationLabels('TABLE_NAME').map(k => <option key={k} value={k} selected={this.isTableNameSelected(k)}>{k}</option>)}
+                {Schemadata.getAggregationLabels('TABLE_NAME').map(k => <option key={k} value={k} /*selected={this.isTableNameSelected(k)}*/>{k}</option>)}
             </select></div></div>
         );
-
 
         jsx.push(<ControlGroup style={{paddingBottom: 15}} fill={false} vertical={false}>{formsJsx}</ControlGroup>);
 
         if (Schemadata.loading) {
             jsx.push(<div style={{ textAlign: 'center', padding: 30}}><Spinner /></div>);
         } else {
-            /*
-            if (Schemadata.document != null) 
-            {
-                jsx.push(<div>{Object.keys(Schemadata.document).map( (k : string) => <div><b>{k}</b> "{Schemadata.document[k]}" </div> )}</div>);
-            }
-            */
             if (Schemadata.collection != null && Schemadata.collection.length > 0) 
             {
                 let header = (<tr>{Object.keys(Schemadata.collection[0]).map( (k : string) => <th key={k}>{Translator.t(k)}</th> )}</tr>);
-                let rows = Schemadata.collection.map(e => <tr onClick={() => this.selectRow(e)}>{Object.keys(e).map( (k : string) => <td>{e[k]}</td> )}</tr>);
+                let rows = Schemadata.collection.map((e, i) => <tr key={i} onClick={() => this.selectRow(e)}>{Object.keys(e).map( (k : string) => <td key={k}>{e[k]}</td> )}</tr>);
                 jsx.push(
                     <div>
-                    <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
-                        <thead>
-                            {header}
-                        </thead>
-                        <tbody>
-                            {rows}
-                        </tbody>
-                    </table>
-                    <Dialog
-                        icon="info-sign"
-                        onClose={this.handleClose}
-                        title="Field edition"
-                        {...this.state}>
-                    <FieldeditionForm />
-                    </Dialog>
+                        <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
+                            <thead>{header}</thead>
+                            <tbody>{rows}</tbody>
+                        </table>
+                        <Dialog icon="info-sign" onClose={() => this.setState({ isOpen: false })} title="Field edition" {...this.state}>
+                            <FieldeditionForm />
+                        </Dialog>
                     </div>
                 );
             }

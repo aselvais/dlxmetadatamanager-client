@@ -15,7 +15,7 @@ class FieldeditionForm extends Component
         
         return (
         <div style={{padding: 20, margin: 20}}>
-            { Schemadata.document ? <Form data={Schemadata.document} config={{ vertical: true, showButton: true }}/> : null }
+            { Schemadata.document ? <Form model={Schemadata} config={{ vertical: true, showButton: true }}/> : null }
         </div>
         );
         

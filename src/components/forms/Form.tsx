@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
 import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
-import FieldeditionForm from "../FieldeditionForm";
+import AbstractModel from "../../models/AbstractModel";
 
 interface formProps {
-    data: object,
+    model: AbstractModel,
     config: formConfigSchema
 };
 
@@ -74,7 +74,7 @@ class Form extends Component<formProps, any>
      */
     getFormElement(key : string = '')
     {
-        let v = this.props.data[key] ? this.props.data[key] : null;
+        let v = this.props.model.document[key] ? this.props.model.document[key] : null;
         // @ts-ignore
         let c : formElementConfigSchema = (this.props.config && this.props.config.elements && typeof this.props.config.elements[key] !== 'undefined') ? this.props.config.elements[key] : false;
         if (!c) return null;
@@ -132,7 +132,7 @@ class Form extends Component<formProps, any>
         else {
             // @ts-ignore
             this.props.config.elements = [];
-            Object.keys(this.props.data).map( d => this.props.config.elements[d] = {shape: 'text'} );
+            Object.keys(this.props.model.document).map( d => this.props.config.elements[d] = {shape: 'text'} );
         }
         form = Object.keys(this.props.config.elements).map(k => this.getFormElement(k));
         if (this.props.config.showButton !== false)

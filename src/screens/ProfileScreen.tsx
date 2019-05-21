@@ -15,7 +15,7 @@ class ProfileScreen extends Component
      */
     componentDidMount()
     {
-        Users.findOneById('5cdee3f69235fb138cb2e758');
+        Users.findOneById('5ce3ff0ac7ae6740c4212166');
     }
 
     /**
@@ -29,7 +29,7 @@ class ProfileScreen extends Component
             return (
                 <div>
                     <div>
-                        <Form data={Users.document} config={Users.formConfig} />
+                        <Form model={Users} config={Users.formConfig} />
                     </div>
                 </div>
                 );        
