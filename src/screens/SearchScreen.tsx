@@ -14,7 +14,7 @@ interface lvlElementType {
     model : AbstractModel,
     selected_id : string | null,
     gridConfig : gridConfig,
-    q : object
+    parent : string | null
 };
 
 /**
@@ -32,27 +32,27 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins,
-            selected_id : null,
             gridConfig : { showOnly:[ 'name', 'host', 'organization' ], actions: ['view', 'edit', 'drilldown'] },
-            q : {}
+            selected_id : null,
+            parent : null
         },
         {
             model : Databases,
-            selected_id : null,
             gridConfig : {showOnly:['name', 'schema','storageengine', 'vendorbrand'], actions: ['view', 'edit', 'drilldown']},
-            q : { where: {origins_idh: '8256bacb5f7848f333f6519f6428f49b'}}
+            selected_id : null,
+            parent : 'origins'
         },
         {
             model : Tables, 
-            selected_id : null,
             gridConfig : {showOnly:['name'], actions: ['view', 'edit', 'drilldown']},
-            q : { where: {databases_idh : "e5b4fbe713d462a5812a42e8987611a4"}}
+            selected_id : null,
+            parent : 'databases'
         },
         {
             model : Fields,
-            selected_id : null,
             gridConfig : {showOnly:['name', 'datatype', 'documentation'], actions: ['view', 'edit']},
-            q : { where: {tables_idh : "e80704fbc8779cbc1ae5b36c7f44137b"}}
+            selected_id : null,
+            parent : 'tables'
         }
     ];
     
@@ -67,9 +67,39 @@ class SearchScreen extends Component
     /**
      * 
      */
-    loadData()
+    loadData( _id : string | null = null )
     {
-        this.lvl[this.state.level].model.find(this.lvl[this.state.level].q);
+        let o = this.lvl[this.state.level];
+        o.selected_id = _id;
+        let query = { where: {}};
+        if (o.parent) query.where[o.parent+'_idh'] = o.selected_id;
+        o.model.find(query);
+    }
+
+    /**
+     * 
+     * @param levelId 
+     * @param _id 
+     */
+    public drillDown(levelId : number = 0, _id : string | null = null)
+    {
+        this.setState({level: levelId}, () => this.loadData(_id) );
+    }
+
+    public view(row : object = {}) {
+        // @ts-ignore
+        console.log(row.id); 
+    }
+
+    public edit(row : object = {}) { 
+        // @ts-ignore
+        console.log(row.id); 
+    }
+
+    public drilldown(row : object = {}) { 
+        // @ts-ignore
+        this.setState({level: (this.state.level+1) }, () => this.loadData(row.idh) );
+
     }
 
     /**
@@ -79,12 +109,12 @@ class SearchScreen extends Component
     {
         return (
             <div>
-                {[0,1,2,3].map(e => <Button text={e} onClick={ () => this.setState({level: e}, () => this.loadData() ) }/> )}
+                {[0,1,2,3].map(e => <Button text={e} onClick={ () => this.drillDown(e) }/> )}
                 <h3>
                     {Translator.t(this.lvl[this.state.level].model.getName())}
                 </h3>
                 <div>
-                    <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig}/>
+                    <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
                 </div>
             </div>
         );

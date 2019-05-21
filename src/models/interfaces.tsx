@@ -202,11 +202,19 @@ export interface formConfigSchema {
     elements?: formElemObjConfigSchema
 };
 
+export interface gridConfigActionMethods {
+    [key:string]: Function,
+    view?: Function,
+    edit?: Function,
+    delete?: Function,
+    drilldown?: Function
+};
+
 /**
  * Config for the standard datagrid (HTML version)
  */
 export interface gridConfig {
     [key:string]: any,
     showOnly?: Array<string>,
-    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'delete'>
+    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown'>
 };

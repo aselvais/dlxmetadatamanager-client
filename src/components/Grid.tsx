@@ -4,11 +4,12 @@ import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/AbstractModel";
 import { observer } from "mobx-react";
 import { gridConfig } from "../models/interfaces";
-
+import * as mobx from 'mobx';
 
 interface Props {
     model: AbstractModel,
-    config?: gridConfig
+    config?: gridConfig,
+    parent?: object
 }
 
 /**
@@ -26,16 +27,6 @@ class Grid extends Component<Props> {
         'delete' : 'delete',
         'drilldown' : 'arrow-right'
     };
-
-    /**
-     * 
-     * @param row 
-     */
-    selectRow(row : object = {})
-    {
-        // Schemadata.document = row;
-        // this.handleOpen();
-    }
 
     /**
      * 
@@ -87,12 +78,27 @@ class Grid extends Component<Props> {
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {
-                // @ts-ignore
-                jsx.push(<td>{this.props.config.actions.map(a => <Button icon={this.actions2icons[a]} style={{ marginRight: 5 }} />)}</td>);
+                jsx.push(<td>{
+                    // @ts-ignore
+                    this.props.config.actions.map(a => <Button icon={this.actions2icons[a]} style={{ marginRight: 5 }} onClick={() => this.onClickActionButton(a, e) } />)
+                }</td>);
             }
-            return (<tr key={i} onClick={() => this.selectRow(e)}>{jsx}</tr>);
+            return (<tr key={i}>{jsx}</tr>);
         });
         return rows;
+    }
+
+    /**
+     * 
+     * @param actionName 
+     * @param rowId 
+     */
+    onClickActionButton(actionName : string = '', row : object = {})
+    {
+        if (this.props.parent && this.props.parent[actionName] && typeof this.props.parent[actionName] === 'function')
+        {
+            this.props.parent[actionName](mobx.toJS(row));
+        }
     }
 
     /**
@@ -100,7 +106,7 @@ class Grid extends Component<Props> {
      */
     render() {
         let jsx = [];
-        if (!this.props.model.collection || this.props.model.collection.length === 0) {
+        if (this.props.model.loading) {
             jsx.push(<div style={{ textAlign: 'center', padding: 30}}><Spinner /></div>);
         } else {
             if (this.props.model.collection != null && this.props.model.collection.length > 0) 
