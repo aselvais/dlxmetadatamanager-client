@@ -183,7 +183,9 @@ export interface MenuItem {
 export interface formElementConfigSchema {
     shape: 'text' | 'select' | 'password' | 'email' | 'checkbow' | 'radio' | 'slider' | 'switch' | 'file' | 'numeric' | 'textarea'  | 'tag'  | 'datetime'  | 'timezone' | 'submit',
     showLabel?: boolean,
-    options?: object
+    options?: object,
+    diabled?: boolean,
+    hideLabel?: boolean
 };
 
 export interface formElemObjConfigSchema {

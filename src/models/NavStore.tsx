@@ -24,7 +24,7 @@ class NavStore
         {name: 'ProfileScreen', label: 'Profile', active: false, icon: 'user', menuVisible: false},
 
     ];
-    @observable active : string = 'LoadingScreen';
+    @observable active : string = 'SearchScreen'; //'LoadingScreen';
 
     /**
      * 

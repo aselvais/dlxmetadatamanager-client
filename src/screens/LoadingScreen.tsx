@@ -12,7 +12,7 @@ import logo from '../assets/images/Deluxe_enterprise_logo_RGB.png';
 class LoadingScreen extends Component
 {
     perc : number = 0;
-    aggrFields : Array<string> = ['ENGINE', 'TABLE_CATALOG', 'TABLE_SCHEMA', 'OWNER', 'DATA_TYPE', 'TABLE_NAME'];
+    aggrFields : Array<string> = [];// ['ENGINE', 'TABLE_CATALOG', 'TABLE_SCHEMA', 'OWNER', 'DATA_TYPE', 'TABLE_NAME'];
 
     /**
      * Load some data when the components are available
@@ -20,6 +20,10 @@ class LoadingScreen extends Component
     public componentDidMount()
     {
         this.aggrFields.map(e => Schemadata.aggregate(e) );
+        if (this.aggrFields.length === 0) 
+        {
+            NavStore.setActive('HomeScreen');
+        }
     }
 
     /**
@@ -35,7 +39,7 @@ class LoadingScreen extends Component
      */
     render()
     {
-        this.perc = (Object.keys(Schemadata.aggragateddata).length / this.aggrFields.length)*100;
+        this.perc = this.aggrFields.length ? (Object.keys(Schemadata.aggragateddata).length / this.aggrFields.length)*100 : 100;
         return (
             <div style={{textAlign: 'center', padding: 100}}>
                 <div style={{padding: 20}}>

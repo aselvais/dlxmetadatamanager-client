@@ -53,7 +53,7 @@ class Grid extends Component<Props> {
     {
         let rows = this.props.model.collection.map((e, i : number) => {
             let zearr = Object.keys(e);
-            if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0)
+            if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0) 
             {
                 zearr = this.props.config.showOnly;
             }

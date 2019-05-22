@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
-import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup } from "@blueprintjs/core";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/AbstractModel";
 
@@ -25,8 +25,28 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
+                { c.hideLabel === false ? null : <Label>{Translator.t(key)}</Label>}
+                <input className="bp3-input" style={{ width: '100%'}} 
+                    disabled={c.diabled ? c.diabled : false} 
+                    type="text"
+                    name={key}
+                    value={v} />
+            </FormGroup>
+        );
+    }
+
+    /**
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    getTextareaFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup>
                 <Label>{Translator.t(key)}</Label>
-                <InputGroup type="text" name={key} value={v} />
+                <TextArea name={key} value={v} growVertically={true} style={{ width: '100%', minHeight: 100 }}/>
             </FormGroup>
         );
     }
@@ -74,7 +94,7 @@ class Form extends Component<formProps, any>
      */
     getFormElement(key : string = '')
     {
-        let v = this.props.model.document[key] ? this.props.model.document[key] : null;
+        let v = this.props.model.document[key] ? this.props.model.document[key] : '';
         // @ts-ignore
         let c : formElementConfigSchema = (this.props.config && this.props.config.elements && typeof this.props.config.elements[key] !== 'undefined') ? this.props.config.elements[key] : false;
         if (!c) return null;
@@ -86,6 +106,8 @@ class Form extends Component<formProps, any>
                     return this.getSelectFormElementJSX(key, v, c);
                 case 'password':
                     return this.getPasswordFormElementJSX(key, v, c);
+                case 'textarea':
+                    return this.getTextareaFormElementJSX(key, v, c);
                 /*
                 case 'email':
                     return null;
@@ -100,8 +122,6 @@ class Form extends Component<formProps, any>
                 case 'file':
                     return null;
                 case 'numeric':
-                    return null;
-                case 'textarea':
                     return null;
                 case 'tag':
                     return null;

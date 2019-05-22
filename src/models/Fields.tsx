@@ -15,11 +15,11 @@ class Fields extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            name: { shape: "text"},
-            datatype: { shape: "text"},
-            datalength: { shape: "text"},
-            charset: { shape: "text"},
-            documentation: { shape: "text"},
+            name: { shape: "text", diabled: true},
+            datatype: { shape: "text", diabled: true},
+            datalength: { shape: "text", diabled: true},
+            charset: { shape: "text", diabled: true},
+            documentation: { shape: "textarea"},
             properties: { shape: "text" },
             tags: { shape: "text"},
         }

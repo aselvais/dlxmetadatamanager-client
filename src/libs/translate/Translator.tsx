@@ -1,5 +1,6 @@
 import f from './en.json';
 import _ from 'lodash';
+// import nlp from 'compromise';
 
 
 /**
@@ -27,6 +28,15 @@ class Translator
     static t(key : string = '') : string
     {
         return Translator.translate(key);
+    }
+
+    /**
+     * Removes the last letter of the entry
+     */
+    static toSingular(key : string = '') : string
+    {
+        let str = Translator.translate(key);
+        return str.substring(0, str.length-1);;
     }
 
 }

@@ -14,8 +14,8 @@ class Tables extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            name: { shape: "text"},
-            description: { shape: "text"},
+            name: { shape: "text", diabled: true},
+            documentation: { shape: "textarea"},
         }
     };
 

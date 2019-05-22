@@ -15,11 +15,11 @@ class Databases extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            name: { shape: "text"},
-            schema : { shape: "text"},
-            storageengine : { shape: "text"},
-            vendorbrand : { shape: "text"},
-            documentation: { shape: "text"},
+            name: { shape: "text", diabled: true},
+            schema : { shape: "text", diabled: true},
+            storageengine : { shape: "text", diabled: true},
+            vendorbrand : { shape: "text", diabled: true},
+            documentation: { shape: "textarea"},
         }
     };
 

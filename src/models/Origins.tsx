@@ -14,10 +14,10 @@ class Origins extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            name: { shape: "text"},
-            organization: { shape: "text"},
-            host: { shape: "text"},
-            documentation: { shape: "text"},
+            name: { shape: "text", diabled: true},
+            organization: { shape: "text", diabled: true},
+            host: { shape: "text", diabled: true},
+            documentation: { shape: "textarea"},
         }
     };
 

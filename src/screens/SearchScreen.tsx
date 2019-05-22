@@ -11,6 +11,8 @@ import Origins from "../models/Origins";
 import Databases from "../models/Databases";
 import Tables from "../models/Tables";
 import Fields from "../models/Fields";
+import Translator from "../libs/translate/Translator";
+import Form from "../components/forms/Form";
 
 interface lvlElementType {
     model : AbstractModel,
@@ -27,14 +29,9 @@ class SearchScreen extends Component
 {
     public state = {
         level: 0,
-
-        autoFocus: true,
-        canEscapeKeyClose: true,
-        canOutsideClickClose: true,
-        enforceFocus: true,
         isOpen: false,
-        usePortal: true
     };
+    protected fna = '';
     /**
      * 
      */
@@ -68,7 +65,7 @@ class SearchScreen extends Component
     /**
      * 
      */
-    loadData( _id : string | null = null )
+    protected loadData( _id : string | null = null )
     {
         let o = this.lvl[this.state.level];
         o.selected_id = _id;
@@ -83,7 +80,8 @@ class SearchScreen extends Component
      * 
      * @param row 
      */
-    public view(row : object = {}) {
+    public view(row : object = {}) 
+    {
         // @ts-ignore
         console.log(row.id); 
     }
@@ -92,7 +90,8 @@ class SearchScreen extends Component
      * 
      * @param row 
      */
-    public edit(row : object = {}) { 
+    public edit(row : object = {}) 
+    { 
         // @ts-ignore
         this.lvl[this.state.level].model.document = row;
         this.setState({ isOpen: true });
@@ -102,7 +101,8 @@ class SearchScreen extends Component
      * 
      * @param row 
      */
-    public drilldown(row : object = {}, step : number = null) {
+    public drilldown(row : object = {}, step : number = null) 
+    {
         this.lvl[this.state.level].model.document = row;
         let tot = (step === null) ? this.state.level + 1 : step;
         // @ts-ignore
@@ -110,44 +110,104 @@ class SearchScreen extends Component
     }
 
     /**
-     * 
+     * Returns the JSX for the breadcrumb
+     */
+    getBreadCrumbJsx()
+    {
+        return (
+            <div style={{padding: 5}}>
+            <ul className="bp3-breadcrumbs">
+                <li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[0].model.document, 0)}>{
+                    // @ts-ignore
+                    Translator.t(this.lvl[0].model.name)
+                }</a></li>
+                {
+                    // @ts-ignore
+                    [...Array(this.state.level).keys()].map((e,i) => {
+                        // @ts-ignore
+                        let nna = Translator.t(this.lvl[e+1].model.name); // + ': ' + this.lvl[e].model.document.name;
+                        // @ts-ignore
+                        this.fna += ((i > 0) ? ' > ' : '') + this.lvl[e].model.document.name;
+                        return (<li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{nna}</a></li>);
+                    })
+                }
+            </ul>
+            </div>
+        );
+    }
+
+    /**
+     * Returns JSX for the dialog containing the form
+     */
+    getDialogJsx()
+    {
+        return (
+            <div>
+            <Dialog 
+                title={ this.fna }
+                style={{ width: '70%' }}
+                onClose={() => this.setState({ isOpen: false })} 
+                isOpen={this.state.isOpen}
+                icon="edit"
+            >
+                <FieldeditionForm model={this.lvl[this.state.level].model} />
+            </Dialog>
+            </div>
+        );
+    }
+
+    /**
+     * Return the JSX for the 'documnentation' form on top of the table
+     */
+    getDocumentationEntiryFormJsx()
+    {
+        if (this.state.level === 0) return null;
+        return (
+            <div style={{padding: 0, width: '50%'}}>
+            <h2>{   
+                // @ts-ignore
+                Translator.toSingular(this.lvl[(this.state.level)].parent) + ' : ' + this.lvl[(this.state.level-1)].model.document.name
+            }</h2>
+            <Form 
+                model={this.lvl[(this.state.level-1)].model} 
+                config={{ showButton: false, fill: true, vertical: false, elements: { documentation: { shape: "text", hideLabel: false } } }} 
+            />
+            </div>
+        );
+    }
+
+    public getTableGridJsx()
+    {
+        return (
+            <div style={{paddingLeft: 20}}>
+                <h3>{
+                    // @ts-ignore
+                    Translator.t(this.lvl[(this.state.level)].model.name) + ' list' 
+                }<div style={{
+                    fontSize: 12,
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    paddingLeft: 25
+                }}>{this.fna ? 'in ' + this.fna : ''}</div>
+                </h3>
+                <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
+            </div>
+        );
+    }
+
+    /**
+     * Main render method returning JSX
      */
     render()
     {
-        let fna = '';
+        this.fna = '';
         return (
-        <div>
-            <div style={{padding: 10, margin: 10}}>
-            <ul className="bp3-breadcrumbs">
-            <li><a className="bp3-breadcrumb"><Icon icon={'more'} iconSize={18} onClick={() => this.drilldown(this.lvl[0].model.document, 0)}/></a></li>
-            {
-            // @ts-ignore
-            [...Array(this.state.level).keys()].map((e,i) => {
-                // @ts-ignore
-                let nna = this.lvl[e].model.document.name;
-                fna += ' > ' + nna;
-                return (<li>
-                    <a className="bp3-breadcrumb" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{nna}</a>
-                </li>);
-            }
-            )
-            }
-            </ul>
-            </div>
             <div>
-                <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
+                {this.getBreadCrumbJsx()}
+                {this.getDialogJsx()}
+                {this.getDocumentationEntiryFormJsx()}
+                {this.getTableGridJsx()}
             </div>
-            <div>
-            <Dialog icon="edit" 
-                onClose={() => this.setState({ isOpen: false })} 
-                title={
-                    // @ts-ignore
-                    fna + ' (' + this.lvl[this.state.level].model.name + ')'
-                    } {...this.state}>
-                <FieldeditionForm model={this.lvl[this.state.level].model}/>
-            </Dialog>
-            </div>
-        </div>
         );
     }
 
