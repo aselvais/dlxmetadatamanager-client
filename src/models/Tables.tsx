@@ -16,6 +16,7 @@ class Tables extends AbstractModel
         elements: {
             name: { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
+            tags: { shape: "tag"},
         }
     };
 

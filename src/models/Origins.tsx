@@ -18,6 +18,7 @@ class Origins extends AbstractModel
             organization: { shape: "text", diabled: true},
             host: { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
+            tags: { shape: "tag"},
         }
     };
 

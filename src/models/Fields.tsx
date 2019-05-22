@@ -20,8 +20,8 @@ class Fields extends AbstractModel
             datalength: { shape: "text", diabled: true},
             charset: { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
+            tags: { shape: "tag"},
             properties: { shape: "text" },
-            tags: { shape: "text"},
         }
     };
 

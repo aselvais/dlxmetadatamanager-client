@@ -20,6 +20,7 @@ class Databases extends AbstractModel
             storageengine : { shape: "text", diabled: true},
             vendorbrand : { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
+            tags: { shape: "tag"},
         }
     };
 

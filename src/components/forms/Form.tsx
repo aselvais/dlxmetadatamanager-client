@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
-import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea } from "@blueprintjs/core";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/AbstractModel";
 
@@ -14,14 +14,13 @@ interface formProps {
  */
 class Form extends Component<formProps, any>
 {
-
     /**
      * 
      * @param key 
      * @param v 
      * @param c 
      */
-    getDefaultFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    public getDefaultFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
             <FormGroup>
@@ -41,7 +40,7 @@ class Form extends Component<formProps, any>
      * @param v 
      * @param c 
      */
-    getTextareaFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    public getTextareaFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
             <FormGroup>
@@ -57,7 +56,7 @@ class Form extends Component<formProps, any>
      * @param v 
      * @param c 
      */
-    getPasswordFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    public getPasswordFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
             <FormGroup>
@@ -73,7 +72,7 @@ class Form extends Component<formProps, any>
      * @param v 
      * @param c 
      */
-    getSelectFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    public getSelectFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
             <FormGroup>
@@ -91,8 +90,28 @@ class Form extends Component<formProps, any>
     /**
      * 
      * @param key 
+     * @param v 
+     * @param c 
      */
-    getFormElement(key : string = '')
+    public getTagFormElementJSX(key:string, v:Array<string> | '', c : formElementConfigSchema)
+    {
+        if (v === '') v = [];
+        return (
+            <FormGroup>
+                <Label>{Translator.t(key)}</Label>
+                <TagInput 
+                    leftIcon="tag"
+                    values={v}
+                />
+            </FormGroup>        
+        );
+    }
+
+    /**
+     * 
+     * @param key 
+     */
+    public getFormElement(key : string = '')
     {
         let v = this.props.model.document[key] ? this.props.model.document[key] : '';
         // @ts-ignore
@@ -108,7 +127,9 @@ class Form extends Component<formProps, any>
                     return this.getPasswordFormElementJSX(key, v, c);
                 case 'textarea':
                     return this.getTextareaFormElementJSX(key, v, c);
-                /*
+                case 'tag':
+                    return this.getTagFormElementJSX(key, v, c);
+                    /*
                 case 'email':
                     return null;
                 case 'checkbow':
@@ -122,8 +143,6 @@ class Form extends Component<formProps, any>
                 case 'file':
                     return null;
                 case 'numeric':
-                    return null;
-                case 'tag':
                     return null;
                 case 'datetime':
                     return null;

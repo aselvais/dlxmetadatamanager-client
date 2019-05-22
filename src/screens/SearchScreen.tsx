@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Icon, Dialog } from "@blueprintjs/core";
+import { Dialog } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 
 import AbstractModel from "../models/AbstractModel";
@@ -112,26 +112,26 @@ class SearchScreen extends Component
     /**
      * Returns the JSX for the breadcrumb
      */
-    getBreadCrumbJsx()
+    public getBreadCrumbJsx()
     {
         return (
             <div style={{padding: 5}}>
-            <ul className="bp3-breadcrumbs">
-                <li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[0].model.document, 0)}>{
-                    // @ts-ignore
-                    Translator.t(this.lvl[0].model.name)
-                }</a></li>
-                {
-                    // @ts-ignore
-                    [...Array(this.state.level).keys()].map((e,i) => {
+                <ul className="bp3-breadcrumbs">
+                    <li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[0].model.document, 0)}>{
                         // @ts-ignore
-                        let nna = Translator.t(this.lvl[e+1].model.name); // + ': ' + this.lvl[e].model.document.name;
+                        Translator.t(this.lvl[0].model.name)
+                    }</a></li>
+                    {
                         // @ts-ignore
-                        this.fna += ((i > 0) ? ' > ' : '') + this.lvl[e].model.document.name;
-                        return (<li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{nna}</a></li>);
-                    })
-                }
-            </ul>
+                        [...Array(this.state.level).keys()].map((e,i) => {
+                            // @ts-ignore
+                            let nna = Translator.t(this.lvl[e+1].model.name); // + ': ' + this.lvl[e].model.document.name;
+                            // @ts-ignore
+                            this.fna += ((i > 0) ? ' > ' : '') + this.lvl[e].model.document.name;
+                            return (<li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{nna}</a></li>);
+                        })
+                    }
+                </ul>
             </div>
         );
     }
@@ -139,7 +139,7 @@ class SearchScreen extends Component
     /**
      * Returns JSX for the dialog containing the form
      */
-    getDialogJsx()
+    public getDialogJsx()
     {
         return (
             <div>
@@ -159,7 +159,7 @@ class SearchScreen extends Component
     /**
      * Return the JSX for the 'documnentation' form on top of the table
      */
-    getDocumentationEntiryFormJsx()
+    public getDocumentationEntiryFormJsx()
     {
         if (this.state.level === 0) return null;
         return (
@@ -170,12 +170,17 @@ class SearchScreen extends Component
             }</h2>
             <Form 
                 model={this.lvl[(this.state.level-1)].model} 
-                config={{ showButton: false, fill: true, vertical: false, elements: { documentation: { shape: "text", hideLabel: false } } }} 
+                config={{ showButton: false, fill: true, vertical: true, elements: { 
+                    documentation: { shape: "text", hideLabel: false }
+                } }} 
             />
             </div>
         );
     }
 
+    /**
+     * Returns the table data grid 
+     */
     public getTableGridJsx()
     {
         return (
