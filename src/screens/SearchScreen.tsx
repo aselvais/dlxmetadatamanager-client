@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import Origins from "../models/Origins";
-import Grid from "../components/Grid";
 import { observer } from "mobx-react";
+import Grid from "../components/Grid";
+import { gridConfig } from "../models/interfaces";
+import { Icon } from "@blueprintjs/core";
+
 import AbstractModel from "../models/AbstractModel";
+
+import Origins from "../models/Origins";
 import Databases from "../models/Databases";
 import Tables from "../models/Tables";
-import { gridConfig } from "../models/interfaces";
 import Fields from "../models/Fields";
-import { Button } from "@blueprintjs/core";
-import Translator from "../libs/translate/Translator";
 
 interface lvlElementType {
     model : AbstractModel,
@@ -31,28 +32,20 @@ class SearchScreen extends Component
      */
     protected lvl : Array<lvlElementType> = [
         {
-            model : Origins,
-            gridConfig : { showOnly:[ 'name', 'host', 'organization' ], actions: ['view', 'edit', 'drilldown'] },
-            selected_id : null,
-            parent : null
+            model : Origins, selected_id : null, parent : null,
+            gridConfig : { showOnly:[ 'name', 'host', 'organization' ], actions: ['view', 'edit', 'drilldown'] }
         },
         {
-            model : Databases,
-            gridConfig : {showOnly:['name', 'schema','storageengine', 'vendorbrand'], actions: ['view', 'edit', 'drilldown']},
-            selected_id : null,
-            parent : 'origins'
+            model : Databases, selected_id : null, parent : 'origins',
+            gridConfig : {showOnly:['name', 'schema','storageengine', 'vendorbrand'], actions: ['view', 'edit', 'drilldown']}
         },
         {
-            model : Tables, 
-            gridConfig : {showOnly:['name'], actions: ['view', 'edit', 'drilldown']},
-            selected_id : null,
-            parent : 'databases'
+            model : Tables, selected_id : null, parent : 'databases', 
+            gridConfig : {showOnly:['name'], actions: ['view', 'edit', 'drilldown']}
         },
         {
-            model : Fields,
-            gridConfig : {showOnly:['name', 'datatype', 'documentation'], actions: ['view', 'edit']},
-            selected_id : null,
-            parent : 'tables'
+            model : Fields, selected_id : null, parent : 'tables',
+            gridConfig : {showOnly:['name', 'datatype', 'documentation'], actions: ['view', 'edit']}
         }
     ];
     
@@ -72,34 +65,39 @@ class SearchScreen extends Component
         let o = this.lvl[this.state.level];
         o.selected_id = _id;
         let query = { where: {}};
-        if (o.parent) query.where[o.parent+'_idh'] = o.selected_id;
+        if (o.parent) {
+            query.where[o.parent+'_idh'] = o.selected_id;
+        }
         o.model.find(query);
     }
 
     /**
      * 
-     * @param levelId 
-     * @param _id 
+     * @param row 
      */
-    public drillDown(levelId : number = 0, _id : string | null = null)
-    {
-        this.setState({level: levelId}, () => this.loadData(_id) );
-    }
-
     public view(row : object = {}) {
         // @ts-ignore
         console.log(row.id); 
     }
 
+    /**
+     * 
+     * @param row 
+     */
     public edit(row : object = {}) { 
         // @ts-ignore
         console.log(row.id); 
     }
 
-    public drilldown(row : object = {}) { 
+    /**
+     * 
+     * @param row 
+     */
+    public drilldown(row : object = {}, step : number = null) {
+        this.lvl[this.state.level].model.document = row;
+        let tot = (step === null) ? this.state.level + 1 : step;
         // @ts-ignore
-        this.setState({level: (this.state.level+1) }, () => this.loadData(row.idh) );
-
+        this.setState({level: tot }, () => this.loadData(row.idh) );
     }
 
     /**
@@ -108,19 +106,30 @@ class SearchScreen extends Component
     render()
     {
         return (
-            <div>
-                {[0,1,2,3].map(e => <Button text={e} onClick={ () => this.drillDown(e) }/> )}
-                <h3>
-                    {Translator.t(this.lvl[this.state.level].model.getName())}
-                </h3>
-                <div>
-                    <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
-                </div>
+        <div>
+            <div style={{padding: 10, margin: 10}}>
+            <ul className="bp3-breadcrumbs">
+            <li><a className="bp3-breadcrumb"><Icon icon={'more'} iconSize={18} onClick={() => this.drilldown(this.lvl[0].model.document, 0)}/></a></li>
+            {
+            // @ts-ignore
+            [...Array(this.state.level).keys()].map((e,i) => 
+                <li>
+                    <a className="bp3-breadcrumb" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{
+                    // @ts-ignore
+                    this.lvl[e].model.document.name
+                    }</a>
+                </li>
+            )
+            }
+            </ul>
             </div>
+            <div>
+                <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
+            </div>
+        </div>
         );
     }
 
 }
-
 
 export default SearchScreen;
