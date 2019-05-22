@@ -6,10 +6,9 @@ import { tagsSchema } from "./interfaces";
  */
 class Tags extends AbstractModel
 {
-    protected name : string = 'tags';
+    public name : string = 'tags';
     public document : tagsSchema = {};
     public collection : Array<tagsSchema> = [];
-
 }
 
 export default new Tags();

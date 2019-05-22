@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button } from "@blueprintjs/core";
+import { Spinner, Button, Intent } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/AbstractModel";
 import { observer } from "mobx-react";
@@ -22,10 +22,10 @@ class Grid extends Component<Props> {
      * Actions to icons 'translation'
      */
     protected actions2icons = {
-        'view' : 'search',
-        'edit' : 'edit',
-        'delete' : 'delete',
-        'drilldown' : 'arrow-right'
+        'view' : {icon: 'search', intent: Intent.NONE},
+        'edit' : {icon: 'edit', intent: Intent.WARNING},
+        'delete' : {icon: 'delete', intent: Intent.DANGER},
+        'drilldown' : {icon: 'arrow-right', intent: Intent.PRIMARY}
     };
 
     /**
@@ -62,9 +62,13 @@ class Grid extends Component<Props> {
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {
-                jsx.push(<td>{
-                    // @ts-ignore
-                    this.props.config.actions.map(a => <Button icon={this.actions2icons[a]} style={{ marginRight: 5 }} onClick={() => this.onClickActionButton(a, e) } />)
+                jsx.push(<td style={{ textAlign: 'right'}}>{
+                    this.props.config.actions.map(a => <Button 
+                        // @ts-ignore
+                        icon={this.actions2icons[a].icon}
+                        intent={this.actions2icons[a].intent} 
+                        style={{ marginRight: 5 }} 
+                        onClick={() => this.onClickActionButton(a, e) } />)
                 }</td>);
             }
             return (<tr key={i}>{jsx}</tr>);

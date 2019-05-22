@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Dialog } from "@blueprintjs/core";
+import { Dialog, Icon } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 
 import AbstractModel from "../models/AbstractModel";
@@ -27,9 +27,21 @@ interface lvlElementType {
 @observer
 class SearchScreen extends Component
 {
+    /**
+     * 
+     */
     public state = {
         level: 0,
         isOpen: false,
+    };
+    /**
+     * model name to icon
+     */
+    public model2icon = {
+        'origins' : 'locate',
+        'databases' : 'database',
+        'tables' : 'th',
+        'fields' : 'list',
     };
     protected fna = '';
     /**
@@ -50,7 +62,7 @@ class SearchScreen extends Component
         },
         {
             model : Fields, selected_id : null, parent : 'tables',
-            gridConfig : {showOnly:['name', 'datatype', 'datalength', 'documentation'], actions: ['view', 'edit']}
+            gridConfig : {showOnly:['name', 'datatype', 'datalength', 'documentation'], actions: [/*'view', */'edit']}
         }
     ];
     
@@ -117,18 +129,24 @@ class SearchScreen extends Component
         return (
             <div style={{padding: 5}}>
                 <ul className="bp3-breadcrumbs">
-                    <li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[0].model.document, 0)}>{
-                        // @ts-ignore
+                    <li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[0].model.document, 0)}>
+                    <Icon icon={
+                        this.model2icon[this.lvl[0].model.name]
+                        } style={{padding: 3, paddingRight: 8}} />{
                         Translator.t(this.lvl[0].model.name)
                     }</a></li>
                     {
                         // @ts-ignore
                         [...Array(this.state.level).keys()].map((e,i) => {
+                            let nna = Translator.t(this.lvl[e+1].model.name);
                             // @ts-ignore
-                            let nna = Translator.t(this.lvl[e+1].model.name); // + ': ' + this.lvl[e].model.document.name;
-                            // @ts-ignore
-                            this.fna += ((i > 0) ? ' > ' : '') + this.lvl[e].model.document.name;
-                            return (<li><a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{nna}</a></li>);
+                            this.fna += ((i >= 1) ? ' > ' : '') + this.lvl[e].model.document.name;
+                            return (
+                            <li>
+                                <a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>
+                                <Icon icon={ this.model2icon[this.lvl[e+1].model.name] } style={{padding: 3, paddingRight: 8}} />{nna}
+                                </a>
+                            </li>);
                         })
                     }
                 </ul>
@@ -143,13 +161,14 @@ class SearchScreen extends Component
     {
         return (
             <div>
-            <Dialog 
-                title={ this.fna }
-                style={{ width: '70%' }}
-                onClose={() => this.setState({ isOpen: false })} 
-                isOpen={this.state.isOpen}
-                icon="edit"
-            >
+            <Dialog title={ 
+                    // @ts-ignore
+                    this.fna + ' > ' + this.lvl[this.state.level].model.document.name 
+                    }
+                    style={{ width: '70%' }}
+                    onClose={() => this.setState({ isOpen: false })} 
+                    isOpen={this.state.isOpen}
+                    icon={ this.model2icon[this.lvl[this.state.level].model.name] } >
                 <FieldeditionForm model={this.lvl[this.state.level].model} />
             </Dialog>
             </div>
@@ -164,7 +183,9 @@ class SearchScreen extends Component
         if (this.state.level === 0) return null;
         return (
             <div style={{padding: 0, width: '50%'}}>
-            <h2>{   
+            <h2>
+            <Icon icon={ this.model2icon[this.lvl[this.state.level-1].model.name] } style={{padding: 3, paddingRight: 8}} />
+            {
                 // @ts-ignore
                 Translator.toSingular(this.lvl[(this.state.level)].parent) + ' : ' + this.lvl[(this.state.level-1)].model.document.name
             }</h2>
@@ -185,15 +206,10 @@ class SearchScreen extends Component
     {
         return (
             <div style={{paddingLeft: 20}}>
-                <h3>{
-                    // @ts-ignore
-                    Translator.t(this.lvl[(this.state.level)].model.name) + ' list' 
-                }<div style={{
-                    fontSize: 12,
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    paddingLeft: 25
-                }}>{this.fna ? 'in ' + this.fna : ''}</div>
+                <h3>
+                    <Icon icon={this.model2icon[this.lvl[this.state.level].model.name]} style={{padding: 2, paddingRight: 8}} />
+                    { Translator.t(this.lvl[(this.state.level)].model.name) + ' list' }
+                    <div style={{ fontSize: 12, fontWeight: 'normal', fontStyle: 'italic', paddingLeft: 25 }}>{this.fna ? 'in ' + this.fna : ''}</div>
                 </h3>
                 <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
             </div>

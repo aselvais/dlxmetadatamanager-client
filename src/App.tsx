@@ -24,7 +24,6 @@ class App extends Component
   render()
   {
     let activeMenu = NavStore.getActive();
-
     if (Users.getToken() !== null)
     {
       return (

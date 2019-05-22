@@ -6,7 +6,7 @@ import { schemadataSchema } from "./interfaces";
  */
 class Schemadata extends AbstractModel
 {
-    protected name : string = 'schemadata';
+    public name : string = 'schemadata';
     public document : schemadataSchema | null = null;
     public collection : Array<schemadataSchema> | null = null;
 

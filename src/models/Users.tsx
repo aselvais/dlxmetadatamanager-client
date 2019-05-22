@@ -6,7 +6,7 @@ import {UsersSchema, formConfigSchema} from './interfaces';
  */
 class Users extends AbstractModel
 {
-    protected name : string = 'Users';
+    public name : string = 'Users';
     /**
      * Token we receive from the auth API
      */

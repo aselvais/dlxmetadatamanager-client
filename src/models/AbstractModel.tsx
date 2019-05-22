@@ -11,7 +11,7 @@ abstract class AbstractModel
     /**
      * Name of the model / collection to be defined in the inheriting classes
      */
-    protected name : string = '';
+    public name : string = '';
     /**
      * Will be true when we are loading the data from the API
      */

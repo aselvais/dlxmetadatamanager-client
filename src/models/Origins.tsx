@@ -6,7 +6,7 @@ import { originsSchema, formConfigSchema } from "./interfaces";
  */
 class Origins extends AbstractModel
 {
-    protected name : string = 'origins';
+    public name : string = 'origins';
     public document : originsSchema = {};
     public collection : Array<originsSchema> = [];
     public formConfig : formConfigSchema = {

@@ -6,7 +6,7 @@ import { tablesSchema, formConfigSchema } from "./interfaces";
  */
 class Tables extends AbstractModel
 {
-    protected name : string = 'tables';
+    public name : string = 'tables';
     public document : tablesSchema = {};
     public collection : Array<tablesSchema> = [];
     public formConfig : formConfigSchema = {

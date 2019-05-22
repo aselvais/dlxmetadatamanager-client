@@ -176,7 +176,7 @@ class Form extends Component<formProps, any>
         form = Object.keys(this.props.config.elements).map(k => this.getFormElement(k));
         if (this.props.config.showButton !== false)
         {
-            form.push(<Button icon="plus" text={Translator.t('Submit')} />);
+            form.push(<Button icon="plus" intent="success" text={Translator.t('Submit')} />);
         }
         return (
             <ControlGroup fill={this.props.config.fill} vertical={this.props.config.vertical}>

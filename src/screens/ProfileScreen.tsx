@@ -28,7 +28,7 @@ class ProfileScreen extends Component
         } else {
             return (
                 <div>
-                    <div>
+                    <div style={{ width: '70%', margin: 'auto'}}>
                         <Form model={Users} config={Users.formConfig} />
                     </div>
                 </div>

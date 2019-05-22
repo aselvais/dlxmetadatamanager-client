@@ -7,7 +7,7 @@ import { fieldsSchema, formConfigSchema } from "./interfaces";
  */
 class Fields extends AbstractModel
 {
-    protected name : string = 'fields';
+    public name : string = 'fields';
     public document : fieldsSchema = {};
     public collection : Array<fieldsSchema> = [];
     public formConfig : formConfigSchema = {

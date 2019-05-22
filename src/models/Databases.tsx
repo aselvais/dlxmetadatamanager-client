@@ -7,7 +7,7 @@ import { databasesSchema, formConfigSchema } from "./interfaces";
  */
 class Databases extends AbstractModel
 {
-    protected name : string = 'databases';
+    public name : string = 'databases';
     public document : databasesSchema = {};
     public collection : Array<databasesSchema> = [];
     public formConfig : formConfigSchema = {
