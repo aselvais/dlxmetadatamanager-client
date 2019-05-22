@@ -104,7 +104,7 @@ class HomeScreen extends Component
                             <tbody>{rows}</tbody>
                         </table>
                         <Dialog icon="info-sign" onClose={() => this.setState({ isOpen: false })} title="Field edition" {...this.state}>
-                            <FieldeditionForm />
+                            <FieldeditionForm model={Schemadata} />
                         </Dialog>
                     </div>
                 );

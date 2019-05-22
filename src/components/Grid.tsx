@@ -33,23 +33,12 @@ class Grid extends Component<Props> {
      */
     getHeaderJsx()
     {
-        let jsx = Object.keys(this.props.model.collection[0]).map( 
-            (k : string, i : number) => {
-                if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0)
-                {
-                    if (this.props.config.showOnly.indexOf(k) > -1) 
-                    {
-                        return (<th key={k}>{Translator.t(k)}</th>);
-                    }
-                    else 
-                    {
-                        return null;
-                    }
-                } else {
-                    return (<th key={k}>{Translator.t(k)}</th>);
-                }
-            }
-        );
+        let zearr = Object.keys(this.props.model.collection[0]);
+        if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0)
+        {
+            zearr = this.props.config.showOnly;
+        }
+        let jsx = zearr.map( (k : string, i : number) => <th key={k}>{Translator.t(k)}</th> );
         if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
         {
             jsx.push(<th key={'actions'}>{Translator.t('actions')}</th>);
@@ -63,18 +52,13 @@ class Grid extends Component<Props> {
     getBodyJsx()
     {
         let rows = this.props.model.collection.map((e, i : number) => {
-            let jsx = Object.keys(e).map( (k : string, i : number) => {
-                if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0)
-                {
-                    if (this.props.config.showOnly.indexOf(k) > -1) 
-                    { 
-                        return (<td key={k}>{e[k]}</td>); 
-                    } else {
-                        return null;
-                    }
-                } else {
-                    return (<td key={k}>{e[k]}</td>);
-                }
+            let zearr = Object.keys(e);
+            if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0)
+            {
+                zearr = this.props.config.showOnly;
+            }
+            let jsx = zearr.map( (k : string, i : number) => {
+                return (<td key={k}>{e[k]}</td>); 
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {

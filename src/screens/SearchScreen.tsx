@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Icon } from "@blueprintjs/core";
+import { Icon, Dialog } from "@blueprintjs/core";
+import FieldeditionForm from "../components/FieldeditionForm";
 
 import AbstractModel from "../models/AbstractModel";
 
@@ -25,7 +26,14 @@ interface lvlElementType {
 class SearchScreen extends Component
 {
     public state = {
-        level: 0
+        level: 0,
+
+        autoFocus: true,
+        canEscapeKeyClose: true,
+        canOutsideClickClose: true,
+        enforceFocus: true,
+        isOpen: false,
+        usePortal: true
     };
     /**
      * 
@@ -33,19 +41,19 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'name', 'host', 'organization' ], actions: ['view', 'edit', 'drilldown'] }
+            gridConfig : { showOnly:[ 'name', 'host', 'organization', 'documentation' ], actions: ['edit', 'drilldown'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',
-            gridConfig : {showOnly:['name', 'schema','storageengine', 'vendorbrand'], actions: ['view', 'edit', 'drilldown']}
+            gridConfig : {showOnly:['name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Tables, selected_id : null, parent : 'databases', 
-            gridConfig : {showOnly:['name'], actions: ['view', 'edit', 'drilldown']}
+            gridConfig : {showOnly:['name', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Fields, selected_id : null, parent : 'tables',
-            gridConfig : {showOnly:['name', 'datatype', 'documentation'], actions: ['view', 'edit']}
+            gridConfig : {showOnly:['name', 'datatype', 'datalength', 'documentation'], actions: ['view', 'edit']}
         }
     ];
     
@@ -86,7 +94,8 @@ class SearchScreen extends Component
      */
     public edit(row : object = {}) { 
         // @ts-ignore
-        console.log(row.id); 
+        this.lvl[this.state.level].model.document = row;
+        this.setState({ isOpen: true });
     }
 
     /**
@@ -105,6 +114,7 @@ class SearchScreen extends Component
      */
     render()
     {
+        let fna = '';
         return (
         <div>
             <div style={{padding: 10, margin: 10}}>
@@ -112,19 +122,30 @@ class SearchScreen extends Component
             <li><a className="bp3-breadcrumb"><Icon icon={'more'} iconSize={18} onClick={() => this.drilldown(this.lvl[0].model.document, 0)}/></a></li>
             {
             // @ts-ignore
-            [...Array(this.state.level).keys()].map((e,i) => 
-                <li>
-                    <a className="bp3-breadcrumb" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{
-                    // @ts-ignore
-                    this.lvl[e].model.document.name
-                    }</a>
-                </li>
+            [...Array(this.state.level).keys()].map((e,i) => {
+                // @ts-ignore
+                let nna = this.lvl[e].model.document.name;
+                fna += ' > ' + nna;
+                return (<li>
+                    <a className="bp3-breadcrumb" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>{nna}</a>
+                </li>);
+            }
             )
             }
             </ul>
             </div>
             <div>
                 <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
+            </div>
+            <div>
+            <Dialog icon="edit" 
+                onClose={() => this.setState({ isOpen: false })} 
+                title={
+                    // @ts-ignore
+                    fna + ' (' + this.lvl[this.state.level].model.name + ')'
+                    } {...this.state}>
+                <FieldeditionForm model={this.lvl[this.state.level].model}/>
+            </Dialog>
             </div>
         </div>
         );

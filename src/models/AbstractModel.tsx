@@ -1,5 +1,6 @@
 import Config from "./Config";
 import { observable } from 'mobx';
+import { formConfigSchema } from "./interfaces";
 
 /**
  * Abstract class containing the method for accessing the API
@@ -28,6 +29,12 @@ abstract class AbstractModel
      * value is the aggragated data
      */
     @observable public aggragateddata : object = {};
+    
+    public formConfig : formConfigSchema = {
+        showButton: true,
+        fill: true,
+        vertical: true,
+    };
 
     /**
      * 
