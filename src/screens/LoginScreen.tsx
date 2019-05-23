@@ -25,18 +25,6 @@ class LoginScreen extends Component
 
     /**
      * 
-     */
-    protected showErrorMsg()
-    {
-        if (!Users.error) return null;
-        else {
-            console.log('Hello?!');
-  
-        }
-    }
-
-    /**
-     * 
      * @param toast 
      */
     private addToast(toast: IToastProps) 

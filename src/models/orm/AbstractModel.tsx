@@ -29,6 +29,10 @@ abstract class AbstractModel
      */
     @observable public loading : boolean = false;
     /**
+     * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
+     */
+    @observable public currentAction : 'editing' | 'saving' | 'loggingin' | null = null;
+    /**
      * Entry (one document) selected or loaded (by findOne for eg)
      */
     @observable public document : null | object = null;
@@ -54,6 +58,25 @@ abstract class AbstractModel
     public getName() : string
     {
         return this.name;
+    }
+
+    /**
+     * Take the this.document and update the same one in this.collection
+     */
+    public updateDocumentInLocalCollection() : boolean
+    {
+        for (let i in this.collection)
+        {
+            try {
+                //@ts-ignore
+                if (this.collection[i].id === this.document.id)
+                {
+                    this.collection[i] = this.document;
+                    return true;
+                }
+            } catch(ee) {}
+        }
+        return false;
     }
 
     /**
@@ -101,7 +124,27 @@ abstract class AbstractModel
      */
     private updateOne() 
     {
-        alert(JSON.stringify(this.document));
+        let d = toJS(this.document);
+        //@ts-ignore
+        let id = d.id;
+        //@ts-ignore
+        delete d.id;
+        this.currentAction = 'saving';
+        fetch(this.getApiUrl(id), {
+            method: 'PATCH',
+            body: JSON.stringify(d),
+            headers: new Headers({'Content-Type': 'application/json'})
+        })
+         .then(response => response.json())
+         .then(data => {
+             this.error = data.error ? data.error : null;
+             for (let i in data)
+             {
+                this.document[i] = data[i];
+             }
+             this.updateDocumentInLocalCollection();
+             this.currentAction = null;
+            });
     }
 
     /**

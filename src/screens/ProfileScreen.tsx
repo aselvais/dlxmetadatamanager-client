@@ -15,8 +15,7 @@ class ProfileScreen extends Component
      */
     componentDidMount()
     {
-        // @todo remove the static ID
-        Users.findOneById(Users.document.id ? Users.document.id : '5ce3ff0ac7ae6740c4212166', true);
+        Users.findOneById(Users.document.id, true);
     }
 
     /**

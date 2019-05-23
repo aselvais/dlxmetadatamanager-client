@@ -11,7 +11,7 @@ class Users extends AbstractModel
     /**
      * Token we receive from the auth API
      */
-    @observable private token : string | null = 'Tqytd81r4dNmcr9iSNXjiQ6GbC5eF7RVGRLhbYbZ4FRGmNzlURp5SIGwmSBmifOv'; //null;
+    @observable private token : string | null = null;
     /**
      * 
      */
@@ -62,9 +62,10 @@ class Users extends AbstractModel
     /**
      * 
      */
-    login()
+    public login()
     {
        this.loading = true;
+       this.currentAction = 'loggingin';
        fetch(this.getApiUrl() + '/login', {
            method: 'POST',
            body: JSON.stringify(this.getDocument()),
@@ -78,6 +79,7 @@ class Users extends AbstractModel
                 this.document.password = null;
             } catch(ee) {}
             this.error = data.error ? data.error : null;
+            this.currentAction = null;
             this.loading = false;
         });
     }

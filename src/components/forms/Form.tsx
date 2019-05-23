@@ -202,7 +202,7 @@ class Form extends Component<formProps, any>
                 icon="plus" 
                 intent="success" 
                 text={Translator.t('Submit')}
-                disabled={this.props.model.loading}
+                disabled={(this.props.model.currentAction === 'saving')}
                 onClick={
                     e => (
                             this.props.config && 

@@ -32,7 +32,6 @@ class SearchScreen extends Component
      */
     public state = {
         level: 0,
-        isOpen: false,
     };
     /**
      * model name to icon
@@ -106,7 +105,7 @@ class SearchScreen extends Component
     { 
         // @ts-ignore
         this.lvl[this.state.level].model.document = row;
-        this.setState({ isOpen: true });
+        this.lvl[this.state.level].model.currentAction = 'editing';
     }
 
     /**
@@ -166,8 +165,8 @@ class SearchScreen extends Component
                     this.fna + ' > ' + this.lvl[this.state.level].model.document.name 
                     }
                     style={{ width: '70%' }}
-                    onClose={() => this.setState({ isOpen: false })} 
-                    isOpen={this.state.isOpen}
+                    onClose={() => this.lvl[this.state.level].model.currentAction = null } 
+                    isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing') }
                     icon={ this.model2icon[this.lvl[this.state.level].model.name] } >
                 <FieldeditionForm model={this.lvl[this.state.level].model} />
             </Dialog>
