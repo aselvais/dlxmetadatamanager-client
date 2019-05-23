@@ -8,7 +8,7 @@ import LoadingScreen from './screens/LoadingScreen';
 import Titlebar from './components/Titlebar';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
-import Users from './models/Users';
+import Users from './models/orm/Users';
 import LoginScreen from './screens/LoginScreen';
 
 /**

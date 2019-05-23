@@ -5,12 +5,12 @@ import { gridConfig } from "../models/interfaces";
 import { Dialog, Icon } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 
-import AbstractModel from "../models/AbstractModel";
+import AbstractModel from "../models/orm/AbstractModel";
 
-import Origins from "../models/Origins";
-import Databases from "../models/Databases";
-import Tables from "../models/Tables";
-import Fields from "../models/Fields";
+import Origins from "../models/orm/Origins";
+import Databases from "../models/orm/Databases";
+import Tables from "../models/orm/Tables";
+import Fields from "../models/orm/Fields";
 import Translator from "../libs/translate/Translator";
 import Form from "../components/forms/Form";
 

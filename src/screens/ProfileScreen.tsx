@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Users from "../models/Users";
+import Users from "../models/orm/Users";
 import { observer } from "mobx-react";
 import Form from "../components/forms/Form";
 import { Spinner } from "@blueprintjs/core";
@@ -15,7 +15,8 @@ class ProfileScreen extends Component
      */
     componentDidMount()
     {
-        Users.findOneById(Users.document.id, true);
+        // @todo remove the static ID
+        Users.findOneById(Users.document.id ? Users.document.id : '5ce3ff0ac7ae6740c4212166', true);
     }
 
     /**

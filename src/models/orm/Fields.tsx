@@ -1,5 +1,5 @@
 import AbstractModel from "./AbstractModel";
-import { fieldsSchema, formConfigSchema } from "./interfaces";
+import { fieldsSchema, formConfigSchema } from "../interfaces";
 
 
 /**
@@ -12,6 +12,7 @@ class Fields extends AbstractModel
     public collection : Array<fieldsSchema> = [];
     public formConfig : formConfigSchema = {
         showButton: true,
+        buttonAction: 'updateOne',
         fill: true,
         vertical: true,
         elements: {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./forms/Form";
 import { observer } from "mobx-react";
-import AbstractModel from "../models/AbstractModel";
+import AbstractModel from "../models/orm/AbstractModel";
 import { gridConfig } from "../models/interfaces";
 
 interface Props {

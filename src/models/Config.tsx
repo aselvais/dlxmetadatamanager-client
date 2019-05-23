@@ -1,7 +1,11 @@
-
-
+/**
+ * 
+ */
 class Config
 {
+    /**
+     * 
+     */
     public static api = {
         protocol: 'http',
         host: 'localhost',
@@ -21,7 +25,6 @@ class Config
                 ( (model !== '') ? model : '') + 
                 ( (id !== '') ? '/' + id : '' );
     }
-
 
 }
 

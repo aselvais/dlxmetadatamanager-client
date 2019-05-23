@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Schemadata from "../models/Schemadata";
+import Schemadata from "../models/orm/Schemadata";
 import { observer } from 'mobx-react';
 import { ControlGroup, Spinner, Dialog } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";

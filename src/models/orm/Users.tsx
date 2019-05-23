@@ -1,5 +1,5 @@
 import AbstractModel from "./AbstractModel";
-import {UsersSchema, formConfigSchema} from './interfaces';
+import {UsersSchema, formConfigSchema} from '../interfaces';
 import { observable } from "mobx";
 
 /**
@@ -11,8 +11,14 @@ class Users extends AbstractModel
     /**
      * Token we receive from the auth API
      */
-    @observable private token : string | null = null;
+    @observable private token : string | null = 'Tqytd81r4dNmcr9iSNXjiQ6GbC5eF7RVGRLhbYbZ4FRGmNzlURp5SIGwmSBmifOv'; //null;
+    /**
+     * 
+     */
     public document : UsersSchema = {};
+    /**
+     * 
+     */
     public collection : Array<UsersSchema> = [];
     /**
      * Edition form configuration

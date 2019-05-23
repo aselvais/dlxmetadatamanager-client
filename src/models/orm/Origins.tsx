@@ -1,5 +1,5 @@
 import AbstractModel from "./AbstractModel";
-import { originsSchema, formConfigSchema } from "./interfaces";
+import { originsSchema, formConfigSchema } from "../interfaces";
 
 /**
  * Singleton model for Origins
@@ -11,6 +11,7 @@ class Origins extends AbstractModel
     public collection : Array<originsSchema> = [];
     public formConfig : formConfigSchema = {
         showButton: true,
+        buttonAction: 'updateOne',
         fill: true,
         vertical: true,
         elements: {

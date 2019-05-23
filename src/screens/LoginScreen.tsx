@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import Users from '../models/Users';
+import Users from '../models/orm/Users';
 import Form from '../components/forms/Form';
 import logo from '../assets/images/Deluxe_enterprise_logo_RGB.png';
 import { Toaster, Position, IToastProps, Intent, Spinner } from "@blueprintjs/core";

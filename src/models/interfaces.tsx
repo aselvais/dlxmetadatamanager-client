@@ -113,17 +113,28 @@ export interface UsersSchema {
  */
 export interface tagsSchema {
     [key:string]: any,
+    "id"?: string,
     "name"?: string,
     "tags_id"?: string,
     "type"?: string,
     "properties"?: object  
 };
 
+export interface AccessTokensSchema {
+    [key:string]: any,
+    "id"?: string,
+    "ttl"?: number,
+    "created"?: string,
+    "userId"?: string
+};
+
+
 /**
  * Tables schema
  */
 export interface tablesSchema {
     [key:string]: any,
+    "id"?: string,
     "name"?: string,
     "storageengine"?: string,
     "databases_id"?: string  
@@ -134,6 +145,7 @@ export interface tablesSchema {
  */
 export interface originsSchema {
     [key:string]: any,
+    "id"?: string,
     "name"?: string,
     "host"?: string,
     "organization"?: string  
@@ -144,6 +156,7 @@ export interface originsSchema {
  */
 export interface fieldsSchema {
     [key:string]: any,
+    "id"?: string,
     "name"?: string,
     "datatype"?: string,
     "datalength"?: number,
@@ -160,6 +173,7 @@ export interface fieldsSchema {
  */
 export interface databasesSchema {
     [key:string]: any,
+    "id"?: string,
     "name"?: string,
     "origins_id"?: string,
     "vendorbrand"?: string,

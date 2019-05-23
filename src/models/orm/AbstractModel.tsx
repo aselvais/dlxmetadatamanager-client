@@ -1,6 +1,6 @@
-import Config from "./Config";
+import Config from "../Config";
 import { toJS, observable } from 'mobx';
-import { formConfigSchema } from "./interfaces";
+import { formConfigSchema } from "../interfaces";
 
 interface modelErrorSchema {
     code?: string,
@@ -95,11 +95,19 @@ abstract class AbstractModel
                 });    
         }
     }
+    
+    /**
+     * Modifies a single document in a collection.
+     */
+    private updateOne() 
+    {
+        alert(JSON.stringify(this.document));
+    }
 
     /**
      * Performs a query on a collection or a view and returns a cursor object.
      */
-    public find(where : object = {} /*{"where": {"_id": "5cd9bf89a7aa340bb626b1e1"}}*/) {
+    public find(where : object = {}) {
         this.loading = true;
         fetch(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
             .then(response => response.json())
@@ -174,11 +182,6 @@ abstract class AbstractModel
      * Replaces a single document in a collection.
      */
     private replaceOne() {}
-
-    /**
-     * Modifies a single document in a collection.
-     */
-    private updateOne() {}
 
     /**
      * Modifies multiple documents in a collection.

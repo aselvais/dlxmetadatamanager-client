@@ -1,5 +1,5 @@
 import AbstractModel from "./AbstractModel";
-import { tablesSchema, formConfigSchema } from "./interfaces";
+import { tablesSchema, formConfigSchema } from "../interfaces";
 
 /**
  * Singleton model for Tables
@@ -11,6 +11,7 @@ class Tables extends AbstractModel
     public collection : Array<tablesSchema> = [];
     public formConfig : formConfigSchema = {
         showButton: true,
+        buttonAction: 'updateOne',
         fill: true,
         vertical: true,
         elements: {

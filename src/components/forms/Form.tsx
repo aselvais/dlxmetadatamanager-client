@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
 import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
-import AbstractModel from "../../models/AbstractModel";
+import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 
 interface formProps {
@@ -34,7 +34,7 @@ class Form extends Component<formProps, any>
                     name={key}
                     value={v} 
                     onChange={vv => this.props.model.document[key] = vv.target.value} 
-                    />
+                />
             </FormGroup>
         );
     }

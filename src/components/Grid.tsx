@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Spinner, Button, Intent } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
-import AbstractModel from "../models/AbstractModel";
+import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 import { gridConfig } from "../models/interfaces";
 import * as mobx from 'mobx';
@@ -58,7 +58,11 @@ class Grid extends Component<Props> {
                 zearr = this.props.config.showOnly;
             }
             let jsx = zearr.map( (k : string, i : number) => {
-                return (<td key={k}>{e[k]}</td>); 
+                return (<td key={k} style={{
+                    whiteSpace: 'nowrap', 
+                    overflow: 'hidden', 
+                    textOverflow: 'ellipsis', 
+                    maxWidth: 300}}>{e[k]}</td>); 
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {
@@ -101,7 +105,7 @@ class Grid extends Component<Props> {
             {
                 jsx.push(
                     <div>
-                        <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
+                        <table style={{ minWidth: '50%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                             <thead>{this.getHeaderJsx()}</thead>
                             <tbody>{this.getBodyJsx()}</tbody>
                         </table>
