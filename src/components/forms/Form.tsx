@@ -3,6 +3,7 @@ import { formElementConfigSchema, formConfigSchema } from "../../models/interfac
 import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/AbstractModel";
+import { observer } from "mobx-react";
 
 interface formProps {
     model: AbstractModel,
@@ -12,6 +13,7 @@ interface formProps {
 /**
  * 
  */
+@observer
 class Form extends Component<formProps, any>
 {
     /**
@@ -25,11 +27,14 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{Translator.t(key)}</Label>}
-                <input className="bp3-input" style={{ width: '100%'}} 
+                <input className="bp3-input" 
+                    style={{ width: '100%'}} 
                     disabled={c.diabled ? c.diabled : false} 
                     type="text"
                     name={key}
-                    value={v} />
+                    value={v} 
+                    onChange={vv => this.props.model.document[key] = vv.target.value} 
+                    />
             </FormGroup>
         );
     }
@@ -45,7 +50,12 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 <Label>{Translator.t(key)}</Label>
-                <TextArea name={key} value={v} growVertically={true} style={{ width: '100%', minHeight: 100 }}/>
+                <TextArea 
+                    name={key} 
+                    value={v}
+                    onChange={vv => this.props.model.document[key] = vv.target.value} 
+                    growVertically={true} 
+                    style={{ width: '100%', minHeight: 100 }}/>
             </FormGroup>
         );
     }
@@ -61,7 +71,13 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 <Label>{Translator.t(key)}</Label>
-                <InputGroup rightElement={(<Icon icon="lock" />)} type="password" name={key} value={v} />
+                <InputGroup 
+                    rightElement={(<Icon icon="lock" />)} 
+                    type="password" 
+                    name={key} 
+                    value={v} 
+                    onChange={vv => this.props.model.document[key] = vv.target.value} 
+                    />
             </FormGroup>        
         );
     }
@@ -78,9 +94,15 @@ class Form extends Component<formProps, any>
             <FormGroup>
                 <Label>{Translator.t(key)}</Label>
                 <div className="bp3-select">
-                    <select>
-                        <option selected={v ? false : true}>Choose an item...</option>
-                        {Object.keys(c.options).map(k => <option value={k} selected={(v === k) ? true : false}>{Translator.t(c.options[k])}</option>)}
+                    <select onChange={vv => this.props.model.document[key] = vv.target.value} >
+                        <option selected={v ? false : true} >Choose an item...</option>
+                        {Object.keys(c.options).map(k => 
+                            <option 
+                                value={k} 
+                                selected={(v === k) ? true : false}
+                            >
+                            {Translator.t(c.options[k])}
+                            </option>)}
                     </select>
                 </div>
             </FormGroup>        
@@ -176,13 +198,25 @@ class Form extends Component<formProps, any>
         form = Object.keys(this.props.config.elements).map(k => this.getFormElement(k));
         if (this.props.config.showButton !== false)
         {
-            form.push(<Button icon="plus" intent="success" text={Translator.t('Submit')} />);
+            form.push(<Button 
+                icon="plus" 
+                intent="success" 
+                text={Translator.t('Submit')}
+                disabled={this.props.model.loading}
+                onClick={
+                    e => (
+                            this.props.config && 
+                            this.props.config.buttonAction && 
+                            typeof this.props.model[this.props.config.buttonAction] === 'function'
+                        ) ? this.props.model[this.props.config.buttonAction]() : null
+                }
+            />);
         }
         return (
             <ControlGroup fill={this.props.config.fill} vertical={this.props.config.vertical}>
             {form}
             </ControlGroup>
-        );    
+        );
     }
 }
 

@@ -199,6 +199,7 @@ export interface formElemObjConfigSchema {
 export interface formConfigSchema {
     [key:string]: string | boolean | formElemObjConfigSchema,
     showButton?: boolean,
+    buttonAction?: string,
     fill?: boolean,
     vertical?: boolean,
     elements?: formElemObjConfigSchema

@@ -1,5 +1,6 @@
 import AbstractModel from "./AbstractModel";
 import {UsersSchema, formConfigSchema} from './interfaces';
+import { observable } from "mobx";
 
 /**
  * Singleton model for Origins
@@ -10,7 +11,7 @@ class Users extends AbstractModel
     /**
      * Token we receive from the auth API
      */
-    private token : string | null = '45565446556645'; // null;
+    @observable private token : string | null = null;
     public document : UsersSchema = {};
     public collection : Array<UsersSchema> = [];
     /**
@@ -43,6 +44,7 @@ class Users extends AbstractModel
      */
     public formConfigLogin : formConfigSchema = {
         showButton: true,
+        buttonAction: 'login',
         fill: true,
         vertical: true,
         elements: {
@@ -50,6 +52,30 @@ class Users extends AbstractModel
             "password" : { shape: "password"}
         }
     };
+
+    /**
+     * 
+     */
+    login()
+    {
+       this.loading = true;
+       fetch(this.getApiUrl() + '/login', {
+           method: 'POST',
+           body: JSON.stringify(this.getDocument()),
+           headers: new Headers({'Content-Type': 'application/json'})
+       })
+        .then(response => response.json())
+        .then(data => {
+            this.token = data.id ? data.id : null;
+            try {
+                this.document.id = data.userId;
+                this.document.password = null;
+            } catch(ee) {}
+            this.error = data.error ? data.error : null;
+            this.loading = false;
+        });
+    }
+    
     /**
      * Returns the token if any
      */

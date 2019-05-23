@@ -1,6 +1,14 @@
 import Config from "./Config";
-import { observable } from 'mobx';
+import { toJS, observable } from 'mobx';
 import { formConfigSchema } from "./interfaces";
+
+interface modelErrorSchema {
+    code?: string,
+    message?: string,
+    name?: string,
+    stack?: string,
+    statusCode?: number
+};
 
 /**
  * Abstract class containing the method for accessing the API
@@ -12,6 +20,10 @@ abstract class AbstractModel
      * Name of the model / collection to be defined in the inheriting classes
      */
     public name : string = '';
+    /**
+     * Container for the error object coming back from the API
+     */
+    @observable public error : modelErrorSchema = null;
     /**
      * Will be true when we are loading the data from the API
      */
@@ -42,6 +54,15 @@ abstract class AbstractModel
     public getName() : string
     {
         return this.name;
+    }
+
+    /**
+     * Returns the document object
+     * @param flatCopy boolean Returns a flat non-mobx copy of the object
+     */
+    public getDocument(flatCopy : boolean = true)
+    {
+        return flatCopy ? toJS(this.document) : this.document;
     }
 
     /**

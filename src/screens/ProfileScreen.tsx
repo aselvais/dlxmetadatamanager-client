@@ -15,7 +15,7 @@ class ProfileScreen extends Component
      */
     componentDidMount()
     {
-        Users.findOneById('5ce3ff0ac7ae6740c4212166');
+        Users.findOneById(Users.document.id, true);
     }
 
     /**
