@@ -49,7 +49,7 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'name', 'host', 'organization', 'documentation' ], actions: ['edit', 'drilldown'] }
+            gridConfig : { showOnly:[ 'name', 'organization', 'owner', 'access_status', 'documentation' ], actions: ['edit', 'drilldown'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',

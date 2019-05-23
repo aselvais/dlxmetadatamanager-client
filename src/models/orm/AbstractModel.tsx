@@ -1,6 +1,7 @@
 import Config from "../Config";
 import { toJS, observable } from 'mobx';
 import { formConfigSchema } from "../interfaces";
+import Users from "./Users";
 
 interface modelErrorSchema {
     code?: string,
@@ -31,7 +32,7 @@ abstract class AbstractModel
     /**
      * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
      */
-    @observable public currentAction : 'editing' | 'saving' | 'loggingin' | null = null;
+    @observable public currentAction : 'editing' | 'saving' | 'loggingin' | 'loggingout' | null = null;
     /**
      * Entry (one document) selected or loaded (by findOne for eg)
      */
@@ -45,7 +46,9 @@ abstract class AbstractModel
      * value is the aggragated data
      */
     @observable public aggragateddata : object = {};
-    
+    /**
+     * 
+     */
     public formConfig : formConfigSchema = {
         showButton: true,
         fill: true,
@@ -54,10 +57,43 @@ abstract class AbstractModel
 
     /**
      * 
+     * @param apiUrl 
+     * @param method 
+     * @param jsonBody 
+     */
+    fetchAutenticated(apiUrl : string = '', method : string = 'GET', jsonBody : object | null = null)
+    {
+        let params = {
+            method: method,
+            headers: new Headers({
+                'Content-Type': 'application/json', 
+                'Authorization': Users.getToken()}
+                )
+        };
+        if (jsonBody) {
+            //@ts-ignore
+            params.body = JSON.stringify(jsonBody);
+        }
+        return fetch(apiUrl, params);
+    }
+
+    /**
+     * 
      */
     public getName() : string
     {
         return this.name;
+    }
+
+    /**
+     * Resets the data from the current model to null values
+     */
+    protected resetData()
+    {
+        this.document = null;
+        this.collection = null;
+        this.currentAction = null;
+        this.loading = false;
     }
 
     /**
@@ -110,7 +146,7 @@ abstract class AbstractModel
             console.debug('"' + this.name + '" document "' + id + '" from cache... Use emptyCache to renew it.');
         } else {
             this.loading = true;
-            fetch(this.getApiUrl(id))
+            this.fetchAutenticated(this.getApiUrl(id))
                 .then(response => response.json())
                 .then(data => { 
                     this.document = data;
@@ -130,11 +166,7 @@ abstract class AbstractModel
         //@ts-ignore
         delete d.id;
         this.currentAction = 'saving';
-        fetch(this.getApiUrl(id), {
-            method: 'PATCH',
-            body: JSON.stringify(d),
-            headers: new Headers({'Content-Type': 'application/json'})
-        })
+        this.fetchAutenticated(this.getApiUrl(id), 'PATCH', d)
          .then(response => response.json())
          .then(data => {
              this.error = data.error ? data.error : null;
@@ -152,7 +184,7 @@ abstract class AbstractModel
      */
     public find(where : object = {}) {
         this.loading = true;
-        fetch(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
+        this.fetchAutenticated(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
             .then(response => response.json())
             .then(data => { 
                 this.collection = data;
@@ -165,7 +197,7 @@ abstract class AbstractModel
      */
     public aggregate(onField : string = '') {
         this.loading = true;
-        fetch(this.getApiUrl() + '/aggregation?field=' + encodeURI(onField))
+        this.fetchAutenticated(this.getApiUrl() + '/aggregation?field=' + encodeURI(onField))
             .then(response => response.json())
             .then(data => { 
                 this.aggragateddata[onField] = data.aggregation;

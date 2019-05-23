@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
-import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput } from "@blueprintjs/core";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput, Spinner, Switch } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -97,12 +97,10 @@ class Form extends Component<formProps, any>
                     <select onChange={vv => this.props.model.document[key] = vv.target.value} >
                         <option selected={v ? false : true} >Choose an item...</option>
                         {Object.keys(c.options).map(k => 
-                            <option 
-                                value={k} 
-                                selected={(v === k) ? true : false}
-                            >
-                            {Translator.t(c.options[k])}
-                            </option>)}
+                            <option value={k} selected={(v === k) ? true : false}>
+                                {Translator.t(c.options[k])}
+                            </option>
+                        )}
                     </select>
                 </div>
             </FormGroup>        
@@ -132,6 +130,29 @@ class Form extends Component<formProps, any>
     /**
      * 
      * @param key 
+     * @param v 
+     * @param c 
+     */
+    public getSwitchFormElementJSX(key:string, v:Array<string> | '', c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup>
+                <Label>{Translator.t(key)}</Label>
+                <Switch 
+                    onChange={vv =>
+                        //@ts-ignore 
+                        this.props.model.document[key] = vv.target.checked ? 1 : 0 
+                    }
+                    value={v}
+                    checked={ !v ? false : true} 
+                    labelElement={<strong>NO / YES</strong>}/>
+            </FormGroup>        
+        );
+    }
+
+    /**
+     * 
+     * @param key 
      */
     public getFormElement(key : string = '')
     {
@@ -151,7 +172,9 @@ class Form extends Component<formProps, any>
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
                     return this.getTagFormElementJSX(key, v, c);
-                    /*
+                case 'switch':
+                    return this.getSwitchFormElementJSX(key, v, c);
+                        /*
                 case 'email':
                     return null;
                 case 'checkbow':
@@ -159,8 +182,6 @@ class Form extends Component<formProps, any>
                 case 'radio':
                     return null;
                 case 'slider':
-                    return null;
-                case 'switch':
                     return null;
                 case 'file':
                     return null;
@@ -198,19 +219,24 @@ class Form extends Component<formProps, any>
         form = Object.keys(this.props.config.elements).map(k => this.getFormElement(k));
         if (this.props.config.showButton !== false)
         {
-            form.push(<Button 
-                icon="plus" 
-                intent="success" 
-                text={Translator.t('Submit')}
-                disabled={(this.props.model.currentAction === 'saving')}
-                onClick={
-                    e => (
-                            this.props.config && 
-                            this.props.config.buttonAction && 
-                            typeof this.props.model[this.props.config.buttonAction] === 'function'
-                        ) ? this.props.model[this.props.config.buttonAction]() : null
-                }
-            />);
+            if (this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin') {
+                form.push(<div style={{margin: 'auto'}}><Spinner size={20} /></div>);
+            } else {
+                // disabled={(this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin')}
+                form.push(<Button 
+                    icon="plus" 
+                    intent="success" 
+                    text={Translator.t('Submit')}
+                    onClick={
+                        e => (
+                                this.props.config && 
+                                this.props.config.buttonAction && 
+                                typeof this.props.model[this.props.config.buttonAction] === 'function'
+                            ) ? this.props.model[this.props.config.buttonAction]() : null
+                    }
+                />);
+    
+            }
         }
         return (
             <ControlGroup fill={this.props.config.fill} vertical={this.props.config.vertical}>

@@ -66,7 +66,8 @@ class Grid extends Component<Props> {
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {
-                jsx.push(<td style={{ textAlign: 'right'}}>{
+                let l = this.props.config.actions.length;
+                jsx.push(<td style={{ textAlign: 'right', width: l*40}}>{
                     this.props.config.actions.map(a => <Button 
                         // @ts-ignore
                         icon={this.actions2icons[a].icon}

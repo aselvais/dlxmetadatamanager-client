@@ -17,6 +17,9 @@ class Fields extends AbstractModel
         vertical: true,
         elements: {
             name: { shape: "text", diabled: true},
+            is_pii: { shape: 'switch' },
+            should_encrypt: { shape: 'switch' },
+            should_ignore: { shape: 'switch' },
             datatype: { shape: "text", diabled: true},
             datalength: { shape: "text", diabled: true},
             charset: { shape: "text", diabled: true},

@@ -17,6 +17,7 @@ class Databases extends AbstractModel
         vertical: true,
         elements: {
             name: { shape: "text", diabled: true},
+            should_ignore: { shape: 'switch' },
             schema : { shape: "text", diabled: true},
             storageengine : { shape: "text", diabled: true},
             vendorbrand : { shape: "text", diabled: true},

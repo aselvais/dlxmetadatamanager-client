@@ -24,5 +24,10 @@
     "username":"Username",
     "email":"E-mail",
     "password1":"Password",
-    "password2":"Re-type password"
+    "password2":"Re-type password",
+
+    "is_pii" : "Is Personally identifiable information (PII)?",
+    "should_encrypt": "Should be encrypted?",
+    "should_ignore": "Should be ignored?"
+
 }

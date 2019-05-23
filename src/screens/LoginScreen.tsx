@@ -59,7 +59,6 @@ class LoginScreen extends Component
                 <div style={{ width: 300, padding: 20, margin: 'auto' }}>
                     <Form model={Users} config={Users.formConfigLogin} />
                 </div>
-                { Users.loading ? <div style={{padding: 10}}><Spinner size={30} /></div> : null }
                 <Toaster ref={this.refHandlers.toaster} 
                         autoFocus={false}
                         canEscapeKeyClear={true}

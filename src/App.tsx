@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import HomeScreen from './screens/HomeScreen';
-import Dlxnavigation from './components/Dlxnavigation';
 import { observer } from 'mobx-react';
 
-import NavStore from './models/NavStore';
-import LoadingScreen from './screens/LoadingScreen';
+import Dlxnavigation from './components/Dlxnavigation';
 import Titlebar from './components/Titlebar';
+
+import NavStore from './models/NavStore';
+import Users from './models/orm/Users';
+
+import HomeScreen from './screens/HomeScreen';
+import LoadingScreen from './screens/LoadingScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
-import Users from './models/orm/Users';
 import LoginScreen from './screens/LoginScreen';
+import LogoutScreen from './screens/LogoutScreen';
 
 /**
  * 
@@ -35,6 +38,7 @@ class App extends Component
             { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
             { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
             { (activeMenu.name === 'SearchScreen') ? <SearchScreen /> : null }
+            { (activeMenu.name === 'LogoutScreen') ? <LogoutScreen /> : null }
           </div>
         </div>
       );

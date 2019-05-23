@@ -1,6 +1,6 @@
 import AbstractModel from "./AbstractModel";
 import {UsersSchema, formConfigSchema} from '../interfaces';
-import { observable } from "mobx";
+import { toJS, observable } from 'mobx';
 
 /**
  * Singleton model for Origins
@@ -13,9 +13,9 @@ class Users extends AbstractModel
      */
     @observable private token : string | null = null;
     /**
-     * 
+     * @todo Remove this and use cookies for storing password if needed
      */
-    public document : UsersSchema = {};
+    public document : UsersSchema = {username: 'admin', password: 'adminadmin112'};
     /**
      * 
      */
@@ -25,9 +25,17 @@ class Users extends AbstractModel
      */
     public formConfig : formConfigSchema = {
         showButton: true,
+        buttonAction: 'updateOne',
         fill: true,
         vertical: true,
         elements: {
+            "username" : { shape: "text"},
+            "first_name" : { shape: "text"},
+            "last_name" : { shape: "text"},
+            "company" : { shape: "text"},
+            "role" : { shape: "text"},
+            "email" : { shape: "email"},
+            /*
             "id" : false,
             "realm" : { 
                 shape: "select", 
@@ -38,11 +46,10 @@ class Users extends AbstractModel
                     'viewer': 'viewer',
                 }
             },
-            "username" : { shape: "text"},
             "password1" : { shape: "password"},
             "password2" : { shape: "password"},
-            "email" : { shape: "email"},
             "emailVerified" : false    
+            */
         }
     };
     /**
@@ -58,6 +65,45 @@ class Users extends AbstractModel
             "password" : { shape: "password"}
         }
     };
+
+    /**
+     * 
+     */
+    public updateUser()
+    {
+        if (this.document.password1 === this.document.password2)
+        {
+            if (!this.document.password1 && this.document.password1 != '') {
+                this.document.password = this.document.password1;
+            }
+            let d = toJS(this.document);
+            let id = d.id;
+            delete d.id;
+            delete d.password1;
+            delete d.password2;
+            if (!d.password) delete d.password;
+            this.currentAction = 'saving';
+            this.fetchAutenticated(this.getApiUrl(id), 'PATCH', d)
+                .then(response => response.json())
+                .then(data => {
+                    this.error = data.error ? data.error : null;
+                    for (let i in data)
+                    {
+                    this.document[i] = data[i];
+                    }
+                    this.updateDocumentInLocalCollection();
+                    this.currentAction = null;
+            });
+        } else {
+            this.error = {
+                code: "PASSWORD_DIFFERENT",
+                message: "Both password should be the same",
+                name: "Error",
+                stack: "",
+                statusCode: 401
+            };
+        }
+    }
 
     /**
      * 
@@ -82,6 +128,41 @@ class Users extends AbstractModel
             this.currentAction = null;
             this.loading = false;
         });
+    }
+
+    /**
+     * 
+     */
+    public logout()
+    {
+        this.loading = true;
+        this.currentAction = 'loggingout';
+        fetch(
+            this.getApiUrl() + '/logout/?access_token=' + this.getToken(), 
+            {
+            method: 'POST',
+            body: JSON.stringify({accessToken: this.getToken()}),
+            headers: new Headers({
+                'Content-Type': 'application/json', 
+                'Authorization': this.getToken()}
+                )
+            }
+        )
+         .then(response => response.json())
+         .then(data => data);
+         this.resetData();
+    }
+
+    /**
+     * Reinit model
+     */
+    protected resetData()
+    {
+        // super.resetData();
+        this.token = null;
+        this.document = {};
+        this.collection = [];
+        this.loading = false;
     }
     
     /**

@@ -84,10 +84,10 @@
 						<span class="target">AbstractModel</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_models_orm_schemadata_.schemadata.html" class="tsd-signature-type">Schemadata</a>
+								<a href="_models_orm_users_.users.html" class="tsd-signature-type">Users</a>
 							</li>
 							<li>
-								<a href="_models_orm_users_.users.html" class="tsd-signature-type">Users</a>
+								<a href="_models_orm_schemadata_.schemadata.html" class="tsd-signature-type">Schemadata</a>
 							</li>
 							<li>
 								<a href="_models_orm_origins_.origins.html" class="tsd-signature-type">Origins</a>
@@ -145,6 +145,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#dropindexes" class="tsd-kind-icon">drop<wbr>Indexes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#estimateddocumentcount" class="tsd-kind-icon">estimated<wbr>Document<wbr>Count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#explain" class="tsd-kind-icon">explain</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_orm_abstractmodel_.abstractmodel.html#fetchautenticated" class="tsd-kind-icon">fetch<wbr>Autenticated</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_orm_abstractmodel_.abstractmodel.html#find" class="tsd-kind-icon">find</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#findandmodify" class="tsd-kind-icon">find<wbr>And<wbr>Modify</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#findone" class="tsd-kind-icon">find<wbr>One</a></li>
@@ -169,6 +170,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#renamecollection" class="tsd-kind-icon">rename<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#replaceone" class="tsd-kind-icon">replace<wbr>One</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_models_orm_abstractmodel_.abstractmodel.html#resetdata" class="tsd-kind-icon">reset<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#save" class="tsd-kind-icon">save</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#stats" class="tsd-kind-icon">stats</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_models_orm_abstractmodel_.abstractmodel.html#storagesize" class="tsd-kind-icon">storage<wbr>Size</a></li>
@@ -199,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">aggragateddata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L47">models/orm/AbstractModel.tsx:47</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L48">models/orm/AbstractModel.tsx:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,7 +217,7 @@
 					<div class="tsd-signature tsd-kind-icon">collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L42">models/orm/AbstractModel.tsx:42</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L43">models/orm/AbstractModel.tsx:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -227,10 +229,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="currentaction" class="tsd-anchor"></a>
 					<h3>current<wbr>Action</h3>
-					<div class="tsd-signature tsd-kind-icon">current<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"editing"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"saving"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"loggingin"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"editing"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"saving"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"loggingin"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"loggingout"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L34">models/orm/AbstractModel.tsx:34</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L35">models/orm/AbstractModel.tsx:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -245,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L38">models/orm/AbstractModel.tsx:38</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L39">models/orm/AbstractModel.tsx:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -260,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_orm_abstractmodel_.modelerrorschema.html" class="tsd-signature-type">modelErrorSchema</a><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L26">models/orm/AbstractModel.tsx:26</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L27">models/orm/AbstractModel.tsx:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -275,7 +277,7 @@
 					<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L30">models/orm/AbstractModel.tsx:30</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L31">models/orm/AbstractModel.tsx:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -290,7 +292,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L22">models/orm/AbstractModel.tsx:22</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L23">models/orm/AbstractModel.tsx:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -312,7 +314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L166">models/orm/AbstractModel.tsx:166</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L198">models/orm/AbstractModel.tsx:198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -340,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L279">models/orm/AbstractModel.tsx:279</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L311">models/orm/AbstractModel.tsx:311</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L192">models/orm/AbstractModel.tsx:192</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L224">models/orm/AbstractModel.tsx:224</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L271">models/orm/AbstractModel.tsx:271</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L303">models/orm/AbstractModel.tsx:303</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -407,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L289">models/orm/AbstractModel.tsx:289</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L321">models/orm/AbstractModel.tsx:321</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,7 +431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L294">models/orm/AbstractModel.tsx:294</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L326">models/orm/AbstractModel.tsx:326</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -451,7 +453,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L299">models/orm/AbstractModel.tsx:299</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L331">models/orm/AbstractModel.tsx:331</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -473,7 +475,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L207">models/orm/AbstractModel.tsx:207</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L239">models/orm/AbstractModel.tsx:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -495,7 +497,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L202">models/orm/AbstractModel.tsx:202</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L234">models/orm/AbstractModel.tsx:234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -517,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L304">models/orm/AbstractModel.tsx:304</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L336">models/orm/AbstractModel.tsx:336</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -539,7 +541,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L309">models/orm/AbstractModel.tsx:309</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L341">models/orm/AbstractModel.tsx:341</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -561,7 +563,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L314">models/orm/AbstractModel.tsx:314</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L346">models/orm/AbstractModel.tsx:346</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -583,7 +585,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L319">models/orm/AbstractModel.tsx:319</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L351">models/orm/AbstractModel.tsx:351</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -605,7 +607,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L284">models/orm/AbstractModel.tsx:284</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L316">models/orm/AbstractModel.tsx:316</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -627,7 +629,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L324">models/orm/AbstractModel.tsx:324</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L356">models/orm/AbstractModel.tsx:356</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -636,6 +638,39 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="fetchautenticated" class="tsd-anchor"></a>
+					<h3>fetch<wbr>Autenticated</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Autenticated<span class="tsd-signature-symbol">(</span>apiUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, method<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, jsonBody<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L64">models/orm/AbstractModel.tsx:64</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> apiUrl: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> method: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;GET&quot;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> jsonBody: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -649,7 +684,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L153">models/orm/AbstractModel.tsx:153</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L185">models/orm/AbstractModel.tsx:185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -677,7 +712,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L260">models/orm/AbstractModel.tsx:260</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L292">models/orm/AbstractModel.tsx:292</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -699,7 +734,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L197">models/orm/AbstractModel.tsx:197</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L229">models/orm/AbstractModel.tsx:229</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -721,7 +756,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L250">models/orm/AbstractModel.tsx:250</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L282">models/orm/AbstractModel.tsx:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -743,7 +778,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L255">models/orm/AbstractModel.tsx:255</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L287">models/orm/AbstractModel.tsx:287</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -765,7 +800,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L329">models/orm/AbstractModel.tsx:329</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L361">models/orm/AbstractModel.tsx:361</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -787,7 +822,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L105">models/orm/AbstractModel.tsx:105</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L141">models/orm/AbstractModel.tsx:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -823,7 +858,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L182">models/orm/AbstractModel.tsx:182</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L214">models/orm/AbstractModel.tsx:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -853,7 +888,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L95">models/orm/AbstractModel.tsx:95</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L131">models/orm/AbstractModel.tsx:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -884,7 +919,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L86">models/orm/AbstractModel.tsx:86</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L122">models/orm/AbstractModel.tsx:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -915,7 +950,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L334">models/orm/AbstractModel.tsx:334</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L366">models/orm/AbstractModel.tsx:366</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -937,7 +972,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L58">models/orm/AbstractModel.tsx:58</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L83">models/orm/AbstractModel.tsx:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -954,7 +989,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L340">models/orm/AbstractModel.tsx:340</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L372">models/orm/AbstractModel.tsx:372</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -977,7 +1012,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L345">models/orm/AbstractModel.tsx:345</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L377">models/orm/AbstractModel.tsx:377</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -999,7 +1034,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L265">models/orm/AbstractModel.tsx:265</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L297">models/orm/AbstractModel.tsx:297</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1021,7 +1056,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L217">models/orm/AbstractModel.tsx:217</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L249">models/orm/AbstractModel.tsx:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1043,7 +1078,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L212">models/orm/AbstractModel.tsx:212</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L244">models/orm/AbstractModel.tsx:244</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1065,7 +1100,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L350">models/orm/AbstractModel.tsx:350</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L382">models/orm/AbstractModel.tsx:382</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1087,7 +1122,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L355">models/orm/AbstractModel.tsx:355</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L387">models/orm/AbstractModel.tsx:387</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1109,7 +1144,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L360">models/orm/AbstractModel.tsx:360</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L392">models/orm/AbstractModel.tsx:392</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1131,7 +1166,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L365">models/orm/AbstractModel.tsx:365</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L397">models/orm/AbstractModel.tsx:397</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1153,7 +1188,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L222">models/orm/AbstractModel.tsx:222</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L254">models/orm/AbstractModel.tsx:254</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1175,7 +1210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L370">models/orm/AbstractModel.tsx:370</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L402">models/orm/AbstractModel.tsx:402</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1197,12 +1232,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L227">models/orm/AbstractModel.tsx:227</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L259">models/orm/AbstractModel.tsx:259</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Replaces a single document in a collection.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="resetdata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> reset<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">reset<wbr>Data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L91">models/orm/AbstractModel.tsx:91</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resets the data from the current model to null values</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1219,7 +1276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L245">models/orm/AbstractModel.tsx:245</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L277">models/orm/AbstractModel.tsx:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1242,7 +1299,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L375">models/orm/AbstractModel.tsx:375</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L407">models/orm/AbstractModel.tsx:407</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1264,7 +1321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L381">models/orm/AbstractModel.tsx:381</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L413">models/orm/AbstractModel.tsx:413</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1287,7 +1344,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L387">models/orm/AbstractModel.tsx:387</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L419">models/orm/AbstractModel.tsx:419</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1310,7 +1367,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L393">models/orm/AbstractModel.tsx:393</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L425">models/orm/AbstractModel.tsx:425</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1333,7 +1390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L239">models/orm/AbstractModel.tsx:239</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L271">models/orm/AbstractModel.tsx:271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1355,7 +1412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L66">models/orm/AbstractModel.tsx:66</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L102">models/orm/AbstractModel.tsx:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1377,7 +1434,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L232">models/orm/AbstractModel.tsx:232</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L264">models/orm/AbstractModel.tsx:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1399,7 +1456,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L125">models/orm/AbstractModel.tsx:125</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L161">models/orm/AbstractModel.tsx:161</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1421,7 +1478,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L403">models/orm/AbstractModel.tsx:403</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L435">models/orm/AbstractModel.tsx:435</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1443,7 +1500,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L398">models/orm/AbstractModel.tsx:398</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L430">models/orm/AbstractModel.tsx:430</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1464,7 +1521,7 @@
 					<div class="tsd-signature tsd-kind-icon">form<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L49">models/orm/AbstractModel.tsx:49</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L52">models/orm/AbstractModel.tsx:52</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1473,7 +1530,7 @@
 						<div class="tsd-signature tsd-kind-icon">fill<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L51">models/orm/AbstractModel.tsx:51</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L54">models/orm/AbstractModel.tsx:54</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1483,7 +1540,7 @@
 						<div class="tsd-signature tsd-kind-icon">show<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L50">models/orm/AbstractModel.tsx:50</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L53">models/orm/AbstractModel.tsx:53</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1493,7 +1550,7 @@
 						<div class="tsd-signature tsd-kind-icon">vertical<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/7a8992a/src/models/orm/AbstractModel.tsx#L52">models/orm/AbstractModel.tsx:52</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/c6cf4a6/src/models/orm/AbstractModel.tsx#L55">models/orm/AbstractModel.tsx:55</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1585,6 +1642,9 @@
 								<a href="_models_orm_abstractmodel_.abstractmodel.html#explain" class="tsd-kind-icon">explain</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_models_orm_abstractmodel_.abstractmodel.html#fetchautenticated" class="tsd-kind-icon">fetch<wbr>Autenticated</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_models_orm_abstractmodel_.abstractmodel.html#find" class="tsd-kind-icon">find</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -1655,6 +1715,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_models_orm_abstractmodel_.abstractmodel.html#replaceone" class="tsd-kind-icon">replace<wbr>One</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="_models_orm_abstractmodel_.abstractmodel.html#resetdata" class="tsd-kind-icon">reset<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_models_orm_abstractmodel_.abstractmodel.html#save" class="tsd-kind-icon">save</a>

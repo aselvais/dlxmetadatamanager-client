@@ -22,6 +22,7 @@ class NavStore
 
         {name: 'ConfigScreen', label: 'Config', active: false, icon: 'cog', menuVisible: false},
         {name: 'ProfileScreen', label: 'Profile', active: false, icon: 'user', menuVisible: false},
+        {name: 'LogoutScreen', label: 'Log-out', active: false, icon: 'log-out', menuVisible: false},
 
     ];
     @observable active : string = 'SearchScreen'; //'LoadingScreen';

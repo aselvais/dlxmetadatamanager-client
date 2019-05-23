@@ -16,6 +16,7 @@ class Tables extends AbstractModel
         vertical: true,
         elements: {
             name: { shape: "text", diabled: true},
+            should_ignore: { shape: 'switch' },
             documentation: { shape: "textarea"},
             tags: { shape: "tag"},
         }

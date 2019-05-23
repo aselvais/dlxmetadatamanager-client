@@ -46,7 +46,7 @@ class Dlxnavigation extends Component
                 </NavbarGroup>
                 <NavbarGroup align={Alignment.RIGHT}>
                     <NavbarDivider />
-                    {[7,8].map(i => <Button 
+                    {[7,8,9].map(i => <Button 
                             key={NavStore.items[i].name}
                             className={Classes.MINIMAL} 
                             icon={NavStore.items[i].icon} 
