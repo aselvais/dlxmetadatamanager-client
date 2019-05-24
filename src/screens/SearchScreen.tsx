@@ -49,19 +49,19 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'name', 'organization', 'owner', 'access_status', 'documentation' ], actions: ['edit', 'drilldown'] }
+            gridConfig : { showOnly:[ 'name', 'should_ignore', 'organization', 'owner', 'access_status', 'documentation' ], actions: ['edit', 'drilldown'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',
-            gridConfig : {showOnly:['name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:['name', 'should_ignore', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Tables, selected_id : null, parent : 'databases', 
-            gridConfig : {showOnly:['name', 'documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:['name', 'should_ignore', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Fields, selected_id : null, parent : 'tables',
-            gridConfig : {showOnly:['name', 'datatype', 'datalength', 'documentation'], actions: [/*'view', */'edit']}
+            gridConfig : {showOnly:['name', 'should_ignore', 'datatype', 'datalength', 'documentation'], actions: [/*'view', */'edit']}
         }
     ];
     

@@ -15,17 +15,17 @@ class NavStore
         
         {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true},
         {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true},
-        {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: true},
-        {name: 'TypesScreen', label: 'Types', active: false, icon: 'tag', menuVisible: true},
-        {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: true},
-        {name: 'DataScreen', label: 'Data', active: false, icon: 'database', menuVisible: true},
+        {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: false},
+        {name: 'TypesScreen', label: 'Types', active: false, icon: 'tag', menuVisible: false},
+        {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: false},
+        {name: 'DataScreen', label: 'Data', active: false, icon: 'database', menuVisible: false},
 
         {name: 'ConfigScreen', label: 'Config', active: false, icon: 'cog', menuVisible: false},
         {name: 'ProfileScreen', label: 'Profile', active: false, icon: 'user', menuVisible: false},
         {name: 'LogoutScreen', label: 'Log-out', active: false, icon: 'log-out', menuVisible: false},
 
     ];
-    @observable active : string = 'SearchScreen'; //'LoadingScreen';
+    @observable active : string = 'LoadingScreen';
 
     /**
      * 

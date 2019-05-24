@@ -12,7 +12,7 @@ import logo from '../assets/images/Deluxe_enterprise_logo_RGB.png';
 class LoadingScreen extends Component
 {
     perc : number = 0;
-    aggrFields : Array<string> = [];// ['ENGINE', 'TABLE_CATALOG', 'TABLE_SCHEMA', 'OWNER', 'DATA_TYPE', 'TABLE_NAME'];
+    aggrFields : Array<string> = ['ENGINE', 'TABLE_CATALOG', 'TABLE_SCHEMA', 'OWNER', 'DATA_TYPE', 'TABLE_NAME'];
 
     /**
      * Load some data when the components are available
@@ -22,7 +22,7 @@ class LoadingScreen extends Component
         this.aggrFields.map(e => Schemadata.aggregate(e) );
         if (this.aggrFields.length === 0) 
         {
-            NavStore.setActive('HomeScreen');
+            NavStore.setActive('SearchScreen');
         }
     }
 
@@ -31,7 +31,7 @@ class LoadingScreen extends Component
      */
     componentDidUpdate()
     {
-        if (this.perc === 100) setTimeout(() => NavStore.setActive('HomeScreen'), 100);
+        if (this.perc === 100) setTimeout(() => NavStore.setActive('SearchScreen'), 100);
     }
 
     /**

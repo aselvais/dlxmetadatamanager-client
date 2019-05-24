@@ -17,6 +17,7 @@ class Origins extends AbstractModel
         elements: {
             name: { shape: "text" },
             organization: { shape: "text"},
+            should_ignore: { shape: 'switch' },
             // host: { shape: "text", diabled: true},
             access_status: { shape: "select", options: {
                 "Not Yet Requested - Determining Needs": "Not Yet Requested - Determining Needs",

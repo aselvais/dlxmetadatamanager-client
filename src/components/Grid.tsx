@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button, Intent } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon, Classes } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -27,6 +27,83 @@ class Grid extends Component<Props> {
         'delete' : {icon: 'delete', intent: Intent.DANGER},
         'drilldown' : {icon: 'arrow-right', intent: Intent.PRIMARY}
     };
+    /**
+     * Icons names for types
+     */
+    private types2icons = {
+        "CHAR": "list",
+        "TIMESTAMP(0)": "calendar",
+        "BINARY_DOUBLE": "numerical",
+        "FLOAT": "numerical",
+        "TIMESTAMP(6)": "calendar",
+        "LONG": "list",
+        "NVARCHAR2": "list",
+        "DATE": "calendar",
+        "text": "list",
+        "datetime": "calendar",
+        "VARCHAR2": "list",
+        "NCHAR": "list",
+        "NUMBER": "numerical",
+        "TIMESTAMP(3)": "calendar",
+        "timestamp": "calendar",
+        "varchar": "list",
+        "int": "numerical",
+        "double": "numerical",
+        "CLOB": "layout-grid",
+        "float": "numerical",
+        "bigint": "numerical",
+    };
+
+    /**
+     * Returns a cell for the header
+     */
+    getHeaderCellJsx(k, i)
+    {
+        let v = '';
+        switch(k) {
+            case 'should_ignore':
+                v = '';
+                break;
+            default:
+                v = Translator.t(k);
+                break;
+        }
+        return (<th key={k}>{v}</th>);
+    }
+
+    /**
+     * Returns a cell for the body
+     * @param k 
+     * @param v 
+     */
+    getBodyCellJsx(k , v)
+    {
+        switch(k) {
+            case 'should_ignore':
+                return (<td key={k} style={{ maxWidth: 40, textAlign: 'center'}}>{
+                    v ? 
+                    <Icon icon="full-circle" intent="danger" iconSize={12} /> : 
+                    <Icon icon="full-circle" intent="success" iconSize={12} />
+                }</td>);
+            case 'datatype':
+                    return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{
+                        this.getIconDataTypeJsx(v)
+                    }{v}</td>);
+            default:
+                return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{v}</td>);
+        }
+    }
+
+    /**
+     * 
+     * @param v 
+     */
+    getIconDataTypeJsx(v)
+    {
+        let i = this.types2icons[v] ? this.types2icons[v] : 'help';
+        //@ts-ignore
+        return (<Icon icon={i} iconSize={15} intent="primary" style={{paddingRight: 10}} />);
+    }
 
     /**
      * 
@@ -38,12 +115,12 @@ class Grid extends Component<Props> {
         {
             zearr = this.props.config.showOnly;
         }
-        let jsx = zearr.map( (k : string, i : number) => <th key={k}>{Translator.t(k)}</th> );
+        let jsx = zearr.map( (k : string, i : number) => this.getHeaderCellJsx(k, i) );
         if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
         {
             jsx.push(<th key={'actions'}>{Translator.t('actions')}</th>);
         }
-        return (<tr>{jsx}</tr>);
+        return (<tr><th>#</th>{jsx}</tr>);
     }
 
     /**
@@ -58,11 +135,7 @@ class Grid extends Component<Props> {
                 zearr = this.props.config.showOnly;
             }
             let jsx = zearr.map( (k : string, i : number) => {
-                return (<td key={k} style={{
-                    whiteSpace: 'nowrap', 
-                    overflow: 'hidden', 
-                    textOverflow: 'ellipsis', 
-                    maxWidth: 300}}>{e[k]}</td>); 
+                return this.getBodyCellJsx(k, e[k]);
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {
@@ -76,7 +149,7 @@ class Grid extends Component<Props> {
                         onClick={() => this.onClickActionButton(a, e) } />)
                 }</td>);
             }
-            return (<tr key={i}>{jsx}</tr>);
+            return (<tr key={i}><td>{i+1}</td>{jsx}</tr>);
         });
         return rows;
     }

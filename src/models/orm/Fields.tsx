@@ -26,6 +26,9 @@ class Fields extends AbstractModel
             documentation: { shape: "textarea"},
             tags: { shape: "tag"},
             properties: { shape: "text" },
+            is_pk: { shape: 'switch' },
+            is_fk: { shape: 'switch' },
+            linked_to: {shape: "text", diabled: true}
         }
     };
 
