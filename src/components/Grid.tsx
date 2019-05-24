@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button, Intent, Icon, Classes } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -73,10 +73,12 @@ class Grid extends Component<Props> {
 
     /**
      * Returns a cell for the body
+     * 
      * @param k 
      * @param v 
+     * @param row 
      */
-    getBodyCellJsx(k , v)
+    getBodyCellJsx(k , v, row)
     {
         switch(k) {
             case 'should_ignore':
@@ -89,9 +91,39 @@ class Grid extends Component<Props> {
                     return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{
                         this.getIconDataTypeJsx(v)
                     }{v}</td>);
+            case 'name':
+                return this.getNameCellJsx(k, v, row);
             default:
                 return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{v}</td>);
         }
+    }
+
+    /**
+     * 
+     * @param k 
+     * @param v 
+     */
+    getNameCellJsx(k, v, row)
+    {
+        let iii = [];
+        let icons = null;
+        let isize : number = 15;
+        let iintent : 'warning' = 'warning';
+        
+        if (row['is_pii']) iii.push(<Icon icon={'user'} iconSize={isize} intent={iintent} style={{paddingRight: 10}} />);
+        if (row['is_pci']) iii.push(<Icon icon={'credit-card'} iconSize={isize} intent={iintent} style={{paddingRight: 10}} />);
+        if (row['is_fk']) iii.push(<Icon icon={'link'} iconSize={isize} intent={iintent} style={{paddingRight: 10}} />);
+        if (row['is_pk']) iii.push(<Icon icon={'key'} iconSize={isize} intent={iintent} style={{paddingRight: 10}} />);
+
+        icons = (<div style={{float: 'right'}}>{iii}</div>);
+        return (
+        <td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>
+            <div style={{float: 'left'}}>
+                {v}
+            </div>
+            {icons}
+        </td>
+        );
     }
 
     /**
@@ -135,7 +167,7 @@ class Grid extends Component<Props> {
                 zearr = this.props.config.showOnly;
             }
             let jsx = zearr.map( (k : string, i : number) => {
-                return this.getBodyCellJsx(k, e[k]);
+                return this.getBodyCellJsx(k, e[k], e);
             });
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {

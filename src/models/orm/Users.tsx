@@ -73,7 +73,7 @@ class Users extends AbstractModel
     {
         if (this.document.password1 === this.document.password2)
         {
-            if (!this.document.password1 && this.document.password1 != '') {
+            if (!this.document.password1 && this.document.password1 !== '') {
                 this.document.password = this.document.password1;
             }
             let d = toJS(this.document);

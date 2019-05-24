@@ -27,6 +27,7 @@
     "password2":"Re-type password",
 
     "is_pii" : "Is Personally identifiable information (PII)?",
+    "is_pci" : "Is Payment Card Information (PCI)?",
     "should_encrypt": "Should be encrypted?",
     "should_ignore": "Should be ignored?"
 
