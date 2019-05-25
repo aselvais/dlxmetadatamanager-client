@@ -53,6 +53,12 @@ class Grid extends Component<Props> {
         "float": "numerical",
         "bigint": "numerical",
     };
+    private simpletypes2intent = {
+        "numerical" : "#FFFFFF",
+        "calendar" : "#48AFF0",
+        "list" : "#394B59",
+        "layout-grid" : "#FFC940"
+    };
 
     /**
      * Returns a cell for the header
@@ -134,7 +140,7 @@ class Grid extends Component<Props> {
     {
         let i = this.types2icons[v] ? this.types2icons[v] : 'help';
         //@ts-ignore
-        return (<Icon icon={i} iconSize={15} intent="primary" style={{paddingRight: 10}} />);
+        return (<Icon icon={i} iconSize={15} style={{paddingRight: 10, color: this.simpletypes2intent[i]}} />);
     }
 
     /**
@@ -166,9 +172,7 @@ class Grid extends Component<Props> {
             {
                 zearr = this.props.config.showOnly;
             }
-            let jsx = zearr.map( (k : string, i : number) => {
-                return this.getBodyCellJsx(k, e[k], e);
-            });
+            let jsx = zearr.map( (k : string, i : number) => this.getBodyCellJsx(k, e[k], e));
             if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
             {
                 let l = this.props.config.actions.length;
@@ -205,20 +209,24 @@ class Grid extends Component<Props> {
     render() {
         let jsx = [];
         if (this.props.model.loading) {
-            jsx.push(<div style={{ textAlign: 'center', padding: 30}}><Spinner /></div>);
-        } else {
+            jsx.push(
+            <div className="docs-page" style={{ backgroundColor: 'rgba(0,0,0,.1)', width: '100%', height: '100%', position: 'fixed', top: 0, left: 0}}>
+                <div style={{ width: '100%', padding: 200, position: 'fixed', margin: 'auto'}}><Spinner /></div>
+            </div>
+            );
+        } //else {
             if (this.props.model.collection != null && this.props.model.collection.length > 0) 
             {
                 jsx.push(
                     <div>
-                        <table style={{ minWidth: '50%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
+                        <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                             <thead>{this.getHeaderJsx()}</thead>
                             <tbody>{this.getBodyJsx()}</tbody>
                         </table>
                     </div>
                 );
             }
-        }
+        //}
         return jsx;
     }
 
