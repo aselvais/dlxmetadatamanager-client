@@ -16,8 +16,8 @@ class Fields extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            name: { shape: "text", diabled: true},
             should_ignore: { shape: 'switch' },
+            name: { shape: "text", diabled: true},
             datatype: { shape: "text", diabled: true},
             datalength: { shape: "text", diabled: true},
             charset: { shape: "text", diabled: true},

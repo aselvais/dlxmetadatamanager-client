@@ -88,7 +88,7 @@ class Grid extends Component<Props> {
     {
         switch(k) {
             case 'should_ignore':
-                return (<td key={k} style={{ maxWidth: 40, textAlign: 'center'}}>{
+                return (<td key={k} style={{ width: 40, textAlign: 'center'}}>{
                     v ? 
                     <Icon icon="full-circle" intent="danger" iconSize={12} /> : 
                     <Icon icon="full-circle" intent="success" iconSize={12} />
@@ -158,7 +158,7 @@ class Grid extends Component<Props> {
         {
             jsx.push(<th key={'actions'}>{Translator.t('actions')}</th>);
         }
-        return (<tr><th>#</th>{jsx}</tr>);
+        return (<tr><th style={{ width: 55}}>#</th>{jsx}</tr>);
     }
 
     /**
