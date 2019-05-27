@@ -1,0 +1,188 @@
+{
+    "OWNER": {
+        "Column": "OWNER",
+        "Datatype": "VARCHAR2(30)",
+        "CanBeNull": "NOT NULL",
+        "Description": "Owner of the table, view, or cluster"
+    },
+    "TABLE_NAME": {
+        "Column": "TABLE_NAME",
+        "Datatype": "VARCHAR2(30)",
+        "CanBeNull": "NOT NULL",
+        "Description": "Name of the table, view, or cluster"
+    },
+    "COLUMN_NAME": {
+        "Column": "COLUMN_NAME",
+        "Datatype": "VARCHAR2(30)",
+        "CanBeNull": "NOT NULL",
+        "Description": "Column name"
+    },
+    "DATA_TYPE": {
+        "Column": "DATA_TYPE",
+        "Datatype": "VARCHAR2(106)",
+        "CanBeNull": null,
+        "Description": "Datatype of the column"
+    },
+    "DATA_TYPE_MOD": {
+        "Column": "DATA_TYPE_MOD",
+        "Datatype": "VARCHAR2(3)",
+        "CanBeNull": null,
+        "Description": "Datatype modifier of the column"
+    },
+    "DATA_TYPE_OWNER": {
+        "Column": "DATA_TYPE_OWNER",
+        "Datatype": "VARCHAR2(30)",
+        "CanBeNull": null,
+        "Description": "Owner of the datatype of the column"
+    },
+    "DATA_LENGTH": {
+        "Column": "DATA_LENGTH",
+        "Datatype": "NUMBER",
+        "CanBeNull": "NOT NULL",
+        "Description": "Length of the column (in bytes)"
+    },
+    "DATA_PRECISION": {
+        "Column": "DATA_PRECISION",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Decimal precision for\u00a0NUMBER\u00a0datatype; binary precision for\u00a0FLOAT\u00a0datatype, null for all other datatypes"
+    },
+    "DATA_PRECISION": {
+        "Column": "DATA_SCALE",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Digits to right of decimal point in a number"
+    },
+    "NULLABLE": {
+        "Column": "NULLABLE",
+        "Datatype": "VARCHAR2(1)",
+        "CanBeNull": null,
+        "Description": "Specifies whether a column allows NULLs. Value is\u00a0N\u00a0if there is a\u00a0NOT NULL\u00a0constraint on the column or if the column is part of a\u00a0PRIMARY KEY.\u00a0The constraint should be in an\u00a0ENABLE VALIDATE\u00a0state."
+    },
+    "COLUMN_ID": {
+        "Column": "COLUMN_ID",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Sequence number of the column as created"
+    },
+    "DEFAULT_LENGTH": {
+        "Column": "DEFAULT_LENGTH",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Length of default value for the column"
+    },
+    "DATA_DEFAULT": {
+        "Column": "DATA_DEFAULT",
+        "Datatype": "LONG",
+        "CanBeNull": null,
+        "Description": "Default value for the column"
+    },
+    "NUM_DISTINCT": {
+        "Column": "NUM_DISTINCT",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Number of distinct values in the columnFoot\u00a01\u00a0"
+    },
+    "LOW_VALUE": {
+        "Column": "LOW_VALUE",
+        "Datatype": "RAW(32)",
+        "CanBeNull": null,
+        "Description": "Low value in the columnFootref\u00a01"
+    },
+    "HIGH_VALUE": {
+        "Column": "HIGH_VALUE",
+        "Datatype": "RAW(32)",
+        "CanBeNull": null,
+        "Description": "High value in the columnFootref\u00a01"
+    },
+    "DENSITY": {
+        "Column": "DENSITY",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Density of the columnFootref\u00a01"
+    },
+    "NUM_NULLS": {
+        "Column": "NUM_NULLS",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Number of nulls in the column"
+    },
+    "NUM_BUCKETS": {
+        "Column": "NUM_BUCKETS",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Number of buckets in the histogram for the column. Note:\u00a0The number of buckets in a histogram is specified in the\u00a0SIZE\u00a0parameter of the SQL statement\u00a0ANALYZE. However, the Oracle Database does not create a histogram with more buckets than the number of rows in the sample. Also, if the sample contains any values that are very repetitious, the Oracle Database creates the specified number of buckets, but the value indicated by this column may be smaller because of an internal compression algorithm."
+    },
+    "LAST_ANALYZED": {
+        "Column": "LAST_ANALYZED",
+        "Datatype": "DATE",
+        "CanBeNull": null,
+        "Description": "Date on which this column was most recently analyzed"
+    },
+    "SAMPLE_SIZE": {
+        "Column": "SAMPLE_SIZE",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Sample size used in analyzing this column"
+    },
+    "CHARACTER_SET_NAME": {
+        "Column": "CHARACTER_SET_NAME",
+        "Datatype": "VARCHAR2(44)",
+        "CanBeNull": null,
+        "Description": "Name of the character set:\u00a0CHAR_CS\u00a0or\u00a0NCHAR_CS"
+    },
+    "CHAR_COL_DECL_LENGTH": {
+        "Column": "CHAR_COL_DECL_LENGTH",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Length"
+    },
+    "GLOBAL_STATS": {
+        "Column": "GLOBAL_STATS",
+        "Datatype": "VARCHAR2(3)",
+        "CanBeNull": null,
+        "Description": "For partitioned tables, indicates whether column statistics were collected for the table as a whole (YES) or were estimated from statistics on underlying partitions and subpartitions (NO)"
+    },
+    "USER_STATS": {
+        "Column": "USER_STATS",
+        "Datatype": "VARCHAR2(3)",
+        "CanBeNull": null,
+        "Description": "Indicates whether statistics were entered directly by the user (YES) or not (NO)"
+    },
+    "AVG_COL_LEN": {
+        "Column": "AVG_COL_LEN",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Average length of the column (in bytes)"
+    },
+    "CHAR_LENGTH": {
+        "Column": "CHAR_LENGTH",
+        "Datatype": "NUMBER",
+        "CanBeNull": null,
+        "Description": "Displays the length of the column in characters. This value only applies to the following datatypes: CHAR, VARCHAR2, NCHAR, NVARCHAR"
+    },
+    "CHAR_USED": {
+        "Column": "CHAR_USED",
+        "Datatype": "VARCHAR2(1)",
+        "CanBeNull": null,
+        "Description": "B\u00a0|\u00a0C.\u00a0B\u00a0indicates that the column uses\u00a0BYTElength semantics.\u00a0C\u00a0indicates that the column uses\u00a0CHAR\u00a0length semantics.\u00a0NULLindicates the datatype is not any of the following: CHAR, VARCHAR2, NCHAR, NVARCHAR"
+    },
+    "V80_FMT_IMAGE": {
+        "Column": "V80_FMT_IMAGE",
+        "Datatype": "VARCHAR2(3)",
+        "CanBeNull": null,
+        "Description": "Indicates whether the column data is in release 8.0 image format (YES) or not (NO)"
+    },
+    "DATA_UPGRADED": {
+        "Column": "DATA_UPGRADED",
+        "Datatype": "VARCHAR2(3)",
+        "CanBeNull": null,
+        "Description": "Indicates whether the column data has been upgraded to the latest type version format (YES) or not (NO)"
+    },
+    "HISTOGRAM": {
+        "Column": "HISTOGRAM",
+        "Datatype": "VARCHAR2(15)",
+        "CanBeNull": null,
+        "Description": "Indicates existence\/type of histogram: NONE, FREQUENCY, HEIGHT BALANCED"
+    }
+}

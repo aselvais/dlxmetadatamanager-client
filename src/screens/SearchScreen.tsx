@@ -4,6 +4,7 @@ import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
 import { Dialog, Icon } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
+import FieldviewForm from "../components/FieldviewForm";
 
 import AbstractModel from "../models/orm/AbstractModel";
 
@@ -61,7 +62,7 @@ class SearchScreen extends Component
         },
         {
             model : Fields, selected_id : null, parent : 'tables',
-            gridConfig : {showOnly:[ 'should_ignore', 'name', 'datatype', 'datalength', 'documentation'], actions: [/*'view', */'edit']}
+            gridConfig : {showOnly:[ 'should_ignore', 'name', 'datatype', 'datalength', 'documentation'], actions: ['view', 'edit']}
         }
     ];
     
@@ -94,7 +95,10 @@ class SearchScreen extends Component
     public view(row : object = {}) 
     {
         // @ts-ignore
-        console.log(row.id); 
+        let o = this.lvl[this.state.level].model;
+        o.document = row;
+        o.findRelated('schemadata');
+        this.lvl[this.state.level].model.currentAction = 'view';
     }
 
     /**
@@ -166,9 +170,10 @@ class SearchScreen extends Component
                     }
                     style={{ width: '70%' }}
                     onClose={() => this.lvl[this.state.level].model.currentAction = null } 
-                    isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing') }
+                    isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'view') }
                     icon={ this.model2icon[this.lvl[this.state.level].model.name] } >
-                <FieldeditionForm model={this.lvl[this.state.level].model} />
+                { (this.lvl[this.state.level].model.currentAction === 'editing') ? <FieldeditionForm model={this.lvl[this.state.level].model} /> : null }
+                { (this.lvl[this.state.level].model.currentAction === 'view') ? <FieldviewForm model={this.lvl[this.state.level].model} /> : null }
             </Dialog>
             </div>
         );

@@ -1,6 +1,8 @@
 import AbstractModel from "./AbstractModel";
 import {UsersSchema, formConfigSchema} from '../interfaces';
 import { toJS, observable } from 'mobx';
+import Cookies from 'universal-cookie';
+import AccessTokens from "./AccessTokens";
 
 /**
  * Singleton model for Origins
@@ -20,6 +22,10 @@ class Users extends AbstractModel
      * 
      */
     public collection : Array<UsersSchema> = [];
+    /**
+     * 
+     */
+    protected cookies = new Cookies();
     /**
      * Edition form configuration
      */
@@ -52,6 +58,7 @@ class Users extends AbstractModel
             */
         }
     };
+
     /**
      * Login form configuration
      */
@@ -137,20 +144,24 @@ class Users extends AbstractModel
     {
         this.loading = true;
         this.currentAction = 'loggingout';
+
         fetch(
-            this.getApiUrl() + '/logout/?access_token=' + this.getToken(), 
+            this.getApiUrl() + '/logout/?access_token=' + this.token, 
             {
             method: 'POST',
-            body: JSON.stringify({accessToken: this.getToken()}),
+            body: JSON.stringify({accessToken: this.token}),
             headers: new Headers({
                 'Content-Type': 'application/json', 
-                'Authorization': this.getToken()}
+                'Authorization': this.token}
                 )
             }
         )
          .then(response => response.json())
          .then(data => data);
-         this.resetData();
+         if (this.cookies.get('dlxmttoken')) {
+            this.cookies.remove('dlxmttoken');
+        }
+        this.resetData();
     }
 
     /**
@@ -170,6 +181,16 @@ class Users extends AbstractModel
      */
     public getToken() : string | null
     {
+        if (this.token && !this.cookies.get('dlxmttoken'))
+        {
+            this.cookies.set('dlxmttoken', this.token, { path: '/' });
+        }
+        else if (!this.token && this.cookies.get('dlxmttoken'))
+        {
+            this.token = this.cookies.get('dlxmttoken');
+            AccessTokens.tokenToUser(this.cookies.get('dlxmttoken'));
+            return this.cookies.get('dlxmttoken');
+        }
         return this.token;
     }
 

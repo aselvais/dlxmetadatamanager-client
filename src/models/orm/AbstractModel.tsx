@@ -32,11 +32,15 @@ abstract class AbstractModel
     /**
      * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
      */
-    @observable public currentAction : 'editing' | 'saving' | 'loggingin' | 'loggingout' | null = null;
+    @observable public currentAction : 'view' | 'editing' | 'saving' | 'loggingin' | 'loggingout' | null = null;
     /**
      * Entry (one document) selected or loaded (by findOne for eg)
      */
     @observable public document : null | object = null;
+    /**
+     * Container for the related entries (linked to the current model)
+     */
+    @observable public related : object | Array<object> | null = null;
     /**
      * Collection (array) of documents/entries
      */
@@ -155,6 +159,26 @@ abstract class AbstractModel
         }
     }
     
+    /**
+     * 
+     * @param id .
+     * @param related_model_name 
+     */
+    public findRelated(related_model_name : string = '', this_model_id=null) : void
+    {
+        //@ts-ignore
+        if (this_model_id === null && this.document && this.document.id) { this_model_id = this.document.id; }
+
+        this.loading = true;
+        this.fetchAutenticated(this.getApiUrl(this_model_id) + '/' + related_model_name)
+            .then(response => response.json())
+            .then(data => {
+                this.related = data;
+                this.loading = false;
+            });
+            
+    }
+
     /**
      * Modifies a single document in a collection.
      */
