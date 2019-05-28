@@ -50,19 +50,19 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'name', 'organization', 'owner', 'access_status', 'documentation' ], actions: ['edit', 'drilldown'] }
+            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'access_status', 'documentation' ], actions: ['edit', 'drilldown'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',
-            gridConfig : {showOnly:[ 'should_ignore', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Tables, selected_id : null, parent : 'databases', 
-            gridConfig : {showOnly:[ 'should_ignore','name', 'documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Fields, selected_id : null, parent : 'tables',
-            gridConfig : {showOnly:[ 'should_ignore', 'name', 'datatype', 'datalength', 'documentation'], actions: ['view', 'edit']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation'], actions: ['view', 'edit']}
         }
     ];
     

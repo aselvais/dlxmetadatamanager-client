@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button, Intent, Icon } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon, Tag } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -78,6 +78,24 @@ class Grid extends Component<Props> {
     }
 
     /**
+     * Returns a list of tags
+     * @param k 
+     * @param v 
+     */
+    private getTags(k,v)
+    {
+        return (<td key={k} style={{ width: 40, textAlign: 'center'}}>{
+            (v && v.length) ? 
+            v.map(e => <Tag 
+                    style={{ margin: 1, fontSize: 9 }}
+                    minimal={true}
+                >{e}</Tag> ) 
+            : 
+            null
+        }</td>);
+    }
+
+    /**
      * Returns a cell for the body
      * 
      * @param k 
@@ -93,6 +111,12 @@ class Grid extends Component<Props> {
                     <Icon icon="full-circle" intent="danger" iconSize={12} /> : 
                     <Icon icon="full-circle" intent="success" iconSize={12} />
                 }</td>);
+            case 'tags':
+                return this.getTags(k,v);
+            case 'semantic_type':
+                return this.getTags(k,v);
+            case 'group':
+                return this.getTags(k,v);
             case 'datatype':
                     return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{
                         this.getIconDataTypeJsx(v)
