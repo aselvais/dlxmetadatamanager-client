@@ -2,6 +2,8 @@ import { Intent, ITagProps, TagInput, FormGroup, Label, Button, IconName } from 
 import Translator from "../../libs/translate/Translator";
 import React, { Component } from "react";
 import { formElementConfigSchema } from "../../models/interfaces";
+import AbstractModel from "../../models/orm/AbstractModel";
+import { observer } from "mobx-react";
 
 const INTENTS = [Intent.NONE, Intent.PRIMARY, Intent.SUCCESS, Intent.DANGER, Intent.WARNING];
 
@@ -12,7 +14,7 @@ interface ITagInputExampleState {
     fill: boolean;
     intent: Intent;
     large: boolean;
-    leftIcon: boolean;
+    leftIcon: IconName;
     tagIntents: boolean;
     tagMinimal: boolean;
     k: string;
@@ -20,6 +22,7 @@ interface ITagInputExampleState {
 }
 
 interface TagsFormProps {
+    model: AbstractModel,
     k:string,
     v:Array<string> | '',
     c : formElementConfigSchema,
@@ -29,6 +32,7 @@ interface TagsFormProps {
 /**
  * 
  */
+@observer
 class TagsForm extends Component<TagsFormProps>
 {
     /**
@@ -41,7 +45,7 @@ class TagsForm extends Component<TagsFormProps>
         fill: false,
         intent: "none",
         large: false,
-        leftIcon: true,
+        leftIcon: null,
         tagIntents: false,
         tagMinimal: false,
         k: this.props.k,
@@ -53,6 +57,7 @@ class TagsForm extends Component<TagsFormProps>
      */
     private handleChange(values: React.ReactNode[])
     {
+        this.props.model.document[this.props.k] = values;
         return this.setState({ values });
     };
 
@@ -106,11 +111,11 @@ class TagsForm extends Component<TagsFormProps>
                 <Label>{Translator.t(this.props.k)}</Label>
                 <TagInput
                     {...props}
-                    leftIcon={this.props.leftIcon ? this.props.leftIcon : undefined}
+                    leftIcon={ ( this.props.c && this.props.c.leftIcon) ? this.props.c.leftIcon : undefined }
                     onChange={(values:React.ReactNode[]) => this.handleChange(values)}
-                    placeholder="Separate values with commas..."
+                    placeholder={ ( this.props.c && this.props.c.placeholder) ? this.props.c.placeholder : '' }
                     rightElement={this.getClearButton()}
-                    tagProps={ (v:string,i:number) => this.getTagProps(v,i) }
+                    tagProps={ (v:string, i:number) => this.getTagProps(v,i) }
                     values={values}
                 />
             </FormGroup>

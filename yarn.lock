@@ -945,6 +945,18 @@
     prop-types "^15.6.0"
     tslib "^1.9.0"
 
+"@blueprintjs/timezone@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@blueprintjs/timezone/-/timezone-3.4.0.tgz#4bded4d12ad7a3c8cb09cb50f1f2e7ad3c702677"
+  integrity sha512-lrWaS/5gWj3FwUV4I+lN96vAUNB+GDDi9ArzrN7ZThgc4vEDXWMvVtKBU7d1gTETvftLP8qDwTfx9PNp4Mvstg==
+  dependencies:
+    "@blueprintjs/core" "^3.15.0"
+    "@blueprintjs/select" "^3.8.0"
+    classnames "^2.2"
+    moment "^2.14.1"
+    moment-timezone "^0.5.13"
+    tslib "^1.9.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -6435,6 +6447,18 @@ mobx@^5.9.4:
   version "5.9.4"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.9.4.tgz#1dee92aba33f67b7baeeb679e3bd376a12e55812"
   integrity sha512-L9JjTX2rtQUAhCIgnHokfntNOsF14uioT9LqStf6Mya+16j56ZBe21E8Y9V59tfr2aH2kLQPD10qtCJXBuTAxw==
+
+moment-timezone@^0.5.13:
+  version "0.5.25"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.25.tgz#a11bfa2f74e088327f2cd4c08b3e7bdf55957810"
+  integrity sha512-DgEaTyN/z0HFaVcVbSyVCUU6HeFdnNC3vE4c9cgu2dgMTvjBUBdBzWfasTBmAW45u5OIMeCJtU8yNjM22DHucw==
+  dependencies:
+    moment ">= 2.9.0"
+
+"moment@>= 2.9.0", moment@^2.14.1:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

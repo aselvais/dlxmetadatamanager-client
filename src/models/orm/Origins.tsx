@@ -28,7 +28,7 @@ class Origins extends AbstractModel
             } },
             cdc_enabled:  { shape: "switch" },
             owner:  { shape: "text" },
-            tags: { shape: "tag"},
+            tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
             documentation: { shape: "textarea"},
             notes: { shape: "textarea"},
         }

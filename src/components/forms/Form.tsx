@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
-import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput, Spinner, Switch } from "@blueprintjs/core";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput, Spinner, Switch, Position } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 import TagsForm from "./TagsForm";
+import { TimezoneDisplayFormat, TimezonePicker } from "@blueprintjs/timezone";
 
 interface formProps {
     model: AbstractModel,
@@ -85,6 +86,30 @@ class Form extends Component<formProps, any>
 
     /**
      * 
+     * @todo Persist this value!
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    public getTimezoneElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup>
+                <Label>{Translator.t(key)}</Label>
+                <TimezonePicker
+                    value={v}
+                    onChange={vv => this.props.model.document[key] = vv}
+                    valueDisplayFormat={TimezoneDisplayFormat.COMPOSITE}
+                    popoverProps={{ position: Position.TOP }}
+                    showLocalTimezone={true}>
+                </TimezonePicker>
+            </FormGroup>        
+        );
+    }
+
+    /**
+     * 
      * @param key 
      * @param v 
      * @param c 
@@ -153,10 +178,12 @@ class Form extends Component<formProps, any>
                 case 'textarea':
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
-                    return <TagsForm leftIcon="tag" k={key} v={v} c={c} />
+                    return <TagsForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
                 case 'switch':
                     return this.getSwitchFormElementJSX(key, v, c);
-                        /*
+                case 'timezone':
+                    return this.getTimezoneElementJSX(key, v, c);;
+                /*
                 case 'email':
                     return null;
                 case 'checkbow':
@@ -170,8 +197,6 @@ class Form extends Component<formProps, any>
                 case 'numeric':
                     return null;
                 case 'datetime':
-                    return null;
-                case 'timezone':
                     return null;
                 case 'submit':
                     return null;

@@ -18,7 +18,7 @@ class Tables extends AbstractModel
             should_ignore: { shape: 'switch' },
             name: { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
-            tags: { shape: "tag"},
+            tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
         }
     };
 

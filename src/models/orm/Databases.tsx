@@ -22,7 +22,8 @@ class Databases extends AbstractModel
             storageengine : { shape: "text", diabled: true},
             vendorbrand : { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
-            tags: { shape: "tag"},
+            tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
+            timezone: {shape: "timezone"}
         }
     };
 

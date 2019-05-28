@@ -199,7 +199,9 @@ export interface formElementConfigSchema {
     showLabel?: boolean,
     options?: object,
     diabled?: boolean,
-    hideLabel?: boolean
+    hideLabel?: boolean,
+    leftIcon?: IconName,
+    placeholder?: string
 };
 
 export interface formElemObjConfigSchema {
