@@ -4,6 +4,7 @@ import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, Tag
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
+import TagsForm from "./TagsForm";
 
 interface formProps {
     model: AbstractModel,
@@ -107,25 +108,6 @@ class Form extends Component<formProps, any>
         );
     }
 
-    /**
-     * 
-     * @param key 
-     * @param v 
-     * @param c 
-     */
-    public getTagFormElementJSX(key:string, v:Array<string> | '', c : formElementConfigSchema)
-    {
-        if (v === '') v = [];
-        return (
-            <FormGroup>
-                <Label>{Translator.t(key)}</Label>
-                <TagInput 
-                    leftIcon="tag"
-                    values={v}
-                />
-            </FormGroup>        
-        );
-    }
 
     /**
      * 
@@ -171,7 +153,7 @@ class Form extends Component<formProps, any>
                 case 'textarea':
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
-                    return this.getTagFormElementJSX(key, v, c);
+                    return <TagsForm leftIcon="tag" k={key} v={v} c={c} />
                 case 'switch':
                     return this.getSwitchFormElementJSX(key, v, c);
                         /*
