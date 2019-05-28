@@ -220,6 +220,18 @@ class SearchScreen extends Component
         );
     }
 
+    public getErrorMessageJsx()
+    {
+        let o = this.lvl[this.state.level].model.error;
+        if (o && o.message)
+        {
+            return (<div>{o.message}</div>);
+        } else {
+            return null;
+        }
+
+    }
+
     /**
      * Main render method returning JSX
      */
@@ -228,6 +240,7 @@ class SearchScreen extends Component
         this.fna = '';
         return (
             <div>
+                {this.getErrorMessageJsx()}
                 {this.getBreadCrumbJsx()}
                 {this.getDialogJsx()}
                 {this.getDocumentationEntiryFormJsx()}

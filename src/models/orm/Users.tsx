@@ -41,21 +41,6 @@ class Users extends AbstractModel
             "company" : { shape: "text"},
             "role" : { shape: "text"},
             "email" : { shape: "email"},
-            /*
-            "id" : false,
-            "realm" : { 
-                shape: "select", 
-                options: {
-                    'root': 'root',
-                    'admin': 'admin',
-                    'editor': 'editor',
-                    'viewer': 'viewer',
-                }
-            },
-            "password1" : { shape: "password"},
-            "password2" : { shape: "password"},
-            "emailVerified" : false    
-            */
         }
     };
 
@@ -91,8 +76,8 @@ class Users extends AbstractModel
             if (!d.password) delete d.password;
             this.currentAction = 'saving';
             this.fetchAutenticated(this.getApiUrl(id), 'PATCH', d)
-                .then(response => response.json())
                 .then(data => {
+                    //@ts-ignore
                     this.error = data.error ? data.error : null;
                     for (let i in data)
                     {
@@ -144,9 +129,9 @@ class Users extends AbstractModel
     {
         this.loading = true;
         this.currentAction = 'loggingout';
-
+        /*
         fetch(
-            this.getApiUrl() + '/logout/?access_token=' + this.token, 
+            this.getApiUrl() + '/logout', 
             {
             method: 'POST',
             body: JSON.stringify({accessToken: this.token}),
@@ -157,7 +142,7 @@ class Users extends AbstractModel
             }
         )
          .then(response => response.json())
-         .then(data => data);
+         .then(data => data);*/
          if (this.cookies.get('dlxmttoken')) {
             this.cookies.remove('dlxmttoken');
         }

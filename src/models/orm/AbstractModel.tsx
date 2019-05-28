@@ -1,5 +1,5 @@
 import Config from "../Config";
-import { toJS, observable } from 'mobx';
+import { toJS, observable, when } from 'mobx';
 import { formConfigSchema } from "../interfaces";
 import Users from "./Users";
 
@@ -153,6 +153,8 @@ abstract class AbstractModel
             this.fetchAutenticated(this.getApiUrl(id))
                 .then(response => response.json())
                 .then(data => { 
+                    //@ts-ignore
+                    this.error = data.error ? data.error : null;
                     this.document = data;
                     this.loading = false;
                 });    
@@ -173,6 +175,8 @@ abstract class AbstractModel
         this.fetchAutenticated(this.getApiUrl(this_model_id) + '/' + related_model_name)
             .then(response => response.json())
             .then(data => {
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
                 this.related = data;
                 this.loading = false;
             });
@@ -193,7 +197,8 @@ abstract class AbstractModel
         this.fetchAutenticated(this.getApiUrl(id), 'PATCH', d)
          .then(response => response.json())
          .then(data => {
-             this.error = data.error ? data.error : null;
+            //@ts-ignore
+            this.error = data.error ? data.error : null;
              for (let i in data)
              {
                 this.document[i] = data[i];
@@ -211,6 +216,8 @@ abstract class AbstractModel
         this.fetchAutenticated(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
             .then(response => response.json())
             .then(data => { 
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
                 this.collection = data;
                 this.loading = false;
             });
@@ -224,6 +231,8 @@ abstract class AbstractModel
         this.fetchAutenticated(this.getApiUrl() + '/aggregation?field=' + encodeURI(onField))
             .then(response => response.json())
             .then(data => { 
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
                 this.aggragateddata[onField] = data.aggregation;
                 this.loading = false;
             });
