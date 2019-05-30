@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
-import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, TagInput, Spinner, Switch, Position } from "@blueprintjs/core";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, Spinner, Switch, Position } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";

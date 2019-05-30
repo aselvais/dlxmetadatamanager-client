@@ -23,7 +23,8 @@ class Databases extends AbstractModel
             vendorbrand : { shape: "text", diabled: true},
             documentation: { shape: "textarea"},
             tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
-            timezone: {shape: "timezone"}
+            timezone: {shape: "timezone"},
+            parent_id: {shape: "text", diabled: true}
         }
     };
 

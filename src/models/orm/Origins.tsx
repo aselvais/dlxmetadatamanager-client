@@ -34,7 +34,6 @@ class Origins extends AbstractModel
         }
     };
 
-
 }
 
 export default new Origins();

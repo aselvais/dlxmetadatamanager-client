@@ -4,6 +4,10 @@ import NavStore from "../models/NavStore";
 import Schemadata from "../models/orm/Schemadata";
 import { ProgressBar } from "@blueprintjs/core";
 import logo from '../assets/images/Deluxe_enterprise_logo_RGB.png';
+import Origins from "../models/orm/Origins";
+import Databases from "../models/orm/Databases";
+import Tables from "../models/orm/Tables";
+import Fields from "../models/orm/Fields";
 
 /**
  * This screen is used to preload data then go to the home screen when everything is loaded...
@@ -19,7 +23,14 @@ class LoadingScreen extends Component
      */
     public componentDidMount()
     {
+        // load all the possible tags values
+        Origins.loadAllTags();
+        Databases.loadAllTags();
+        Tables.loadAllTags();
+        Fields.loadAllTags();
+
         this.aggrFields.map(e => Schemadata.aggregate(e) );
+
         if (this.aggrFields.length === 0) 
         {
             NavStore.setActive('SearchScreen');

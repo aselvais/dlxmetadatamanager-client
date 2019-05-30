@@ -1,5 +1,5 @@
 import Config from "../Config";
-import { toJS, observable, when } from 'mobx';
+import { toJS, observable } from 'mobx';
 import { formConfigSchema } from "../interfaces";
 import Users from "./Users";
 
@@ -9,6 +9,10 @@ interface modelErrorSchema {
     name?: string,
     stack?: string,
     statusCode?: number
+};
+
+interface tagObjectSchema {
+    [key:string]: Array<string>
 };
 
 /**
@@ -46,18 +50,63 @@ abstract class AbstractModel
      */
     @observable public collection : null | Array<any> = null;
     /**
+     * Container object for the possible values of the 'tag' property (if any) of a document
+     */
+    @observable public tags : tagObjectSchema = {};
+    /**
      * Container for the aggregations. The key will be the field and the 
      * value is the aggragated data
      */
     @observable public aggragateddata : object = {};
     /**
-     * 
+     * Definition of the form for the edition of a this.document
      */
     public formConfig : formConfigSchema = {
         showButton: true,
         fill: true,
         vertical: true,
+        elements: {}
     };
+    /**
+     * Array of properties that are of tag type
+     */
+    protected _tagFieldNames : Array<string> = []; 
+
+    /**
+     * 
+     */
+    public loadAllTags()
+    {
+        // setting up the _tagFieldNames list
+        if (this.formConfig && this.formConfig.elements && this._tagFieldNames.length === 0) {
+            let ee = [];
+            //@ts-ignore
+            Object.keys(this.formConfig.elements).map(e => (this.formConfig.elements[e].shape && this.formConfig.elements[e].shape === "tag") ? ee.push(e) : null );
+            this._tagFieldNames = ee;
+        }
+        // load the data from the server
+        this._tagFieldNames.map(n => this.loadTags(n));
+    }
+
+    /**
+     * 
+     * @param tagfieldname 
+     */
+    public loadTags(tagfieldname : string = 'tags', emptyCache : boolean = false)
+    {
+        // this.loading = true;
+        this.tags[tagfieldname] = [];
+        this.fetchAutenticated(this.getApiUrl() + '/tags/?field=' + tagfieldname )
+            .then(response => response.json())
+            .then(data => { 
+                // this.error = data.error ? data.error : null;
+                if (data && data.aggregation && data.aggregation.length) {
+                    data.aggregation.map(e => e._id ? this.tags[tagfieldname].push(e._id) : null);
+                }
+                // this.loading = false;
+                console.log(this.name, toJS(this.tags));
+            });
+    }
 
     /**
      * 
@@ -220,7 +269,7 @@ abstract class AbstractModel
                 this.error = data.error ? data.error : null;
                 this.collection = data;
                 this.loading = false;
-            });
+        });
     }
 
     /**
