@@ -6,6 +6,7 @@ import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 import TagsForm from "./TagsForm";
 import { TimezoneDisplayFormat, TimezonePicker } from "@blueprintjs/timezone";
+import MultiSelectForm from "./MultiSelectForm";
 
 interface formProps {
     model: AbstractModel,
@@ -178,7 +179,8 @@ class Form extends Component<formProps, any>
                 case 'textarea':
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
-                    return <TagsForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
+                    return <MultiSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
+                    // return <TagsForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
                 case 'switch':
                     return this.getSwitchFormElementJSX(key, v, c);
                 case 'timezone':

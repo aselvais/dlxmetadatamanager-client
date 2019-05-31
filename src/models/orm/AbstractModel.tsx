@@ -97,15 +97,14 @@ abstract class AbstractModel
         // this.loading = true;
         this.tags[tagfieldname] = [];
         this.fetchAutenticated(this.getApiUrl() + '/tags/?field=' + tagfieldname )
-            .then(response => response.json())
-            .then(data => { 
-                // this.error = data.error ? data.error : null;
-                if (data && data.aggregation && data.aggregation.length) {
-                    data.aggregation.map(e => e._id ? this.tags[tagfieldname].push(e._id) : null);
-                }
-                // this.loading = false;
-                console.log(this.name, toJS(this.tags));
-            });
+        .then(response => response.json())
+        .then(data => { 
+            // this.error = data.error ? data.error : null;
+            if (data && data.aggregation && data.aggregation.length) {
+                data.aggregation.map(e => e._id ? this.tags[tagfieldname].push(e._id) : null);
+            }
+            // this.loading = false;
+        });
     }
 
     /**

@@ -97,7 +97,7 @@ class TagsForm extends Component<TagsFormProps>
             intent: tagIntents ? INTENTS[index % INTENTS.length] : Intent.NONE,
             large: props.large,
             minimal: tagMinimal,
-        });    
+        });
     }
 
     /**
