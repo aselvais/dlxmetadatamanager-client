@@ -96,6 +96,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_models_orm_databases_.databases.html#_tagfieldnames" class="tsd-kind-icon">_tag<wbr>Field<wbr>Names</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#aggragateddata" class="tsd-kind-icon">aggragateddata</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_models_orm_databases_.databases.html#collection" class="tsd-kind-icon">collection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#currentaction" class="tsd-kind-icon">current<wbr>Action</a></li>
@@ -104,6 +105,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#loading" class="tsd-kind-icon">loading</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_models_orm_databases_.databases.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#related" class="tsd-kind-icon">related</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#tags" class="tsd-kind-icon">tags</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited">
@@ -118,6 +120,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_models_orm_databases_.databases.html#getapiurl" class="tsd-kind-icon">get<wbr>Api<wbr>Url</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#getdocument" class="tsd-kind-icon">get<wbr>Document</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#loadalltags" class="tsd-kind-icon">load<wbr>All<wbr>Tags</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#loadtags" class="tsd-kind-icon">load<wbr>Tags</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_models_orm_databases_.databases.html#resetdata" class="tsd-kind-icon">reset<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_models_orm_databases_.databases.html#updatedocumentinlocalcollection" class="tsd-kind-icon">update<wbr>Document<wbr>InLocal<wbr>Collection</a></li>
 							</ul>
@@ -133,6 +137,22 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="_tagfieldnames" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _tag<wbr>Field<wbr>Names</h3>
+					<div class="tsd-signature tsd-kind-icon">_tag<wbr>Field<wbr>Names<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#_tagfieldnames">_tagFieldNames</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L73">models/orm/AbstractModel.tsx:73</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Array of properties that are of tag type</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="aggragateddata" class="tsd-anchor"></a>
 					<h3>aggragateddata</h3>
@@ -140,7 +160,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#aggragateddata">aggragateddata</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L52">models/orm/AbstractModel.tsx:52</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L60">models/orm/AbstractModel.tsx:60</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -157,7 +177,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#collection">collection</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L12">models/orm/Databases.tsx:12</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L12">models/orm/Databases.tsx:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,7 +188,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#currentaction">currentAction</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L35">models/orm/AbstractModel.tsx:35</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L39">models/orm/AbstractModel.tsx:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -184,7 +204,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#document">document</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L11">models/orm/Databases.tsx:11</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L11">models/orm/Databases.tsx:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +215,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#error">error</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L27">models/orm/AbstractModel.tsx:27</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L31">models/orm/AbstractModel.tsx:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -211,7 +231,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#loading">loading</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L31">models/orm/AbstractModel.tsx:31</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L35">models/orm/AbstractModel.tsx:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -227,7 +247,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L10">models/orm/Databases.tsx:10</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L10">models/orm/Databases.tsx:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,12 +258,28 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#related">related</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L43">models/orm/AbstractModel.tsx:43</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L47">models/orm/AbstractModel.tsx:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Container for the related entries (linked to the current model)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="tags" class="tsd-anchor"></a>
+					<h3>tags</h3>
+					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_orm_abstractmodel_.tagobjectschema.html" class="tsd-signature-type">tagObjectSchema</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#tags">tags</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L55">models/orm/AbstractModel.tsx:55</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Container object for the possible values of the &#39;tag&#39; property (if any) of a document</p>
 						</div>
 					</div>
 				</section>
@@ -261,7 +297,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#aggregate">aggregate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L222">models/orm/AbstractModel.tsx:222</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L277">models/orm/AbstractModel.tsx:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -290,7 +326,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#fetchautenticated">fetchAutenticated</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L68">models/orm/AbstractModel.tsx:68</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L116">models/orm/AbstractModel.tsx:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,7 +360,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L209">models/orm/AbstractModel.tsx:209</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L262">models/orm/AbstractModel.tsx:262</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -353,7 +389,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#findonebyid">findOneById</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L145">models/orm/AbstractModel.tsx:145</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L193">models/orm/AbstractModel.tsx:193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +426,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#findrelated">findRelated</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L167">models/orm/AbstractModel.tsx:167</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L217">models/orm/AbstractModel.tsx:217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +457,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#getaggregationlabels">getAggregationLabels</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L238">models/orm/AbstractModel.tsx:238</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L295">models/orm/AbstractModel.tsx:295</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +488,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#getapiurl">getApiUrl</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L135">models/orm/AbstractModel.tsx:135</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L183">models/orm/AbstractModel.tsx:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -484,7 +520,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#getdocument">getDocument</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L126">models/orm/AbstractModel.tsx:126</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L174">models/orm/AbstractModel.tsx:174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -516,10 +552,59 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#getname">getName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L87">models/orm/AbstractModel.tsx:87</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L135">models/orm/AbstractModel.tsx:135</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="loadalltags" class="tsd-anchor"></a>
+					<h3>load<wbr>All<wbr>Tags</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>All<wbr>Tags<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#loadalltags">loadAllTags</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L78">models/orm/AbstractModel.tsx:78</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="loadtags" class="tsd-anchor"></a>
+					<h3>load<wbr>Tags</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Tags<span class="tsd-signature-symbol">(</span>tagfieldname<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, emptyCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#loadtags">loadTags</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L95">models/orm/AbstractModel.tsx:95</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> tagfieldname: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;tags&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> emptyCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -534,7 +619,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#resetdata">resetData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L95">models/orm/AbstractModel.tsx:95</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L143">models/orm/AbstractModel.tsx:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -557,7 +642,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#updatedocumentinlocalcollection">updateDocumentInLocalCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/AbstractModel.tsx#L106">models/orm/AbstractModel.tsx:106</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/AbstractModel.tsx#L154">models/orm/AbstractModel.tsx:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -579,7 +664,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_models_orm_abstractmodel_.abstractmodel.html">AbstractModel</a>.<a href="_models_orm_abstractmodel_.abstractmodel.html#formconfig">formConfig</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L13">models/orm/Databases.tsx:13</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L13">models/orm/Databases.tsx:13</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -588,7 +673,7 @@
 						<div class="tsd-signature tsd-kind-icon">button<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;updateOne&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L15">models/orm/Databases.tsx:15</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L15">models/orm/Databases.tsx:15</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -598,7 +683,7 @@
 						<div class="tsd-signature tsd-kind-icon">fill<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L16">models/orm/Databases.tsx:16</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L16">models/orm/Databases.tsx:16</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -608,7 +693,7 @@
 						<div class="tsd-signature tsd-kind-icon">show<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L14">models/orm/Databases.tsx:14</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L14">models/orm/Databases.tsx:14</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -618,7 +703,7 @@
 						<div class="tsd-signature tsd-kind-icon">vertical<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L17">models/orm/Databases.tsx:17</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L17">models/orm/Databases.tsx:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -628,7 +713,7 @@
 						<div class="tsd-signature tsd-kind-icon">elements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L18">models/orm/Databases.tsx:18</a></li>
+								<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L18">models/orm/Databases.tsx:18</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -637,7 +722,7 @@
 							<div class="tsd-signature tsd-kind-icon">documentation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L24">models/orm/Databases.tsx:24</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L24">models/orm/Databases.tsx:24</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -646,7 +731,7 @@
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"textarea"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;textarea&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L24">models/orm/Databases.tsx:24</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L24">models/orm/Databases.tsx:24</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -657,7 +742,7 @@
 							<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L20">models/orm/Databases.tsx:20</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L20">models/orm/Databases.tsx:20</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -666,7 +751,7 @@
 								<div class="tsd-signature tsd-kind-icon">diabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L20">models/orm/Databases.tsx:20</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L20">models/orm/Databases.tsx:20</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -676,7 +761,37 @@
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;text&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L20">models/orm/Databases.tsx:20</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L20">models/orm/Databases.tsx:20</a></li>
+									</ul>
+								</aside>
+							</section>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+							<a name="formconfig.elements.parent_id" class="tsd-anchor"></a>
+							<h3>parent_<wbr>id</h3>
+							<div class="tsd-signature tsd-kind-icon">parent_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L27">models/orm/Databases.tsx:27</a></li>
+								</ul>
+							</aside>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="formconfig.elements.parent_id.diabled-1" class="tsd-anchor"></a>
+								<h3>diabled</h3>
+								<div class="tsd-signature tsd-kind-icon">diabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L27">models/orm/Databases.tsx:27</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="formconfig.elements.parent_id.shape-2" class="tsd-anchor"></a>
+								<h3>shape</h3>
+								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;text&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L27">models/orm/Databases.tsx:27</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -687,26 +802,26 @@
 							<div class="tsd-signature tsd-kind-icon">schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L21">models/orm/Databases.tsx:21</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L21">models/orm/Databases.tsx:21</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.schema.diabled-1" class="tsd-anchor"></a>
+								<a name="formconfig.elements.schema.diabled-2" class="tsd-anchor"></a>
 								<h3>diabled</h3>
 								<div class="tsd-signature tsd-kind-icon">diabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L21">models/orm/Databases.tsx:21</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L21">models/orm/Databases.tsx:21</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.schema.shape-2" class="tsd-anchor"></a>
+								<a name="formconfig.elements.schema.shape-3" class="tsd-anchor"></a>
 								<h3>shape</h3>
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;text&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L21">models/orm/Databases.tsx:21</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L21">models/orm/Databases.tsx:21</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -717,16 +832,16 @@
 							<div class="tsd-signature tsd-kind-icon">should_<wbr>ignore<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L19">models/orm/Databases.tsx:19</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L19">models/orm/Databases.tsx:19</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.should_ignore.shape-3" class="tsd-anchor"></a>
+								<a name="formconfig.elements.should_ignore.shape-4" class="tsd-anchor"></a>
 								<h3>shape</h3>
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"switch"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;switch&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L19">models/orm/Databases.tsx:19</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L19">models/orm/Databases.tsx:19</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -737,66 +852,66 @@
 							<div class="tsd-signature tsd-kind-icon">storageengine<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L22">models/orm/Databases.tsx:22</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L22">models/orm/Databases.tsx:22</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.storageengine.diabled-2" class="tsd-anchor"></a>
+								<a name="formconfig.elements.storageengine.diabled-3" class="tsd-anchor"></a>
 								<h3>diabled</h3>
 								<div class="tsd-signature tsd-kind-icon">diabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L22">models/orm/Databases.tsx:22</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L22">models/orm/Databases.tsx:22</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.storageengine.shape-4" class="tsd-anchor"></a>
+								<a name="formconfig.elements.storageengine.shape-5" class="tsd-anchor"></a>
 								<h3>shape</h3>
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;text&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L22">models/orm/Databases.tsx:22</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L22">models/orm/Databases.tsx:22</a></li>
 									</ul>
 								</aside>
 							</section>
 						</section>
 						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
-							<a name="formconfig.elements.tags" class="tsd-anchor"></a>
+							<a name="formconfig.elements.tags-1" class="tsd-anchor"></a>
 							<h3>tags</h3>
 							<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.tags.lefticon" class="tsd-anchor"></a>
+								<a name="formconfig.elements.tags-1.lefticon" class="tsd-anchor"></a>
 								<h3>left<wbr>Icon</h3>
 								<div class="tsd-signature tsd-kind-icon">left<wbr>Icon<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"tag"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;tag&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.tags.placeholder" class="tsd-anchor"></a>
+								<a name="formconfig.elements.tags-1.placeholder" class="tsd-anchor"></a>
 								<h3>placeholder</h3>
 								<div class="tsd-signature tsd-kind-icon">placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Optional tags used for categorazation...&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.tags.shape-5" class="tsd-anchor"></a>
+								<a name="formconfig.elements.tags-1.shape-6" class="tsd-anchor"></a>
 								<h3>shape</h3>
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"tag"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;tag&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L25">models/orm/Databases.tsx:25</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -807,16 +922,16 @@
 							<div class="tsd-signature tsd-kind-icon">timezone<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L26">models/orm/Databases.tsx:26</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L26">models/orm/Databases.tsx:26</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.timezone.shape-6" class="tsd-anchor"></a>
+								<a name="formconfig.elements.timezone.shape-7" class="tsd-anchor"></a>
 								<h3>shape</h3>
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"timezone"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;timezone&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L26">models/orm/Databases.tsx:26</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L26">models/orm/Databases.tsx:26</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -827,26 +942,26 @@
 							<div class="tsd-signature tsd-kind-icon">vendorbrand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L23">models/orm/Databases.tsx:23</a></li>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L23">models/orm/Databases.tsx:23</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.vendorbrand.diabled-3" class="tsd-anchor"></a>
+								<a name="formconfig.elements.vendorbrand.diabled-4" class="tsd-anchor"></a>
 								<h3>diabled</h3>
 								<div class="tsd-signature tsd-kind-icon">diabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L23">models/orm/Databases.tsx:23</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L23">models/orm/Databases.tsx:23</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="formconfig.elements.vendorbrand.shape-7" class="tsd-anchor"></a>
+								<a name="formconfig.elements.vendorbrand.shape-8" class="tsd-anchor"></a>
 								<h3>shape</h3>
 								<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;text&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/4517edf/src/models/orm/Databases.tsx#L23">models/orm/Databases.tsx:23</a></li>
+										<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/ae30312/src/models/orm/Databases.tsx#L23">models/orm/Databases.tsx:23</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -873,6 +988,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_models_orm_databases_.databases.html" class="tsd-kind-icon">Databases</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_models_orm_databases_.databases.html#_tagfieldnames" class="tsd-kind-icon">_tag<wbr>Field<wbr>Names</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_models_orm_databases_.databases.html#aggragateddata" class="tsd-kind-icon">aggragateddata</a>
 							</li>
@@ -896,6 +1014,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_models_orm_databases_.databases.html#related" class="tsd-kind-icon">related</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_models_orm_databases_.databases.html#tags" class="tsd-kind-icon">tags</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_models_orm_databases_.databases.html#aggregate" class="tsd-kind-icon">aggregate</a>
@@ -923,6 +1044,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_models_orm_databases_.databases.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_models_orm_databases_.databases.html#loadalltags" class="tsd-kind-icon">load<wbr>All<wbr>Tags</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_models_orm_databases_.databases.html#loadtags" class="tsd-kind-icon">load<wbr>Tags</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_models_orm_databases_.databases.html#resetdata" class="tsd-kind-icon">reset<wbr>Data</a>

@@ -14,6 +14,7 @@ import Tables from "../models/orm/Tables";
 import Fields from "../models/orm/Fields";
 import Translator from "../libs/translate/Translator";
 import Form from "../components/forms/Form";
+import Schemas from "../models/orm/Schemas";
 
 interface lvlElementType {
     model : AbstractModel,
@@ -40,6 +41,7 @@ class SearchScreen extends Component
     public model2icon = {
         'origins' : 'locate',
         'databases' : 'database',
+        'schemas' : 'diagram-tree',
         'tables' : 'th',
         'fields' : 'list',
     };
@@ -57,7 +59,11 @@ class SearchScreen extends Component
             gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
-            model : Tables, selected_id : null, parent : 'databases', 
+            model : Schemas, selected_id : null, parent : 'databases',
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
+        },
+        {
+            model : Tables, selected_id : null, parent : 'schemas', 
             gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
@@ -220,6 +226,9 @@ class SearchScreen extends Component
         );
     }
 
+    /**
+     * 
+     */
     public getErrorMessageJsx()
     {
         let o = this.lvl[this.state.level].model.error;

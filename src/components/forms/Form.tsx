@@ -4,7 +4,6 @@ import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, Spi
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
-import TagsForm from "./TagsForm";
 import { TimezoneDisplayFormat, TimezonePicker } from "@blueprintjs/timezone";
 import MultiSelectForm from "./MultiSelectForm";
 

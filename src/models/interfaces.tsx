@@ -181,6 +181,20 @@ export interface databasesSchema {
 };
 
 /**
+ * Schema schema
+ */
+export interface schemasSchema {
+    [key:string]: any,
+    "idh"?: "string",
+    "databases_idh"?: "string",
+    "schemadata_id"?: "string",
+    "name"?: "string",
+    "should_ignore"?: "number",
+    "documentation"?: "string",
+    "tags"?: Array<string>
+};
+
+/**
  * Navigation menu Item shape
  */
 export interface MenuItem {
