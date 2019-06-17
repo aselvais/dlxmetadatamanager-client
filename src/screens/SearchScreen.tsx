@@ -52,11 +52,11 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'access_status', 'documentation' ], actions: ['edit', 'drilldown'] }
+            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], actions: ['edit', 'drilldown'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Schemas, selected_id : null, parent : 'databases',

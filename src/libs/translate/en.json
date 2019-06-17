@@ -19,16 +19,19 @@
     "zcdc_source_system_engine_port": "Port",
     "zcdc_source_system_engine_instance": "Engine instance",
     "zcdc_streamsets_topology": "Streamsets Topology",
-
     "realm":"Group",
     "username":"Username",
     "email":"E-mail",
     "password1":"Password",
     "password2":"Re-type password",
-
     "is_pii" : "Is Personally identifiable information (PII)?",
     "is_pci" : "Is Payment Card Information (PCI)?",
     "should_encrypt": "Should be encrypted?",
-    "should_ignore": "Should be ignored?"
-
+    "should_ignore": "Should be ignored?",
+    "is_cdc_field": "Field used for CDC (change data capture)?",
+    "to_lower": "Convert content to lowercase",
+    "app_code" : "Application code",
+    "cust_type" : "Customer type",
+    "customer_source" : "Customer source",
+    "business_contact" : "Business contact"
 }

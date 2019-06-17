@@ -25,6 +25,8 @@ class Fields extends AbstractModel
             semantic_type: { shape: "tag", leftIcon: "comment", placeholder: 'Meaning of the field (Address, zip, customer, ...)'},
             is_pii: { shape: 'switch' },
             is_pci: { shape: 'switch' },
+            to_lower: { shape: 'switch' },
+            is_cdc_field:  { shape: 'switch' },
             documentation: { shape: "textarea"},
             tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
             is_pk: { shape: 'switch' },
