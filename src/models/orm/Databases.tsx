@@ -17,13 +17,13 @@ class Databases extends AbstractModel
         vertical: true,
         elements: {
             should_ignore: { shape: 'switch' },
-            name: { shape: "text", diabled: true},
-            storageengine : { shape: "text", diabled: true},
-            vendorbrand : { shape: "text", diabled: true},
+            name: { shape: "text" },
+            storageengine : { shape: "text"},
+            vendorbrand : { shape: "text"},
             documentation: { shape: "textarea"},
             tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
             timezone: {shape: "timezone"},
-            parent_id: {shape: "text", diabled: true},
+            parent_id: {shape: "text"},
 
             app_name : {shape: "text"},
             network : {shape: "text"},
