@@ -249,5 +249,5 @@ export interface gridConfigActionMethods {
 export interface gridConfig {
     [key:string]: any,
     showOnly?: Array<string>,
-    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown'>
+    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add'>
 };

@@ -36,7 +36,7 @@ abstract class AbstractModel
     /**
      * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
      */
-    @observable public currentAction : 'view' | 'editing' | 'saving' | 'loggingin' | 'loggingout' | null = null;
+    @observable public currentAction : 'view' | 'editing' | 'adding' | 'saving' | 'loggingin' | 'loggingout' | null = null;
     /**
      * Entry (one document) selected or loaded (by findOne for eg)
      */
@@ -151,7 +151,7 @@ abstract class AbstractModel
     /**
      * Take the this.document and update the same one in this.collection
      */
-    public updateDocumentInLocalCollection() : boolean
+    public updateDocumentInLocalCollection(added : boolean = false) : boolean
     {
         for (let i in this.collection)
         {
@@ -164,6 +164,7 @@ abstract class AbstractModel
                 }
             } catch(ee) {}
         }
+        this.collection.push(this.document);
         return false;
     }
 
@@ -253,7 +254,7 @@ abstract class AbstractModel
              }
              this.updateDocumentInLocalCollection();
              this.currentAction = null;
-            });
+        });
     }
 
     /**

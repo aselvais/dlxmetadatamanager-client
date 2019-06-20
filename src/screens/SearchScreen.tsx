@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Dialog, Icon } from "@blueprintjs/core";
+import { Dialog, Icon, Button } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 import FieldviewForm from "../components/FieldviewForm";
 
@@ -52,11 +52,11 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], actions: ['edit', 'drilldown'] }
+            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], actions: ['edit', 'drilldown', 'add'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown', 'add']}
         },
         {
             model : Schemas, selected_id : null, parent : 'databases',
@@ -122,6 +122,17 @@ class SearchScreen extends Component
      * 
      * @param row 
      */
+    public add(row : object = {}) 
+    { 
+        // @ts-ignore
+        this.lvl[this.state.level].model.document = row;
+        this.lvl[this.state.level].model.currentAction = 'adding';
+    }
+
+    /**
+     * 
+     * @param row 
+     */
     public drilldown(row : object = {}, step : number = null) 
     {
         this.lvl[this.state.level].model.document = row;
@@ -172,13 +183,13 @@ class SearchScreen extends Component
             <div>
             <Dialog title={ 
                     // @ts-ignore
-                    this.fna + ' > ' + this.lvl[this.state.level].model.document.name 
+                    this.fna + ' > ' + (this.lvl[this.state.level].model.document.name ? this.lvl[this.state.level].model.document.name : '' )
                     }
                     style={{ width: '70%' }}
                     onClose={() => this.lvl[this.state.level].model.currentAction = null } 
-                    isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'view') }
+                    isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'view' || this.lvl[this.state.level].model.currentAction === 'adding') }
                     icon={ this.model2icon[this.lvl[this.state.level].model.name] } >
-                { (this.lvl[this.state.level].model.currentAction === 'editing') ? <FieldeditionForm model={this.lvl[this.state.level].model} /> : null }
+                { (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'adding') ? <FieldeditionForm model={this.lvl[this.state.level].model} /> : null }
                 { (this.lvl[this.state.level].model.currentAction === 'view') ? <FieldviewForm model={this.lvl[this.state.level].model} /> : null }
             </Dialog>
             </div>
@@ -238,7 +249,6 @@ class SearchScreen extends Component
         } else {
             return null;
         }
-
     }
 
     /**
@@ -247,12 +257,12 @@ class SearchScreen extends Component
     render()
     {
         this.fna = '';
+        // {this.getDocumentationEntiryFormJsx()}
         return (
             <div>
                 {this.getErrorMessageJsx()}
                 {this.getBreadCrumbJsx()}
                 {this.getDialogJsx()}
-                {this.getDocumentationEntiryFormJsx()}
                 {this.getTableGridJsx()}
             </div>
         );

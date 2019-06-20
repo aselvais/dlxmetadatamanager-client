@@ -180,7 +180,9 @@ class Grid extends Component<Props> {
         let jsx = zearr.map( (k : string, i : number) => this.getHeaderCellJsx(k, i) );
         if (this.props.config && this.props.config.actions && this.props.config.actions.length > 0)
         {
-            jsx.push(<th key={'actions'}>{Translator.t('actions')}</th>);
+            let hctnt = this.getAddentryButtonJSX();
+            if (hctnt) jsx.push(<th key={'actions'}>{hctnt}</th>);
+            else jsx.push(<th key={'actions'}>{Translator.t('actions')}</th>);
         }
         return (<tr><th style={{ width: 55}}>#</th>{jsx}</tr>);
     }
@@ -201,12 +203,12 @@ class Grid extends Component<Props> {
             {
                 let l = this.props.config.actions.length;
                 jsx.push(<td style={{ textAlign: 'right', width: l*40}}>{
-                    this.props.config.actions.map(a => <Button 
+                    this.props.config.actions.map(a => (a !== 'add') ? <Button 
                         // @ts-ignore
                         icon={this.actions2icons[a].icon}
                         intent={this.actions2icons[a].intent} 
                         style={{ marginRight: 5 }} 
-                        onClick={() => this.onClickActionButton(a, e) } />)
+                        onClick={() => this.onClickActionButton(a, e) } /> : null)
                 }</td>);
             }
             return (<tr key={i}><td>{i+1}</td>{jsx}</tr>);
@@ -225,6 +227,24 @@ class Grid extends Component<Props> {
         {
             this.props.parent[actionName](mobx.toJS(row));
         }
+    }
+
+    /**
+     * 
+     */
+    getAddentryButtonJSX()
+    {
+        return (this.props.config.actions && this.props.config.actions.indexOf('add') >= 0) ? (
+            <div style={{textAlign: 'right'}}>
+            <Button 
+                // @ts-ignore
+                icon='plus'
+                intent='danger' 
+                text={Translator.t('add')}
+                style={{ marginRight: 5 }} 
+                onClick={() => this.onClickActionButton('add') } />
+            </div>
+        ) : null;
     }
 
     /**
