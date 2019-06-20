@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import Users from '../models/orm/Users';
 import Form from '../components/forms/Form';
 import logo from '../assets/images/Deluxe_enterprise_logo_RGB.png';
+import logometa from '../assets/images/metalogo.png';
 import { Toaster, Position, IToastProps, Intent } from "@blueprintjs/core";
 
 
@@ -51,10 +52,9 @@ class LoginScreen extends Component
         return (
             <div style={{textAlign: 'center', padding: 50}}>
                 <div style={{padding: 20}}>
-                    <img src={logo} alt="Deluxe logo" width={180}/>
-                </div>
-                <div>
-                    <h2>Meta-Data Manager</h2>
+                    <img src={logo} alt="Deluxe logo" width={80}/>
+                    <h3>Meta-Data Manager</h3>
+                    <img src={logometa} alt="Deluxe logo" width={50}/>
                 </div>
                 <div style={{ width: 300, padding: 20, margin: 'auto' }}>
                     <Form model={Users} config={Users.formConfigLogin} />
