@@ -17,7 +17,7 @@ class Users extends AbstractModel
     /**
      * @todo Remove this and use cookies for storing password if needed
      */
-    public document : UsersSchema = {username: 'admin', password: 'adminadmin112'};
+    public document : UsersSchema = {};
     /**
      * 
      */
@@ -152,7 +152,7 @@ class Users extends AbstractModel
     /**
      * Reinit model
      */
-    protected resetData()
+    public resetData()
     {
         // super.resetData();
         this.token = null;
@@ -172,9 +172,11 @@ class Users extends AbstractModel
         }
         else if (!this.token && this.cookies.get('dlxmttoken'))
         {
+            try {
             this.token = this.cookies.get('dlxmttoken');
             AccessTokens.tokenToUser(this.cookies.get('dlxmttoken'));
             return this.cookies.get('dlxmttoken');
+            } catch(ee) {}
         }
         return this.token;
     }

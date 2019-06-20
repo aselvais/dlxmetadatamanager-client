@@ -19,8 +19,7 @@ class Config
      */
     public static getApiUrl(model : string = '', id : string = '') : string
     {
-        return this.api.protocol + '://' + this.api.host + 
-                (this.api.port ? ':' + this.api.port : '' )+ 
+        return ((window.location.port === '3000') ? (this.api.protocol + '://' + this.api.host + (this.api.port ? ':' + this.api.port : '' )) : ('')) +
                 this.api.path + 
                 ( (model !== '') ? model : '') + 
                 ( (id !== '') ? '/' + id : '' );

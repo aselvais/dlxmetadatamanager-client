@@ -268,6 +268,10 @@ abstract class AbstractModel
                 this.error = data.error ? data.error : null;
                 this.collection = data;
                 this.loading = false;
+                if (data.error && data.error.code === 'AUTHORIZATION_REQUIRED' && Users.getToken())
+                {
+                    Users.resetData();
+                }
         });
     }
 
