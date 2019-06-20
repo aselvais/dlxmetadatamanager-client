@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button, Intent, Icon, Tag } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon, Tag, ButtonGroup } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -192,7 +192,7 @@ class Grid extends Component<Props> {
      */
     getBodyJsx()
     {
-        let rows = this.props.model.collection.map((e, i : number) => {
+        let rows = this.props.model.getDislpayCollection().map((e, i : number) => {
             let zearr = Object.keys(e);
             if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0) 
             {
@@ -211,7 +211,9 @@ class Grid extends Component<Props> {
                         onClick={() => this.onClickActionButton(a, e) } /> : null)
                 }</td>);
             }
-            return (<tr key={i}><td>{i+1}</td>{jsx}</tr>);
+            // let ppn = (this.props.model.pagination.selected*this.props.model.pagination.perpages)-this.props.model.pagination.perpages+1;
+            let ppn = i+((this.props.model.pagination.selected-1)*this.props.model.pagination.perpages)+1;
+            return (<tr key={ppn}><td>{ppn}</td>{jsx}</tr>);
         });
         return rows;
     }
@@ -250,6 +252,25 @@ class Grid extends Component<Props> {
     /**
      * 
      */
+    getPaginationJSX()
+    {
+        if (this.props.model.pagination.pages <= 1) return null;
+        let pgx = [];
+        for (let e=1; e <= this.props.model.pagination.pages; e++) pgx.push(<Button text={e} active={(this.props.model.pagination.selected == e)} onClick={ () => this.props.model.onClickPage(e) }/>);
+        return (
+            <div style={{ textAlign: 'center', padding: 10}}>
+                <ButtonGroup minimal={false} fill={false}>
+                    <Button text='<' onClick={ () => this.props.model.onClickPage(this.props.model.pagination.selected-1) }/>
+                    { pgx }
+                    <Button text='>' onClick={ () => this.props.model.onClickPage(this.props.model.pagination.selected+1) }/>
+                </ButtonGroup>
+            </div>
+        );
+    }
+
+    /**
+     * 
+     */
     render() {
         let jsx = [];
         if (this.props.model.loading) {
@@ -263,10 +284,12 @@ class Grid extends Component<Props> {
             {
                 jsx.push(
                     <div>
+                        {this.getPaginationJSX()}
                         <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                             <thead>{this.getHeaderJsx()}</thead>
                             <tbody>{this.getBodyJsx()}</tbody>
                         </table>
+                        {this.getPaginationJSX()}
                     </div>
                 );
             }

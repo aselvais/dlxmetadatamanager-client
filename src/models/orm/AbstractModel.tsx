@@ -14,6 +14,11 @@ interface modelErrorSchema {
 interface tagObjectSchema {
     [key:string]: Array<string>
 };
+interface paginationSchema {
+    perpages: number,
+    pages: number,
+    selected: number
+};
 
 /**
  * Abstract class containing the method for accessing the API
@@ -58,6 +63,14 @@ abstract class AbstractModel
      * value is the aggragated data
      */
     @observable public aggragateddata : object = {};
+    /**
+     * Number for pagination and filters
+     */
+    @observable public pagination : paginationSchema = {
+        perpages: 15,
+        pages: 0,
+        selected: 1
+    };
     /**
      * Definition of the form for the edition of a this.document
      */
@@ -165,6 +178,7 @@ abstract class AbstractModel
             } catch(ee) {}
         }
         this.collection.push(this.document);
+        this.onCollectionUpdated();
         return false;
     }
 
@@ -268,12 +282,50 @@ abstract class AbstractModel
                 //@ts-ignore
                 this.error = data.error ? data.error : null;
                 this.collection = data;
+                this.onCollectionUpdated();
                 this.loading = false;
                 if (data.error && data.error.code === 'AUTHORIZATION_REQUIRED' && Users.getToken())
                 {
                     Users.resetData();
                 }
         });
+    }
+
+    /**
+     * Run this when the collection is updated
+     */
+    public onCollectionUpdated()
+    {
+        let l = this.collection.length;
+        this.pagination.pages = Math.ceil(l/this.pagination.perpages);
+    }
+
+    /**
+     * 
+     * @param p 
+     */
+    public onClickPage(p : number)
+    {
+        if (p < 1) p = 1;
+        if (p > this.pagination.pages) p = this.pagination.pages;
+        this.pagination.selected = p;
+    }
+
+    /**
+     * 
+     */
+    public getDislpayCollection()
+    {
+        console.log('----------------------------------------------');
+        let p_to = (this.pagination.selected*this.pagination.perpages);
+        let p_from = p_to-this.pagination.perpages;
+        let toret = [];
+        for (var i=p_from; i < p_to; i++)
+        {
+            console.log(i);
+            if (this.collection[i]) toret.push(this.collection[i]);
+        }
+        return toret;
     }
 
     /**
