@@ -316,13 +316,11 @@ abstract class AbstractModel
      */
     public getDislpayCollection()
     {
-        console.log('----------------------------------------------');
         let p_to = (this.pagination.selected*this.pagination.perpages);
         let p_from = p_to-this.pagination.perpages;
         let toret = [];
         for (var i=p_from; i < p_to; i++)
         {
-            console.log(i);
             if (this.collection[i]) toret.push(this.collection[i]);
         }
         return toret;

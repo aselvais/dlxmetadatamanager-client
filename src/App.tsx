@@ -13,6 +13,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
 import LoginScreen from './screens/LoginScreen';
 import LogoutScreen from './screens/LogoutScreen';
+import UsersmanagementScreen from './screens/UsersmanagementScreen';
 
 /**
  * 
@@ -38,6 +39,7 @@ class App extends Component
             { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
             { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
             { (activeMenu.name === 'SearchScreen') ? <SearchScreen /> : null }
+            { (activeMenu.name === 'UsersmanagementScreen') ? <UsersmanagementScreen /> : null }
             { (activeMenu.name === 'LogoutScreen') ? <LogoutScreen /> : null }
           </div>
         </div>

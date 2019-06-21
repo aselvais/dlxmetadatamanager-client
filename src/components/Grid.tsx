@@ -292,6 +292,8 @@ class Grid extends Component<Props> {
                         {this.getPaginationJSX()}
                     </div>
                 );
+            } else {
+                jsx.push(this.getAddentryButtonJSX());
             }
         //}
         return jsx;

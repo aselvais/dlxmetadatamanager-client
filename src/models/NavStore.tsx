@@ -15,6 +15,8 @@ class NavStore
         
         {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true},
         {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true},
+        {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true},
+
         {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: false},
         {name: 'TypesScreen', label: 'Types', active: false, icon: 'tag', menuVisible: false},
         {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: false},
