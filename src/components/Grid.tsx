@@ -270,6 +270,29 @@ class Grid extends Component<Props> {
 
     /**
      * 
+     * @param e 
+     */
+    onSearchModel(e)
+    {
+        this.props.model.pagination.searchstr = e.target.value;
+        //this.props.model.getDislpayCollection();
+    }
+
+    /**
+     * 
+     */
+    getQuickSearchBoxJSX()
+    {
+        return (
+            <div className="bp3-input-group .modifier">
+                <span className="bp3-icon bp3-icon-search"></span>
+                <input className="bp3-input" type="search" placeholder="Search input" dir="auto" onChange={e => this.onSearchModel(e) }/>
+            </div>
+        );
+    }
+
+    /**
+     * 
      */
     render() {
         let jsx = [];
@@ -284,6 +307,7 @@ class Grid extends Component<Props> {
             {
                 jsx.push(
                     <div>
+                        {this.getQuickSearchBoxJSX()}
                         {this.getPaginationJSX()}
                         <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                             <thead>{this.getHeaderJsx()}</thead>

@@ -17,7 +17,8 @@ interface tagObjectSchema {
 interface paginationSchema {
     perpages: number,
     pages: number,
-    selected: number
+    selected: number,
+    searchstr: string
 };
 
 /**
@@ -69,7 +70,8 @@ abstract class AbstractModel
     @observable public pagination : paginationSchema = {
         perpages: 15,
         pages: 0,
-        selected: 1
+        selected: 1,
+        searchstr: ''
     };
     /**
      * Definition of the form for the edition of a this.document
@@ -294,10 +296,14 @@ abstract class AbstractModel
     /**
      * Run this when the collection is updated
      */
-    public onCollectionUpdated()
+    public onCollectionUpdated(d : Array<object>|null = null)
     {
-        let l = this.collection.length;
-        this.pagination.pages = Math.ceil(l/this.pagination.perpages);
+        let l = d ? d.length : this.collection.length;
+        try {
+            this.pagination.pages = Math.ceil(l/this.pagination.perpages);
+        }
+        // @todo Fix this non-sense
+        catch(ee){}
     }
 
     /**
@@ -314,14 +320,40 @@ abstract class AbstractModel
     /**
      * 
      */
+    protected _findDataInLocalCollection() : Array<object>
+    {
+        let toret = [];
+        this.collection.map(e => {
+            var re = new RegExp("/"+e+"/","gi");
+            for(let i in e)
+            {
+                if (typeof e[i] === 'string' && e[i].match(re) )
+                {
+                    toret.push(e);
+                }
+            }
+        });
+        return toret;
+    }
+
+    /**
+     * 
+     */
     public getDislpayCollection()
     {
+        let d = this.collection;
+        if (this.pagination.searchstr !== '')
+        {
+            d = this._findDataInLocalCollection();
+            this.onCollectionUpdated(d);
+        }
+
         let p_to = (this.pagination.selected*this.pagination.perpages);
         let p_from = p_to-this.pagination.perpages;
         let toret = [];
         for (var i=p_from; i < p_to; i++)
         {
-            if (this.collection[i]) toret.push(this.collection[i]);
+            if (d[i]) toret.push(d[i]);
         }
         return toret;
     }
