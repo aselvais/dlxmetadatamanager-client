@@ -256,7 +256,7 @@ class Grid extends Component<Props> {
     {
         if (this.props.model.pagination.pages <= 1) return null;
         let pgx = [];
-        for (let e=1; e <= this.props.model.pagination.pages; e++) pgx.push(<Button text={e} active={(this.props.model.pagination.selected == e)} onClick={ () => this.props.model.onClickPage(e) }/>);
+        for (let e=1; e <= this.props.model.pagination.pages; e++) pgx.push(<Button text={e} active={(this.props.model.pagination.selected === e)} onClick={ () => this.props.model.onClickPage(e) }/>);
         return (
             <div style={{ textAlign: 'center', padding: 10}}>
                 <ButtonGroup minimal={false} fill={false}>

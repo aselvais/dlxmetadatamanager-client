@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Dialog, Icon, Button } from "@blueprintjs/core";
+import { Dialog, Icon } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 import FieldviewForm from "../components/FieldviewForm";
 

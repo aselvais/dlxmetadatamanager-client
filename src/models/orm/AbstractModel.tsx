@@ -324,14 +324,15 @@ abstract class AbstractModel
     {
         let toret = [];
         this.collection.map(e => {
-            var re = new RegExp("/"+e+"/","gi");
+            var re = new RegExp(this.pagination.searchstr + "","gi");
             for(let i in e)
             {
-                if (typeof e[i] === 'string' && e[i].match(re) )
+                if (typeof e[i] === 'string' && (e[i]+"").match(re) )
                 {
                     toret.push(e);
                 }
             }
+            return true;
         });
         return toret;
     }
