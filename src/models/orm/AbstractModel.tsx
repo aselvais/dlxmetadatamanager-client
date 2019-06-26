@@ -330,6 +330,7 @@ abstract class AbstractModel
                 if (typeof e[i] === 'string' && (e[i]+"").match(re) )
                 {
                     toret.push(e);
+                    return true;
                 }
             }
             return true;
