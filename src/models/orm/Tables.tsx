@@ -15,11 +15,11 @@ class Tables extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            should_ignore: { shape: 'switch' },
-            name: { shape: "text", diabled: true},
-            landing_destination: { shape: "text"},
-            documentation: { shape: "textarea"},
-            tags: { shape: "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
+            "should_ignore": { "shape": 'switch' },
+            "name": { "shape": "text", diabled: true},
+            "landing_destination": { "shape": "text"},
+            "documentation": { "shape": "textarea"},
+            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'}
         }
     };
 
