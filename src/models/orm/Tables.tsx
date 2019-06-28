@@ -16,6 +16,7 @@ class Tables extends AbstractModel
         vertical: true,
         elements: {
             "should_ignore": { "shape": 'switch' },
+            "is_gdpr": {"shape": 'switch'},
             "name": { "shape": "text", diabled: true},
             "landing_destination": { "shape": "text"},
             "documentation": { "shape": "textarea"},

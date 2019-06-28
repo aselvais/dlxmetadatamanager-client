@@ -23,6 +23,7 @@ class Fields extends AbstractModel
             "charset": { "shape": "text", diabled: true},
             "group": { "shape": "tag", leftIcon: "folder-close", placeholder: 'Optional group in which this field is part of...'},
             "semantic_type": { "shape": "tag", leftIcon: "comment", placeholder: 'Meaning of the field (Address, zip, customer, ...)'},
+            "is_gdpr": {"shape": 'switch'},
             "is_pii": { "shape": 'switch' },
             "is_pci": { "shape": 'switch' },
             "to_lower": { "shape": 'switch' },
