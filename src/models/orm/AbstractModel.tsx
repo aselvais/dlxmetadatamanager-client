@@ -18,7 +18,8 @@ interface paginationSchema {
     perpages: number,
     pages: number,
     selected: number,
-    searchstr: string
+    searchstr: string,
+    should_ignore: number
 };
 
 /**
@@ -68,10 +69,11 @@ abstract class AbstractModel
      * Number for pagination and filters
      */
     @observable public pagination : paginationSchema = {
-        perpages: 15,
+        perpages: 50,
         pages: 0,
         selected: 1,
-        searchstr: ''
+        searchstr: '',
+        should_ignore: 1
     };
     /**
      * Definition of the form for the edition of a this.document
@@ -340,13 +342,33 @@ abstract class AbstractModel
 
     /**
      * 
+     * @param d 
+     */
+    protected _filterCollectionOnIgnore(d : Array<any>) : Array<object>
+    {
+        let toret = [];
+        if (this.pagination.should_ignore === 1) return d;
+        d.map(e => {
+            if (e.should_ignore === this.pagination.should_ignore)
+            {
+                toret.push(e);
+            } 
+            return true;
+        });
+        return toret;
+    }
+
+
+    /**
+     * 
      */
     public getDislpayCollection()
     {
         let d = this.collection;
-        if (this.pagination.searchstr !== '')
+        if (this.pagination.searchstr !== '') d = this._findDataInLocalCollection();
+        if (this.pagination.should_ignore !== null) d = this._filterCollectionOnIgnore(d);
+        if (this.pagination.searchstr !== '' || this.pagination.should_ignore !== null)
         {
-            d = this._findDataInLocalCollection();
             this.onCollectionUpdated(d);
         }
 

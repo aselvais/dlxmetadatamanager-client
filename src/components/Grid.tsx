@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button, Intent, Icon, Tag, ButtonGroup } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon, Tag, ButtonGroup, Switch } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -291,6 +291,23 @@ class Grid extends Component<Props> {
         );
     }
 
+    getSwitchJSX()
+    {
+        return (
+            <div>
+                <Switch 
+                    onChange={vv =>
+                        //@ts-ignore 
+                        this.props.model.pagination.should_ignore = vv.target.checked ? 0 : 1 
+                    }
+                    value={this.props.model.pagination.should_ignore}
+                    checked={ !this.props.model.pagination.should_ignore ? true : false} 
+                    labelElement={<strong>Show active only</strong>}
+                />
+            </div>
+        );
+    }
+
     /**
      * 
      */
@@ -307,8 +324,12 @@ class Grid extends Component<Props> {
             {
                 jsx.push(
                     <div>
-                        {this.getQuickSearchBoxJSX()}
-                        {this.getPaginationJSX()}
+                        <div style={{display: 'flex', flexDirection: 'row', flexGrow: 1, justifyContent: 'center', alignItems: 'center'}}>
+                            <div style={{flex: 1}}>{this.getSwitchJSX()}</div>
+                            <div style={{flex: 3}}>{this.getPaginationJSX()}</div>
+                            <div style={{flex: 1}}>{this.getQuickSearchBoxJSX()}</div>
+                        </div>
+
                         <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                             <thead>{this.getHeaderJsx()}</thead>
                             <tbody>{this.getBodyJsx()}</tbody>
