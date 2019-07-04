@@ -111,13 +111,11 @@ export interface UsersSchema {
 /**
  * Tags schema
  */
-export interface tagsSchema {
+export interface datadictSchema {
     [key:string]: any,
     "id"?: string,
     "name"?: string,
-    "tags_id"?: string,
-    "type"?: string,
-    "properties"?: object  
+    "description"?: object  
 };
 
 export interface AccessTokensSchema {
@@ -202,7 +200,8 @@ export interface MenuItem {
     label: string,
     active: boolean,
     icon: IconName,
-    menuVisible: boolean
+    menuVisible: boolean,
+    sublevel?: Array<MenuItem>
 };
 
 /**

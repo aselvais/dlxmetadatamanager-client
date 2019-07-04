@@ -17,8 +17,17 @@ class NavStore
         {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true},
         {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true},
 
+        {name: 'AggregationsScreen', label: 'Aggregations', active: false, icon: 'horizontal-bar-chart', menuVisible: true},
+        {name: 'DatadictionariesScreen', label: 'Data dictionaries', active: false, icon: 'th-list', menuVisible: true, sublevel: [
+            {name: 'ApplicationcodesScreen', label: 'Application codes', active: false, icon: 'code', menuVisible: true},
+            {name: 'TagsScreen', label: 'Tags', active: false, icon: 'tag', menuVisible: true},
+            {name: 'SemantictypesScreen', label: 'Semantic types', active: false, icon: 'comment', menuVisible: true},
+            {name: 'LandingdestinationsScreen', label: 'Landing destinations', active: false, icon: 'locate', menuVisible: true},
+            {name: 'AuthenticationresourcesScreen', label: 'Authentication resources', active: false, icon: 'shield', menuVisible: true},
+        ]},
+
+
         {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: false},
-        {name: 'TypesScreen', label: 'Types', active: false, icon: 'tag', menuVisible: false},
         {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: false},
         {name: 'DataScreen', label: 'Data', active: false, icon: 'database', menuVisible: false},
 
@@ -41,25 +50,29 @@ class NavStore
      * Set the active item by its name
      * @param name 
      */
-    @action public setActive(name : string ='') : void
+    @action public setActive(name : string ='', thisitems = this.items) : void
     {
-        for (let i=0; i < this.items.length; i++)
+        for (let i=0; i < thisitems.length; i++)
         {
-            this.items[i].active = (name === this.items[i].name);
-            if (this.items[i].active === true) this.active = name;
+            thisitems[i].active = (name === thisitems[i].name);
+            if (thisitems[i].active === true) this.active = name;
+            //@ts-ignore
+            if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) this.setActive(name, thisitems[i].sublevel);
         }
     }
 
     /**
      * Get the name of the active item
      */
-    public getActive() : MenuItem
+    public getActive(thisitems = this.items) : MenuItem
     {
-        for (let i=0; i < this.items.length; i++)
+        for (let i=0; i < thisitems.length; i++)
         {
-            if (this.items[i].active === true) return this.items[i];
+            if (thisitems[i].active === true) return thisitems[i];
+            //@ts-ignore
+            if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) return this.getActive(thisitems[i].sublevel);
         }
-        return this.items[0];
+        return thisitems[0];
     }
 
 
