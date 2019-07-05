@@ -17,6 +17,7 @@ class Semantictypes extends AbstractModel
             "description": { "shape": "textarea"}
         }
     };
+    
 }
 
 export default new Semantictypes();

@@ -34,18 +34,18 @@ class Schemadata extends AbstractModel
      * @param field 
      * @param limit 
      */
-    public getAggregationCustom(collectionname : string = '', field : string = '', limit : number = 20) : void
+    public getAggregationCustom(collectionname : string = '', field : string = '', limit : number = 20)
     {
         this.loading = true;
-        this.fetchAutenticated(this.getApiUrl() + '/aggregation/custom?collectionname=' + collectionname + '&field=' + field + '&limit=' + limit /* + encodeURI(JSON.stringify(where)) */)
+        return this.fetchAutenticated(this.getApiUrl() + '/aggregation/custom?collectionname=' + collectionname + '&field=' + field + '&limit=' + limit /* + encodeURI(JSON.stringify(where)) */)
             .then(response => response.json())
             .then(data => { 
                 //@ts-ignore
                 this.error = data.error ? data.error : null;
                 // this.collection = data;
-                console.log(data);
                 // this.onCollectionUpdated();
                 this.loading = false;
+                return data;
         });
     }
 

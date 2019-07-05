@@ -1,21 +1,73 @@
 import React, { Component } from "react";
-import Users from "../models/orm/Users";
-import { observer } from "mobx-react";
-import { Spinner } from "@blueprintjs/core";
 import Schemadata from "../models/orm/Schemadata";
+import SimpleGrid from "../components/SimpleGrid";
 
 /**
  * 
  */
-@observer
 class AggregationsScreen extends Component
 {
     /**
      * 
      */
+    protected _cfg = [
+        {title: 'Origin organizations', statePropName: 'originorganizations', collectionName: 'origins', fieldName: 'organization', limit: 30 },
+        {title: 'Origin owner', statePropName: 'originowner', collectionName: 'origins', fieldName: 'owner', limit: 30 },
+
+        {title: 'Database storage engine', statePropName: 'databasestorageengine', collectionName: 'databases', fieldName: 'storageengine', limit: 30 },
+        {title: 'Database vendor brand', statePropName: 'databasevendorbrand', collectionName: 'databases', fieldName: 'vendorbrand', limit: 30 },
+        {title: 'Database network', statePropName: 'databasenetwork', collectionName: 'databases', fieldName: 'network', limit: 30 },
+
+        {title: 'Table names', statePropName: 'tablesname', collectionName: 'tables', fieldName: 'name', limit: 30 },
+
+        {title: 'Field names', statePropName: 'fieldsname', collectionName: 'fields', fieldName: 'name', limit: 30 },
+        {title: 'Field datatype', statePropName: 'fieldsdatatype', collectionName: 'fields', fieldName: 'datatype', limit: 30 },
+        {title: 'Field semantic types', statePropName: 'fieldsemantictypes', collectionName: 'fields', fieldName: 'semantic_type', limit: 30 },
+        {title: 'Field is PII', statePropName: 'fieldsispii', collectionName: 'fields', fieldName: 'is_pii', limit: 30 },
+        {title: 'Field is PCI', statePropName: 'fieldsispci', collectionName: 'fields', fieldName: 'is_pci', limit: 30 },
+        {title: 'Field should be ignored', statePropName: 'fieldsshouldignore', collectionName: 'fields', fieldName: 'should_ignore', limit: 30 },
+
+    ];
+    /**
+     * 
+     */
+    public state = {
+        originorganizations: [],
+        originowner: [],
+        databasestorageengine: [],
+        databasenetwork: [],
+        databasevendorbrand: [],
+        fieldsemantictypes: [],
+        fieldsname : [],
+        tablesname: [],
+        fieldsispii: [],
+        fieldsispci: [],
+        fieldsshouldignore: [],
+        fieldsdatatype: [],
+    };
+
+    /**
+     * 
+     */
     componentDidMount()
     {
-        Schemadata.getAggregationCustom('fields', 'name', 100);
+        this._cfg.map(e => this._loadAggToState(e.statePropName, e.collectionName, e.fieldName, e.limit));
+    }
+
+    /**
+     * 
+     * @param statePropName 
+     * @param collectionName 
+     * @param fieldName 
+     * @param limit 
+     */
+    protected _loadAggToState(statePropName : string = '', collectionName : string = '', fieldName : string = '', limit : number = 50)
+    {
+        let o = {};
+        Schemadata.getAggregationCustom(collectionName, fieldName, limit).then(d => { 
+            o[statePropName] = d.data ? d.data : []; 
+            this.setState(o); 
+        });
     }
 
     /**
@@ -23,15 +75,11 @@ class AggregationsScreen extends Component
      */
     render()
     {
-        if (Users.loading) {
-            return (<div style={{ textAlign: 'center', padding: 30}}><Spinner /></div>);
-        } else {
-            return (
-                <div>
-                        hjksdfghjgfhjdfghjk
-                </div>
-                );        
-        }
+        return (
+            <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+                {this._cfg.map(e => (<div style={{ display: 'flexContainer', padding: 15}}><h3>{e.title}</h3><SimpleGrid data={this.state[e.statePropName]} /></div>))}
+            </div>
+        );
     }
 
 }

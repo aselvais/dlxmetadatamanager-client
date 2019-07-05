@@ -2,10 +2,14 @@
 import React, { Component } from 'react';
 import { Spinner } from "@blueprintjs/core";
 
+interface Props {
+    data: Array<object>
+}
+
 /**
  * 
  */
-class SimpleGrid extends Component
+class SimpleGrid extends Component<Props>
 {
     /**
      * 
@@ -37,8 +41,6 @@ class SimpleGrid extends Component
      */
     render()
     {
-        return null;
-        /*
         if (this.props.data && this.props.data.length === 0) {
             return (<div><Spinner/></div>);
         } else {
@@ -55,7 +57,7 @@ class SimpleGrid extends Component
                 </div>
             );
         }
-        */
+        
     }
 
 }

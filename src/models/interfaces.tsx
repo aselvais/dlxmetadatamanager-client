@@ -115,7 +115,8 @@ export interface datadictSchema {
     [key:string]: any,
     "id"?: string,
     "name"?: string,
-    "description"?: object  
+    "description"?: object,
+    "should_ignore"?: number
 };
 
 export interface AccessTokensSchema {
