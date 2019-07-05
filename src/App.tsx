@@ -17,6 +17,8 @@ import ApplicationcodesScreen from './screens/ApplicationcodesScreen';
 import SemantictypesScreen from './screens/SemantictypesScreen';
 import LandingdestinationsScreen from './screens/LandingdestinationsScreen';
 import AuthenticationresourcesScreen from './screens/AuthenticationresourcesScreen';
+import AggregationsScreen from './screens/AggregationsScreen';
+
 
 import LoginScreen from './screens/LoginScreen';
 import LogoutScreen from './screens/LogoutScreen';
@@ -46,6 +48,8 @@ class App extends Component
             { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
             { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
             { (activeMenu.name === 'SearchScreen') ? <SearchScreen /> : null }
+            { (activeMenu.name === 'UsersmanagementScreen') ? <UsersmanagementScreen /> : null }
+            { (activeMenu.name === 'AggregationsScreen') ? <AggregationsScreen /> : null }
             
             { (activeMenu.name === 'TagsScreen') ? <TagsScreen /> : null }
             { (activeMenu.name === 'ApplicationcodesScreen') ? <ApplicationcodesScreen /> : null }
@@ -53,7 +57,6 @@ class App extends Component
             { (activeMenu.name === 'LandingdestinationsScreen') ? <LandingdestinationsScreen /> : null }
             { (activeMenu.name === 'AuthenticationresourcesScreen') ? <AuthenticationresourcesScreen /> : null }
 
-            { (activeMenu.name === 'UsersmanagementScreen') ? <UsersmanagementScreen /> : null }
             { (activeMenu.name === 'LogoutScreen') ? <LogoutScreen /> : null }
           </div>
         </div>

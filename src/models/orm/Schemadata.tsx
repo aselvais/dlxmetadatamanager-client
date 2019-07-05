@@ -28,6 +28,29 @@ class Schemadata extends AbstractModel
         this.find({"where": {"TABLE_NAME": tableName}});
     }
 
+    /**
+     * 
+     * @param collectionname 
+     * @param field 
+     * @param limit 
+     */
+    public getAggregationCustom(collectionname : string = '', field : string = '', limit : number = 20) : void
+    {
+        this.loading = true;
+        this.fetchAutenticated(this.getApiUrl() + '/aggregation/custom?collectionname=' + collectionname + '&field=' + field + '&limit=' + limit /* + encodeURI(JSON.stringify(where)) */)
+            .then(response => response.json())
+            .then(data => { 
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
+                // this.collection = data;
+                console.log(data);
+                // this.onCollectionUpdated();
+                this.loading = false;
+        });
+    }
+
+
+
 }
 
 export default new Schemadata();
