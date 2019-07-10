@@ -64,20 +64,14 @@ class Dlxnavigation extends Component
                     </NavbarHeading>
 
                     <NavbarDivider />
-                    {
-                        NavStore.items.map( i => i.menuVisible ? this.getMenuItemJSX(i) : null)
-                    }
+                    { NavStore.items.map( i => i.menuVisible ? this.getMenuItemJSX(i) : null) }
 
                 </NavbarGroup>
                 <NavbarGroup align={Alignment.RIGHT}>
                     <NavbarDivider />
-                    {[9,10,11].map(i => <Button 
-                            key={NavStore.items[i].name}
-                            className={Classes.MINIMAL} 
-                            icon={NavStore.items[i].icon} 
-                            active={NavStore.items[i].active} 
-                            onClick={() => NavStore.setActive(NavStore.items[i].name)}
-                        />) }
+                    {[9,10,11].map(i => <Button key={NavStore.items[i].name} className={Classes.MINIMAL} 
+                                        icon={NavStore.items[i].icon} active={NavStore.items[i].active}  
+                                        onClick={() => NavStore.setActive(NavStore.items[i].name)} />) }
                 </NavbarGroup>
             </Navbar>
             </div>

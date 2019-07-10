@@ -11,15 +11,12 @@ import HomeScreen from './screens/HomeScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
-
 import TagsScreen from './screens/TagsScreen';
 import ApplicationcodesScreen from './screens/ApplicationcodesScreen';
 import SemantictypesScreen from './screens/SemantictypesScreen';
 import LandingdestinationsScreen from './screens/LandingdestinationsScreen';
 import AuthenticationresourcesScreen from './screens/AuthenticationresourcesScreen';
 import AggregationsScreen from './screens/AggregationsScreen';
-
-
 import LoginScreen from './screens/LoginScreen';
 import LogoutScreen from './screens/LogoutScreen';
 import UsersmanagementScreen from './screens/UsersmanagementScreen';
@@ -28,36 +25,55 @@ import UsersmanagementScreen from './screens/UsersmanagementScreen';
  * 
  */
 @observer
-class App extends Component
-{
+class App extends Component {
+
+  /**
+   * 
+   * @param name 
+   */
+  protected getActiveScreenJSX(name: string = '') {
+    switch (name) {
+      case 'LoadingScreen':
+        return <LoadingScreen />;
+      case 'HomeScreen':
+        return <HomeScreen />;
+      case 'ProfileScreen':
+        return <ProfileScreen />;
+      case 'SearchScreen':
+        return <SearchScreen />;
+      case 'UsersmanagementScreen':
+        return <UsersmanagementScreen />;
+      case 'AggregationsScreen':
+        return <AggregationsScreen />;
+      case 'TagsScreen':
+        return <TagsScreen />;
+      case 'ApplicationcodesScreen':
+        return <ApplicationcodesScreen />;
+      case 'SemantictypesScreen':
+        return <SemantictypesScreen />;
+      case 'LandingdestinationsScreen':
+        return <LandingdestinationsScreen />;
+      case 'AuthenticationresourcesScreen':
+        return <AuthenticationresourcesScreen />;
+      case 'LogoutScreen':
+        return <LogoutScreen />;
+      default:
+        return null;
+    }
+  }
 
   /**
    * 
    */
-  render()
-  {
+  render() {
     let activeMenu = NavStore.getActive();
-    if (Users.getToken() !== null)
-    {
+    if (Users.getToken() !== null) {
       return (
         <div className="globalContainer bp3-dark">
-            { (activeMenu.name === 'LoadingScreen') ? null : <Dlxnavigation /> }
+          {(activeMenu.name === 'LoadingScreen') ? null : <Dlxnavigation />}
           <div className="mainContentSpace">
-            { (activeMenu.name === 'LoadingScreen') ? null : <Titlebar /> }
-            { (activeMenu.name === 'LoadingScreen') ? <LoadingScreen /> : null }
-            { (activeMenu.name === 'HomeScreen') ? <HomeScreen /> : null }
-            { (activeMenu.name === 'ProfileScreen') ? <ProfileScreen /> : null }
-            { (activeMenu.name === 'SearchScreen') ? <SearchScreen /> : null }
-            { (activeMenu.name === 'UsersmanagementScreen') ? <UsersmanagementScreen /> : null }
-            { (activeMenu.name === 'AggregationsScreen') ? <AggregationsScreen /> : null }
-            
-            { (activeMenu.name === 'TagsScreen') ? <TagsScreen /> : null }
-            { (activeMenu.name === 'ApplicationcodesScreen') ? <ApplicationcodesScreen /> : null }
-            { (activeMenu.name === 'SemantictypesScreen') ? <SemantictypesScreen /> : null }
-            { (activeMenu.name === 'LandingdestinationsScreen') ? <LandingdestinationsScreen /> : null }
-            { (activeMenu.name === 'AuthenticationresourcesScreen') ? <AuthenticationresourcesScreen /> : null }
-
-            { (activeMenu.name === 'LogoutScreen') ? <LogoutScreen /> : null }
+            {(activeMenu.name === 'LoadingScreen') ? null : <Titlebar />}
+            {this.getActiveScreenJSX(activeMenu.name)}
           </div>
         </div>
       );

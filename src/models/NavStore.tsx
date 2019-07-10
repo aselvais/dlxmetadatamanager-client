@@ -54,10 +54,15 @@ class NavStore
     {
         for (let i=0; i < thisitems.length; i++)
         {
+            if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) 
+            {
+                this.setActive(name, thisitems[i].sublevel);
+            }
             thisitems[i].active = (name === thisitems[i].name);
-            if (thisitems[i].active === true) this.active = name;
-            //@ts-ignore
-            if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) this.setActive(name, thisitems[i].sublevel);
+            if ((name === thisitems[i].name) === true) 
+            {
+                this.active = name;    
+            }
         }
     }
 
@@ -69,7 +74,6 @@ class NavStore
         for (let i=0; i < thisitems.length; i++)
         {
             if (thisitems[i].active === true) return thisitems[i];
-            //@ts-ignore
             if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) return this.getActive(thisitems[i].sublevel);
         }
         return thisitems[0];

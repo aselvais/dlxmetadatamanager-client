@@ -127,29 +127,6 @@ export interface AccessTokensSchema {
     "userId"?: string
 };
 
-
-/**
- * Tables schema
- */
-export interface tablesSchema {
-    [key:string]: any,
-    "id"?: string,
-    "name"?: string,
-    "storageengine"?: string,
-    "databases_id"?: string  
-};
-
-/**
- * Origins schema
- */
-export interface originsSchema {
-    [key:string]: any,
-    "id"?: string,
-    "name"?: string,
-    "host"?: string,
-    "organization"?: string  
-};
-
 /**
  * Fields Schema
  */
@@ -167,6 +144,16 @@ export interface fieldsSchema {
     "tags"?: Array<string>
 };
 
+/**
+ * Tables schema
+ */
+export interface tablesSchema {
+    [key:string]: any,
+    "id"?: string,
+    "name"?: string,
+    "storageengine"?: string,
+    "databases_id"?: string  
+};
 /**
  * Database schema
  */
@@ -191,6 +178,17 @@ export interface schemasSchema {
     "should_ignore"?: "number",
     "documentation"?: "string",
     "tags"?: Array<string>
+};
+
+/**
+ * Origins schema
+ */
+export interface originsSchema {
+    [key:string]: any,
+    "id"?: string,
+    "name"?: string,
+    "host"?: string,
+    "organization"?: string
 };
 
 /**
