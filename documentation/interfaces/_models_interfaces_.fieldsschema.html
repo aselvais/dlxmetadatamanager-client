@@ -72,7 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Fields Schema</p>
+						<p>Fields Schema.
+						ORM to the fields/columns definition kept in the DB.</p>
 					</div>
 				</div>
 			</section>
@@ -89,7 +90,8 @@
 				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Fields Schema</p>
+						<p>Fields Schema.
+						ORM to the fields/columns definition kept in the DB.</p>
 					</div>
 				</div>
 			</section>
@@ -104,12 +106,25 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#datalength" class="tsd-kind-icon">datalength</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#datatype" class="tsd-kind-icon">datatype</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#documentation" class="tsd-kind-icon">documentation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#group" class="tsd-kind-icon">group</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#idh" class="tsd-kind-icon">idh</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#is_cdc_field" class="tsd-kind-icon">is_<wbr>cdc_<wbr>field</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#is_fk" class="tsd-kind-icon">is_<wbr>fk</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#is_gdpr" class="tsd-kind-icon">is_<wbr>gdpr</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#is_pci" class="tsd-kind-icon">is_<wbr>pci</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#is_pii" class="tsd-kind-icon">is_<wbr>pii</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#is_pk" class="tsd-kind-icon">is_<wbr>pk</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#linked_to" class="tsd-kind-icon">linked_<wbr>to</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#properties" class="tsd-kind-icon">properties</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#schemadata_id" class="tsd-kind-icon">schemadata_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#semantic_type" class="tsd-kind-icon">semantic_<wbr>type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#should_ignore" class="tsd-kind-icon">should_<wbr>ignore</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#tables_id" class="tsd-kind-icon">tables_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#tables_idh" class="tsd-kind-icon">tables_<wbr>idh</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#tags" class="tsd-kind-icon">tags</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_interfaces_.fieldsschema.html#to_lower" class="tsd-kind-icon">to_<wbr>lower</a></li>
 							</ul>
 						</section>
 					</div>
@@ -123,9 +138,14 @@
 					<div class="tsd-signature tsd-kind-icon">charset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L162">models/interfaces.tsx:162</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L169">models/interfaces.tsx:169</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Character set</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="datalength" class="tsd-anchor"></a>
@@ -133,9 +153,14 @@
 					<div class="tsd-signature tsd-kind-icon">datalength<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L161">models/interfaces.tsx:161</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L167">models/interfaces.tsx:167</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Length as defined in the DB source</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="datatype" class="tsd-anchor"></a>
@@ -143,9 +168,14 @@
 					<div class="tsd-signature tsd-kind-icon">datatype<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L160">models/interfaces.tsx:160</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L165">models/interfaces.tsx:165</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Data type as define in the DB source</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="documentation" class="tsd-anchor"></a>
@@ -153,9 +183,33 @@
 					<div class="tsd-signature tsd-kind-icon">documentation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L165">models/interfaces.tsx:165</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L175">models/interfaces.tsx:175</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Optional documentation</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="group" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> group</h3>
+					<div class="tsd-signature tsd-kind-icon">group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L192">models/interfaces.tsx:192</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>List of groups this field is part of</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd></dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
@@ -163,9 +217,134 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L158">models/interfaces.tsx:158</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L161">models/interfaces.tsx:161</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>PK</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="idh" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> idh</h3>
+					<div class="tsd-signature tsd-kind-icon">idh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L181">models/interfaces.tsx:181</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>custom PK based on a hash of the name and parents names</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="is_cdc_field" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is_<wbr>cdc_<wbr>field</h3>
+					<div class="tsd-signature tsd-kind-icon">is_<wbr>cdc_<wbr>field<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L206">models/interfaces.tsx:206</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, this field is used for CDC (change data capture). Typically, a &quot;on update&quot; system managed timestamp might be the CDC column/field.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="is_fk" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is_<wbr>fk</h3>
+					<div class="tsd-signature tsd-kind-icon">is_<wbr>fk<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L210">models/interfaces.tsx:210</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, this field is a foreign key (link to another field in another table; see linked_to)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="is_gdpr" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is_<wbr>gdpr</h3>
+					<div class="tsd-signature tsd-kind-icon">is_<wbr>gdpr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L187">models/interfaces.tsx:187</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, this is contains GDPR data; it implies this might be PII and we might have to delete this data is the customer reuests to be &quot;forgotten&quot;.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="is_pci" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is_<wbr>pci</h3>
+					<div class="tsd-signature tsd-kind-icon">is_<wbr>pci<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L202">models/interfaces.tsx:202</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, this field contains payment card information and should be encrypted when at rest in our big data env.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="is_pii" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is_<wbr>pii</h3>
+					<div class="tsd-signature tsd-kind-icon">is_<wbr>pii<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L200">models/interfaces.tsx:200</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, this field contains personal identifiable information and will be hashed in our big data environment</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="is_pk" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is_<wbr>pk</h3>
+					<div class="tsd-signature tsd-kind-icon">is_<wbr>pk<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L208">models/interfaces.tsx:208</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, this field is a primary key.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="linked_to" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> linked_<wbr>to</h3>
+					<div class="tsd-signature tsd-kind-icon">linked_<wbr>to<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L212">models/interfaces.tsx:212</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>reference to the table:field this field is linked to</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="name" class="tsd-anchor"></a>
@@ -173,9 +352,14 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L159">models/interfaces.tsx:159</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L163">models/interfaces.tsx:163</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Column name</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="properties" class="tsd-anchor"></a>
@@ -183,9 +367,14 @@
 					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L166">models/interfaces.tsx:166</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L177">models/interfaces.tsx:177</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Optional properties (user defined)</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="schemadata_id" class="tsd-anchor"></a>
@@ -193,9 +382,47 @@
 					<div class="tsd-signature tsd-kind-icon">schemadata_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L164">models/interfaces.tsx:164</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L173">models/interfaces.tsx:173</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>FK to the source data extracted from the DB schema</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="semantic_type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> semantic_<wbr>type</h3>
+					<div class="tsd-signature tsd-kind-icon">semantic_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L198">models/interfaces.tsx:198</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Semantic types are &quot;human understandable types&quot;. Those special tags are used to give some meaning to the field/data.
+								A field has to contain at least 2 semantic types (key-value pair). For example, a field can be of semantic type: customer, email.
+								This means that the data will be an email, part of the &quot;category/group&quot; email. This makes more sense if we take an address as an example:
+							for an address we will have a zip, city, street, ... part of the &quot;group&quot; address...</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="should_ignore" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> should_<wbr>ignore</h3>
+					<div class="tsd-signature tsd-kind-icon">should_<wbr>ignore<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L185">models/interfaces.tsx:185</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, we will not grab the data from the source (so, it will not exist in our big data env.)</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="tables_id" class="tsd-anchor"></a>
@@ -203,9 +430,29 @@
 					<div class="tsd-signature tsd-kind-icon">tables_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L163">models/interfaces.tsx:163</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L171">models/interfaces.tsx:171</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>FK to the parent table (table in which this field is present)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="tables_idh" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> tables_<wbr>idh</h3>
+					<div class="tsd-signature tsd-kind-icon">tables_<wbr>idh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L183">models/interfaces.tsx:183</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>FK to the custom hash of the parents entity (the table)</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="tags" class="tsd-anchor"></a>
@@ -213,9 +460,29 @@
 					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/8ec2df0/src/models/interfaces.tsx#L167">models/interfaces.tsx:167</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L179">models/interfaces.tsx:179</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Tags assigned to this field; for categorization/search purpose</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="to_lower" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> to_<wbr>lower</h3>
+					<div class="tsd-signature tsd-kind-icon">to_<wbr>lower<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/2c0acd6/src/models/interfaces.tsx#L204">models/interfaces.tsx:204</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If 1, the data will be converted to lower case (this is the default setting)</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -265,7 +532,34 @@
 								<a href="_models_interfaces_.fieldsschema.html#documentation" class="tsd-kind-icon">documentation</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#group" class="tsd-kind-icon">group</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_models_interfaces_.fieldsschema.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#idh" class="tsd-kind-icon">idh</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#is_cdc_field" class="tsd-kind-icon">is_<wbr>cdc_<wbr>field</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#is_fk" class="tsd-kind-icon">is_<wbr>fk</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#is_gdpr" class="tsd-kind-icon">is_<wbr>gdpr</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#is_pci" class="tsd-kind-icon">is_<wbr>pci</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#is_pii" class="tsd-kind-icon">is_<wbr>pii</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#is_pk" class="tsd-kind-icon">is_<wbr>pk</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#linked_to" class="tsd-kind-icon">linked_<wbr>to</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_models_interfaces_.fieldsschema.html#name" class="tsd-kind-icon">name</a>
@@ -277,10 +571,22 @@
 								<a href="_models_interfaces_.fieldsschema.html#schemadata_id" class="tsd-kind-icon">schemadata_<wbr>id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#semantic_type" class="tsd-kind-icon">semantic_<wbr>type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#should_ignore" class="tsd-kind-icon">should_<wbr>ignore</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_models_interfaces_.fieldsschema.html#tables_id" class="tsd-kind-icon">tables_<wbr>id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#tables_idh" class="tsd-kind-icon">tables_<wbr>idh</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_models_interfaces_.fieldsschema.html#tags" class="tsd-kind-icon">tags</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_interfaces_.fieldsschema.html#to_lower" class="tsd-kind-icon">to_<wbr>lower</a>
 							</li>
 						</ul>
 					</li>

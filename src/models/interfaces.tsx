@@ -1,7 +1,9 @@
 import { IconName } from "@blueprintjs/core";
 
 /**
- * Schemadata Schema
+ * Schemadata Schema.
+ * Schemadata is the collection/table in the DB where we store the raw data from the 
+ * queries extracting sources schemas with Streamsets
  */
 export interface schemadataSchema {
     [key:string]: any,
@@ -96,52 +98,118 @@ export interface schemadataSchema {
 };
 
 /**
- * Users schema
+ * Users schema.
+ * Application users: people who have an account and can access the 
+ * Metadata manager
  */
 export interface UsersSchema {
     [key:string]: any,
+    /** Primary key */
     "id"? : string,
+    /** Group the user is part of */
     "realm"? : string,
+    /** Unique username used for authentication */
     "username"? : string,
+    /** Password (encrypted) */
     "password"? : string,
+    /** Email address */
     "email"? : string,
+    /** Was the email verified by the app */
     "emailVerified"? : boolean
 };
 
 /**
- * Tags schema
+ * Tags schema.
+ * Collection of tags users can use in the app for tagging entities.
  */
 export interface datadictSchema {
     [key:string]: any,
+    /** PK */
     "id"?: string,
+    /** Tag name/label */
     "name"?: string,
+    /** Optional description */
     "description"?: object,
+    /** Active on/off */
     "should_ignore"?: number
 };
 
+/**
+ * Access token used for validating requests against authentication.
+ * This data is kept in memory on the server side.
+ * So, when we restart the server, users will need to re-authenticate.
+ */
 export interface AccessTokensSchema {
     [key:string]: any,
+    /** PK */
     "id"?: string,
+    /** Time to live: defines when the token will expire/timeout */
     "ttl"?: number,
+    /** Date/time when the token was created */
     "created"?: string,
+    /** FK to the User */
     "userId"?: string
 };
 
 /**
- * Fields Schema
+ * Fields Schema.
+ * ORM to the fields/columns definition kept in the DB.
  */
 export interface fieldsSchema {
     [key:string]: any,
+    /** PK */
     "id"?: string,
+    /** Column name */
     "name"?: string,
+    /** Data type as define in the DB source */
     "datatype"?: string,
+    /** Length as defined in the DB source */
     "datalength"?: number,
+    /** Character set */
     "charset"?: string,
+    /** FK to the parent table (table in which this field is present) */
     "tables_id"?: string,
+    /** FK to the source data extracted from the DB schema */
     "schemadata_id"?: string,
+    /** Optional documentation */
     "documentation"?: string,
+    /** Optional properties (user defined) */
     "properties"?: object,
-    "tags"?: Array<string>
+    /** Tags assigned to this field; for categorization/search purpose */
+    "tags"?: Array<string>,
+    /** custom PK based on a hash of the name and parents names */
+    "idh"?: string,
+    /** FK to the custom hash of the parents entity (the table) */
+    "tables_idh"?: string,
+    /** If 1, we will not grab the data from the source (so, it will not exist in our big data env.) */
+    "should_ignore"?: number,
+    /** If 1, this is contains GDPR data; it implies this might be PII and we might have to delete this data is the customer reuests to be "forgotten". */
+    "is_gdpr"?: number,
+    /** 
+     * List of groups this field is part of 
+     * @deprecated 
+     */
+    "group"?: Array<string>,
+    /** Semantic types are "human understandable types". Those special tags are used to give some meaning to the field/data. 
+     * A field has to contain at least 2 semantic types (key-value pair). For example, a field can be of semantic type: customer, email.
+     * This means that the data will be an email, part of the "category/group" email. This makes more sense if we take an address as an example:
+     * for an address we will have a zip, city, street, ... part of the "group" address...
+     */
+    "semantic_type"?: Array<string>,
+    /** If 1, this field contains personal identifiable information and will be hashed in our big data environment */
+    "is_pii"?: number,
+    /** If 1, this field contains payment card information and should be encrypted when at rest in our big data env.  */
+    "is_pci"?: number,
+    /** If 1, the data will be converted to lower case (this is the default setting) */
+    "to_lower"?: number,
+    /** If 1, this field is used for CDC (change data capture). Typically, a "on update" system managed timestamp might be the CDC column/field. */
+    "is_cdc_field"?: number,
+    /** If 1, this field is a primary key. */
+    "is_pk"?: number,
+    /** If 1, this field is a foreign key (link to another field in another table; see linked_to) */
+    "is_fk"?: number,
+    /** reference to the table:field this field is linked to */
+    "linked_to"?: string
 };
 
 /**
@@ -150,10 +218,19 @@ export interface fieldsSchema {
 export interface tablesSchema {
     [key:string]: any,
     "id"?: string,
-    "name"?: string,
     "storageengine"?: string,
-    "databases_id"?: string  
+    "databases_id"?: string,
+    "idh"?:string,
+    "schemas_idh"?: string,
+    "schemadata_id"?: string,
+    "should_ignore"?: number,
+    "is_gdpr"?: number,
+    "name"?: string,
+    "landing_destination"?: string,
+    "documentation"?: string,
+    "tags"?: Array<string>,
 };
+
 /**
  * Database schema
  */
@@ -163,7 +240,30 @@ export interface databasesSchema {
     "name"?: string,
     "origins_id"?: string,
     "vendorbrand"?: string,
-    "storageengine"?: string
+    "storageengine"?: string,
+    "idh"?:string,
+    "origins_idh"?:string,
+    "schemadata_id"?: string,
+    "should_ignore"?: number,
+    "documentation"?: string,
+    "tags"?: Array<string>,
+    "timezone"?: string,
+    "parent_id"?: string,
+    "app_name"?: string,
+    "network"?: string,
+    "hosted_area"?: string,
+    "in_bidm"?: number,
+    "deluxe_name"?: string,
+    "firewall"?: number,
+    "instance_name"?: string,
+    "schema_name"?: string,
+    "username"?: string,
+    "password"?: string,
+    "hostname"?: string,
+    "sid"?: string,
+    "ip"?: string,
+    "port"?: string,
+    "jdbc_connection_str"?: string
 };
 
 /**
@@ -177,7 +277,12 @@ export interface schemasSchema {
     "name"?: "string",
     "should_ignore"?: "number",
     "documentation"?: "string",
-    "tags"?: Array<string>
+    "tags"?: Array<string>,
+    "schema"?: string,
+    "storageengine"? : string,
+    "vendorbrand"? : string,
+    "timezone"?: string,
+    "parent_id"?: string
 };
 
 /**
@@ -186,9 +291,20 @@ export interface schemasSchema {
 export interface originsSchema {
     [key:string]: any,
     "id"?: string,
+    "idh"?: string,
+    "schemadata_id"?: string,
+    "should_ignore"?: number,
     "name"?: string,
-    "host"?: string,
-    "organization"?: string
+    "organization"?: string,
+    "app_code"?: string,
+    "cust_type"?: string,
+    "customer_source"?: string,
+    "business_contact"?: string,
+    "cdc_enabled"?:  number,
+    "owner"?:  string,
+    "tags"?: Array<string>,
+    "documentation"?: string,
+    "notes"?: string
 };
 
 /**
