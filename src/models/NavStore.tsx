@@ -1,4 +1,4 @@
-import { observable, action, toJS } from "mobx";
+import { observable, action } from "mobx";
 import { MenuItem } from "../models/interfaces";
 
 /**
@@ -18,12 +18,12 @@ class NavStore
         {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true, role: 'god'},
 
         {name: 'AggregationsScreen', label: 'Aggregations', active: false, icon: 'horizontal-bar-chart', menuVisible: true, role: 'admin'},
-        {name: 'DatadictionariesScreen', label: 'Data dictionaries', active: false, icon: 'th-list', menuVisible: true, role: 'god', sublevel: [
-            {name: 'ApplicationcodesScreen', label: 'Application codes', active: false, icon: 'code', menuVisible: true, role: 'god'},
-            {name: 'TagsScreen', label: 'Tags', active: false, icon: 'tag', menuVisible: true, role: 'god'},
-            {name: 'SemantictypesScreen', label: 'Semantic types', active: false, icon: 'comment', menuVisible: true, role: 'god'},
-            {name: 'LandingdestinationsScreen', label: 'Landing destinations', active: false, icon: 'locate', menuVisible: true, role: 'god'},
-            {name: 'AuthenticationresourcesScreen', label: 'Authentication resources', active: false, icon: 'shield', menuVisible: true, role: 'god'},
+        {name: 'DatadictionariesScreen', label: 'Data dictionaries', active: false, icon: 'th-list', menuVisible: true, role: 'superadmin', sublevel: [
+            {name: 'ApplicationcodesScreen', label: 'Application codes', active: false, icon: 'code', menuVisible: true, role: 'superadmin'},
+            {name: 'TagsScreen', label: 'Tags', active: false, icon: 'tag', menuVisible: true, role: 'superadmin'},
+            {name: 'SemantictypesScreen', label: 'Semantic types', active: false, icon: 'comment', menuVisible: true, role: 'superadmin'},
+            {name: 'LandingdestinationsScreen', label: 'Landing destinations', active: false, icon: 'locate', menuVisible: true, role: 'superadmin'},
+            {name: 'AuthenticationresourcesScreen', label: 'Authentication resources', active: false, icon: 'shield', menuVisible: true, role: 'superadmin'},
         ]},
 
         {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: true, role: 'god'},
@@ -46,21 +46,22 @@ class NavStore
 
     /**
      * Set the active item by its name
+     * 
      * @param name 
+     * @param thisitems 
      */
     @action public setActive(name : string ='', thisitems = this.items) : void
     {
-        console.log('------------------------ setActive: ' + name + ' -------------------------------');
         for (let i=0; i < thisitems.length; i++)
         {
             if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) 
             {
-                // this.setActive(name, thisitems[i].sublevel);
+                this.setActive(name, thisitems[i].sublevel);
             }
             thisitems[i].active = (name === thisitems[i].name);
             if ((name === thisitems[i].name) === true) 
             {
-                this.active = name;    
+                this.active = name;
             }
         }
     }
@@ -70,19 +71,19 @@ class NavStore
      */
     public getActive(thisitems = this.items) : MenuItem
     {
-        console.log('getActive ---> ', toJS(this.items) );
         for (let i=0; i < thisitems.length; i++)
         {
-            if (thisitems[i].active === true) return thisitems[i];
             // if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) return this.getActive(thisitems[i].sublevel);
             // @todo change this into something with recursion
             if (thisitems[i].sublevel && thisitems[i].sublevel.length > 0) 
             {
-                for (let u=0; i < thisitems[i].sublevel.length; i++)
+                for (let u=0; u < thisitems[i].sublevel.length; u++)
                 {
                     if (thisitems[i].sublevel[u].active === true) return thisitems[i].sublevel[u];
                 }
             }
+            if (thisitems[i].active === true) return thisitems[i];
+
         }
         return thisitems[0];
     }
