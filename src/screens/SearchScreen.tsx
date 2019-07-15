@@ -52,11 +52,11 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, selected_id : null, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], actions: ['edit', 'drilldown', 'add'] }
+            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], actions: ['delete', 'edit', 'drilldown', 'add'] }
         },
         {
             model : Databases, selected_id : null, parent : 'origins',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], actions: ['edit', 'drilldown', 'add']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], actions: ['delete', 'edit', 'drilldown', 'add']}
         },
         {
             model : Schemas, selected_id : null, parent : 'databases',
@@ -133,6 +133,17 @@ class SearchScreen extends Component
      * 
      * @param row 
      */
+    public delete(row : object = {}) 
+    { 
+        this.lvl[this.state.level].model.document = row;
+        //@ts-ignore
+        this.lvl[this.state.level].model.deleteOne();
+    }
+
+    /**
+     * 
+     * @param row 
+     */
     public drilldown(row : object = {}, step : number = null) 
     {
         this.lvl[this.state.level].model.document = row;
@@ -179,6 +190,7 @@ class SearchScreen extends Component
      */
     public getDialogJsx()
     {
+        if (!this.lvl[this.state.level].model.document) return null;
         return (
             <div>
             <Dialog title={ 

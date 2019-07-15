@@ -1,5 +1,5 @@
 import Config from "../Config";
-import { toJS, observable } from 'mobx';
+import { toJS, observable, action } from 'mobx';
 import { formConfigSchema } from "../interfaces";
 import Users from "./Users";
 
@@ -43,7 +43,7 @@ abstract class AbstractModel
     /**
      * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
      */
-    @observable public currentAction : 'view' | 'editing' | 'adding' | 'saving' | 'loggingin' | 'loggingout' | null = null;
+    @observable public currentAction : 'view' | 'deleting' | 'editing' | 'adding' | 'saving' | 'loggingin' | 'loggingout' | null = null;
     /**
      * Entry (one document) selected or loaded (by findOne for eg)
      */
@@ -168,7 +168,7 @@ abstract class AbstractModel
     /**
      * Take the this.document and update the same one in this.collection
      */
-    public updateDocumentInLocalCollection(added : boolean = false) : boolean
+    public updateDocumentInLocalCollection(deleted : boolean = false) : boolean
     {
         for (let i in this.collection)
         {
@@ -176,7 +176,13 @@ abstract class AbstractModel
                 //@ts-ignore
                 if (this.collection[i].id === this.document.id)
                 {
-                    this.collection[i] = this.document;
+                    if (deleted === true) 
+                    {
+                        this.collection[i] = null;
+                        this.document = null;
+                        delete this.collection[i];
+                    }
+                    else this.collection[i] = this.document;
                     return true;
                 }
             } catch(ee) {}
@@ -408,6 +414,28 @@ abstract class AbstractModel
         return this.aggragateddata[onField] ? this.aggragateddata[onField].map(e => e._id).sort() : [];
     }
 
+    /**
+     * Deletes a single document in a collection.
+     */
+    public deleteOne() {
+        let d = toJS(this.document);
+        //@ts-ignore
+        let id = d.id;
+        //@ts-ignore
+        delete d.id;
+        this.currentAction = 'deleting';
+        this.fetchAutenticated(this.getApiUrl(id), 'DELETE', d)
+         .then(response => response.json())
+         .then(data => {
+            //@ts-ignore
+            this.error = data.error ? data.error : null;
+            this.updateDocumentInLocalCollection(true);
+            this.currentAction = null;
+        });
+    }
+
+
+
     /* ---------------------------------------------------------------------------------- */
 
     /**
@@ -419,12 +447,10 @@ abstract class AbstractModel
      * Performs a query and returns a single document.
      */
     private findOne() {} 
-    
     /**
-     * Deletes a single document in a collection.
+     * Deletes documents from a collection.
      */
-    private deleteOne() {} 
-
+    private remove() {}
     /**
      * Deletes multiple documents in a collection.
      */
@@ -439,11 +465,6 @@ abstract class AbstractModel
      * Inserts several new document in a collection.
      */
     private insertMany() {} 
-
-    /**
-     * Deletes documents from a collection.
-     */
-    private remove() {}
 
     /**
      * Replaces a single document in a collection.

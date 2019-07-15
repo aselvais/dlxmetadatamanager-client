@@ -5,6 +5,7 @@ import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 import { gridConfig } from "../models/interfaces";
 import * as mobx from 'mobx';
+import Users from "../models/orm/Users";
 
 interface Props {
     model: AbstractModel,
@@ -53,6 +54,9 @@ class Grid extends Component<Props> {
         "float": "numerical",
         "bigint": "numerical",
     };
+    /**
+     * 
+     */
     private simpletypes2intent = {
         "numerical" : "#FFFFFF",
         "calendar" : "#48AFF0",
@@ -63,7 +67,7 @@ class Grid extends Component<Props> {
     /**
      * Returns a cell for the header
      */
-    getHeaderCellJsx(k, i)
+    public getHeaderCellJsx(k, i)
     {
         let v = '';
         switch(k) {
@@ -102,7 +106,7 @@ class Grid extends Component<Props> {
      * @param v 
      * @param row 
      */
-    getBodyCellJsx(k , v, row)
+    public getBodyCellJsx(k , v, row)
     {
         switch(k) {
             case 'should_ignore':
@@ -133,7 +137,7 @@ class Grid extends Component<Props> {
      * @param k 
      * @param v 
      */
-    getNameCellJsx(k, v, row)
+    public getNameCellJsx(k, v, row)
     {
         let iii = [];
         let icons = null;
@@ -160,7 +164,7 @@ class Grid extends Component<Props> {
      * 
      * @param v 
      */
-    getIconDataTypeJsx(v)
+    public getIconDataTypeJsx(v)
     {
         let i = this.types2icons[v] ? this.types2icons[v] : 'help';
         //@ts-ignore
@@ -170,9 +174,10 @@ class Grid extends Component<Props> {
     /**
      * 
      */
-    getHeaderJsx()
+    public getHeaderJsx()
     {
-        let zearr = Object.keys(this.props.model.collection[0]);
+        let zearr = Object.keys(this.props.model.collection[0] ? this.props.model.collection[0] : this.props.model.collection[1]);
+
         if (this.props.config && this.props.config.showOnly && this.props.config.showOnly.length > 0)
         {
             zearr = this.props.config.showOnly;
@@ -190,7 +195,7 @@ class Grid extends Component<Props> {
     /**
      * 
      */
-    getBodyJsx()
+    public getBodyJsx()
     {
         let rows = this.props.model.getDislpayCollection().map((e, i : number) => {
             let zearr = Object.keys(e);
@@ -203,13 +208,16 @@ class Grid extends Component<Props> {
             {
                 let l = this.props.config.actions.length;
                 jsx.push(<td style={{ textAlign: 'right', width: l*40}}>{
-                    this.props.config.actions.map(a => (a !== 'add') ? <Button 
-                        // @ts-ignore
-                        icon={this.actions2icons[a].icon}
-                        intent={this.actions2icons[a].intent} 
-                        style={{ marginRight: 5 }} 
-                        onClick={() => this.onClickActionButton(a, e) } /> : null)
+                    this.props.config.actions.map(a => ((a !== 'add') && (a === 'delete' && Users.isAuthorized('superadmin') || a !== 'delete')) ?
+                                (<Button 
+                                    // @ts-ignore
+                                    icon={this.actions2icons[a].icon}
+                                    intent={this.actions2icons[a].intent} 
+                                    style={{ marginRight: 5 }} 
+                                    onClick={() => this.onClickActionButton(a, e) } />) : null
+                )
                 }</td>);
+
             }
             // let ppn = (this.props.model.pagination.selected*this.props.model.pagination.perpages)-this.props.model.pagination.perpages+1;
             let ppn = i+((this.props.model.pagination.selected-1)*this.props.model.pagination.perpages)+1;
@@ -223,18 +231,21 @@ class Grid extends Component<Props> {
      * @param actionName 
      * @param rowId 
      */
-    onClickActionButton(actionName : string = '', row : object = {})
+    public onClickActionButton(actionName : string = '', row : object = {})
     {
         if (this.props.parent && this.props.parent[actionName] && typeof this.props.parent[actionName] === 'function')
         {
-            this.props.parent[actionName](mobx.toJS(row));
+            if (actionName === 'delete') {
+                if (window.confirm('Are you sure you want to delete this entry?') === true) this.props.parent[actionName](mobx.toJS(row));
+            }
+            else this.props.parent[actionName](mobx.toJS(row));
         }
     }
 
     /**
      * 
      */
-    getAddentryButtonJSX()
+    public getAddentryButtonJSX()
     {
         return (this.props.config.actions && this.props.config.actions.indexOf('add') >= 0) ? (
             <div style={{textAlign: 'right'}}>
@@ -252,7 +263,7 @@ class Grid extends Component<Props> {
     /**
      * 
      */
-    getPaginationJSX()
+    public getPaginationJSX()
     {
         if (this.props.model.pagination.pages <= 1) return null;
         let pgx = [];
@@ -272,7 +283,7 @@ class Grid extends Component<Props> {
      * 
      * @param e 
      */
-    onSearchModel(e)
+    public onSearchModel(e)
     {
         this.props.model.pagination.searchstr = e.target.value;
         //this.props.model.getDislpayCollection();
@@ -281,7 +292,7 @@ class Grid extends Component<Props> {
     /**
      * 
      */
-    getQuickSearchBoxJSX()
+    public getQuickSearchBoxJSX()
     {
         return (
             <div className="bp3-input-group .modifier">
@@ -291,7 +302,10 @@ class Grid extends Component<Props> {
         );
     }
 
-    getSwitchJSX()
+    /**
+     * 
+     */
+    public getSwitchJSX()
     {
         return (
             <div>
@@ -311,7 +325,7 @@ class Grid extends Component<Props> {
     /**
      * 
      */
-    render() {
+    public render() {
         let jsx = [];
         if (this.props.model.loading) {
             jsx.push(
@@ -319,7 +333,7 @@ class Grid extends Component<Props> {
                 <div style={{ width: '100%', padding: 200, position: 'fixed', margin: 'auto'}}><Spinner /></div>
             </div>
             );
-        } //else {
+        } // else {
             if (this.props.model.collection != null && this.props.model.collection.length > 0) 
             {
                 jsx.push(

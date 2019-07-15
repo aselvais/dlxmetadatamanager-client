@@ -35,7 +35,7 @@ class SemantictypesScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Semantictypes, selected_id : null, parent : null,
-            gridConfig : { showOnly:['should_ignore', 'name', 'description'], actions: ['edit', 'add'] }
+            gridConfig : { showOnly:['should_ignore', 'name', 'description'], actions: ['delete', 'edit', 'add'] }
         }
     ];
     
@@ -71,6 +71,17 @@ class SemantictypesScreen extends Component
         this.lvl[this.state.level].model.document = row;
         this.lvl[this.state.level].model.currentAction = 'editing';
     }
+    
+    /**
+     * 
+     * @param row 
+     */
+    public delete(row : object = {}) 
+    { 
+        this.lvl[this.state.level].model.document = row;
+        //@ts-ignore
+        this.lvl[this.state.level].model.deleteOne();
+    }
 
     /**
      * 
@@ -88,6 +99,7 @@ class SemantictypesScreen extends Component
      */
     public getDialogJsx()
     {
+        if (!this.lvl[this.state.level].model.document) return null;
         return (
             <div>
             <Dialog title={ 
