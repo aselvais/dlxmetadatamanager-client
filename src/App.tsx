@@ -32,6 +32,7 @@ class App extends Component {
    * @param name 
    */
   protected getActiveScreenJSX(name: string = '') {
+    console.log('------------------------ getActiveScreenJSX: ' + name + ' -------------------------------');
     switch (name) {
       case 'LoadingScreen':
         return <LoadingScreen />;

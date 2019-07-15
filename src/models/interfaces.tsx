@@ -217,17 +217,29 @@ export interface fieldsSchema {
  */
 export interface tablesSchema {
     [key:string]: any,
+    /** PK */
     "id"?: string,
+    /** Storage engine used */
     "storageengine"?: string,
+    /** FK to the database containing the table */
     "databases_id"?: string,
+    /** Custom PK based on a hash of the name and parents */
     "idh"?:string,
+    /** FK to the schem */
     "schemas_idh"?: string,
+    /** */
     "schemadata_id"?: string,
+    /** */
     "should_ignore"?: number,
+    /** */
     "is_gdpr"?: number,
+    /** */
     "name"?: string,
+    /** */
     "landing_destination"?: string,
+    /** */
     "documentation"?: string,
+    /** */
     "tags"?: Array<string>,
 };
 
@@ -236,33 +248,61 @@ export interface tablesSchema {
  */
 export interface databasesSchema {
     [key:string]: any,
+    /** */
     "id"?: string,
+    /** */
     "name"?: string,
+    /** */
     "origins_id"?: string,
+    /** */
     "vendorbrand"?: string,
+    /** */
     "storageengine"?: string,
+    /** */
     "idh"?:string,
+    /** */
     "origins_idh"?:string,
+    /** */
     "schemadata_id"?: string,
+    /** */
     "should_ignore"?: number,
+    /** */
     "documentation"?: string,
+    /** */
     "tags"?: Array<string>,
+    /** */
     "timezone"?: string,
+    /** */
     "parent_id"?: string,
+    /** */
     "app_name"?: string,
+    /** */
     "network"?: string,
+    /** */
     "hosted_area"?: string,
+    /** */
     "in_bidm"?: number,
+    /** */
     "deluxe_name"?: string,
+    /** */
     "firewall"?: number,
+    /** */
     "instance_name"?: string,
+    /** */
     "schema_name"?: string,
+    /** */
     "username"?: string,
+    /** */
     "password"?: string,
+    /** */
     "hostname"?: string,
+    /** */
     "sid"?: string,
+    /** */
     "ip"?: string,
+    /** */
     "port"?: string,
+    /** */
     "jdbc_connection_str"?: string
 };
 
@@ -271,17 +311,29 @@ export interface databasesSchema {
  */
 export interface schemasSchema {
     [key:string]: any,
+    /** */
     "idh"?: "string",
+    /** */
     "databases_idh"?: "string",
+    /** */
     "schemadata_id"?: "string",
+    /** */
     "name"?: "string",
+    /** */
     "should_ignore"?: "number",
+    /** */
     "documentation"?: "string",
+    /** */
     "tags"?: Array<string>,
+    /** */
     "schema"?: string,
+    /** */
     "storageengine"? : string,
+    /** */
     "vendorbrand"? : string,
+    /** */
     "timezone"?: string,
+    /** */
     "parent_id"?: string
 };
 
@@ -290,20 +342,35 @@ export interface schemasSchema {
  */
 export interface originsSchema {
     [key:string]: any,
+    /** */
     "id"?: string,
+    /** */
     "idh"?: string,
+    /** */
     "schemadata_id"?: string,
+    /** */
     "should_ignore"?: number,
+    /** */
     "name"?: string,
+    /** */
     "organization"?: string,
+    /** */
     "app_code"?: string,
+    /** */
     "cust_type"?: string,
+    /** */
     "customer_source"?: string,
+    /** */
     "business_contact"?: string,
+    /** */
     "cdc_enabled"?:  number,
+    /** */
     "owner"?:  string,
+    /** */
     "tags"?: Array<string>,
+    /** */
     "documentation"?: string,
+    /** */
     "notes"?: string
 };
 
@@ -311,11 +378,19 @@ export interface originsSchema {
  * Navigation menu Item shape
  */
 export interface MenuItem {
+    /** name/id */
     name: string,
+    /** Label to display in the menu bar */
     label: string,
+    /** The group from which this item can be displayed */
+    role: 'god' | 'superadmin' | 'admin' | 'editor' | 'viewer',
+    /** is active/selected or not */
     active: boolean,
+    /** Icon to dislpay */
     icon: IconName,
+    /** Is the item visible in the menu */
     menuVisible: boolean,
+    /** optional sublevel items */
     sublevel?: Array<MenuItem>
 };
 
@@ -323,12 +398,19 @@ export interface MenuItem {
  * Form element configuration shape
  */
 export interface formElementConfigSchema {
+    /** */
     shape: 'text' | 'select' | 'password' | 'email' | 'checkbow' | 'radio' | 'slider' | 'switch' | 'file' | 'numeric' | 'textarea'  | 'tag'  | 'datetime'  | 'timezone' | 'submit',
+    /** */
     showLabel?: boolean,
+    /** */
     options?: object,
+    /** */
     diabled?: boolean,
+    /** */
     hideLabel?: boolean,
+    /** */
     leftIcon?: IconName,
+    /** */
     placeholder?: string
 };
 
@@ -342,18 +424,27 @@ export interface formElemObjConfigSchema {
  */
 export interface formConfigSchema {
     [key:string]: string | boolean | formElemObjConfigSchema,
+    /** */
     showButton?: boolean,
+    /** */
     buttonAction?: string,
+    /** */
     fill?: boolean,
+    /** */
     vertical?: boolean,
+    /** */
     elements?: formElemObjConfigSchema
 };
 
 export interface gridConfigActionMethods {
     [key:string]: Function,
+    /** */
     view?: Function,
+    /** */
     edit?: Function,
+    /** */
     delete?: Function,
+    /** */
     drilldown?: Function
 };
 
@@ -362,6 +453,8 @@ export interface gridConfigActionMethods {
  */
 export interface gridConfig {
     [key:string]: any,
+    /** */
     showOnly?: Array<string>,
+    /** */
     actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add'>
 };

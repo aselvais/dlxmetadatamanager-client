@@ -23,6 +23,10 @@ class Users extends AbstractModel
      */
     public collection : Array<UsersSchema> = [];
     /**
+     * list of possible roles ordered from weak to strong
+     */
+    protected roles = [ 'viewer', 'editor', 'admin', 'superadmin', 'god' ];
+    /**
      * 
      */
     protected cookies = new Cookies();
@@ -39,7 +43,7 @@ class Users extends AbstractModel
             "first_name" : { shape: "text"},
             "last_name" : { shape: "text"},
             "company" : { shape: "text"},
-            "role" : { shape: "text"},
+            "role" : { shape: "select", options: ['god', 'superadmin', 'admin', 'editor', 'viewer'] },
             "email" : { shape: "email"},
         }
     };
@@ -115,11 +119,30 @@ class Users extends AbstractModel
             try {
                 this.document.id = data.userId;
                 this.document.password = null;
+                this.findOneById(data.userId, true);
             } catch(ee) {}
             this.error = data.error ? data.error : null;
             this.currentAction = null;
             this.loading = false;
         });
+    }
+
+    /**
+     * 
+     */
+    public getRoleName()
+    {
+        return (this.document && this.document.realm) ? this.document.realm : null;
+    }
+
+    /**
+     * Returns true if the current authenticated user is authorized (or part of the role passed as param).
+     * @param roleName 
+     */
+    public isAuthorized(roleName : string = '') : boolean
+    {
+        if (!this.document.realm) return false;
+        return (this.roles.indexOf(this.document.realm) >= this.roles.indexOf(roleName));
     }
 
     /**

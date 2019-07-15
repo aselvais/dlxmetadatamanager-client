@@ -3,6 +3,7 @@ import { Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, NavbarH
 import logo from '../assets/images/Deluxe_swish.png';
 import { observer } from "mobx-react";
 import NavStore from '../models/NavStore';
+import Users from "../models/orm/Users";
 
 /**
  * 
@@ -10,27 +11,30 @@ import NavStore from '../models/NavStore';
 @observer
 class Dlxnavigation extends Component
 {
-
-    getButtonMenuJSX(i)
+    /**
+     * 
+     * @param i 
+     */
+    public getButtonMenuJSX(i)
     {
-        return (<Button key={i.name}
+        return Users.isAuthorized(i.role) ? (<Button key={i.name}
             className={Classes.MINIMAL} 
             icon={i.icon} 
             text={i.label}
             active={i.active} 
             onClick={() => NavStore.setActive(i.name)}
-        />);
+        />) : null;
     }
 
     /**
      * 
      * @param i 
      */
-    getMenuItemJSX(i)
+    public getMenuItemJSX(i)
     {
         if (i.sublevel && i.sublevel.length > 0)
         {
-            return (
+            return Users.isAuthorized(i.role) ? (
                 <Popover content={
                         <Menu className={Classes.ELEVATION_1} style={{maxWidth: 280, position: 'absolute'}}> 
                             {i.sublevel.map(e => <MenuItem icon={e.icon} key={e.name} text={e.label} onClick={() => NavStore.setActive(e.name)} />)}
@@ -43,7 +47,7 @@ class Dlxnavigation extends Component
                         active={i.active} 
                     />
                 </Popover>
-            );    
+            ) : null;
         } else return this.getButtonMenuJSX(i);
     }
 
@@ -51,7 +55,7 @@ class Dlxnavigation extends Component
     /**
      * 
      */
-    render()
+    public render()
     {
         return (
             <div>
@@ -59,8 +63,7 @@ class Dlxnavigation extends Component
                 <NavbarGroup align={Alignment.LEFT}>
                     
                     <NavbarHeading  onClick={() => NavStore.setActive('HomeScreen')}>
-                        <img src={logo} alt="Deluxe logo" height={20} style={{ paddingRight: 7 }} />
-                        Meta-data manager
+                        <img src={logo} alt="Deluxe logo" height={20} style={{ paddingRight: 7 }} />Meta-data manager
                     </NavbarHeading>
 
                     <NavbarDivider />
@@ -69,9 +72,12 @@ class Dlxnavigation extends Component
                 </NavbarGroup>
                 <NavbarGroup align={Alignment.RIGHT}>
                     <NavbarDivider />
-                    {[9,10,11].map(i => <Button key={NavStore.items[i].name} className={Classes.MINIMAL} 
-                                        icon={NavStore.items[i].icon} active={NavStore.items[i].active}  
-                                        onClick={() => NavStore.setActive(NavStore.items[i].name)} />) }
+                    {[9,10,11].map(i => Users.isAuthorized(NavStore.items[i].role) ? <Button 
+                                            key={NavStore.items[i].name} 
+                                            className={Classes.MINIMAL} 
+                                            icon={NavStore.items[i].icon} 
+                                            active={NavStore.items[i].active}  
+                                            onClick={() => NavStore.setActive(NavStore.items[i].name)} /> : null)}
                 </NavbarGroup>
             </Navbar>
             </div>
