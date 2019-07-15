@@ -1,7 +1,8 @@
 import Config from "../Config";
-import { toJS, observable, action } from 'mobx';
+import { toJS, observable, remove } from 'mobx';
 import { formConfigSchema } from "../interfaces";
 import Users from "./Users";
+import _ from "lodash";
 
 interface modelErrorSchema {
     code?: string,
@@ -20,6 +21,11 @@ interface paginationSchema {
     selected: number,
     searchstr: string,
     should_ignore: number
+};
+
+interface sortparamsSchema {
+    columnName: string,
+    asc: boolean
 };
 
 /**
@@ -75,6 +81,7 @@ abstract class AbstractModel
         searchstr: '',
         should_ignore: 1
     };
+    @observable public sortparams : sortparamsSchema = { columnName: '', asc: false };
     /**
      * Definition of the form for the edition of a this.document
      */
@@ -178,9 +185,8 @@ abstract class AbstractModel
                 {
                     if (deleted === true) 
                     {
-                        this.collection[i] = null;
-                        this.document = null;
-                        delete this.collection[i];
+                       remove(this.collection, i);
+                       this.document = null;
                     }
                     else this.collection[i] = this.document;
                     return true;
@@ -232,6 +238,20 @@ abstract class AbstractModel
                     this.loading = false;
                 });    
         }
+    }
+
+    /**
+     * Sort the local collection on the column name passed as param
+     * @param columnName 
+     */
+    public sortLocalCollection(columnName : string = '')
+    {
+        if (this.sortparams.columnName === columnName) this.sortparams.asc = !this.sortparams.asc;
+        else this.sortparams.columnName = columnName;
+
+        // do the sort of the collection here ...
+        this.collection = _.orderBy(toJS(this.collection), [this.sortparams.columnName],[this.sortparams.asc ? 'asc' : 'desc']);
+
     }
     
     /**

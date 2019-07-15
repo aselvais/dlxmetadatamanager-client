@@ -78,7 +78,7 @@ class Grid extends Component<Props> {
                 v = Translator.t(k);
                 break;
         }
-        return (<th key={k}>{v}</th>);
+        return (<th key={k} style={{cursor: 'pointer'}} onClick={() => this.props.model.sortLocalCollection(k)}>{v}</th>);
     }
 
     /**

@@ -110,6 +110,7 @@ class Users extends AbstractModel
        this.currentAction = 'loggingin';
        fetch(this.getApiUrl() + '/login', {
            method: 'POST',
+           //body: JSON.stringify({username: 'admin', password: 'adminadmin112'}),
            body: JSON.stringify(this.getDocument()),
            headers: new Headers({'Content-Type': 'application/json'})
        })
