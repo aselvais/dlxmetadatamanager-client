@@ -78,7 +78,10 @@ class Grid extends Component<Props> {
                 v = Translator.t(k);
                 break;
         }
-        return (<th key={k} style={{cursor: 'pointer'}} onClick={() => this.props.model.sortLocalCollection(k)}>{v}</th>);
+        return (<th key={k} style={{cursor: 'pointer'}} onClick={() => this.props.model.sortLocalCollection(k)}>
+        {v}
+        { (this.props.model.sortparams.columnName === k) ? <div style={{float: 'right'}}><Icon icon={ this.props.model.sortparams.asc ? "sort-asc" : "sort-desc"} /></div> : null }
+        </th>);
     }
 
     /**
