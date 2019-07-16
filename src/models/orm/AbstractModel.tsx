@@ -20,7 +20,8 @@ interface paginationSchema {
     pages: number,
     selected: number,
     searchstr: string,
-    should_ignore: number
+    should_ignore: number,
+    tagsfilter: object
 };
 
 interface sortparamsSchema {
@@ -75,11 +76,12 @@ abstract class AbstractModel
      * Number for pagination and filters
      */
     @observable public pagination : paginationSchema = {
-        perpages: 50,
+        perpages: 100,
         pages: 0,
         selected: 1,
         searchstr: '',
-        should_ignore: 1
+        should_ignore: 1,
+        tagsfilter: {}
     };
     @observable public sortparams : sortparamsSchema = { columnName: '', asc: false };
     /**
@@ -129,6 +131,33 @@ abstract class AbstractModel
             }
             // this.loading = false;
         });
+    }
+
+    /**
+     * Returns the available tags and the field names (keys) of the elements containing a tag type
+     */
+    public getTagsFromMemoryCollection()
+    {
+        let tagsFieldNames = [];
+        let toret = {};
+        // Get the fields containg tags
+        if (this.formConfig && this.formConfig.elements) {
+            for (let i in this.formConfig.elements)
+            {
+                //@ts-ignore
+                if (this.formConfig.elements[i].shape && this.formConfig.elements[i].shape === "tag") tagsFieldNames.push(i);
+            }
+        }
+        // get the tags for each column
+        for (var i=0; i < this.collection.length; i++)
+        {
+            tagsFieldNames.map(e => {
+                if (!toret[e]) toret[e] = [];
+                if (this.collection[i][e] && this.collection[i][e].length && this.collection[i][e].length > 0) toret[e] = [...toret[e], ...this.collection[i][e]];
+                toret[e] = _.sortedUniq(toret[e].sort());
+            });
+        }
+        return toret;
     }
 
     /**
@@ -384,6 +413,27 @@ abstract class AbstractModel
         return toret;
     }
 
+    /**
+     * 
+     * @param d 
+     */
+    protected _filterCollectionOnTags(d : Array<any>) : Array<object>
+    {
+        let toret = [];
+        let totfilters = 0;
+        if (this.pagination.tagsfilter === {}) return d;
+        let columns = Object.keys(this.pagination.tagsfilter);
+        columns.map(e => totfilters += this.pagination.tagsfilter[e].length );
+        if (totfilters === 0) return d;
+        d.map(e => {
+            let tagfound = 0;
+            columns.map(colname => {
+                if (e[colname] && e[colname].length > 0) this.pagination.tagsfilter[colname].map( tagname => { if (e[colname].indexOf(tagname) > -1) tagfound++; });
+            });
+            if (tagfound > 0) toret.push(e);
+        });
+        return toret;
+    }
 
     /**
      * 
@@ -393,6 +443,7 @@ abstract class AbstractModel
         let d = this.collection;
         if (this.pagination.searchstr !== '') d = this._findDataInLocalCollection();
         if (this.pagination.should_ignore !== null) d = this._filterCollectionOnIgnore(d);
+        if (this.pagination.tagsfilter !== {}) d = this._filterCollectionOnTags(d);
         if (this.pagination.searchstr !== '' || this.pagination.should_ignore !== null)
         {
             this.onCollectionUpdated(d);
@@ -406,6 +457,19 @@ abstract class AbstractModel
             if (d[i]) toret.push(d[i]);
         }
         return toret;
+    }
+
+    /**
+     * Filter the collection on the tag passed as param
+     * @param tagName 
+     * @param columnName 
+     */
+    public filterOnTag(tagName : string = '', columnName : string = '')
+    {
+        if (!this.pagination.tagsfilter[columnName]) this.pagination.tagsfilter[columnName] = [];
+        let theIndexOf = this.pagination.tagsfilter[columnName].indexOf(tagName);
+        if (theIndexOf === -1) this.pagination.tagsfilter[columnName].push(tagName);
+        else remove(this.pagination.tagsfilter[columnName], theIndexOf);
     }
 
     /**

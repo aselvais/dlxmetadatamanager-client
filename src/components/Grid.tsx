@@ -328,6 +328,24 @@ class Grid extends Component<Props> {
     /**
      * 
      */
+    public getTagsfilterJSX()
+    {
+        let jsx = [];
+        let t = this.props.model.getTagsFromMemoryCollection();
+        Object.keys(t).map(i =>         
+        {
+            let tt = t[i].map((e, idx) => <Tag onClick={() => this.props.model.filterOnTag(e, i)} style={{ cursor: 'pointer', padding: 2, margin: 2}} minimal={false} intent={
+                ( this.props.model.pagination.tagsfilter[i] && this.props.model.pagination.tagsfilter[i].indexOf(e) > -1 ) ? 'primary' : 'none'
+            }>{' '+ Translator.t(e) + ' '}</Tag>);
+            jsx.push(tt);
+        }
+        );
+        return jsx;
+    }
+
+    /**
+     * 
+     */
     public render() {
         let jsx = [];
         if (this.props.model.loading) {
@@ -343,10 +361,12 @@ class Grid extends Component<Props> {
                     <div>
                         <div style={{display: 'flex', flexDirection: 'row', flexGrow: 1, justifyContent: 'center', alignItems: 'center'}}>
                             <div style={{flex: 1}}>{this.getSwitchJSX()}</div>
-                            <div style={{flex: 3}}>{this.getPaginationJSX()}</div>
+                            <div style={{flex: 3}}>{this.getTagsfilterJSX()}</div>
                             <div style={{flex: 1}}>{this.getQuickSearchBoxJSX()}</div>
                         </div>
-
+                        <div>
+                        <div>{this.getPaginationJSX()}</div>
+                        </div>
                         <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
                             <thead>{this.getHeaderJsx()}</thead>
                             <tbody>{this.getBodyJsx()}</tbody>
