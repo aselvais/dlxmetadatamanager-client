@@ -4,6 +4,7 @@ import logo from '../assets/images/Deluxe_swish.png';
 import { observer } from "mobx-react";
 import NavStore from '../models/NavStore';
 import Users from "../models/orm/Users";
+import Searchglobal from "../models/orm/Searchglobal";
 
 /**
  * 
@@ -51,6 +52,17 @@ class Dlxnavigation extends Component
         } else return this.getButtonMenuJSX(i);
     }
 
+    /**
+     * 
+     * @param e 
+     */
+    private _handleSearchInputKeydown(e)
+    {
+        if (e.key === 'Enter' && Searchglobal.searchString !== '') {
+            NavStore.setActive('SearchglobalScreen');
+        }
+    }
+
 
     /**
      * 
@@ -72,7 +84,18 @@ class Dlxnavigation extends Component
                 </NavbarGroup>
                 <NavbarGroup align={Alignment.RIGHT}>
                     <NavbarDivider />
-                    {[9,10,11].map(i => Users.isAuthorized(NavStore.items[i].role) ? <Button 
+                    <div className="bp3-input-group .modifier">
+                        <span className="bp3-icon bp3-icon-search"></span>
+                        <input className="bp3-input" 
+                            type="search" 
+                            placeholder="Global search" 
+                            value={Searchglobal.searchString} 
+                            onChange={(e) => Searchglobal.searchString = e.target.value }
+                            onKeyDown={(e) => this._handleSearchInputKeydown(e) }
+                            dir="auto"/>
+                    </div>
+                    <NavbarDivider />
+                    {[10,11,12].map(i => Users.isAuthorized(NavStore.items[i].role) ? <Button 
                                             key={NavStore.items[i].name} 
                                             className={Classes.MINIMAL} 
                                             icon={NavStore.items[i].icon} 

@@ -20,6 +20,7 @@ import AggregationsScreen from './screens/AggregationsScreen';
 import LoginScreen from './screens/LoginScreen';
 import LogoutScreen from './screens/LogoutScreen';
 import UsersmanagementScreen from './screens/UsersmanagementScreen';
+import SearchglobalScreen from './screens/SearchglobalScreen';
 
 /**
  * 
@@ -55,6 +56,8 @@ class App extends Component {
         return <LandingdestinationsScreen />;
       case 'AuthenticationresourcesScreen':
         return <AuthenticationresourcesScreen />;
+      case 'SearchglobalScreen':
+          return <SearchglobalScreen />;
       case 'LogoutScreen':
         return <LogoutScreen />;
       default:

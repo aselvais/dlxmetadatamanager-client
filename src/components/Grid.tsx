@@ -300,7 +300,7 @@ class Grid extends Component<Props> {
         return (
             <div className="bp3-input-group .modifier">
                 <span className="bp3-icon bp3-icon-search"></span>
-                <input className="bp3-input" type="search" placeholder="Search input" value={this.props.model.pagination.searchstr} dir="auto" onChange={e => this.onSearchModel(e) }/>
+                <input className="bp3-input" type="search" placeholder="Local search" value={this.props.model.pagination.searchstr} dir="auto" onChange={e => this.onSearchModel(e) }/>
             </div>
         );
     }

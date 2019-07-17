@@ -30,6 +30,8 @@ class NavStore
         {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: true, role: 'god'},
         {name: 'DataScreen', label: 'Data', active: false, icon: 'database', menuVisible: true, role: 'god'},
 
+        {name: 'SearchglobalScreen', label: 'Global Search', active: false, icon: 'search', menuVisible: false, role: 'admin'},
+
         {name: 'ConfigScreen', label: 'Config', active: false, icon: 'cog', menuVisible: false, role: 'admin'},
         {name: 'ProfileScreen', label: 'Profile', active: false, icon: 'user', menuVisible: false, role: 'admin'},
         {name: 'LogoutScreen', label: 'Log-out', active: false, icon: 'log-out', menuVisible: false, role: 'admin'},
