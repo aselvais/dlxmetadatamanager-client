@@ -21,6 +21,7 @@ import LoginScreen from './screens/LoginScreen';
 import LogoutScreen from './screens/LogoutScreen';
 import UsersmanagementScreen from './screens/UsersmanagementScreen';
 import SearchglobalScreen from './screens/SearchglobalScreen';
+import FieldgroupsScreen from './screens/FieldgroupsScreen';
 
 /**
  * 
@@ -48,6 +49,8 @@ class App extends Component {
         return <AggregationsScreen />;
       case 'TagsScreen':
         return <TagsScreen />;
+      case 'FieldgroupsScreen':
+          return <FieldgroupsScreen />
       case 'ApplicationcodesScreen':
         return <ApplicationcodesScreen />;
       case 'SemantictypesScreen':
