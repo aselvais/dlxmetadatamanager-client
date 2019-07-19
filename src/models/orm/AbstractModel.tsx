@@ -1,33 +1,8 @@
 import Config from "../Config";
 import { toJS, observable, remove } from 'mobx';
-import { formConfigSchema } from "../interfaces";
+import { formConfigSchema, modelErrorSchema, tagObjectSchema, sortparamsSchema, paginationSchema } from "../interfaces";
 import Users from "./Users";
 import _ from "lodash";
-
-interface modelErrorSchema {
-    code?: string,
-    message?: string,
-    name?: string,
-    stack?: string,
-    statusCode?: number
-};
-
-interface tagObjectSchema {
-    [key:string]: Array<string>
-};
-interface paginationSchema {
-    perpages: number,
-    pages: number,
-    selected: number,
-    searchstr: string,
-    should_ignore: number,
-    tagsfilter: object
-};
-
-interface sortparamsSchema {
-    columnName: string,
-    asc: boolean
-};
 
 /**
  * Abstract class containing the method for accessing the API
@@ -193,7 +168,7 @@ abstract class AbstractModel
     /**
      * Resets the data from the current model to null values
      */
-    protected resetData()
+    public resetData()
     {
         this.document = null;
         this.collection = null;

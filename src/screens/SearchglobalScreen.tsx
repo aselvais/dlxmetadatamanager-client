@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Icon } from "@blueprintjs/core";
 import Searchglobal from "../models/orm/Searchglobal";
+import Origins from "../models/orm/Origins";
+import Databases from "../models/orm/Databases";
+import Schemas from "../models/orm/Schemas";
+import Tables from "../models/orm/Tables";
+import Fields from "../models/orm/Fields";
+import SimpleGrid from "../components/SimpleGrid";
 
 /**
  * 
@@ -9,13 +15,6 @@ import Searchglobal from "../models/orm/Searchglobal";
 @observer
 class SearchglobalScreen extends Component
 {
-    /**
-     * 
-     */
-    componentDidMount()
-    {
-        // Users.findOneById(Users.document.id, true);
-    }
 
     /**
      * 
@@ -26,19 +25,27 @@ class SearchglobalScreen extends Component
             <div style={{ padding: 20}}>
                 
                 <h3> <Icon icon='locate' /> Origins search result</h3>
-                <div>{ JSON.stringify(Searchglobal.originsResults) }</div>
+                <div>
+                    <SimpleGrid data={Origins.collection} />
+                </div>
 
                 <h3> <Icon icon='database' /> Databases search result</h3>
-                <div>{ JSON.stringify(Searchglobal.databasesResults) }</div>
+                <div>
+                    <SimpleGrid data={Databases.collection} />
+                </div>
 
                 <h3> <Icon icon='diagram-tree' /> Schemas search result</h3>
-                <div>{ JSON.stringify(Searchglobal.schemasResults) }</div>
+                <div>
+                    <SimpleGrid data={Schemas.collection} />
+                </div>
 
                 <h3> <Icon icon='th' /> Tables search result</h3>
-                <div>{ JSON.stringify(Searchglobal.tablesResults) }</div>
+                <div>
+                    <SimpleGrid data={Tables.collection} />
+                </div>
 
                 <h3> <Icon icon='list' /> Fields search result</h3>
-                <div>{ JSON.stringify(Searchglobal.fieldsResults) }</div>
+                <div>{ JSON.stringify(Fields.collection) }</div>
 
             </div>
         );

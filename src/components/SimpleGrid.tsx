@@ -41,7 +41,7 @@ class SimpleGrid extends Component<Props>
      */
     render()
     {
-        if (this.props.data && this.props.data.length === 0) {
+        if (this.props.data === null || (this.props.data && this.props.data.length === 0)) {
             return (<div><Spinner/></div>);
         } else {
             return (

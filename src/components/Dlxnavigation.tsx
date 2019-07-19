@@ -60,6 +60,7 @@ class Dlxnavigation extends Component
     {
         if (e.key === 'Enter' && Searchglobal.searchString !== '') {
             NavStore.setActive('SearchglobalScreen');
+            Searchglobal.runSearch();
         }
     }
 

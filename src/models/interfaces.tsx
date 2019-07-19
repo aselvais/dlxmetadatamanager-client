@@ -458,3 +458,29 @@ export interface gridConfig {
     /** */
     actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add'>
 };
+
+export interface modelErrorSchema {
+    code?: string,
+    message?: string,
+    name?: string,
+    stack?: string,
+    statusCode?: number
+};
+
+export interface tagObjectSchema {
+    [key:string]: Array<string>
+};
+export interface paginationSchema {
+    perpages: number,
+    pages: number,
+    selected: number,
+    searchstr: string,
+    should_ignore: number,
+    tagsfilter: object
+};
+
+export interface sortparamsSchema {
+    columnName: string,
+    asc: boolean
+};
+
