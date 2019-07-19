@@ -21,6 +21,7 @@ class NavStore
         {name: 'DatadictionariesScreen', label: 'Data dictionaries', active: false, icon: 'th-list', menuVisible: true, role: 'superadmin', sublevel: [
             {name: 'ApplicationcodesScreen', label: 'Application codes', active: false, icon: 'code', menuVisible: true, role: 'superadmin'},
             {name: 'TagsScreen', label: 'Tags', active: false, icon: 'tag', menuVisible: true, role: 'superadmin'},
+            {name: 'FieldgroupsScreen', label: 'Field groups', active: false, icon: 'folder-close', menuVisible: true, role: 'superadmin'}, 
             {name: 'SemantictypesScreen', label: 'Semantic types', active: false, icon: 'comment', menuVisible: true, role: 'superadmin'},
             {name: 'LandingdestinationsScreen', label: 'Landing destinations', active: false, icon: 'locate', menuVisible: true, role: 'superadmin'},
             {name: 'AuthenticationresourcesScreen', label: 'Authentication resources', active: false, icon: 'shield', menuVisible: true, role: 'superadmin'},
