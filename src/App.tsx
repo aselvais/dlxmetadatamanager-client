@@ -22,6 +22,7 @@ import LogoutScreen from './screens/LogoutScreen';
 import UsersmanagementScreen from './screens/UsersmanagementScreen';
 import SearchglobalScreen from './screens/SearchglobalScreen';
 import FieldgroupsScreen from './screens/FieldgroupsScreen';
+import DataScreen from './screens/DataScreen';
 
 /**
  * 
@@ -59,6 +60,8 @@ class App extends Component {
         return <LandingdestinationsScreen />;
       case 'AuthenticationresourcesScreen':
         return <AuthenticationresourcesScreen />;
+      case 'DataScreen':
+          return <DataScreen />;
       case 'SearchglobalScreen':
           return <SearchglobalScreen />;
       case 'LogoutScreen':

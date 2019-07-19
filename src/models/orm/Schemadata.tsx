@@ -1,5 +1,6 @@
 import AbstractModel from "./AbstractModel";
 import { schemadataSchema } from "../interfaces";
+import { observable } from "mobx";
 
 /**
  * Singleton model for Schemadata
@@ -18,6 +19,10 @@ class Schemadata extends AbstractModel
      * 
      */
     public collection : Array<schemadataSchema> | null = null;
+    /**
+     * 
+     */
+    @observable public latestrawschemadata = [];
 
     /**
      * 
@@ -50,6 +55,25 @@ class Schemadata extends AbstractModel
     }
 
 
+    /**
+     * 
+     * @param collectionname 
+     * @param field 
+     * @param limit 
+     */
+    public getlatestrawschemadata(entityLevel : 'origin' | 'database' | 'schema' | 'table' | 'column' = 'origin', filter : object = {})
+    {
+        this.loading = true;
+        this.latestrawschemadata = [];
+        return this.fetchAutenticated(this.getApiUrl() + '/streamsets/getlatestrawschemadata?entityLevel=' + entityLevel /* + '&filter=' + filter */ )
+            .then(response => response.json())
+            .then(data => { 
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
+                this.loading = false;
+                this.latestrawschemadata = data.pipeline ? data.pipeline : [];
+        });
+    }
 
 }
 
