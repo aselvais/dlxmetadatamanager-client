@@ -126,11 +126,13 @@ abstract class AbstractModel
         // get the tags for each column
         for (var i=0; i < this.collection.length; i++)
         {
-            tagsFieldNames.map(e => {
+            for (var it = 0; it < tagsFieldNames.length; it++) 
+            {
+                let e = tagsFieldNames[it];
                 if (!toret[e]) toret[e] = [];
                 if (this.collection[i][e] && this.collection[i][e].length && this.collection[i][e].length > 0) toret[e] = [...toret[e], ...this.collection[i][e]];
                 toret[e] = _.sortedUniq(toret[e].sort());
-            });
+            }
         }
         return toret;
     }
@@ -403,9 +405,11 @@ abstract class AbstractModel
         d.map(e => {
             let tagfound = 0;
             columns.map(colname => {
-                if (e[colname] && e[colname].length > 0) this.pagination.tagsfilter[colname].map( tagname => { if (e[colname].indexOf(tagname) > -1) tagfound++; });
+                if (e[colname] && e[colname].length > 0) this.pagination.tagsfilter[colname].map( tagname => { if (e[colname].indexOf(tagname) > -1) { tagfound++; } return null; });
+                return null;
             });
             if (tagfound > 0) toret.push(e);
+            return null;
         });
         return toret;
     }

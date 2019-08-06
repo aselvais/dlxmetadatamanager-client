@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Icon } from "@blueprintjs/core";
-import Searchglobal from "../models/orm/Searchglobal";
 import Origins from "../models/orm/Origins";
 import Databases from "../models/orm/Databases";
 import Schemas from "../models/orm/Schemas";

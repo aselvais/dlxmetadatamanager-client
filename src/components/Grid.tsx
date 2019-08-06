@@ -211,7 +211,9 @@ class Grid extends Component<Props> {
             {
                 let l = this.props.config.actions.length;
                 jsx.push(<td style={{ textAlign: 'right', width: l*40}}>{
-                    this.props.config.actions.map(a => ((a !== 'add') && (a === 'delete' && Users.isAuthorized('superadmin') || a !== 'delete')) ?
+                    this.props.config.actions.map(a => (
+                        (a !== 'add') && ((a === 'delete' && Users.isAuthorized('superadmin')) || a !== 'delete')
+                        ) ?
                                 (<Button 
                                     // @ts-ignore
                                     icon={this.actions2icons[a].icon}
@@ -338,6 +340,7 @@ class Grid extends Component<Props> {
                 ( this.props.model.pagination.tagsfilter[i] && this.props.model.pagination.tagsfilter[i].indexOf(e) > -1 ) ? 'primary' : 'none'
             }>{' '+ Translator.t(e) + ' '}</Tag>);
             jsx.push(tt);
+            return null;
         }
         );
         return jsx;

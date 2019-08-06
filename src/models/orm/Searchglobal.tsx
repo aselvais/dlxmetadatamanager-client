@@ -1,5 +1,5 @@
 import { observable } from "mobx";
-import { originsSchema, databasesSchema, schemasSchema, tablesSchema, fieldsSchema, modelErrorSchema } from "../interfaces";
+import { modelErrorSchema } from "../interfaces";
 import Origins from "./Origins";
 import Databases from "./Databases";
 import Schemas from "./Schemas";

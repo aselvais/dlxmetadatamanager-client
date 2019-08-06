@@ -197,7 +197,7 @@ class SearchScreen extends Component
                     // @ts-ignore
                     this.fna + ' > ' + (this.lvl[this.state.level].model.document.name ? this.lvl[this.state.level].model.document.name : '' )
                     }
-                    style={{ width: '70%' }}
+                    style={{ width: '70%', maxHeight: '90vh' }}
                     onClose={() => this.lvl[this.state.level].model.currentAction = null } 
                     isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'view' || this.lvl[this.state.level].model.currentAction === 'adding') }
                     icon={ this.model2icon[this.lvl[this.state.level].model.name] } >
