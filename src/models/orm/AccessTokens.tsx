@@ -16,7 +16,7 @@ class AccessTokens extends AbstractModel
      */
     public tokenToUser(token: string = null)
     {
-        // this.findRelated('user', token);
+        return this.findRelated('user', token);
     }
 
 

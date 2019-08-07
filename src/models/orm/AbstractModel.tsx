@@ -265,21 +265,21 @@ abstract class AbstractModel
      * @param id .
      * @param related_model_name 
      */
-    public findRelated(related_model_name : string = '', this_model_id=null) : void
+    public findRelated(related_model_name : string = '', this_model_id=null)
     {
         //@ts-ignore
         if (this_model_id === null && this.document && this.document.id) { this_model_id = this.document.id; }
 
         this.loading = true;
-        this.fetchAutenticated(this.getApiUrl(this_model_id) + '/' + related_model_name)
+        return this.fetchAutenticated(this.getApiUrl(this_model_id) + '/' + related_model_name)
             .then(response => response.json())
             .then(data => {
                 //@ts-ignore
                 this.error = data.error ? data.error : null;
                 this.related = data;
                 this.loading = false;
+                return data;
             });
-            
     }
 
     /**

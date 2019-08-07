@@ -142,7 +142,9 @@ class Users extends AbstractModel
      */
     public isAuthorized(roleName : string = '') : boolean
     {
-        if (!this.document.realm) return false;
+        if (!this.document.realm) {
+            return false;
+        }
         return (this.roles.indexOf(this.document.realm) >= this.roles.indexOf(roleName));
     }
 
@@ -197,12 +199,20 @@ class Users extends AbstractModel
         else if (!this.token && this.cookies.get('dlxmttoken'))
         {
             try {
-            this.token = this.cookies.get('dlxmttoken');
-            AccessTokens.tokenToUser(this.cookies.get('dlxmttoken'));
-            return this.cookies.get('dlxmttoken');
+                this.token = this.cookies.get('dlxmttoken');
+                AccessTokens.tokenToUser(this.cookies.get('dlxmttoken'));
+                return this.cookies.get('dlxmttoken');
             } catch(ee) {}
         }
         return this.token;
+    }
+
+    public initUserFromToken()
+    {
+        return AccessTokens.tokenToUser(this.getToken()).then(u => {
+            console.log(u);
+        });
+
     }
 
 }

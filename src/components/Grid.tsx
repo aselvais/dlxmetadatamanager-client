@@ -357,30 +357,29 @@ class Grid extends Component<Props> {
                 <div style={{ width: '100%', padding: 200, position: 'fixed', margin: 'auto'}}><Spinner /></div>
             </div>
             );
-        } // else {
-            if (this.props.model.collection != null && this.props.model.collection.length > 0) 
-            {
-                jsx.push(
-                    <div>
-                        <div style={{display: 'flex', flexDirection: 'row', flexGrow: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <div style={{flex: 1}}>{this.getSwitchJSX()}</div>
-                            <div style={{flex: 3}}>{this.getTagsfilterJSX()}</div>
-                            <div style={{flex: 1}}>{this.getQuickSearchBoxJSX()}</div>
-                        </div>
-                        <div>
-                        <div>{this.getPaginationJSX()}</div>
-                        </div>
-                        <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
-                            <thead>{this.getHeaderJsx()}</thead>
-                            <tbody>{this.getBodyJsx()}</tbody>
-                        </table>
-                        {this.getPaginationJSX()}
+        }
+        if (this.props.model.collection != null && this.props.model.collection.length > 0) 
+        {
+            jsx.push(
+                <div>
+                    <div style={{display: 'flex', flexDirection: 'row', flexGrow: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <div style={{flex: 1}}>{this.getSwitchJSX()}</div>
+                        <div style={{flex: 3}}>{this.getTagsfilterJSX()}</div>
+                        <div style={{flex: 1}}>{this.getQuickSearchBoxJSX()}</div>
                     </div>
-                );
-            } else {
-                jsx.push(this.getAddentryButtonJSX());
-            }
-        //}
+                    <div>
+                    <div>{this.getPaginationJSX()}</div>
+                    </div>
+                    <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped bp3-small bp3-interactive">
+                        <thead>{this.getHeaderJsx()}</thead>
+                        <tbody>{this.getBodyJsx()}</tbody>
+                    </table>
+                    {this.getPaginationJSX()}
+                </div>
+            );
+        } else {
+            jsx.push(this.getAddentryButtonJSX());
+        }
         return jsx;
     }
 
