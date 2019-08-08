@@ -84,12 +84,17 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#databasesresults" class="tsd-kind-icon">databases<wbr>Results</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#fieldsresults" class="tsd-kind-icon">fields<wbr>Results</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#originsresults" class="tsd-kind-icon">origins<wbr>Results</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#schemasresults" class="tsd-kind-icon">schemas<wbr>Results</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#collection" class="tsd-kind-icon">collection</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#document" class="tsd-kind-icon">document</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#loading" class="tsd-kind-icon">loading</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#searchstring" class="tsd-kind-icon">search<wbr>String</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#tablesresults" class="tsd-kind-icon">tables<wbr>Results</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_orm_searchglobal_.searchglobal.html#runsearch" class="tsd-kind-icon">run<wbr>Search</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,44 +103,64 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="databasesresults" class="tsd-anchor"></a>
-					<h3>databases<wbr>Results</h3>
-					<div class="tsd-signature tsd-kind-icon">databases<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_interfaces_.databasesschema.html" class="tsd-signature-type">databasesSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<a name="collection" class="tsd-anchor"></a>
+					<h3>collection</h3>
+					<div class="tsd-signature tsd-kind-icon">collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/3c5c3fd/src/models/orm/Searchglobal.tsx#L13">models/orm/Searchglobal.tsx:13</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/f319aa8/src/models/orm/Searchglobal.tsx#L28">models/orm/Searchglobal.tsx:28</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Collection (array) of documents/entries</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="fieldsresults" class="tsd-anchor"></a>
-					<h3>fields<wbr>Results</h3>
-					<div class="tsd-signature tsd-kind-icon">fields<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_interfaces_.fieldsschema.html" class="tsd-signature-type">fieldsSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<a name="document" class="tsd-anchor"></a>
+					<h3>document</h3>
+					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/3c5c3fd/src/models/orm/Searchglobal.tsx#L16">models/orm/Searchglobal.tsx:16</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/f319aa8/src/models/orm/Searchglobal.tsx#L24">models/orm/Searchglobal.tsx:24</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Entry (one document) selected or loaded (by findOne for eg)</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="originsresults" class="tsd-anchor"></a>
-					<h3>origins<wbr>Results</h3>
-					<div class="tsd-signature tsd-kind-icon">origins<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_interfaces_.originsschema.html" class="tsd-signature-type">originsSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<a name="error" class="tsd-anchor"></a>
+					<h3>error</h3>
+					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_models_interfaces_.modelerrorschema.html" class="tsd-signature-type">modelErrorSchema</a><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/3c5c3fd/src/models/orm/Searchglobal.tsx#L12">models/orm/Searchglobal.tsx:12</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/f319aa8/src/models/orm/Searchglobal.tsx#L16">models/orm/Searchglobal.tsx:16</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Container for the error object coming back from the API</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="schemasresults" class="tsd-anchor"></a>
-					<h3>schemas<wbr>Results</h3>
-					<div class="tsd-signature tsd-kind-icon">schemas<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_interfaces_.schemasschema.html" class="tsd-signature-type">schemasSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<a name="loading" class="tsd-anchor"></a>
+					<h3>loading</h3>
+					<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/3c5c3fd/src/models/orm/Searchglobal.tsx#L14">models/orm/Searchglobal.tsx:14</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/f319aa8/src/models/orm/Searchglobal.tsx#L20">models/orm/Searchglobal.tsx:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Will be true when we are loading the data from the API</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="searchstring" class="tsd-anchor"></a>
@@ -143,19 +168,29 @@
 					<div class="tsd-signature tsd-kind-icon">search<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/3c5c3fd/src/models/orm/Searchglobal.tsx#L10">models/orm/Searchglobal.tsx:10</a></li>
+							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/f319aa8/src/models/orm/Searchglobal.tsx#L31">models/orm/Searchglobal.tsx:31</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="tablesresults" class="tsd-anchor"></a>
-					<h3>tables<wbr>Results</h3>
-					<div class="tsd-signature tsd-kind-icon">tables<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_interfaces_.tablesschema.html" class="tsd-signature-type">tablesSchema</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/3c5c3fd/src/models/orm/Searchglobal.tsx#L15">models/orm/Searchglobal.tsx:15</a></li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="runsearch" class="tsd-anchor"></a>
+					<h3>run<wbr>Search</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">run<wbr>Search<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aselvais/dlxmetadatamanager-client/blob/f319aa8/src/models/orm/Searchglobal.tsx#L36">models/orm/Searchglobal.tsx:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -178,22 +213,22 @@
 						<a href="_models_orm_searchglobal_.searchglobal.html" class="tsd-kind-icon">Searchglobal</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_models_orm_searchglobal_.searchglobal.html#databasesresults" class="tsd-kind-icon">databases<wbr>Results</a>
+								<a href="_models_orm_searchglobal_.searchglobal.html#collection" class="tsd-kind-icon">collection</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_models_orm_searchglobal_.searchglobal.html#fieldsresults" class="tsd-kind-icon">fields<wbr>Results</a>
+								<a href="_models_orm_searchglobal_.searchglobal.html#document" class="tsd-kind-icon">document</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_models_orm_searchglobal_.searchglobal.html#originsresults" class="tsd-kind-icon">origins<wbr>Results</a>
+								<a href="_models_orm_searchglobal_.searchglobal.html#error" class="tsd-kind-icon">error</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_models_orm_searchglobal_.searchglobal.html#schemasresults" class="tsd-kind-icon">schemas<wbr>Results</a>
+								<a href="_models_orm_searchglobal_.searchglobal.html#loading" class="tsd-kind-icon">loading</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_models_orm_searchglobal_.searchglobal.html#searchstring" class="tsd-kind-icon">search<wbr>String</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_models_orm_searchglobal_.searchglobal.html#tablesresults" class="tsd-kind-icon">tables<wbr>Results</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_models_orm_searchglobal_.searchglobal.html#runsearch" class="tsd-kind-icon">run<wbr>Search</a>
 							</li>
 						</ul>
 					</li>

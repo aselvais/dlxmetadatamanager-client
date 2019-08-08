@@ -96,7 +96,7 @@ class Dlxnavigation extends Component
                             dir="auto"/>
                     </div>
                     <NavbarDivider />
-                    {[10,11,12].map(i => Users.isAuthorized(NavStore.items[i].role) ? <Button 
+                    {[10,11,12].map(i => (NavStore.items[i].name === 'LogoutScreen' || Users.isAuthorized(NavStore.items[i].role) ) ? <Button 
                                             key={NavStore.items[i].name} 
                                             className={Classes.MINIMAL} 
                                             icon={NavStore.items[i].icon} 
