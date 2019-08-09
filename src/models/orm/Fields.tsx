@@ -36,6 +36,15 @@ class Fields extends AbstractModel
         }
     };
 
+    /**
+     * 
+     * @param name 
+     * @param filter 
+     */
+    public findentity(name : string = '', filter : object = {})
+    {
+        return this._findentity('fields', name, filter);
+    }
 
 }
 

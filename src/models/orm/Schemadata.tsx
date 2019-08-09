@@ -75,6 +75,7 @@ class Schemadata extends AbstractModel
         });
     }
 
+
 }
 
 export default new Schemadata();

@@ -60,6 +60,10 @@ abstract class AbstractModel
     };
     @observable public sortparams : sortparamsSchema = { columnName: '', asc: false };
     /**
+     * 
+     */
+    @observable public findentitydata = [];
+    /**
      * Definition of the form for the edition of a this.document
      */
     public formConfig : formConfigSchema = {
@@ -211,6 +215,27 @@ abstract class AbstractModel
     public getDocument(flatCopy : boolean = true)
     {
         return flatCopy ? toJS(this.document) : this.document;
+    }
+
+    /**
+     * 
+     * @param entityLevel 
+     * @param name 
+     * @param filter 
+     */
+    protected _findentity(entityLevel : 'origins' | 'databases' | 'schemas' | 'tables' | 'fields' = 'origins', name : string = '', filter : object = {})
+    {
+        this.loading = true;
+        this.findentitydata = [];
+        // http://localhost:8089/api/schemadata/generic/findentity?entityLevel=tables&name=customer&access_token=QLhRGZQ3uBEo42s1ZkZUXueURpNuGeK5MkOPooaVQCyZooROj7zpU7AzKyT4xl6V
+        return this.fetchAutenticated(Config.getApiUrl() + 'schemadata/generic/findentity?entityLevel=' + entityLevel + '&name=' + name )
+            .then(response => response.json())
+            .then(data => { 
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
+                this.loading = false;
+                this.findentitydata = data.data ? data.data : [];
+        });
     }
 
     /**

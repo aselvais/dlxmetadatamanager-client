@@ -24,6 +24,16 @@ class Tables extends AbstractModel
         }
     };
 
+    /**
+     * 
+     * @param name 
+     * @param filter 
+     */
+    public findentity(name : string = '', filter : object = {})
+    {
+        return this._findentity('tables', name, filter);
+    }
+
 }
 
 export default new Tables();

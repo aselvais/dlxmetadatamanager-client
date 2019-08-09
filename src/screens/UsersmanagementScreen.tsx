@@ -74,7 +74,7 @@ class UsersmanagementScreen extends Component
         if (o.parent) {
             query.where[o.parent+'_idh'] = o.selected_id;
         }
-        o.model.find(query);
+        o.model.find(query.where);
     }
 
     /**

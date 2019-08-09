@@ -28,6 +28,16 @@ class Schemas extends AbstractModel
         }
     };
 
+    /**
+     * 
+     * @param name 
+     * @param filter 
+     */
+    public findentity(name : string = '', filter : object = {})
+    {
+        return this._findentity('schemas', name, filter);
+    }
+
 
 }
 

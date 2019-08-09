@@ -43,6 +43,10 @@ class Searchglobal
         Fields.resetData();
 
         Origins.find({ name: {like: this.searchString, options: "i" } });
+
+        Origins.findentity(this.searchString);
+
+
         Databases.find({ name: {like: this.searchString, options: "i"} });
         Schemas.find({ name: {like: this.searchString, options: "i"} });
         Tables.find({ name: {like: this.searchString, options: "i"} });

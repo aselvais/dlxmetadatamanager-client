@@ -30,6 +30,16 @@ class Origins extends AbstractModel
         }
     };
 
+    /**
+     * 
+     * @param name 
+     * @param filter 
+     */
+    public findentity(name : string = '', filter : object = {})
+    {
+        return this._findentity('origins', name, filter);
+    }
+
 }
 
 export default new Origins();

@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { Spinner, Button, Intent, Icon } from "@blueprintjs/core";
 import AbstractModel from '../models/orm/AbstractModel';
 import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
 import Translator from '../libs/translate/Translator';
-import { INTENT_PRIMARY } from '@blueprintjs/core/lib/esm/common/classes';
 
 interface Props {
     model: AbstractModel
