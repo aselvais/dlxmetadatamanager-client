@@ -312,7 +312,7 @@ abstract class AbstractModel
      */
     public find(where : object = {}) {
         this.loading = true;
-        this.fetchAutenticated(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify(where)))
+        this.fetchAutenticated(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify({where: where })))
             .then(response => response.json())
             .then(data => { 
                 //@ts-ignore

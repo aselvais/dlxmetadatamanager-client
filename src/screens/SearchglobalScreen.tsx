@@ -7,6 +7,7 @@ import Schemas from "../models/orm/Schemas";
 import Tables from "../models/orm/Tables";
 import Fields from "../models/orm/Fields";
 import SimpleGrid from "../components/SimpleGrid";
+import SimpleGridSearch from "../components/SimpleGridSearch";
 
 /**
  * 
@@ -23,28 +24,30 @@ class SearchglobalScreen extends Component
         return (
             <div style={{ padding: 20}}>
                 
-                <h3> <Icon icon='locate' /> Origins search result</h3>
-                <div>
-                    <SimpleGrid data={Origins.collection} />
+                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='locate' iconSize={25} style={{ paddingRight: 10 }} /> Origins search result</h2>
+                <div style={{ padding: 20 }}>
+                    <SimpleGridSearch model={Origins} />
                 </div>
 
-                <h3> <Icon icon='database' /> Databases search result</h3>
-                <div>
-                    <SimpleGrid data={Databases.collection} />
+                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='database' iconSize={25} style={{ paddingRight: 10 }}  /> Databases search result</h2>
+                <div style={{ padding: 20 }}>
+                    <SimpleGridSearch model={Databases} />
                 </div>
 
-                <h3> <Icon icon='diagram-tree' /> Schemas search result</h3>
-                <div>
-                    <SimpleGrid data={Schemas.collection} />
+                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='diagram-tree' iconSize={25} style={{ paddingRight: 10 }}  /> Schemas search result</h2>
+                <div style={{ padding: 20 }}>
+                    <SimpleGridSearch model={Schemas} />
                 </div>
 
-                <h3> <Icon icon='th' /> Tables search result</h3>
-                <div>
-                    <SimpleGrid data={Tables.collection} />
+                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='th' iconSize={25} style={{ paddingRight: 10 }}  /> Tables search result</h2>
+                <div style={{ padding: 20 }}>
+                    <SimpleGridSearch model={Tables} />
                 </div>
 
-                <h3> <Icon icon='list' /> Fields search result</h3>
-                <div>{ JSON.stringify(Fields.collection) }</div>
+                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='list' iconSize={25} style={{ paddingRight: 10 }}  /> Fields search result</h2>
+                <div style={{ padding: 20 }}>
+                    <SimpleGridSearch model={Fields} />
+                </div>
 
             </div>
         );

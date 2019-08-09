@@ -64,7 +64,6 @@ class Dlxnavigation extends Component
         }
     }
 
-
     /**
      * 
      */
@@ -81,7 +80,7 @@ class Dlxnavigation extends Component
 
                     <NavbarDivider />
                     { NavStore.items.map( i => i.menuVisible ? this.getMenuItemJSX(i) : null) }
-
+                    
                 </NavbarGroup>
                 <NavbarGroup align={Alignment.RIGHT}>
                     <NavbarDivider />

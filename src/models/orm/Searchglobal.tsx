@@ -4,6 +4,7 @@ import Origins from "./Origins";
 import Databases from "./Databases";
 import Schemas from "./Schemas";
 import Tables from "./Tables";
+import Fields from "./Fields";
 
 /**
  * 
@@ -39,11 +40,13 @@ class Searchglobal
         Databases.resetData();
         Schemas.resetData();
         Tables.resetData();
+        Fields.resetData();
 
-        Origins.find({ name: this.searchString });
-        Databases.find({ name: this.searchString });
-        Schemas.find({ name: this.searchString });
-        Tables.find({ name: this.searchString });
+        Origins.find({ name: {like: this.searchString, options: "i" } });
+        Databases.find({ name: {like: this.searchString, options: "i"} });
+        Schemas.find({ name: {like: this.searchString, options: "i"} });
+        Tables.find({ name: {like: this.searchString, options: "i"} });
+        Fields.find({ name: {like: this.searchString, options: "i"} });
     }
 
 }
