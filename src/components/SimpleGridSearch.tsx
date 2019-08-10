@@ -6,7 +6,8 @@ import { observer } from 'mobx-react';
 import Translator from '../libs/translate/Translator';
 
 interface Props {
-    model: AbstractModel
+    model: AbstractModel,
+    columns: Array<string>
 }
 
 /**
@@ -21,12 +22,11 @@ class SimpleGridSearch extends Component<Props>
      * 
      * @param {*} row 
      */
-    getHeaderJsx(row)
+    getHeaderJsx()
     {
-        return (<tr>{ Object.keys(row).map( e => e.match(this._re) ? null : <th key={e}>{ Translator.t(e) }</th>)} <th></th> </tr>)
+        return (<tr>{ this.props.columns.map( e => e.match(this._re) ? null : <th key={e}>{ Translator.t(e) }</th>)} <th></th> </tr>)
     }
-
-
+    
     /**
      * Returns a cell for the body
      * @todo change that as it is a copy of what we find in Grid.tsx
@@ -66,11 +66,7 @@ class SimpleGridSearch extends Component<Props>
     getRowJsx(row, i)
     {
         let toret = [];
-        for (let u in row) 
-        {
-          if (!u.match(this._re)) toret.push([u, row[u]]);
-        }
-        return (<tr key={i}>{toret.map(e => this.getBodyCellJsx(e[0], e[1]) )} <td style={{ textAlign: 'right'}} > <Button icon='arrow-right' intent={Intent.PRIMARY}/> </td> </tr>);
+        return (<tr key={i}>{this.props.columns.map(e => this.getBodyCellJsx(e, row[e]) )} <td style={{ textAlign: 'right'}} > <Button icon='arrow-right' intent={Intent.PRIMARY}/> </td> </tr>);
     }
 
     /**
@@ -80,17 +76,17 @@ class SimpleGridSearch extends Component<Props>
     {
         if (this.props.model.loading === true) {
             return (<div><Spinner/></div>);
-        } else if (this.props.model.collection.length === 0) {
+        } else if (this.props.model.findentitydata.length === 0) {
             return (<div style={{ color: '#AAA', paddingLeft: 40}}> <i>--- No result ... ---</i> </div>);
         } else {
             return (
                 <div className="Grid">
                     <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped">
                         <thead className="thead-dark">
-                            {this.props.model.collection[0] ? this.getHeaderJsx(this.props.model.collection[0]) : null}
+                            {this.props.columns ? this.getHeaderJsx() : null}
                         </thead>
                         <tbody>
-                            {(this.props.model.collection && this.props.model.collection.map) ? this.props.model.collection.map((row, i) => this.getRowJsx(row, i)) : null}
+                            {(this.props.model.findentitydata && this.props.model.findentitydata.map) ? this.props.model.findentitydata.map((row, i) => this.getRowJsx(row, i)) : null}
                         </tbody>
                      </table>
                 </div>

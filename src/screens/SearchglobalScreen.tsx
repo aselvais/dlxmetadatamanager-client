@@ -25,27 +25,27 @@ class SearchglobalScreen extends Component
                 
                 <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='locate' iconSize={25} style={{ paddingRight: 10 }} /> Origins search result</h2>
                 <div style={{ padding: 20 }}>
-                    <SimpleGridSearch model={Origins} />
-                </div>
-
-                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='database' iconSize={25} style={{ paddingRight: 10 }}  /> Databases search result</h2>
-                <div style={{ padding: 20 }}>
-                    <SimpleGridSearch model={Databases} />
+                    <SimpleGridSearch model={Origins} columns={['should_ignore','name','app_code','business_contact']}/>
                 </div>
 
                 <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='diagram-tree' iconSize={25} style={{ paddingRight: 10 }}  /> Schemas search result</h2>
                 <div style={{ padding: 20 }}>
-                    <SimpleGridSearch model={Schemas} />
+                    <SimpleGridSearch model={Schemas} columns={['should_ignore','name','fullname','storageengine','vendorbrand']} />
+                </div>
+
+                <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='database' iconSize={25} style={{ paddingRight: 10 }}  /> Databases search result</h2>
+                <div style={{ padding: 20 }}>
+                    <SimpleGridSearch model={Databases} columns={['should_ignore','name','fullname']} />
                 </div>
 
                 <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='th' iconSize={25} style={{ paddingRight: 10 }}  /> Tables search result</h2>
                 <div style={{ padding: 20 }}>
-                    <SimpleGridSearch model={Tables} />
+                    <SimpleGridSearch model={Tables} columns={['should_ignore','name','fullname','landing_destination']} />
                 </div>
 
                 <h2 style={{ marginBottom: 0, fontWeight: 'normal' }}> <Icon icon='list' iconSize={25} style={{ paddingRight: 10 }}  /> Fields search result</h2>
                 <div style={{ padding: 20 }}>
-                    <SimpleGridSearch model={Fields} />
+                    <SimpleGridSearch model={Fields} columns={['should_ignore','name','fullname','datatype','datalength','charset','is_pii','is_pci','is_cdc_field','is_pk','is_fk']} />
                 </div>
 
             </div>

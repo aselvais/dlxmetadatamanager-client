@@ -227,7 +227,6 @@ abstract class AbstractModel
     {
         this.loading = true;
         this.findentitydata = [];
-        // http://localhost:8089/api/schemadata/generic/findentity?entityLevel=tables&name=customer&access_token=QLhRGZQ3uBEo42s1ZkZUXueURpNuGeK5MkOPooaVQCyZooROj7zpU7AzKyT4xl6V
         return this.fetchAutenticated(Config.getApiUrl() + 'schemadata/generic/findentity?entityLevel=' + entityLevel + '&name=' + name )
             .then(response => response.json())
             .then(data => { 

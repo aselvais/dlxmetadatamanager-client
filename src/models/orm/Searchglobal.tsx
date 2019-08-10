@@ -42,15 +42,17 @@ class Searchglobal
         Tables.resetData();
         Fields.resetData();
 
-        Origins.find({ name: {like: this.searchString, options: "i" } });
-
+        // Origins.find({ name: {like: this.searchString, options: "i" } });
         Origins.findentity(this.searchString);
-
-
-        Databases.find({ name: {like: this.searchString, options: "i"} });
-        Schemas.find({ name: {like: this.searchString, options: "i"} });
-        Tables.find({ name: {like: this.searchString, options: "i"} });
-        Fields.find({ name: {like: this.searchString, options: "i"} });
+        // Databases.find({ name: {like: this.searchString, options: "i"} });
+        Databases.findentity(this.searchString);
+        // Schemas.find({ name: {like: this.searchString, options: "i"} });
+        Schemas.findentity(this.searchString);
+        // Tables.find({ name: {like: this.searchString, options: "i"} });
+        Tables.findentity(this.searchString);
+        // Fields.find({ name: {like: this.searchString, options: "i"} });
+        Fields.findentity(this.searchString);
+        
     }
 
 }
