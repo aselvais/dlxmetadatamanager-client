@@ -71,7 +71,7 @@ class Dlxnavigation extends Component
     {
         return (
             <div>
-            <Navbar>
+            <Navbar fixedToTop={true}>
                 <NavbarGroup align={Alignment.LEFT}>
                     
                     <NavbarHeading  onClick={() => NavStore.setActive('HomeScreen')}>
