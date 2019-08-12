@@ -65,7 +65,6 @@ class SimpleGridSearch extends Component<Props>
      */
     getRowJsx(row, i)
     {
-        let toret = [];
         return (<tr key={i}>{this.props.columns.map(e => this.getBodyCellJsx(e, row[e]) )} <td style={{ textAlign: 'right'}} > <Button icon='arrow-right' intent={Intent.PRIMARY}/> </td> </tr>);
     }
 
