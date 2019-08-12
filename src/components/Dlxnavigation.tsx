@@ -12,6 +12,7 @@ import Searchglobal from "../models/orm/Searchglobal";
 @observer
 class Dlxnavigation extends Component
 {
+
     /**
      * 
      * @param i 

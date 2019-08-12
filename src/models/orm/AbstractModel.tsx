@@ -309,7 +309,7 @@ abstract class AbstractModel
     /**
      * Modifies a single document in a collection.
      */
-    private updateOne() 
+    public updateOne() 
     {
         let d = toJS(this.document);
         //@ts-ignore

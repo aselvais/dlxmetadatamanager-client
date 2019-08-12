@@ -456,7 +456,9 @@ export interface gridConfig {
     /** */
     showOnly?: Array<string>,
     /** */
-    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add'>
+    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add'>,
+    /** */
+    editable?: Array<string>
 };
 
 export interface modelErrorSchema {

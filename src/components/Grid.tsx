@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Spinner, Button, Intent, Icon, Tag, ButtonGroup, Switch } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon, Tag, ButtonGroup, Switch, EditableText } from "@blueprintjs/core";
 import Translator from "../libs/translate/Translator";
 import AbstractModel from "../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -131,8 +131,40 @@ class Grid extends Component<Props> {
             case 'name':
                 return this.getNameCellJsx(k, v, row);
             default:
-                return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{v}</td>);
+                return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{
+                    (this.props.config.editable.indexOf(k) > -1) ? <EditableText 
+                                placeholder=""
+                                value={ row[k] /*row.id*//*this.props.model.name*/ } 
+                                confirmOnEnterKey={true}
+                                onChange={val => this.handleReportChange(val, row, k) }
+                                onConfirm={val => this.handleConfirm(val, row, k) }
+                                maxLines={10}
+                                minLines={1}
+                                multiline={true}
+                            /> : v
+                }</td>);
         }
+    }
+
+    /**
+     * 
+     * @param report 
+     * @param row 
+     */
+    public handleReportChange(val: string, row, k) 
+    { 
+        row[k] = val;
+    }
+
+    /**
+     * 
+     * @param report 
+     * @param row 
+     */
+    public handleConfirm(val: string, row, k) 
+    { 
+        this.props.model.document = row;
+        this.props.model.updateOne();
     }
 
     /**
