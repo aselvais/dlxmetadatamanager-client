@@ -71,56 +71,53 @@ class SimpleGridSearch extends Component<Props>
      */
     protected handleClick(row)
     {
-        // set params for search screen
-        switch(this.props.model.name)
-        {
-            case 'origins':
-                NavStore.items[2].level = 0;
-                break;
-            case 'databases':
-                NavStore.items[2].level = 1;
-                break;
-            case 'schemas':
-                NavStore.items[2].level = 2;
-                break;
-            case 'tables':
-                NavStore.items[2].level = 3;
-                break;
-            case 'fields':
-                NavStore.items[2].level = 4;
-                break;
-        }
-
         Origins.pagination.searchstr = '';
         Databases.pagination.searchstr = '';
         Schemas.pagination.searchstr = '';
         Tables.pagination.searchstr = '';
         Fields.pagination.searchstr = '';
 
-        Origins.selected_parent_id = null;
-        if (this.props.model.name === 'origins')
+        // set params for search screen
+        switch(this.props.model.name)
         {
-            Origins.pagination.searchstr = row.name;
+            case 'origins':
+                NavStore.items[2].level = 0;
+                Origins.pagination.searchstr = row.name;
+                break;
+            case 'databases':
+                NavStore.items[2].level = 1;
+                Databases.pagination.searchstr = row.name;
+                break;
+            case 'schemas':
+                NavStore.items[2].level = 2;
+                Schemas.pagination.searchstr = row.name;
+                break;
+            case 'tables':
+                NavStore.items[2].level = 3;
+                Tables.pagination.searchstr = row.name;
+                break;
+            case 'fields':
+                NavStore.items[2].level = 4;
+                Fields.pagination.searchstr = row.name;
+                break;
         }
+
+        Origins.selected_parent_id = null;
         if (row.origins_idh) {
             Origins.document = { idh: row.origins_idh, name: row.origin_name };
             Databases.selected_parent_id = row.origins_idh;
-            Databases.pagination.searchstr = row.name;
         }
         if (row.databases_idh) {
             Databases.document = { idh: row.databases_idh, name: row.database_name };
             Schemas.selected_parent_id = row.databases_idh;
-            Schemas.pagination.searchstr = row.name;
         }
         if (row.schemas_idh) {
             Schemas.document = { idh: row.schemas_idh, name: row.schema_name };
             Tables.selected_parent_id = row.schemas_idh;
-            Tables.pagination.searchstr = row.name;
         }
         if (row.tables_idh) {
             Tables.document = { idh: row.tables_idh, name: row.table_name };
             Fields.selected_parent_id = row.tables_idh;
-            Fields.pagination.searchstr = row.name;
         }
         // go to search screen
         NavStore.setActive('SearchScreen');
