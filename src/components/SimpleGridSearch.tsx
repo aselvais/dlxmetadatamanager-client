@@ -10,6 +10,7 @@ import Databases from '../models/orm/Databases';
 import Schemas from '../models/orm/Schemas';
 import Tables from '../models/orm/Tables';
 import Fields from '../models/orm/Fields';
+import { toJS } from 'mobx';
 
 interface Props {
     model: AbstractModel,
@@ -89,22 +90,37 @@ class SimpleGridSearch extends Component<Props>
                 NavStore.items[2].level = 4;
                 break;
         }
+
+        Origins.pagination.searchstr = '';
+        Databases.pagination.searchstr = '';
+        Schemas.pagination.searchstr = '';
+        Tables.pagination.searchstr = '';
+        Fields.pagination.searchstr = '';
+
         Origins.selected_parent_id = null;
+        if (this.props.model.name === 'origins')
+        {
+            Origins.pagination.searchstr = row.name;
+        }
         if (row.origins_idh) {
             Origins.document = { idh: row.origins_idh, name: row.origin_name };
             Databases.selected_parent_id = row.origins_idh;
+            Databases.pagination.searchstr = row.name;
         }
         if (row.databases_idh) {
             Databases.document = { idh: row.databases_idh, name: row.database_name };
             Schemas.selected_parent_id = row.databases_idh;
+            Schemas.pagination.searchstr = row.name;
         }
         if (row.schemas_idh) {
             Schemas.document = { idh: row.schemas_idh, name: row.schema_name };
             Tables.selected_parent_id = row.schemas_idh;
+            Tables.pagination.searchstr = row.name;
         }
         if (row.tables_idh) {
             Tables.document = { idh: row.tables_idh, name: row.table_name };
             Fields.selected_parent_id = row.tables_idh;
+            Fields.pagination.searchstr = row.name;
         }
         // go to search screen
         NavStore.setActive('SearchScreen');
