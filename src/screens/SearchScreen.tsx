@@ -15,10 +15,10 @@ import Fields from "../models/orm/Fields";
 import Translator from "../libs/translate/Translator";
 import Form from "../components/forms/Form";
 import Schemas from "../models/orm/Schemas";
+import NavStore from "../models/NavStore";
 
 interface lvlElementType {
     model : AbstractModel,
-    selected_id : string | null,
     gridConfig : gridConfig,
     parent : string | null
 };
@@ -29,12 +29,6 @@ interface lvlElementType {
 @observer
 class SearchScreen extends Component
 {
-    /**
-     * 
-     */
-    public state = {
-        level: 0,
-    };
     /**
      * model name to icon
      */
@@ -51,23 +45,23 @@ class SearchScreen extends Component
      */
     protected lvl : Array<lvlElementType> = [
         {
-            model : Origins, selected_id : null, parent : null,
+            model : Origins, parent : null,
             gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add'] }
         },
         {
-            model : Databases, selected_id : null, parent : 'origins',
+            model : Databases,  parent : 'origins',
             gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add']}
         },
         {
-            model : Schemas, selected_id : null, parent : 'databases',
+            model : Schemas, parent : 'databases',
             gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], editable: ['documentation'], actions: ['edit', 'drilldown']}
         },
         {
-            model : Tables, selected_id : null, parent : 'schemas', 
+            model : Tables, parent : 'schemas', 
             gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'documentation'], editable: ['documentation'], actions: ['edit', 'drilldown']}
         },
         {
-            model : Fields, selected_id : null, parent : 'tables',
+            model : Fields, parent : 'tables',
             gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation'], editable: ['documentation'], actions: ['view', 'edit']}
         }
     ];
@@ -85,13 +79,12 @@ class SearchScreen extends Component
      */
     protected loadData( _id : string | null = null )
     {
-        let o = this.lvl[this.state.level];
-        o.selected_id = _id;
+        if (_id !== null) this.lvl[NavStore.items[2].level].model.selected_parent_id = _id;
         let query = { where: {}};
-        if (o.parent) {
-            query.where[o.parent+'_idh'] = o.selected_id;
+        if (this.lvl[NavStore.items[2].level].parent) {
+            query.where[this.lvl[NavStore.items[2].level].parent+'_idh'] = this.lvl[NavStore.items[2].level].model.selected_parent_id;
         }
-        o.model.find(query.where);
+        this.lvl[NavStore.items[2].level].model.find(query.where);
     }
 
     /**
@@ -101,10 +94,11 @@ class SearchScreen extends Component
     public view(row : object = {}) 
     {
         // @ts-ignore
-        let o = this.lvl[this.state.level].model;
+        let o = this.lvl[NavStore.items[2].level].model;
         o.document = row;
         o.findRelated('schemadata');
-        this.lvl[this.state.level].model.currentAction = 'view';
+        this.lvl[NavStore.items[2].level].model.currentAction = 'view';
+        
     }
 
     /**
@@ -114,8 +108,8 @@ class SearchScreen extends Component
     public edit(row : object = {}) 
     { 
         // @ts-ignore
-        this.lvl[this.state.level].model.document = row;
-        this.lvl[this.state.level].model.currentAction = 'editing';
+        this.lvl[NavStore.items[2].level].model.document = row;
+        this.lvl[NavStore.items[2].level].model.currentAction = 'editing';
     }
 
     /**
@@ -125,8 +119,8 @@ class SearchScreen extends Component
     public add(row : object = {}) 
     { 
         // @ts-ignore
-        this.lvl[this.state.level].model.document = row;
-        this.lvl[this.state.level].model.currentAction = 'adding';
+        this.lvl[NavStore.items[2].level].model.document = row;
+        this.lvl[NavStore.items[2].level].model.currentAction = 'adding';
     }
 
     /**
@@ -135,9 +129,9 @@ class SearchScreen extends Component
      */
     public delete(row : object = {}) 
     { 
-        this.lvl[this.state.level].model.document = row;
+        this.lvl[NavStore.items[2].level].model.document = row;
         //@ts-ignore
-        this.lvl[this.state.level].model.deleteOne();
+        this.lvl[NavStore.items[2].level].model.deleteOne();
     }
 
     /**
@@ -146,10 +140,12 @@ class SearchScreen extends Component
      */
     public drilldown(row : object = {}, step : number = null) 
     {
-        this.lvl[this.state.level].model.document = row;
-        let tot = (step === null) ? this.state.level + 1 : step;
-        // @ts-ignore
-        this.setState({level: tot }, () => this.loadData(row.idh) );
+        this.lvl[NavStore.items[2].level].model.document = row;
+        let tot = (step === null) ? NavStore.items[2].level + 1 : step;
+
+        NavStore.items[2].level = tot;
+        //@ts-ignore
+        this.loadData(row.idh);
     }
 
     /**
@@ -168,10 +164,12 @@ class SearchScreen extends Component
                     }</a></li>
                     {
                         // @ts-ignore
-                        [...Array(this.state.level).keys()].map((e,i) => {
+                        [...Array(NavStore.items[2].level).keys()].map((e,i) => {
                             let nna = Translator.t(this.lvl[e+1].model.name);
-                            // @ts-ignore
-                            this.fna += ((i >= 1) ? ' > ' : '') + this.lvl[e].model.document.name;
+                            try {
+                                // @ts-ignore
+                                this.fna += ((i >= 1) ? ' > ' : '') + this.lvl[e].model.document.name;
+                            } catch(eee) {}
                             return (
                             <li>
                                 <a className="bp3-breadcrumb" href="#void" onClick={() => this.drilldown(this.lvl[e].model.document, i+1)}>
@@ -190,19 +188,19 @@ class SearchScreen extends Component
      */
     public getDialogJsx()
     {
-        if (!this.lvl[this.state.level].model.document) return null;
+        if (!this.lvl[NavStore.items[2].level].model.document) return null;
         return (
             <div>
             <Dialog title={ 
                     // @ts-ignore
-                    this.fna + ' > ' + (this.lvl[this.state.level].model.document.name ? this.lvl[this.state.level].model.document.name : '' )
+                    this.fna + ' > ' + (this.lvl[NavStore.items[2].level].model.document.name ? this.lvl[NavStore.items[2].level].model.document.name : '' )
                     }
                     style={{ width: '70%', maxHeight: '90vh' }}
-                    onClose={() => this.lvl[this.state.level].model.currentAction = null } 
-                    isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'view' || this.lvl[this.state.level].model.currentAction === 'adding') }
-                    icon={ this.model2icon[this.lvl[this.state.level].model.name] } >
-                { (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'adding') ? <FieldeditionForm model={this.lvl[this.state.level].model} /> : null }
-                { (this.lvl[this.state.level].model.currentAction === 'view') ? <FieldviewForm model={this.lvl[this.state.level].model} /> : null }
+                    onClose={() => this.lvl[NavStore.items[2].level].model.currentAction = null } 
+                    isOpen={ (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || this.lvl[NavStore.items[2].level].model.currentAction === 'view' || this.lvl[NavStore.items[2].level].model.currentAction === 'adding') }
+                    icon={ this.model2icon[this.lvl[NavStore.items[2].level].model.name] } >
+                { (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || this.lvl[NavStore.items[2].level].model.currentAction === 'adding') ? <FieldeditionForm model={this.lvl[NavStore.items[2].level].model} /> : null }
+                { (this.lvl[NavStore.items[2].level].model.currentAction === 'view') ? <FieldviewForm model={this.lvl[NavStore.items[2].level].model} /> : null }
             </Dialog>
             </div>
         );
@@ -213,17 +211,17 @@ class SearchScreen extends Component
      */
     public getDocumentationEntiryFormJsx()
     {
-        if (this.state.level === 0) return null;
+        if (NavStore.items[2].level === 0) return null;
         return (
             <div style={{padding: 0, width: '50%'}}>
             <h2>
-            <Icon icon={ this.model2icon[this.lvl[this.state.level-1].model.name] } style={{padding: 3, paddingRight: 8}} />
+            <Icon icon={ this.model2icon[this.lvl[NavStore.items[2].level-1].model.name] } style={{padding: 3, paddingRight: 8}} />
             {
                 // @ts-ignore
-                Translator.toSingular(this.lvl[(this.state.level)].parent) + ' : ' + this.lvl[(this.state.level-1)].model.document.name
+                Translator.toSingular(this.lvl[(NavStore.items[2].level)].parent) + ' : ' + this.lvl[(NavStore.items[2].level-1)].model.document.name
             }</h2>
             <Form 
-                model={this.lvl[(this.state.level-1)].model} 
+                model={this.lvl[(NavStore.items[2].level-1)].model} 
                 config={{ showButton: false, fill: true, vertical: true, elements: { 
                     documentation: { shape: "text", hideLabel: false }
                 } }} 
@@ -240,11 +238,11 @@ class SearchScreen extends Component
         return (
             <div style={{paddingLeft: 20}}>
                 <h3>
-                    <Icon icon={this.model2icon[this.lvl[this.state.level].model.name]} style={{padding: 2, paddingRight: 8}} />
-                    { Translator.t(this.lvl[(this.state.level)].model.name) + ' list' }
+                    <Icon icon={this.model2icon[this.lvl[NavStore.items[2].level].model.name]} style={{padding: 2, paddingRight: 8}} />
+                    { Translator.t(this.lvl[(NavStore.items[2].level)].model.name) + ' list' }
                     <div style={{ fontSize: 12, fontWeight: 'normal', fontStyle: 'italic', paddingLeft: 25 }}>{this.fna ? 'in ' + this.fna : ''}</div>
                 </h3>
-                <Grid model={this.lvl[this.state.level].model} config={this.lvl[this.state.level].gridConfig} parent={this}/>
+                <Grid model={this.lvl[NavStore.items[2].level].model} config={this.lvl[NavStore.items[2].level].gridConfig} parent={this}/>
             </div>
         );
     }
@@ -254,7 +252,7 @@ class SearchScreen extends Component
      */
     public getErrorMessageJsx()
     {
-        let o = this.lvl[this.state.level].model.error;
+        let o = this.lvl[NavStore.items[2].level].model.error;
         if (o && o.message)
         {
             return (<div>{o.message}</div>);

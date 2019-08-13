@@ -48,6 +48,10 @@ abstract class AbstractModel
      */
     @observable public aggragateddata : object = {};
     /**
+     * ID selected for the navigation inside of the explore screen
+     */
+    @observable public selected_parent_id : string = '';
+    /**
      * Number for pagination and filters
      */
     @observable public pagination : paginationSchema = {

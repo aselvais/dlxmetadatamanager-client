@@ -132,9 +132,9 @@ class Grid extends Component<Props> {
                 return this.getNameCellJsx(k, v, row);
             default:
                 return (<td key={k} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 300}}>{
-                    (this.props.config.editable.indexOf(k) > -1) ? <EditableText 
+                    (this.props.config.editable && this.props.config.editable.indexOf(k) > -1) ? <EditableText 
                                 placeholder=""
-                                value={ row[k] /*row.id*//*this.props.model.name*/ } 
+                                value={ row[k] } 
                                 confirmOnEnterKey={true}
                                 onChange={val => this.handleReportChange(val, row, k) }
                                 onConfirm={val => this.handleConfirm(val, row, k) }

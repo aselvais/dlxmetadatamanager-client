@@ -4,6 +4,12 @@ import { Spinner, Button, Intent, Icon } from "@blueprintjs/core";
 import AbstractModel from '../models/orm/AbstractModel';
 import { observer } from 'mobx-react';
 import Translator from '../libs/translate/Translator';
+import NavStore from '../models/NavStore';
+import Origins from '../models/orm/Origins';
+import Databases from '../models/orm/Databases';
+import Schemas from '../models/orm/Schemas';
+import Tables from '../models/orm/Tables';
+import Fields from '../models/orm/Fields';
 
 interface Props {
     model: AbstractModel,
@@ -60,12 +66,61 @@ class SimpleGridSearch extends Component<Props>
 
     /**
      * 
+     * @param row 
+     */
+    protected handleClick(row)
+    {
+        // set params for search screen
+        switch(this.props.model.name)
+        {
+            case 'origins':
+                NavStore.items[2].level = 0;
+                break;
+            case 'databases':
+                NavStore.items[2].level = 1;
+                break;
+            case 'schemas':
+                NavStore.items[2].level = 2;
+                break;
+            case 'tables':
+                NavStore.items[2].level = 3;
+                break;
+            case 'fields':
+                NavStore.items[2].level = 4;
+                break;
+        }
+        Origins.selected_parent_id = null;
+        if (row.origins_idh) {
+            Origins.document = { idh: row.origins_idh, name: row.origin_name };
+            Databases.selected_parent_id = row.origins_idh;
+        }
+        if (row.databases_idh) {
+            Databases.document = { idh: row.databases_idh, name: row.database_name };
+            Schemas.selected_parent_id = row.databases_idh;
+        }
+        if (row.schemas_idh) {
+            Schemas.document = { idh: row.schemas_idh, name: row.schema_name };
+            Tables.selected_parent_id = row.schemas_idh;
+        }
+        if (row.tables_idh) {
+            Tables.document = { idh: row.tables_idh, name: row.table_name };
+            Fields.selected_parent_id = row.tables_idh;
+        }
+        // go to search screen
+        NavStore.setActive('SearchScreen');
+    }
+
+
+    /**
+     * 
      * @param {*} row 
      * @param {*} i 
      */
     getRowJsx(row, i)
     {
-        return (<tr key={i}>{this.props.columns.map(e => this.getBodyCellJsx(e, row[e]) )} <td style={{ textAlign: 'right'}} > <Button icon='arrow-right' intent={Intent.PRIMARY}/> </td> </tr>);
+        return (<tr key={i}>{this.props.columns.map(e => this.getBodyCellJsx(e, row[e]) )} <td style={{ textAlign: 'right'}} >
+            <Button icon='arrow-right' intent={Intent.PRIMARY} onClick={() => this.handleClick(row)}/>
+            </td> </tr>);
     }
 
     /**

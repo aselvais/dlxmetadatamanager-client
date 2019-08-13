@@ -14,7 +14,7 @@ class NavStore
         {name: 'LoadingScreen', label: 'Loading', active: false, icon: 'home', menuVisible: false, role: 'admin'},
         
         {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true, role: 'god'},
-        {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true, role: 'admin'},
+        {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true, role: 'admin', level: 0},
         {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true, role: 'god'},
 
         {name: 'AggregationsScreen', label: 'Aggregations', active: false, icon: 'horizontal-bar-chart', menuVisible: true, role: 'admin'},

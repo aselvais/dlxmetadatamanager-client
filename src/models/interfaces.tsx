@@ -391,7 +391,10 @@ export interface MenuItem {
     /** Is the item visible in the menu */
     menuVisible: boolean,
     /** optional sublevel items */
-    sublevel?: Array<MenuItem>
+    sublevel?: Array<MenuItem>,
+    /** Level for the search screen */
+    level?: number    
+
 };
 
 /**
