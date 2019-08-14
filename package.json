@@ -19,6 +19,7 @@
     "mobx-react": "^5.4.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-iframe": "^1.8.0",
     "react-scripts": "3.0.1",
     "typescript": "3.4.5",
     "universal-cookie": "^4.0.0"

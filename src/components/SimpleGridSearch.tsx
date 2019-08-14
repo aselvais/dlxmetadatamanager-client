@@ -10,7 +10,6 @@ import Databases from '../models/orm/Databases';
 import Schemas from '../models/orm/Schemas';
 import Tables from '../models/orm/Tables';
 import Fields from '../models/orm/Fields';
-import { toJS } from 'mobx';
 
 interface Props {
     model: AbstractModel,

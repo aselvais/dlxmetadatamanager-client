@@ -23,6 +23,8 @@ import UsersmanagementScreen from './screens/UsersmanagementScreen';
 import SearchglobalScreen from './screens/SearchglobalScreen';
 import FieldgroupsScreen from './screens/FieldgroupsScreen';
 import DataScreen from './screens/DataScreen';
+import DiagramsScreen from './screens/DiagramsScreen';
+import DocumentationScreen from './screens/DocumentationScreen';
 
 /**
  * 
@@ -64,6 +66,10 @@ class App extends Component {
           return <DataScreen />;
       case 'SearchglobalScreen':
           return <SearchglobalScreen />;
+      case 'DocumentationScreen':
+          return <DocumentationScreen />
+      case 'DiagramScreen':
+          return <DiagramsScreen />;
       case 'LogoutScreen':
         return <LogoutScreen />;
       default:
