@@ -46,7 +46,7 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation' ], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add'] }
+            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation' ], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add'] }
         },
         {
             model : Databases,  parent : 'origins',
