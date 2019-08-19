@@ -12,10 +12,9 @@ class DiagramsScreen extends Component
     public render()
     {
         return (
-            <div style={{padding: 20}}>
-                <Iframe width="1920" height="1080" url="/viz/index.html" />
+            <div style={{padding: 0, border: 0}}>
+                <Iframe  frameBorder={0} width="1920" height="1080" url="/viz/index.html" />
             </div>
-
         );
     }
 }
