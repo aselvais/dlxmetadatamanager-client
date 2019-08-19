@@ -53,11 +53,14 @@ class SimpleGridSearch extends Component<Props>
             k === 'to_lower' || 
             k === 'is_pci'
             ) {
-            return (<td key={k} style={{ width: 40, textAlign: 'center'}}>{
-                v ? 
-                <Icon icon="full-circle" intent="danger" iconSize={12} /> : 
-                <Icon icon="full-circle" intent="success" iconSize={12} />
-            }</td>);
+                let theintent = '';
+                if ( k === 'should_ignore') {
+                    theintent = (v === 1) ? 'danger' : 'success';
+                } else {
+                    theintent = (v === 1) ? 'success' : 'danger';
+                }
+                //@ts-ignore
+                return (<td key={k} style={{ width: 40, textAlign: 'center'}}><Icon icon="full-circle" intent={theintent} iconSize={12} /></td>);
         }
         else {
             return <td>{v}</td>
