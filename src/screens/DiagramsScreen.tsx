@@ -7,13 +7,13 @@ import Iframe from 'react-iframe'
 class DiagramsScreen extends Component
 {
     /**
-     * 
+     *                 <Iframe frameBorder={0} width="1920" height="1080" url="/viz/index.html" />
      */
     public render()
     {
         return (
             <div style={{padding: 20}}>
-                <Iframe width="1920" height="1080" url="/viz/index.html" />
+                Preview of this tool available soon :)
             </div>
 
         );
