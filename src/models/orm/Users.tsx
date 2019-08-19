@@ -3,6 +3,7 @@ import {UsersSchema, formConfigSchema} from '../interfaces';
 import { toJS, observable } from 'mobx';
 import Cookies from 'universal-cookie';
 import AccessTokens from "./AccessTokens";
+import NavStore from "../NavStore";
 
 /**
  * Singleton model for Origins
@@ -172,6 +173,7 @@ class Users extends AbstractModel
          if (this.cookies.get('dlxmttoken')) {
             this.cookies.remove('dlxmttoken');
         }
+        NavStore.setActive('SearchScreen');
         this.resetData();
     }
 

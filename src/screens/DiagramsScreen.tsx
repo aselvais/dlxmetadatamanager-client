@@ -12,10 +12,9 @@ class DiagramsScreen extends Component
     public render()
     {
         return (
-            <div style={{padding: 20}}>
+            <div style={{padding: 27}}>
                 Preview of this tool available soon :)
             </div>
-
         );
     }
 }

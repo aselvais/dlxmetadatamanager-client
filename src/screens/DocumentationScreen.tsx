@@ -24,12 +24,10 @@ class DocumentationScreen extends Component
                         <Button onClick={() => this.setState({selectedId: 3})}>Back-end public API</Button>
                     </ButtonGroup>
                 </div>
-                <div style={{backgroundColor: "#FFF"}}>
-                {(this.state.selectedId === 0) ? <div>Please select an option...</div> : null }
+                {(this.state.selectedId === 0) ? <div style={{padding: 27}}>Please select an option...</div> : null }
                 {(this.state.selectedId === 1) ? <Iframe frameBorder={0} width="100%" height="1000" url="/documentation/index.html" /> : null }
                 {(this.state.selectedId === 2) ? <Iframe frameBorder={0} width="100%" height="1000" url="/documentation2/index.html" /> : null }
-                {(this.state.selectedId === 3) ? <Iframe frameBorder={0} width="100%" height="1000" url="/explorer/index.html" /> : null }
-                </div>
+                {(this.state.selectedId === 3) ? (<div style={{backgroundColor: "#FFF"}}><Iframe frameBorder={0} width="100%" height="1000" url="/explorer/index.html" /></div>) : null }
             </div>
         );
     }

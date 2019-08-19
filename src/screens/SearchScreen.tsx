@@ -62,7 +62,7 @@ class SearchScreen extends Component
         },
         {
             model : Fields, parent : 'tables',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation'], editable: ['documentation'], actions: ['view', 'edit']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation'], editable: ['documentation'], actions: ['edit']}
         }
     ];
     
