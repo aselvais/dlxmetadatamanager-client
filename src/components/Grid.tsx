@@ -135,15 +135,14 @@ class Grid extends Component<Props> {
     return (
       <th
         key={k}
+        className="cantselect"
         style={{ cursor: "pointer" }}
         onClick={() => this.props.model.sortLocalCollection(k)}
       >
         {v}
         {this.props.model.sortparams.columnName === k ? (
           <div style={{ float: "right" }}>
-            <Icon
-              icon={this.props.model.sortparams.asc ? "sort-asc" : "sort-desc"}
-            />
+            <Icon icon={this.props.model.sortparams.asc ? "sort-asc" : "sort-desc"} />
           </div>
         ) : null}
       </th>
@@ -223,7 +222,7 @@ class Grid extends Component<Props> {
             }}
           >
             {this.props.config.editable &&
-            this.props.config.editable.indexOf(k) > -1 ? (
+            _.indexOf(this.props.config.editable, k) > -1 ? (
               <EditableText
                 placeholder=""
                 value={row[k]}
@@ -460,7 +459,7 @@ class Grid extends Component<Props> {
    */
   public getAddentryButtonJSX() {
     return this.props.config.actions &&
-      this.props.config.actions.indexOf("add") >= 0 ? (
+      _.indexOf(this.props.config.actions, "add") >= 0 ? (
       <div style={{ textAlign: "right" }}>
         <Button
           // @ts-ignore
@@ -576,7 +575,7 @@ class Grid extends Component<Props> {
           minimal={false}
           intent={
             this.props.model.pagination.tagsfilter[i] &&
-            this.props.model.pagination.tagsfilter[i].indexOf(e) > -1
+            _.indexOf(this.props.model.pagination.tagsfilter[i], e) > -1
               ? "primary"
               : "none"
           }

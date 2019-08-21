@@ -4,6 +4,7 @@ import { toJS, observable } from 'mobx';
 import Cookies from 'universal-cookie';
 import AccessTokens from "./AccessTokens";
 import NavStore from "../NavStore";
+import _ from "lodash"
 
 /**
  * Singleton model for Origins
@@ -146,7 +147,7 @@ class Users extends AbstractModel
         if (!this.document.realm) {
             return false;
         }
-        return (this.roles.indexOf(this.document.realm) >= this.roles.indexOf(roleName));
+        return (_.indexOf(this.roles, this.document.realm) >= _.indexOf(this.roles, roleName));
     }
 
     /**

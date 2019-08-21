@@ -52,6 +52,10 @@ abstract class AbstractModel
      */
     @observable public selected_parent_id : string = '';
     /**
+     * Selected _id(s) in a collection
+     */
+    @observable public selected_items = {};
+    /**
      * Number for pagination and filters
      */
     @observable public pagination : paginationSchema = {
@@ -62,7 +66,10 @@ abstract class AbstractModel
         should_ignore: 1,
         tagsfilter: {}
     };
-    @observable public sortparams : sortparamsSchema = { columnName: '', asc: false };
+    @observable public sortparams : sortparamsSchema = { 
+        columnName: '', 
+        asc: false 
+    };
     /**
      * 
      */
@@ -278,14 +285,16 @@ abstract class AbstractModel
      * Sort the local collection on the column name passed as param
      * @param columnName 
      */
-    public sortLocalCollection(columnName : string = '')
+    public sortLocalCollection(columnName : string = '', collectionType='')
     {
         if (this.sortparams.columnName === columnName) this.sortparams.asc = !this.sortparams.asc;
         else this.sortparams.columnName = columnName;
-
-        // do the sort of the collection here ...
-        this.collection = _.orderBy(toJS(this.collection), [this.sortparams.columnName],[this.sortparams.asc ? 'asc' : 'desc']);
-
+        if (collectionType === 'search') {
+            this.findentitydata = _.orderBy(toJS(this.findentitydata), [this.sortparams.columnName],[this.sortparams.asc ? 'asc' : 'desc']);
+        } else {
+            // do the sort of the collection here ...
+            this.collection = _.orderBy(toJS(this.collection), [this.sortparams.columnName],[this.sortparams.asc ? 'asc' : 'desc']);
+        }
     }
     
     /**
@@ -433,7 +442,9 @@ abstract class AbstractModel
         d.map(e => {
             let tagfound = 0;
             columns.map(colname => {
-                if (e[colname] && e[colname].length > 0) this.pagination.tagsfilter[colname].map( tagname => { if (e[colname].indexOf(tagname) > -1) { tagfound++; } return null; });
+                if (e[colname] && e[colname].length > 0) this.pagination.tagsfilter[colname].map( tagname => {
+                if ( _.indexOf(e[colname], tagname) > -1) { tagfound++; } return null;
+                });
                 return null;
             });
             if (tagfound > 0) toret.push(e);
@@ -474,7 +485,7 @@ abstract class AbstractModel
     public filterOnTag(tagName : string = '', columnName : string = '')
     {
         if (!this.pagination.tagsfilter[columnName]) this.pagination.tagsfilter[columnName] = [];
-        let theIndexOf = this.pagination.tagsfilter[columnName].indexOf(tagName);
+        let theIndexOf = _.indexOf(this.pagination.tagsfilter[columnName], tagName);
         if (theIndexOf === -1) this.pagination.tagsfilter[columnName].push(tagName);
         else remove(this.pagination.tagsfilter[columnName], theIndexOf);
     }
