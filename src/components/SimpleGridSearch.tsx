@@ -1,6 +1,6 @@
 // @ts-check
 import React, { Component } from 'react';
-import { Spinner, Button, Intent, Icon, Checkbox } from "@blueprintjs/core";
+import { Spinner, Button, Intent, Icon, Checkbox, Dialog } from "@blueprintjs/core";
 import AbstractModel from '../models/orm/AbstractModel';
 import { observer } from 'mobx-react';
 import Translator from '../libs/translate/Translator';
@@ -10,6 +10,7 @@ import Databases from '../models/orm/Databases';
 import Schemas from '../models/orm/Schemas';
 import Tables from '../models/orm/Tables';
 import Fields from '../models/orm/Fields';
+import Form from './forms/Form';
 
 interface Props {
     model: AbstractModel,
@@ -23,13 +24,32 @@ interface Props {
 class SimpleGridSearch extends Component<Props>
 {
     private _re = new RegExp('id|idh|_id|.*_id|.*_idh');
+    public state = {
+        windowVisible: false
+    };
 
     /**
      * 
      */
     protected _onClickBulkEdit()
     {
-        alert('HELLO!');
+        let nbrSelected = Object.keys(this.props.model.selected_items).length;
+        if (nbrSelected > 0) this.setState({windowVisible: true});
+    }
+
+    /**
+     * 
+     */
+    _onClickSelectAll()
+    {
+        let nbrSelected = Object.keys(this.props.model.selected_items).length;
+        if (nbrSelected > 0) {
+            this.props.model.selected_items = {};
+        } else {
+            if (this.props.model.findentitydata && this.props.model.findentitydata.map) {
+                this.props.model.findentitydata.map((row, i) => this.props.model.selected_items[row._id] = true);
+            }
+        }
     }
 
     /**
@@ -48,7 +68,7 @@ class SimpleGridSearch extends Component<Props>
      * 
      * @param row 
      */
-    protected _handleClick(row)
+    protected _handleDrilldownClick(row)
     {
         Origins.pagination.searchstr = '';
         Databases.pagination.searchstr = '';
@@ -111,14 +131,15 @@ class SimpleGridSearch extends Component<Props>
         let asc = this.props.model.sortparams.asc;
         return (
         <tr>
+        <th></th>
         <th style={{textAlign: 'center'}}>
-            <Button icon="edit" intent={Intent.WARNING} style={{ marginRight: 5 }} onClick={() => this._onClickBulkEdit() } active={Object.keys(this.props.model.selected_items).length === 0 ? true : false} />
+            <Button icon="edit" minimal={true} style={{ marginRight: 5 }} onClick={() => this._onClickBulkEdit() } />
+            <Checkbox onChange={() => this._onClickSelectAll() } checked={(Object.keys(this.props.model.selected_items).length > 0) ? true : false} />
         </th>
-            { this.props.columns.map( e => e.match(this._re) ? null : 
+        { this.props.columns.map( e => e.match(this._re) ? null : 
             <th className="cantselect" key={e} style={{cursor: 'pointer'}} onClick={() => this.props.model.sortLocalCollection(e, 'search')}>
-                { 
-                    (e === 'should_ignore') ? '' : Translator.t(e) 
-                }{ (this.props.model.sortparams.columnName === e) ? (<div style={{ float: "right" }}><Icon icon={asc ? "sort-asc" : "sort-desc"} /></div>) : null }
+                { (e === 'should_ignore') ? '' : Translator.t(e) }
+                { (this.props.model.sortparams.columnName === e) ? (<div style={{ float: "right" }}><Icon icon={asc ? "sort-asc" : "sort-desc"} /></div>) : null }
             </th>)}
         <th></th>
         </tr>)
@@ -143,7 +164,7 @@ class SimpleGridSearch extends Component<Props>
             return (<td key={k} style={{ width: 40, textAlign: 'center'}}><Icon icon="full-circle" intent={theintent} iconSize={12} /></td>);
         }
         else {
-            return <td>{v}</td>
+            return <td><div className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</div></td>
         }
     }
 
@@ -152,20 +173,59 @@ class SimpleGridSearch extends Component<Props>
      * @param {*} row 
      * @param {*} i 
      */
-    getRowJsx(row, i)
+    public getRowJsx(row, i)
     {
         return (
-            <tr key={i}>
+            <tr key={this.props.model.name + '-' + i}>
+                <td>{i+1}</td>
                 <td style={{ textAlign: 'center'}}>
-                    <Checkbox key={row._id} 
-                        onChange={() => this._onClickSelect(row._id) } 
-                        checked={(this.props.model.selected_items[row._id] && this.props.model.selected_items[row._id] === true) ? true : false} />
+                    <Checkbox key={row._id} onChange={() => this._onClickSelect(row._id) } checked={(this.props.model.selected_items[row._id] && this.props.model.selected_items[row._id] === true) ? true : false} />
                 </td>
                 {this.props.columns.map(e => this.getBodyCellJsx(e, row[e]) )}
-                <td style={{ textAlign: 'right'}} >
-                    <Button icon='arrow-right' intent={Intent.PRIMARY} onClick={() => this._handleClick(row)}/>
+                <td style={{ textAlign: 'right'}}>
+                    <Button icon='arrow-right' intent={Intent.PRIMARY} onClick={() => this._handleDrilldownClick(row)}/>
                 </td>
             </tr>
+        );
+    }
+
+    /**
+     * 
+     */
+    protected getGridJSX()
+    {
+        return (
+            <div className="Grid">
+                <div className="Grid">
+                    <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped">
+                        <thead className="thead-dark">
+                            {this.props.columns ? this.getHeaderJsx() : null}
+                        </thead>
+                        <tbody>
+                            {(this.props.model.findentitydata && this.props.model.findentitydata.map) ? this.props.model.findentitydata.map((row, i) => this.getRowJsx(row, i)) : null}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        );
+    }
+
+    /**
+     * Returns JSX for the dialog containing the form
+     */
+    public getDialogJsx()
+    {
+        return (
+            <div>
+                <Dialog title={this.props.model.name + ' bulk edit ' + Object.keys(this.props.model.selected_items).length + ' selected'}
+                        style={{ width: '70%', maxHeight: '90vh' }}
+                        onClose={() => { this.setState({windowVisible: false}); } } 
+                        isOpen={this.state.windowVisible} >
+                    <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
+                        <Form model={this.props.model} config={this.props.model.formConfig} bulkmode={true}/>
+                    </div>
+                </Dialog>
+            </div>
         );
     }
 
@@ -180,15 +240,9 @@ class SimpleGridSearch extends Component<Props>
             return (<div style={{ color: '#AAA', paddingLeft: 40}}> <i>--- No result ... ---</i> </div>);
         } else {
             return (
-                <div className="Grid">
-                    <table style={{ width: '100%'}} className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped">
-                        <thead className="thead-dark">
-                            {this.props.columns ? this.getHeaderJsx() : null}
-                        </thead>
-                        <tbody>
-                            {(this.props.model.findentitydata && this.props.model.findentitydata.map) ? this.props.model.findentitydata.map((row, i) => this.getRowJsx(row, i)) : null}
-                        </tbody>
-                     </table>
+                <div>
+                    {this.getGridJSX()}
+                    {this.getDialogJsx()}
                 </div>
             );
         }        

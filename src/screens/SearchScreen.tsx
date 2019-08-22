@@ -145,7 +145,7 @@ class SearchScreen extends Component
 
         NavStore.items[2].level = tot;
         //@ts-ignore
-        this.loadData(row.idh);
+        if (row) this.loadData(row.idh);
     }
 
     /**

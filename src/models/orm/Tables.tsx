@@ -15,12 +15,12 @@ class Tables extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            "should_ignore": { "shape": 'switch' },
-            "is_gdpr": {"shape": 'switch'},
-            "name": { "shape": "text", diabled: true},
-            "landing_destination": { "shape": "text"},
-            "documentation": { "shape": "textarea"},
-            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'}
+            "should_ignore": { "shape": 'switch', bulkedit: true },
+            "is_gdpr": {"shape": 'switch', bulkedit: true},
+            "name": { "shape": "text", diabled: true, bulkedit: false},
+            "landing_destination": { "shape": "text", bulkedit: true},
+            "documentation": { "shape": "textarea", bulkedit: true},
+            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: true}
         }
     };
 

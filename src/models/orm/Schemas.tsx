@@ -16,15 +16,15 @@ class Schemas extends AbstractModel
         fill: true,
         vertical: true,
         elements: {
-            "should_ignore": { "shape": 'switch' },
-            "name": { "shape": "text", diabled: true},
-            "schema" : { "shape": "text", diabled: true},
-            "storageengine" : { "shape": "text", diabled: true},
-            "vendorbrand" : { "shape": "text", diabled: true},
-            "documentation": { "shape": "textarea"},
-            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...'},
-            "timezone": {"shape": "timezone"},
-            "parent_id": {"shape": "text", diabled: true}
+            "should_ignore": { "shape": 'switch', bulkedit: true },
+            "name": { "shape": "text", diabled: true, bulkedit: false},
+            "schema" : { "shape": "text", diabled: true, bulkedit: false},
+            "storageengine" : { "shape": "text", diabled: true, bulkedit: false},
+            "vendorbrand" : { "shape": "text", diabled: true, bulkedit: false},
+            "documentation": { "shape": "textarea", bulkedit: true},
+            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: true},
+            "timezone": {"shape": "timezone", bulkedit: true},
+            "parent_id": {"shape": "text", diabled: true, bulkedit: false}
         }
     };
 

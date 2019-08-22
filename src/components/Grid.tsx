@@ -205,7 +205,7 @@ class Grid extends Component<Props> {
             }}
           >
             {this.getIconDataTypeJsx(v)}
-            {v}
+            <span className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</span>            
           </td>
         );
       case "name":
@@ -224,6 +224,7 @@ class Grid extends Component<Props> {
             {this.props.config.editable &&
             _.indexOf(this.props.config.editable, k) > -1 ? (
               <EditableText
+                className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}
                 placeholder=""
                 value={row[k]}
                 confirmOnEnterKey={true}
@@ -234,7 +235,7 @@ class Grid extends Component<Props> {
                 multiline={true}
               />
             ) : (
-              v
+              <div className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</div>              
             )}
           </td>
         );
@@ -319,7 +320,7 @@ class Grid extends Component<Props> {
           maxWidth: 300
         }}
       >
-        <div style={{ float: "left" }}>{v}</div>
+        <div style={{ float: "left" }} className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</div>
         {icons}
       </td>
     );

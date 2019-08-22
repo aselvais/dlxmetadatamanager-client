@@ -414,7 +414,8 @@ export interface formElementConfigSchema {
     /** */
     leftIcon?: IconName,
     /** */
-    placeholder?: string
+    placeholder?: string,
+    bulkedit?: boolean
 };
 
 export interface formElemObjConfigSchema {

@@ -1,4 +1,4 @@
-import { Intent, ITagProps, TagInput, FormGroup, Label, Button, IconName } from "@blueprintjs/core";
+import { Intent, ITagProps, TagInput, FormGroup, Label, Button, IconName, Checkbox } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import React, { Component } from "react";
 import { formElementConfigSchema } from "../../models/interfaces";
@@ -35,6 +35,16 @@ interface TagsFormProps {
 @observer
 class MultiSelectForm extends Component<TagsFormProps>
 {
+    /**
+     * 
+     * @param key 
+     */
+    protected getLabel(key)
+    {
+        //@ts-ignore
+        return (this.props.bulkmode === true) ? (<Checkbox label={Translator.t(key)} />) : (Translator.t(key));
+    }
+
     /**
      * 
      */
@@ -108,7 +118,10 @@ class MultiSelectForm extends Component<TagsFormProps>
         const { tagIntents, tagMinimal, values, ...props } = this.state;
         return (
             <FormGroup>
-                <Label>{Translator.t(this.props.k)}</Label>
+                {
+                    //@ts-ignore 
+                    this.props.c.hideLabel === false ? null : <Label>{this.getLabel(this.props.k)}</Label>
+                }
                 <TagInput
                     {...props}
                     leftIcon={ ( this.props.c && this.props.c.leftIcon) ? this.props.c.leftIcon : undefined }

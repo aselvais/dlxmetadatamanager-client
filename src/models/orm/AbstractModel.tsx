@@ -23,6 +23,10 @@ abstract class AbstractModel
      */
     @observable public loading : boolean = false;
     /**
+     * Time Consuming Operation is in progress so we mask or skeleton something
+     */
+    @observable public operationinprogress : boolean = false;
+    /**
      * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
      */
     @observable public currentAction : 'view' | 'deleting' | 'editing' | 'adding' | 'saving' | 'loggingin' | 'loggingout' | null = null;
@@ -191,6 +195,7 @@ abstract class AbstractModel
         this.collection = null;
         this.currentAction = null;
         this.loading = false;
+        this.operationinprogress = false;
     }
 
     /**
@@ -237,6 +242,7 @@ abstract class AbstractModel
     protected _findentity(entityLevel : 'origins' | 'databases' | 'schemas' | 'tables' | 'fields' = 'origins', name : string = '', filter : object = {})
     {
         this.loading = true;
+        this.operationinprogress = true;
         this.findentitydata = [];
         return this.fetchAutenticated(Config.getApiUrl() + 'schemadata/generic/findentity?entityLevel=' + entityLevel + '&name=' + name )
             .then(response => response.json())
@@ -244,6 +250,7 @@ abstract class AbstractModel
                 //@ts-ignore
                 this.error = data.error ? data.error : null;
                 this.loading = false;
+                this.operationinprogress = false;
                 this.findentitydata = data.data ? data.data : [];
         });
     }
@@ -270,6 +277,7 @@ abstract class AbstractModel
             console.debug('"' + this.name + '" document "' + id + '" from cache... Use emptyCache to renew it.');
         } else {
             this.loading = true;
+            this.operationinprogress = true;
             this.fetchAutenticated(this.getApiUrl(id))
                 .then(response => response.json())
                 .then(data => { 
@@ -277,6 +285,7 @@ abstract class AbstractModel
                     this.error = data.error ? data.error : null;
                     this.document = data;
                     this.loading = false;
+                    this.operationinprogress = false;
                 });    
         }
     }
@@ -308,6 +317,7 @@ abstract class AbstractModel
         if (this_model_id === null && this.document && this.document.id) { this_model_id = this.document.id; }
 
         this.loading = true;
+        this.operationinprogress = true;
         return this.fetchAutenticated(this.getApiUrl(this_model_id) + '/' + related_model_name)
             .then(response => response.json())
             .then(data => {
@@ -315,6 +325,7 @@ abstract class AbstractModel
                 this.error = data.error ? data.error : null;
                 this.related = data;
                 this.loading = false;
+                this.operationinprogress = false;
                 return data;
             });
     }
@@ -349,6 +360,7 @@ abstract class AbstractModel
      */
     public find(where : object = {}) {
         this.loading = true;
+        this.operationinprogress = true;
         this.fetchAutenticated(this.getApiUrl() + '?filter=' + encodeURI(JSON.stringify({where: where })))
             .then(response => response.json())
             .then(data => { 
@@ -357,6 +369,7 @@ abstract class AbstractModel
                 this.collection = data;
                 this.onCollectionUpdated();
                 this.loading = false;
+                this.operationinprogress = false;
                 if (data.error && data.error.code === 'AUTHORIZATION_REQUIRED' && Users.getToken())
                 {
                     Users.resetData();
@@ -495,6 +508,7 @@ abstract class AbstractModel
      */
     public aggregate(onField : string = '') {
         this.loading = true;
+        this.operationinprogress = true;
         this.fetchAutenticated(this.getApiUrl() + '/aggregation?field=' + encodeURI(onField))
             .then(response => response.json())
             .then(data => { 
@@ -502,6 +516,7 @@ abstract class AbstractModel
                 this.error = data.error ? data.error : null;
                 this.aggragateddata[onField] = data.aggregation;
                 this.loading = false;
+                this.operationinprogress = false;
             });
     }
 

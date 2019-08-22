@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { formElementConfigSchema, formConfigSchema } from "../../models/interfaces";
-import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, Spinner, Switch, Position } from "@blueprintjs/core";
+import { FormGroup, Button, Label, InputGroup, Icon, ControlGroup, TextArea, Spinner, Switch, Position, Checkbox } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
@@ -9,7 +9,8 @@ import MultiSelectForm from "./MultiSelectForm";
 
 interface formProps {
     model: AbstractModel,
-    config: formConfigSchema
+    config: formConfigSchema,
+    bulkmode?: boolean
 };
 
 /**
@@ -21,6 +22,16 @@ class Form extends Component<formProps, any>
     /**
      * 
      * @param key 
+     */
+    protected getLabel(key)
+    {
+        //@ts-ignore
+        return (this.props.bulkmode === true) ? (<Checkbox label={Translator.t(key)} />) : (Translator.t(key));
+    }
+
+    /**
+     * 
+     * @param key 
      * @param v 
      * @param c 
      */
@@ -28,7 +39,7 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
-                { c.hideLabel === false ? null : <Label>{Translator.t(key)}</Label>}
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 <input className="bp3-input" 
                     style={{ width: '100%'}} 
                     disabled={c.diabled ? c.diabled : false} 
@@ -51,7 +62,7 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
-                <Label>{Translator.t(key)}</Label>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 <TextArea 
                     name={key} 
                     value={v}
@@ -72,7 +83,7 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
-                <Label>{Translator.t(key)}</Label>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 <InputGroup 
                     rightElement={(<Icon icon="lock" />)} 
                     type="password" 
@@ -96,7 +107,7 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
-                <Label>{Translator.t(key)}</Label>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 <TimezonePicker
                     value={v}
                     onChange={vv => this.props.model.document[key] = vv}
@@ -118,7 +129,7 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
-                <Label>{Translator.t(key)}</Label>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 <div className="bp3-select">
                     <select onChange={vv => this.props.model.document[key] = vv.target.value} >
                         <option selected={v ? false : true} >Choose an item...</option>
@@ -144,7 +155,7 @@ class Form extends Component<formProps, any>
     {
         return (
             <FormGroup>
-                <Label>{Translator.t(key)}</Label>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 <Switch 
                     onChange={vv =>
                         //@ts-ignore 
@@ -163,9 +174,12 @@ class Form extends Component<formProps, any>
      */
     public getFormElement(key : string = '')
     {
-        let v = this.props.model.document[key] ? this.props.model.document[key] : '';
+        let v = (this.props.model.document && this.props.model.document[key]) ? this.props.model.document[key] : '';
         // @ts-ignore
         let c : formElementConfigSchema = (this.props.config && this.props.config.elements && typeof this.props.config.elements[key] !== 'undefined') ? this.props.config.elements[key] : false;
+        //@ts-ignore
+        if (this.props.bulkmode === true && this.props.config.elements[key].bulkedit === false) return null;
+
         if (!c) return null;
         else if (c.shape) {
             switch(c.shape) {
@@ -179,11 +193,10 @@ class Form extends Component<formProps, any>
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
                     return <MultiSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
-                    // return <TagsForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
                 case 'switch':
                     return this.getSwitchFormElementJSX(key, v, c);
                 case 'timezone':
-                    return this.getTimezoneElementJSX(key, v, c);;
+                    return this.getTimezoneElementJSX(key, v, c);
                 /*
                 case 'email':
                     return null;
@@ -224,7 +237,8 @@ class Form extends Component<formProps, any>
             this.props.config.elements = [];
             Object.keys(this.props.model.document).map( d => this.props.config.elements[d] = {shape: 'text'} );
         }
-        form = Object.keys(this.props.config.elements).map(k => this.getFormElement(k));
+        //@ts-ignore
+        form = Object.keys(this.props.config.elements).map((k) => this.getFormElement(k) );
         if (this.props.config.showButton !== false)
         {
             if (this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin') {
