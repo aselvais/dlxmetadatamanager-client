@@ -20,7 +20,7 @@ class Tables extends AbstractModel
             "name": { "shape": "text", diabled: true, bulkedit: false},
             "landing_destination": { "shape": "text", bulkedit: true},
             "documentation": { "shape": "textarea", bulkedit: true},
-            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: true}
+            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false}
         }
     };
 

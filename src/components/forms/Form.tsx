@@ -19,6 +19,21 @@ interface formProps {
 @observer
 class Form extends Component<formProps, any>
 {
+
+    /**
+     * 
+     * @param key 
+     */
+    protected _onClickCheckboxLabel(key)
+    {
+        if (this.props.model.selected_labels[key])
+        {
+            delete this.props.model.selected_labels[key];
+        } else {
+            this.props.model.selected_labels[key] = true;
+        }
+    }
+
     /**
      * 
      * @param key 
@@ -26,7 +41,16 @@ class Form extends Component<formProps, any>
     protected getLabel(key)
     {
         //@ts-ignore
-        return (this.props.bulkmode === true) ? (<Checkbox label={Translator.t(key)} />) : (Translator.t(key));
+        return (this.props.bulkmode === true) ? (<Checkbox 
+            label={Translator.t(key)}
+            onChange={ () => this._onClickCheckboxLabel(key) }
+            selected={true}
+        />) : (Translator.t(key));
+    }
+
+    protected _shouldDisplayElement(key)
+    {
+        return ( (!this.props.bulkmode) || (this.props.bulkmode === true && this.props.model.selected_labels[key]) );
     }
 
     /**
@@ -40,14 +64,16 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
-                <input className="bp3-input" 
-                    style={{ width: '100%'}} 
-                    disabled={c.diabled ? c.diabled : false} 
-                    type="text"
-                    name={key}
-                    value={v} 
-                    onChange={vv => this.props.model.document[key] = vv.target.value} 
-                />
+                { this._shouldDisplayElement(key) ?
+                (<input className="bp3-input" 
+                style={{ width: '100%'}} 
+                disabled={c.diabled ? c.diabled : false} 
+                type="text"
+                name={key}
+                value={v} 
+                onChange={vv => this.props.model.document[key] = vv.target.value} 
+                />) : null
+                }
             </FormGroup>
         );
     }
@@ -63,12 +89,13 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
-                <TextArea 
+                { this._shouldDisplayElement(key) ?
+                (<TextArea 
                     name={key} 
                     value={v}
                     onChange={vv => this.props.model.document[key] = vv.target.value} 
                     growVertically={true} 
-                    style={{ width: '100%', minHeight: 100 }}/>
+                    style={{ width: '100%', minHeight: 100 }}/>) : null }
             </FormGroup>
         );
     }
@@ -84,13 +111,14 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
-                <InputGroup 
+                { this._shouldDisplayElement(key) ?
+                (<InputGroup 
                     rightElement={(<Icon icon="lock" />)} 
                     type="password" 
                     name={key} 
                     value={v} 
                     onChange={vv => this.props.model.document[key] = vv.target.value} 
-                    />
+                    />) : null }
             </FormGroup>        
         );
     }
@@ -108,13 +136,13 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
-                <TimezonePicker
+                { this._shouldDisplayElement(key) ? (<TimezonePicker
                     value={v}
                     onChange={vv => this.props.model.document[key] = vv}
                     valueDisplayFormat={TimezoneDisplayFormat.COMPOSITE}
                     popoverProps={{ position: Position.TOP }}
                     showLocalTimezone={true}>
-                </TimezonePicker>
+                    </TimezonePicker>) : null }
             </FormGroup>        
         );
     }
@@ -130,7 +158,8 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
-                <div className="bp3-select">
+                { this._shouldDisplayElement(key) ?
+                (<div className="bp3-select">
                     <select onChange={vv => this.props.model.document[key] = vv.target.value} >
                         <option selected={v ? false : true} >Choose an item...</option>
                         {Object.keys(c.options).map(k => 
@@ -139,7 +168,7 @@ class Form extends Component<formProps, any>
                             </option>
                         )}
                     </select>
-                </div>
+                </div>) : null }
             </FormGroup>        
         );
     }
@@ -156,14 +185,14 @@ class Form extends Component<formProps, any>
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
-                <Switch 
+                { this._shouldDisplayElement(key) ? (<Switch 
                     onChange={vv =>
                         //@ts-ignore 
                         this.props.model.document[key] = vv.target.checked ? 1 : 0 
                     }
                     value={v}
                     checked={ !v ? false : true} 
-                    labelElement={<strong>NO / YES</strong>}/>
+                    labelElement={<strong>NO / YES</strong>}/>) : null }
             </FormGroup>        
         );
     }

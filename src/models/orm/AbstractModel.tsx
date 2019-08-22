@@ -35,6 +35,10 @@ abstract class AbstractModel
      */
     @observable public document : null | object = null;
     /**
+     * Labels selected ready for bulk update
+     */
+    @observable public selected_labels = {};
+    /**
      * Container for the related entries (linked to the current model)
      */
     @observable public related : object | Array<object> | null = null;

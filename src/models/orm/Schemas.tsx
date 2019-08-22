@@ -22,7 +22,7 @@ class Schemas extends AbstractModel
             "storageengine" : { "shape": "text", diabled: true, bulkedit: false},
             "vendorbrand" : { "shape": "text", diabled: true, bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
-            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: true},
+            "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
             "timezone": {"shape": "timezone", bulkedit: true},
             "parent_id": {"shape": "text", diabled: true, bulkedit: false}
         }
