@@ -57,7 +57,7 @@ class LoginScreen extends Component
                     <img src={logometa} alt="Deluxe logo" width={50}/>
                 </div>
                 <div style={{ width: 300, padding: 20, margin: 'auto' }}>
-                    <Form model={Users} config={Users.formConfigLogin} />
+                    <Form model={Users} config={Users.formConfigLogin} documentname="document" />
                 </div>
                 <Toaster ref={this.refHandlers.toaster} 
                         autoFocus={false}

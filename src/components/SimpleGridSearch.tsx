@@ -33,6 +33,7 @@ class SimpleGridSearch extends Component<Props>
      */
     protected _onClickBulkEdit()
     {
+        this.props.model.multiple_document = {};
         let nbrSelected = Object.keys(this.props.model.selected_items).length;
         if (nbrSelected > 0) this.setState({windowVisible: true});
     }
@@ -222,7 +223,7 @@ class SimpleGridSearch extends Component<Props>
                         onClose={() => { this.setState({windowVisible: false}); } } 
                         isOpen={this.state.windowVisible} >
                     <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
-                        <Form model={this.props.model} config={this.props.model.formConfig} bulkmode={true}/>
+                        <Form model={this.props.model} config={this.props.model.formConfig} bulkmode={true} documentname="multiple_document" />
                     </div>
                 </Dialog>
             </div>

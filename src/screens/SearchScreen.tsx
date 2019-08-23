@@ -222,6 +222,7 @@ class SearchScreen extends Component
             }</h2>
             <Form 
                 model={this.lvl[(NavStore.items[2].level-1)].model} 
+                documentname="document"
                 config={{ showButton: false, fill: true, vertical: true, elements: { 
                     documentation: { shape: "text", hideLabel: false }
                 } }} 

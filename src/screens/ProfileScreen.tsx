@@ -29,7 +29,7 @@ class ProfileScreen extends Component
             return (
                 <div>
                     <div style={{ width: '70%', margin: 'auto'}}>
-                        <Form model={Users} config={Users.formConfig} />
+                        <Form model={Users} config={Users.formConfig} documentname="document"/>
                     </div>
                 </div>
                 );        

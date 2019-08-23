@@ -21,7 +21,7 @@ class FieldeditionForm extends Component<Props>
         return (
         <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
             {
-                this.props.model.document ? <Form model={this.props.model} config={this.props.model.formConfig}/> : null 
+                this.props.model.document ? <Form model={this.props.model} config={this.props.model.formConfig} documentname="document" /> : null 
             }
         </div>
         );    

@@ -35,6 +35,10 @@ abstract class AbstractModel
      */
     @observable public document : null | object = null;
     /**
+     * 
+     */
+    @observable public multiple_document : object = {};
+    /**
      * Labels selected ready for bulk update
      */
     @observable public selected_labels = {};
@@ -196,6 +200,7 @@ abstract class AbstractModel
     public resetData()
     {
         this.document = null;
+        this.multiple_document = {};
         this.collection = null;
         this.currentAction = null;
         this.loading = false;
@@ -336,27 +341,34 @@ abstract class AbstractModel
 
     /**
      * Modifies a single document in a collection.
+     * 
+     * @param bulk 
      */
-    public updateOne() 
+    public updateOne(bulk : boolean  = false) 
     {
-        let d = toJS(this.document);
-        //@ts-ignore
-        let id = d.id;
-        //@ts-ignore
-        delete d.id;
-        this.currentAction = 'saving';
-        this.fetchAutenticated(this.getApiUrl(id), 'PATCH', d)
-         .then(response => response.json())
-         .then(data => {
+        if (bulk === true)
+        {
+            console.log(toJS(this.selected_items), toJS(this.multiple_document));
+        } else {
+            let d = toJS(this.document);
             //@ts-ignore
-            this.error = data.error ? data.error : null;
-             for (let i in data)
-             {
-                this.document[i] = data[i];
-             }
-             this.updateDocumentInLocalCollection();
-             this.currentAction = null;
-        });
+            let id = d.id;
+            //@ts-ignore
+            delete d.id;
+            this.currentAction = 'saving';
+            this.fetchAutenticated(this.getApiUrl(id), 'PATCH', d)
+             .then(response => response.json())
+             .then(data => {
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
+                 for (let i in data)
+                 {
+                    this.document[i] = data[i];
+                 }
+                 this.updateDocumentInLocalCollection();
+                 this.currentAction = null;
+            });    
+        } 
     }
 
     /**

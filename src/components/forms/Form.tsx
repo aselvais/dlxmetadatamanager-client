@@ -10,7 +10,8 @@ import MultiSelectForm from "./MultiSelectForm";
 interface formProps {
     model: AbstractModel,
     config: formConfigSchema,
-    bulkmode?: boolean
+    bulkmode?: boolean,
+    documentname: string
 };
 
 /**
@@ -28,8 +29,10 @@ class Form extends Component<formProps, any>
     {
         if (this.props.model.selected_labels[key])
         {
+            delete this.props.model[this.props.documentname][key];
             delete this.props.model.selected_labels[key];
         } else {
+            this.props.model[this.props.documentname][key] = null;
             this.props.model.selected_labels[key] = true;
         }
     }
@@ -71,7 +74,7 @@ class Form extends Component<formProps, any>
                 type="text"
                 name={key}
                 value={v} 
-                onChange={vv => this.props.model.document[key] = vv.target.value} 
+                onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} 
                 />) : null
                 }
             </FormGroup>
@@ -93,7 +96,7 @@ class Form extends Component<formProps, any>
                 (<TextArea 
                     name={key} 
                     value={v}
-                    onChange={vv => this.props.model.document[key] = vv.target.value} 
+                    onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} 
                     growVertically={true} 
                     style={{ width: '100%', minHeight: 100 }}/>) : null }
             </FormGroup>
@@ -117,7 +120,7 @@ class Form extends Component<formProps, any>
                     type="password" 
                     name={key} 
                     value={v} 
-                    onChange={vv => this.props.model.document[key] = vv.target.value} 
+                    onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} 
                     />) : null }
             </FormGroup>        
         );
@@ -138,7 +141,7 @@ class Form extends Component<formProps, any>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ? (<TimezonePicker
                     value={v}
-                    onChange={vv => this.props.model.document[key] = vv}
+                    onChange={vv => this.props.model[this.props.documentname][key] = vv}
                     valueDisplayFormat={TimezoneDisplayFormat.COMPOSITE}
                     popoverProps={{ position: Position.TOP }}
                     showLocalTimezone={true}>
@@ -160,7 +163,7 @@ class Form extends Component<formProps, any>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ?
                 (<div className="bp3-select">
-                    <select onChange={vv => this.props.model.document[key] = vv.target.value} >
+                    <select onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} >
                         <option selected={v ? false : true} >Choose an item...</option>
                         {Object.keys(c.options).map(k => 
                             <option value={k} selected={(v === k) ? true : false}>
@@ -188,7 +191,7 @@ class Form extends Component<formProps, any>
                 { this._shouldDisplayElement(key) ? (<Switch 
                     onChange={vv =>
                         //@ts-ignore 
-                        this.props.model.document[key] = vv.target.checked ? 1 : 0 
+                        this.props.model[this.props.documentname][key] = vv.target.checked ? 1 : 0 
                     }
                     value={v}
                     checked={ !v ? false : true} 
@@ -203,7 +206,7 @@ class Form extends Component<formProps, any>
      */
     public getFormElement(key : string = '')
     {
-        let v = (this.props.model.document && this.props.model.document[key]) ? this.props.model.document[key] : '';
+        let v = (this.props.model[this.props.documentname] && this.props.model[this.props.documentname][key]) ? this.props.model[this.props.documentname][key] : '';
         // @ts-ignore
         let c : formElementConfigSchema = (this.props.config && this.props.config.elements && typeof this.props.config.elements[key] !== 'undefined') ? this.props.config.elements[key] : false;
         //@ts-ignore
@@ -264,7 +267,7 @@ class Form extends Component<formProps, any>
         else {
             // @ts-ignore
             this.props.config.elements = [];
-            Object.keys(this.props.model.document).map( d => this.props.config.elements[d] = {shape: 'text'} );
+            Object.keys(this.props.model[this.props.documentname]).map( d => this.props.config.elements[d] = {shape: 'text'} );
         }
         //@ts-ignore
         form = Object.keys(this.props.config.elements).map((k) => this.getFormElement(k) );
@@ -283,7 +286,7 @@ class Form extends Component<formProps, any>
                                 this.props.config && 
                                 this.props.config.buttonAction && 
                                 typeof this.props.model[this.props.config.buttonAction] === 'function'
-                            ) ? this.props.model[this.props.config.buttonAction]() : null
+                            ) ? this.props.model[this.props.config.buttonAction](this.props.bulkmode ? true : false) : null
                     }
                 />);
     
