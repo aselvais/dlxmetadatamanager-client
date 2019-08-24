@@ -24,9 +24,6 @@ interface Props {
 class SimpleGridSearch extends Component<Props>
 {
     private _re = new RegExp('id|idh|_id|.*_id|.*_idh');
-    public state = {
-        windowVisible: false
-    };
 
     /**
      * 
@@ -35,7 +32,7 @@ class SimpleGridSearch extends Component<Props>
     {
         this.props.model.multiple_document = {};
         let nbrSelected = Object.keys(this.props.model.selected_items).length;
-        if (nbrSelected > 0) this.setState({windowVisible: true});
+        if (nbrSelected > 0) this.props.model.currentAction = 'editing';
     }
 
     /**
@@ -216,12 +213,15 @@ class SimpleGridSearch extends Component<Props>
      */
     public getDialogJsx()
     {
+
         return (
             <div>
                 <Dialog title={this.props.model.name + ' bulk edit ' + Object.keys(this.props.model.selected_items).length + ' selected'}
                         style={{ width: '70%', maxHeight: '90vh' }}
-                        onClose={() => { this.setState({windowVisible: false}); } } 
-                        isOpen={this.state.windowVisible} >
+                        onClose={() => { this.props.model.currentAction = null } } 
+                        isOpen={ (this.props.model.currentAction === 'editing' || this.props.model.currentAction === 'view' || this.props.model.currentAction === 'adding') }
+                        
+                        >
                     <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
                         <Form model={this.props.model} config={this.props.model.formConfig} bulkmode={true} documentname="multiple_document" />
                     </div>

@@ -348,7 +348,24 @@ abstract class AbstractModel
     {
         if (bulk === true)
         {
-            console.log(toJS(this.selected_items), toJS(this.multiple_document));
+            let d = {data: {
+                name: this.name, 
+                ids: Object.keys(toJS(this.selected_items)), 
+                properties: toJS(this.multiple_document)
+            }};
+            this.currentAction = 'saving';
+            this.fetchAutenticated(this.getApiUrl() + '/bulkedit/', 'POST', d)
+             .then(response => response.json())
+             .then(data => {
+                //@ts-ignore
+                this.error = data.error ? data.error : null;
+                //@todo update the data in the collection after server response
+                console.log(data);
+                // if no error we reset the data
+                this.multiple_document = {};
+                this.selected_labels = {};
+                this.currentAction = null;
+            });
         } else {
             let d = toJS(this.document);
             //@ts-ignore
