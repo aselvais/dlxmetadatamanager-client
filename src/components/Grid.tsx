@@ -402,7 +402,7 @@ class Grid extends Component<Props> {
       ) {
         let l = this.props.config.actions.length;
         jsx.push(
-          <td style={{ textAlign: "right", width: l * 40 }}>
+          <td key={'bodycell'+i} style={{ textAlign: "right", width: l * 40 }}>
             {this.props.config.actions.map(a =>
               a !== "add" &&
               ((a === "delete" && Users.isAuthorized("superadmin")) ||

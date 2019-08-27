@@ -112,8 +112,7 @@ class Users extends AbstractModel
        this.currentAction = 'loggingin';
        fetch(this.getApiUrl() + '/login', {
            method: 'POST',
-           body: JSON.stringify({username: 'admin', password: 'adminadmin112'}),
-           // body: JSON.stringify(this.getDocument()),
+           body: JSON.stringify(this.getDocument()),
            headers: new Headers({'Content-Type': 'application/json'})
        })
         .then(response => response.json())
@@ -210,10 +209,13 @@ class Users extends AbstractModel
         return this.token;
     }
 
+    /**
+     * 
+     */
     public initUserFromToken()
     {
         return AccessTokens.tokenToUser(this.getToken()).then(u => {
-            console.log(u);
+            // console.log(u);
         });
 
     }

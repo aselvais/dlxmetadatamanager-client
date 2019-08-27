@@ -504,7 +504,7 @@ abstract class AbstractModel
      */
     public getDislpayCollection()
     {
-        let d = this.collection;
+        let d = toJS(this.collection);
         if (this.pagination.searchstr !== '') d = this._findDataInLocalCollection();
         if (this.pagination.should_ignore !== null) d = this._filterCollectionOnIgnore(d);
         if (this.pagination.tagsfilter !== {}) d = this._filterCollectionOnTags(d);
