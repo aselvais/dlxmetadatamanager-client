@@ -1,6 +1,6 @@
 import Config from "../Config";
 import { toJS, observable, remove } from 'mobx';
-import { formConfigSchema, modelErrorSchema, tagObjectSchema, sortparamsSchema, paginationSchema } from "../interfaces";
+import { formConfigSchema, modelErrorSchema, tagObjectSchema, sortparamsSchema, paginationSchema, requestDataGlobalSearch, responseDataGlobalSearch } from "../interfaces";
 import Users from "./Users";
 import _ from "lodash";
 
@@ -340,6 +340,31 @@ abstract class AbstractModel
     }
 
     /**
+     * 
+     * @param requestData 
+     * @param responseData 
+     */
+    protected _updateGlobalSearchData(requestData : requestDataGlobalSearch, responseData : responseDataGlobalSearch)
+    {
+        if (responseData.nModified === requestData.ids.length) {
+            for(let i=0; i < this.findentitydata.length; i++)
+            {
+                if ( _.indexOf(requestData.ids, this.findentitydata[i]._id) > -1)
+                {
+                    for (var u in requestData.properties)
+                    {
+                        this.findentitydata[i][u] = requestData.properties[u];
+                    }
+                }             
+            }
+        }
+        else
+        {
+            console.log('Error in _updateGlobalSearchData ...');
+        }
+    }
+
+    /**
      * Modifies a single document in a collection.
      * 
      * @param bulk 
@@ -358,12 +383,12 @@ abstract class AbstractModel
              .then(response => response.json())
              .then(data => {
                 //@ts-ignore
-                this.error = data.error ? data.error : null;
-                //@todo update the data in the collection after server response
-                console.log(data);
+                if (!data.data) this.error = data;
+                // @ts-ignore
+                else this._updateGlobalSearchData(d.data, data.data);
                 // if no error we reset the data
                 this.multiple_document = {};
-                this.selected_labels = {};
+                this.selected_items = {};
                 this.currentAction = null;
             });
         } else {

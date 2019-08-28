@@ -220,7 +220,6 @@ class SimpleGridSearch extends Component<Props>
                         style={{ width: '70%', maxHeight: '90vh' }}
                         onClose={() => { this.props.model.currentAction = null } } 
                         isOpen={ (this.props.model.currentAction === 'editing' || this.props.model.currentAction === 'view' || this.props.model.currentAction === 'adding') }
-                        
                         >
                     <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
                         <Form model={this.props.model} config={this.props.model.formConfig} bulkmode={true} documentname="multiple_document" />

@@ -490,3 +490,23 @@ export interface sortparamsSchema {
     asc: boolean
 };
 
+/**
+ * Payload to send to the server for a bulk update
+ */
+export interface requestDataGlobalSearch {
+    name: string,
+    ids: Array<string>,
+    properties: fieldsSchema | tablesSchema | originsSchema | databasesSchema | schemasSchema
+}
+
+/**
+ * Response from the server after a bulk update
+ * example: {"n":28,"nModified":28,"ok":1}
+ */
+export interface responseDataGlobalSearch {
+    n: number,
+    nModified: number,
+    ok: number
+}
+
+
