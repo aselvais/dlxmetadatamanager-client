@@ -508,5 +508,16 @@ export interface responseDataGlobalSearch {
     nModified: number,
     ok: number
 }
-
+/**
+ * Object returned in the array from the getlatesttokens API
+ */
+export interface latesttokensSchema {
+    "ttl": number, 
+    "created": string, 
+    "userId": string, 
+    "username": string, 
+    "realm": string, 
+    "email": string, 
+    "role": string, 
+}
 
