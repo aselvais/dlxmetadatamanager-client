@@ -17,14 +17,14 @@ class Schemas extends AbstractModel
         vertical: true,
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
-            "name": { "shape": "text", diabled: true, bulkedit: false},
-            "schema" : { "shape": "text", diabled: true, bulkedit: false},
-            "storageengine" : { "shape": "text", diabled: true, bulkedit: false},
-            "vendorbrand" : { "shape": "text", diabled: true, bulkedit: false},
+            "name": { "shape": "text", disabled: true, bulkedit: false},
+            "schema" : { "shape": "text", disabled: true, bulkedit: false},
+            "storageengine" : { "shape": "text", disabled: true, bulkedit: false},
+            "vendorbrand" : { "shape": "text", disabled: true, bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
             "timezone": {"shape": "timezone", bulkedit: true},
-            "parent_id": {"shape": "text", diabled: true, bulkedit: false}
+            "parent_id": {"shape": "text", disabled: true, bulkedit: false}
         }
     };
 

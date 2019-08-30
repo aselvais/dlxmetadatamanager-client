@@ -151,6 +151,19 @@ export interface AccessTokensSchema {
     "userId"?: string
 };
 
+export interface ApplogSchema {
+    [key:string]: any,
+    "id"? : string, 
+    "insertdate"? : string, 
+    "action"? : string, 
+    "model"? : string, 
+    "query"? : object, 
+    "tokenCreated"? : string, 
+    "User_id"? : string, 
+    "isNewInstance"? : boolean,
+    "user"? : UsersSchema
+};
+
 /**
  * Fields Schema.
  * ORM to the fields/columns definition kept in the DB.
@@ -408,7 +421,7 @@ export interface formElementConfigSchema {
     /** */
     options?: object,
     /** */
-    diabled?: boolean,
+    disabled?: boolean,
     /** */
     hideLabel?: boolean,
     /** */

@@ -17,10 +17,10 @@ class Fields extends AbstractModel
         vertical: true,
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
-            "name": { "shape": "text", diabled: true, bulkedit: false},
-            "datatype": { "shape": "text", diabled: true, bulkedit: false},
-            "datalength": { "shape": "text", diabled: true, bulkedit: false},
-            "charset": { "shape": "text", diabled: true, bulkedit: false},
+            "name": { "shape": "text", disabled: true, bulkedit: false},
+            "datatype": { "shape": "text", disabled: true, bulkedit: false},
+            "datalength": { "shape": "text", disabled: true, bulkedit: false},
+            "charset": { "shape": "text", disabled: true, bulkedit: false},
             "group": { "shape": "tag", leftIcon: "folder-close", placeholder: 'Optional group in which this field is part of...', bulkedit: false},
             "semantic_type": { "shape": "tag", leftIcon: "comment", placeholder: 'Meaning of the field (Address, zip, customer, ...)', bulkedit: false},
             "is_gdpr": {"shape": 'switch', bulkedit: true},
@@ -32,7 +32,7 @@ class Fields extends AbstractModel
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
             "is_pk": { "shape": 'switch', bulkedit: true },
             "is_fk": { "shape": 'switch', bulkedit: true },
-            "linked_to": {"shape": "text", diabled: true, bulkedit: false}
+            "linked_to": {"shape": "text", disabled: true, bulkedit: false}
         }
     };
 

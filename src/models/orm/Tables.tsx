@@ -17,7 +17,7 @@ class Tables extends AbstractModel
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
             "is_gdpr": {"shape": 'switch', bulkedit: true},
-            "name": { "shape": "text", diabled: true, bulkedit: false},
+            "name": { "shape": "text", disabled: true, bulkedit: false},
             "landing_destination": { "shape": "text", bulkedit: true},
             "documentation": { "shape": "textarea", bulkedit: true},
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false}

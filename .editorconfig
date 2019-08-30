@@ -11,11 +11,3 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
-
-[prettier]
-trailingComma = "es5"
-tabWidth = 1
-useTabs = true
-singleQuote = true
-printWidth = 150
-bracketSpacing = true

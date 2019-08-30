@@ -70,7 +70,7 @@ class Form extends Component<formProps, any>
                 { this._shouldDisplayElement(key) ?
                 (<input className="bp3-input" 
                 style={{ width: '100%'}} 
-                disabled={c.diabled ? c.diabled : false} 
+                disabled={c.disabled ? c.disabled : false} 
                 type="text"
                 name={key}
                 value={v} 
