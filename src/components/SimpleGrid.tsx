@@ -6,6 +6,7 @@ import _ from "lodash";
 interface Props {
 	data: Array<object>;
 	resetHeaders?: boolean;
+	includeOnlyClmns?: Array<string>
 }
 
 /**
@@ -55,6 +56,8 @@ class SimpleGrid extends Component<Props> {
 			this.headers = _.uniq(
 				_.flattenDeep(this.props.data.map(e => Object.keys(e)))
 			);
+		} else if (this.props.includeOnlyClmns && this.props.includeOnlyClmns.length > 0) {
+			this.headers = this.props.includeOnlyClmns;
 		} else {
 			this.headers = this.props.data[0] ? Object.keys(this.props.data[0]) : [];
 		}
