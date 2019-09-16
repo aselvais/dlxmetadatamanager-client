@@ -26,7 +26,8 @@ interface TagsFormProps {
     k:string,
     v:Array<string> | '',
     c : formElementConfigSchema,
-    leftIcon: IconName
+    leftIcon: IconName,
+    documentname: string
 };
 
 /**
@@ -67,7 +68,8 @@ class MultiSelectForm extends Component<TagsFormProps>
      */
     private handleChange(values: React.ReactNode[])
     {
-        this.props.model.document[this.props.k] = values;
+        this.props.model[this.props.documentname][this.props.k] = values;
+        // this.props.model.document[this.props.k] = values;
         return this.setState({ values });
     };
 
