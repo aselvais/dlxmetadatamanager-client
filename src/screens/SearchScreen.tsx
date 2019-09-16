@@ -46,23 +46,23 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation' ], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add'] }
+            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation', 'created_date' ], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add'] }
         },
         {
             model : Databases,  parent : 'origins',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation'], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation', 'created_date'], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add']}
         },
         {
             model : Schemas, parent : 'databases',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation'], editable: ['documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation', 'created_date'], editable: ['documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Tables, parent : 'schemas', 
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'documentation'], editable: ['documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'documentation', 'created_date'], editable: ['documentation'], actions: ['edit', 'drilldown']}
         },
         {
             model : Fields, parent : 'tables',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation'], editable: ['documentation'], actions: ['edit']}
+            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation', 'created_date'], editable: ['documentation'], actions: ['edit']}
         }
     ];
     

@@ -13,7 +13,7 @@ class NavStore
     @observable items : Array<MenuItem> = [
         {name: 'LoadingScreen', label: 'Loading', active: false, icon: 'home', menuVisible: false, role: 'admin'},
         
-        {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true, role: 'god'},
+        {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true, role: 'admin'},
         {name: 'SearchScreen', label: 'Explore', active: false, icon: 'search', menuVisible: true, role: 'admin', level: 0},
         {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true, role: 'god'},
 

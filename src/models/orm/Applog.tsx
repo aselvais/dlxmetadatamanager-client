@@ -1,5 +1,6 @@
 import AbstractModel from "./AbstractModel";
 import { formConfigSchema, ApplogSchema } from "../interfaces";
+import moment from "moment";
 
 class Applog extends AbstractModel {
 	public name: string = "applog";
@@ -24,12 +25,54 @@ class Applog extends AbstractModel {
 
 	/**
 	 * 
+	 * @param cl 
+	 */
+	protected aggregateAppData(cl : Array<any>)
+	{
+		let toret = [];
+		let oo = {};
+		cl.map(e => {
+			let dat = moment(e.insertdate).format('YYYY-MM-DD');
+			if (!oo[dat]) oo[dat] = {};
+			if (!oo[dat][e._user_username]) oo[dat][e._user_username] = {};
+			let action = e.action.replace(/after /,'') + ' action on ' + e.model;
+			if (!oo[dat][e._user_username][action]) oo[dat][e._user_username][action] = 1;
+			else oo[dat][e._user_username][action]++;
+			
+			let ee = {
+				insertdate : moment(e.insertdate).format('YYYY-MM-DD'),
+				username : e._user_username,
+				action : e.action.replace(/after/,'') + ' action on ' + e.model
+			};
+			toret.push(ee);
+		});
+
+		var tt = [];
+		for (let ddt in oo)
+		{
+			var tto = {};
+			tto = {date: ddt};
+			for (let usr in oo[ddt])
+			{
+				//@ts-ignore
+				tto.user = usr;
+				//@ts-ignore
+				tto.actions = JSON.stringify(oo[ddt][usr]).replace(/\{|\}|\"/g, '').replace(/,/g,', ').replace(/\:/g,': ');
+			}
+
+			tt.push(tto);
+		}
+		return tt;
+	}
+
+	/**
+	 * 
 	 * @param where 
 	 * @param include 
 	 */
 	public find(where : object = {}, include : string = 'user')
 	{
-		super.find(where, include, 'flattenObject');
+		super.find(where, include, 'flattenObject', 'aggregateAppData');
 	}
 
 

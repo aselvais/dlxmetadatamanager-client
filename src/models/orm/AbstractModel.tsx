@@ -11,6 +11,8 @@ import {
 } from "../interfaces";
 import Users from "./Users";
 import _ from "lodash";
+import objectIdToTimestamp from 'objectid-to-timestamp';
+import moment from "moment";
 
 /**
  * Abstract class containing the method for accessing the API
@@ -114,6 +116,16 @@ abstract class AbstractModel {
 	 * Array of properties that are of tag type
 	 */
 	protected _tagFieldNames: Array<string> = [];
+
+	/**
+	 * 
+	 * @param o 
+	 */
+	public id2inserteddate(o: object = {}) {
+		//@ts-ignore
+		o.created_date = o.id ? moment(objectIdToTimestamp(o.id)).format("YYYY-MM-DD") : '';
+		return o;
+	}
 
 	/**
 	 *
@@ -493,9 +505,10 @@ abstract class AbstractModel {
 	 *
 	 * @param where The where condition
 	 * @param include A string with the name of the linked collection we want to 'include'
-	 * @param postprocess Function we want to use for post-processing of the returned data
+	 * @param postprocess Function we want to use for post-processing each document of the returned data
+	 * @param postprocesscollection Function we want to use for post processing the whole collection
 	 */
-	public find(where: object = {}, include: string = "", postprocess = null) {
+	public find(where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null) {
 		this.loading = true;
 		this.operationinprogress = true;
 		// Build query
@@ -513,7 +526,12 @@ abstract class AbstractModel {
 			.then(data => {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
-				this.collection = postprocess ? data.map(e => this[postprocess](e) ) : data;
+				let dd = (postprocess && data && data.map) ? data.map(e => this[postprocess](e) ) : data;
+				if (postprocesscollection)
+				{
+					dd = this[postprocesscollection](dd);
+				}
+				this.collection = dd;
 				this.onCollectionUpdated();
 				this.loading = false;
 				this.operationinprogress = false;

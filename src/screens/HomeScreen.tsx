@@ -11,7 +11,7 @@ import Applog from "../models/orm/Applog";
 @observer
 class HomeScreen extends Component {
 
-	private _numberOfDays = 5;
+	private _numberOfDays = 30;
 
 
 	/**
@@ -31,7 +31,7 @@ class HomeScreen extends Component {
 			<div>
 				<div>
 					<h3>Latest create / update / delete operations (past {this._numberOfDays} days)</h3>
-					{Applog.loading ? <Spinner /> : <SimpleGrid data={Applog.collection} includeOnlyClmns={["insertdate", "action", "model", "tokenCreated", "_user_realm", "_user_username"]} />}
+					{Applog.loading ? <Spinner /> : <SimpleGrid data={Applog.collection}  />}
 				</div>
 				<div>
 					<h3>Latest created tokens</h3>
