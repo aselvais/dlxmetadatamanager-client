@@ -22,7 +22,8 @@ class AggregationsScreen extends Component
 
         {title: 'Field names', statePropName: 'fieldsname', collectionName: 'fields', fieldName: 'name', limit: 30 },
         {title: 'Field datatype', statePropName: 'fieldsdatatype', collectionName: 'fields', fieldName: 'datatype', limit: 30 },
-        {title: 'Field semantic types', statePropName: 'fieldsemantictypes', collectionName: 'fields', fieldName: 'semantic_type', limit: 30 },
+        {title: 'Field semantic types', statePropName: 'fieldsemantictypes', collectionName: 'fields', fieldName: 'semantic_type', limit: 40 },
+        {title: 'Field Groups', statePropName: 'fieldgroupstypes', collectionName: 'fields', fieldName: 'group', limit: 40 },
         {title: 'Field is PII', statePropName: 'fieldsispii', collectionName: 'fields', fieldName: 'is_pii', limit: 30 },
         {title: 'Field is PCI', statePropName: 'fieldsispci', collectionName: 'fields', fieldName: 'is_pci', limit: 30 },
         {title: 'Field should be ignored', statePropName: 'fieldsshouldignore', collectionName: 'fields', fieldName: 'should_ignore', limit: 30 },
@@ -44,6 +45,7 @@ class AggregationsScreen extends Component
         fieldsispci: [],
         fieldsshouldignore: [],
         fieldsdatatype: [],
+        fieldgroupstypes: []
     };
 
     /**

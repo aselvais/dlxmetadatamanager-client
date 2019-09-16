@@ -69,7 +69,6 @@ class MultiSelectForm extends Component<TagsFormProps>
     private handleChange(values: React.ReactNode[])
     {
         this.props.model[this.props.documentname][this.props.k] = values;
-        // this.props.model.document[this.props.k] = values;
         return this.setState({ values });
     };
 
@@ -120,10 +119,6 @@ class MultiSelectForm extends Component<TagsFormProps>
         const { tagIntents, tagMinimal, values, ...props } = this.state;
         return (
             <FormGroup>
-                {
-                    //@ts-ignore 
-                    this.props.c.hideLabel === false ? null : <Label>{this.getLabel(this.props.k)}</Label>
-                }
                 <TagInput
                     {...props}
                     leftIcon={ ( this.props.c && this.props.c.leftIcon) ? this.props.c.leftIcon : undefined }
