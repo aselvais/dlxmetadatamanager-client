@@ -108,7 +108,7 @@ class Users extends AbstractModel
      */
     public login()
     {
-       this.loading = true;
+       this.setLoading(true);
        this.currentAction = 'loggingin';
        fetch(this.getApiUrl() + '/login', {
            method: 'POST',
@@ -125,7 +125,7 @@ class Users extends AbstractModel
             } catch(ee) {}
             this.error = data.error ? data.error : null;
             this.currentAction = null;
-            this.loading = false;
+            this.setLoading(false);
         });
     }
 
@@ -154,7 +154,7 @@ class Users extends AbstractModel
      */
     public logout()
     {
-        this.loading = true;
+        this.setLoading(true);
         this.currentAction = 'loggingout';
         /*
         fetch(
@@ -186,7 +186,7 @@ class Users extends AbstractModel
         this.token = null;
         this.document = {};
         this.collection = [];
-        this.loading = false;
+        this.setLoading(false);
     }
     
     /**

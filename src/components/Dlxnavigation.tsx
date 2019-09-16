@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 import NavStore from '../models/NavStore';
 import Users from "../models/orm/Users";
 import Searchglobal from "../models/orm/Searchglobal";
+import StatusBarModel from "../models/StatusBarModel";
 
 /**
  * 
@@ -104,6 +105,9 @@ class Dlxnavigation extends Component
                                             onClick={() => NavStore.setActive(NavStore.items[i].name)} /> : null)}
                 </NavbarGroup>
             </Navbar>
+            <div className="footer">
+                {StatusBarModel.text}
+            </div>
             </div>
         );
     }

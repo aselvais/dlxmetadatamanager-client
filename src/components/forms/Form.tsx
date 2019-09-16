@@ -109,6 +109,26 @@ class Form extends Component<formProps, any>
      * @param v 
      * @param c 
      */
+    public getTagFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        // return <MultiSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
+        return (
+            <FormGroup>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
+                {
+                    //@ts-ignore
+                    this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />) : null 
+                }
+            </FormGroup>
+        );
+    }
+
+    /**
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
     public getPasswordFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
@@ -224,7 +244,7 @@ class Form extends Component<formProps, any>
                 case 'textarea':
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
-                    return <MultiSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
+                    return this.getTagFormElementJSX(key, v, c);
                 case 'switch':
                     return this.getSwitchFormElementJSX(key, v, c);
                 case 'timezone':

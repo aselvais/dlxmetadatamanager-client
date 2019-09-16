@@ -36,7 +36,7 @@ class Schemadata extends AbstractModel {
 		field: string = "",
 		limit: number = 20
 	) {
-		this.loading = true;
+		this.setLoading(true);
 		return this.fetchAutenticated(
 			this.getApiUrl() +
 				"/aggregation/custom?collectionname=" +
@@ -52,7 +52,7 @@ class Schemadata extends AbstractModel {
 				this.error = data.error ? data.error : null;
 				// this.collection = data;
 				// this.onCollectionUpdated();
-				this.loading = false;
+				this.setLoading(false);
 				return data;
 			});
 	}
@@ -67,7 +67,7 @@ class Schemadata extends AbstractModel {
 		entityLevel: "origin" | "database" | "schema" | "table" | "column" = "origin",
 		filter: object = {}
 	) {
-		this.loading = true;
+		this.setLoading(true);
 		this.latestrawschemadata = [];
 		return this.fetchAutenticated(
 			this.getApiUrl() +
@@ -78,7 +78,7 @@ class Schemadata extends AbstractModel {
 			.then(data => {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
-				this.loading = false;
+				this.setLoading(false);
 				this.latestrawschemadata = data.pipeline ? data.pipeline : [];
 			});
 	}
@@ -87,14 +87,14 @@ class Schemadata extends AbstractModel {
 	 *
 	 */
 	public getlatesttokens() {
-		this.loading = true;
+		this.setLoading(true);
 		this.latesttokens = [];
 		return this.fetchAutenticated(this.getApiUrl() + "/getlatesttokens")
 			.then(response => response.json())
 			.then(data => {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
-				this.loading = false;
+				this.setLoading(false);
 				this.latesttokens = data.data ? data.data : [];
 			});
 	}
