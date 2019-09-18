@@ -33,10 +33,14 @@ class Applog extends AbstractModel {
 		let oo = {};
 		cl.map(e => {
 			let dat = moment(e.insertdate).format('YYYY-MM-DD');
+
 			if (!oo[dat]) oo[dat] = {};
+
 			if (!oo[dat][e._user_username]) oo[dat][e._user_username] = {};
 			let action = e.action.replace(/after /,'') + ' action on ' + e.model;
-			if (!oo[dat][e._user_username][action]) oo[dat][e._user_username][action] = 1;
+			if (!oo[dat][e._user_username][action]) oo[dat][e._user_username][action] = e.nbrentries ? e.nbrentries : 1;
+
+			if (e.action === 'bulk save') oo[dat][e._user_username][action] += e.nbrentries;
 			else oo[dat][e._user_username][action]++;
 			
 			let ee = {
@@ -44,6 +48,7 @@ class Applog extends AbstractModel {
 				username : e._user_username,
 				action : e.action.replace(/after/,'') + ' action on ' + e.model
 			};
+
 			toret.push(ee);
 		});
 
