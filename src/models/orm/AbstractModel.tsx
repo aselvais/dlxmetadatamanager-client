@@ -353,9 +353,9 @@ abstract class AbstractModel {
 			.then(data => {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
-				this.setLoading(false);
 				this.operationinprogress = false;
 				this.findentitydata = data.data ? data.data : [];
+				this.setLoading(false);
 			});
 	}
 
@@ -391,8 +391,8 @@ abstract class AbstractModel {
 					//@ts-ignore
 					this.error = data.error ? data.error : null;
 					this.document = data;
-					this.setLoading(false);
 					this.operationinprogress = false;
+					this.setLoading(false);
 				});
 		}
 	}
@@ -445,8 +445,8 @@ abstract class AbstractModel {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
 				this.related = data;
-				this.setLoading(false);
 				this.operationinprogress = false;
+				this.setLoading(false);
 				return data;
 			});
 	}
@@ -566,7 +566,6 @@ abstract class AbstractModel {
 				this.updateCollectionId2idx(dd);
 				this.collection = dd;
 				this.onCollectionUpdated();
-				this.setLoading(false);
 				this.operationinprogress = false;
 				if (
 					data.error &&
@@ -575,6 +574,7 @@ abstract class AbstractModel {
 				) {
 					Users.resetData();
 				}
+				this.setLoading(false);
 			});
 	}
 
@@ -715,8 +715,8 @@ abstract class AbstractModel {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
 				this.aggragateddata[onField] = data.aggregation;
-				this.setLoading(false);
 				this.operationinprogress = false;
+				this.setLoading(false);
 			});
 	}
 

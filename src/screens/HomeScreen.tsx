@@ -31,15 +31,23 @@ class HomeScreen extends Component {
 			<div>
 				<div>
 					<h3>Latest create / update / delete operations (past {this._numberOfDays} days)</h3>
-					{Applog.loading ? <Spinner /> : <SimpleGrid data={Applog.collection}  />}
+					{
+						Applog.loading 
+						? 
+							<Spinner /> 
+						: 
+							<SimpleGrid data={Applog.collection}  />
+					}
 				</div>
 				<div>
 					<h3>Latest created tokens</h3>
-					{Schemadata.loading ? (
-						<Spinner />
-					) : (
-						<SimpleGrid data={Schemadata.latesttokens} includeOnlyClmns={["ttl","created","username","realm","email","role"]} />
-					)}
+					{
+						Schemadata.loading 
+						? 
+							<Spinner /> 
+						: 
+							<SimpleGrid data={Schemadata.latesttokens} includeOnlyClmns={["ttl","created","username","realm","email","role"]} /> 
+					}
 				</div>
 			</div>
 		);

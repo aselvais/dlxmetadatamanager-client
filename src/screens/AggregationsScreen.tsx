@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Schemadata from "../models/orm/Schemadata";
 import SimpleGrid from "../components/SimpleGrid";
+import { Spinner } from "@blueprintjs/core";
 
 /**
  * 
@@ -79,7 +80,11 @@ class AggregationsScreen extends Component
     {
         return (
             <div style={{ display: 'flex', flexWrap: 'wrap'}}>
-                {this._cfg.map(e => (<div style={{ display: 'flexContainer', padding: 15}}><h3>{e.title}</h3><SimpleGrid data={this.state[e.statePropName]} /></div>))}
+                {this._cfg.map(e => (<div style={{ display: 'flexContainer', padding: 15}}><h3>{e.title}</h3>
+                { this.state[e.statePropName].length > 0 ? 
+                <SimpleGrid data={this.state[e.statePropName]} /> : <Spinner />
+                }
+                </div>))}
             </div>
         );
     }

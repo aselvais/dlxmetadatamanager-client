@@ -94,8 +94,8 @@ class Schemadata extends AbstractModel {
 			.then(data => {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
-				this.setLoading(false);
 				this.latesttokens = data.data ? data.data : [];
+				this.setLoading(false);
 			});
 	}
 }

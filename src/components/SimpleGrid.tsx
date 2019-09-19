@@ -1,7 +1,8 @@
 // @ts-check
 import React, { Component } from "react";
-import { Spinner } from "@blueprintjs/core";
+import { Spinner, Icon } from "@blueprintjs/core";
 import _ from "lodash";
+import Translator from "../libs/translate/Translator";
 
 interface Props {
 	data: Array<object>;
@@ -16,6 +17,17 @@ class SimpleGrid extends Component<Props> {
 
 	protected headers: Array<string> = [];
 
+	state = {
+		data: [],
+		sortname: null,
+		sortdirection: false
+	};
+
+	componentDidMount()
+	{
+		this.setState({data: this.props.data});
+	}
+
 	/**
 	 *
 	 * @param {*} row
@@ -24,7 +36,13 @@ class SimpleGrid extends Component<Props> {
 		return (
 			<tr>
 				{row.map(e => (
-					<th key={e}>{e}</th>
+					<th key={e} 
+					className="cantselect"
+					style={{cursor: 'pointer'}} 
+					onClick={() => this._sortOnColumn(e)}
+				>{
+					Translator.t(e)
+				}{ (this.state.sortname === e) ? (<div style={{ float: "right" }}><Icon icon={this.state.sortdirection ? "sort-asc" : "sort-desc"} /></div>) : null }</th>
 				))}
 			</tr>
 		);
@@ -48,18 +66,33 @@ class SimpleGrid extends Component<Props> {
 	}
 
 	/**
+	 * 
+	 * @param k 
+	 */
+	protected _sortOnColumn(k : string = '')
+	{
+		let d = _.orderBy(
+			this.state.data,
+			[k],
+			[this.state.sortdirection ? "asc" : "desc"]
+		);
+		let v = (this.state.sortname === k) ? !this.state.sortdirection : true;
+		this.setState({sortname: k, sortdirection: v, data: d});
+	}
+
+	/**
 	 *
 	 */
 	protected getHeaders() {
 		if (this.props.resetHeaders === true) {
 			//@ts-ignore
 			this.headers = _.uniq(
-				_.flattenDeep(this.props.data.map(e => Object.keys(e)))
+				_.flattenDeep(this.state.data.map(e => Object.keys(e)))
 			);
 		} else if (this.props.includeOnlyClmns && this.props.includeOnlyClmns.length > 0) {
 			this.headers = this.props.includeOnlyClmns;
 		} else {
-			this.headers = this.props.data[0] ? Object.keys(this.props.data[0]) : [];
+			this.headers = this.state.data[0] ? Object.keys(this.state.data[0]) : [];
 		}
 		return this.getHeaderJsx(this.headers);
 	}
@@ -69,8 +102,8 @@ class SimpleGrid extends Component<Props> {
 	 */
 	public render() {
 		if (
-			this.props.data === null ||
-			(this.props.data && this.props.data.length === 0)
+			this.state.data === null ||
+			(this.state.data && this.state.data.length === 0)
 		) {
 			return (
 				<div>
@@ -83,8 +116,8 @@ class SimpleGrid extends Component<Props> {
 					<table className="bp3-html-table bp3-html-table-bordered bp3-html-table-condensed bp3-html-table-striped">
 						<thead className="thead-dark">{this.getHeaders()}</thead>
 						<tbody>
-							{this.props.data && this.props.data.map
-								? this.props.data.map((row, i) => this.getRowJsx(row, i))
+							{this.state.data && this.state.data.map
+								? this.state.data.map((row, i) => this.getRowJsx(row, i))
 								: null}
 						</tbody>
 					</table>
