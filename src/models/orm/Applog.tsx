@@ -50,6 +50,7 @@ class Applog extends AbstractModel {
 			};
 
 			toret.push(ee);
+			return true;
 		});
 
 		var tt = [];
@@ -62,7 +63,10 @@ class Applog extends AbstractModel {
 				//@ts-ignore
 				tto.user = usr;
 				//@ts-ignore
-				tto.actions = JSON.stringify(oo[ddt][usr]).replace(/\{|\}|\"/g, '').replace(/,/g,', ').replace(/\:/g,': ');
+				tto.actions = JSON.stringify(oo[ddt][usr])
+					.replace(/\{|\}|"/g, '')
+					.replace(/,/g,', ')
+					.replace(/:/g,': ');
 			}
 
 			tt.push(tto);

@@ -171,9 +171,9 @@ class Grid extends Component<Props> {
   /**
    * Returns a cell for the body
    *
-   * @param k
-   * @param v
-   * @param row
+   * @param k 
+   * @param v 
+   * @param row 
    */
   public getBodyCellJsx(k, v, row) {
     switch (k) {
@@ -229,7 +229,7 @@ class Grid extends Component<Props> {
                 value={row[k]}
                 confirmOnEnterKey={true}
                 onChange={val => this.handleReportChange(val, row, k)}
-                onConfirm={val => this.handleConfirm(val, row, k)}
+                onConfirm={val => this.handleConfirm(val, row)}
                 maxLines={10}
                 minLines={1}
                 multiline={true}
@@ -247,8 +247,8 @@ class Grid extends Component<Props> {
    * @param report
    * @param row
    */
-  public handleReportChange(val: string, row, k) {
-    row[k] = val;
+  public handleReportChange(val: string, row, key) {
+    this.props.model.collection[this.props.model.collection_id2idx[row.id]][key] = val;
   }
 
   /**
@@ -256,9 +256,9 @@ class Grid extends Component<Props> {
    * @param report
    * @param row
    */
-  public handleConfirm(val: string, row, k) {
-    this.props.model.document = row;
-    this.props.model.updateOne();
+  public handleConfirm(val: string, row) {
+    this.props.model.document = this.props.model.collection[this.props.model.collection_id2idx[row.id]];
+    this.props.model.updateOne(false, this.props.model.collection[this.props.model.collection_id2idx[row.id]]);
   }
 
   /**
@@ -383,7 +383,8 @@ class Grid extends Component<Props> {
    *
    */
   public getBodyJsx() {
-    let rows = this.props.model.getDislpayCollection().map((e, i: number) => {
+    let rows = this.props.model.getDislpayCollection().map((e, i: number, row : any) => {
+
       let zearr = Object.keys(e);
       if (
         this.props.config &&
@@ -392,9 +393,11 @@ class Grid extends Component<Props> {
       ) {
         zearr = this.props.config.showOnly;
       }
-      let jsx = zearr.map((k: string, i: number) =>
-        this.getBodyCellJsx(k, e[k], e)
+      let jsx = zearr.map((k: string, ii: number) =>
+        this.getBodyCellJsx(k, e[k], row[i])
       );
+
+
       if (
         this.props.config &&
         this.props.config.actions &&

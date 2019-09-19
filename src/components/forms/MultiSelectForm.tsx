@@ -1,4 +1,4 @@
-import { Intent, ITagProps, TagInput, FormGroup, Label, Button, IconName, Checkbox } from "@blueprintjs/core";
+import { Intent, ITagProps, TagInput, FormGroup, Button, IconName, Checkbox } from "@blueprintjs/core";
 import Translator from "../../libs/translate/Translator";
 import React, { Component } from "react";
 import { formElementConfigSchema } from "../../models/interfaces";

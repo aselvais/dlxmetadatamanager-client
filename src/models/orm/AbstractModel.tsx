@@ -68,6 +68,7 @@ abstract class AbstractModel {
 	 * Collection (array) of documents/entries
 	 */
 	@observable public collection: null | Array<any> = null;
+	public collection_id2idx : Object = {};
 	/**
 	 * Container object for the possible values of the 'tag' property (if any) of a document
 	 */
@@ -287,6 +288,7 @@ abstract class AbstractModel {
 		this.document = null;
 		this.multiple_document = {};
 		this.collection = null;
+		this.collection_id2idx = {};
 		this.currentAction = null;
 		this.setLoading(false);
 		this.operationinprogress = false;
@@ -411,11 +413,13 @@ abstract class AbstractModel {
 			);
 		} else {
 			// do the sort of the collection here ...
-			this.collection = _.orderBy(
+			let dd = _.orderBy(
 				toJS(this.collection),
 				[this.sortparams.columnName],
 				[this.sortparams.asc ? "asc" : "desc"]
 			);
+			this.updateCollectionId2idx(dd);
+			this.collection = dd;
 		}
 	}
 
@@ -474,7 +478,7 @@ abstract class AbstractModel {
 	 *
 	 * @param bulk
 	 */
-	public updateOne(bulk: boolean = false) {
+	public updateOne(bulk: boolean = false, document : any = null) {
 		if (bulk === true) {
 			let d = {
 				data: {
@@ -497,7 +501,9 @@ abstract class AbstractModel {
 					this.currentAction = null;
 				});
 		} else {
-			let d = toJS(this.document);
+			let d = {};
+			if (document) d = toJS(document);
+			else d = toJS(this.document);
 			//@ts-ignore
 			let id = d.id;
 			//@ts-ignore
@@ -515,6 +521,15 @@ abstract class AbstractModel {
 					this.currentAction = null;
 				});
 		}
+	}
+
+	/**
+	 * Updates the collection_id2idx which contains id as keys and index of the collection as values
+	 */
+	protected updateCollectionId2idx(dd : any)
+	{
+		this.collection_id2idx = {};
+		dd.map((e,i) => this.collection_id2idx[e.id] = i);
 	}
 
 	/**
@@ -548,6 +563,7 @@ abstract class AbstractModel {
 				{
 					dd = this[postprocesscollection](dd);
 				}
+				this.updateCollectionId2idx(dd);
 				this.collection = dd;
 				this.onCollectionUpdated();
 				this.setLoading(false);
