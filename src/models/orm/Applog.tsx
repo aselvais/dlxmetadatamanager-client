@@ -52,14 +52,14 @@ class Applog extends AbstractModel {
 			toret.push(ee);
 			return true;
 		});
-
+		console.log(oo);
 		var tt = [];
 		for (let ddt in oo)
 		{
-			var tto = {};
-			tto = {date: ddt};
 			for (let usr in oo[ddt])
 			{
+				var tto = {};
+				tto = {date: ddt};
 				//@ts-ignore
 				tto.user = usr;
 				//@ts-ignore
@@ -67,9 +67,9 @@ class Applog extends AbstractModel {
 					.replace(/\{|\}|"/g, '')
 					.replace(/,/g,', ')
 					.replace(/:/g,': ');
+				tt.push(tto);
 			}
 
-			tt.push(tto);
 		}
 		return tt;
 	}
