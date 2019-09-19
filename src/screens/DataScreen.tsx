@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Schemadata from "../models/orm/Schemadata";
 import { observer } from 'mobx-react';
 import SimpleGrid from "../components/SimpleGrid";
-import { ButtonGroup, Button } from "@blueprintjs/core";
+import { ButtonGroup, Button, Spinner } from "@blueprintjs/core";
 
 /**
  * Home screen
@@ -44,7 +44,9 @@ class DataScreen extends Component
                         {this.entityLevel.map((e,i) => <Button onClick={() => this._clickButtonLevel(this.entityLevel[i])}>{e}</Button>)}
                     </ButtonGroup>
                 </div>
+                { Schemadata.loading ? <Spinner /> :
                 <SimpleGrid data={Schemadata.latestrawschemadata}/>
+                }
             </div>
         );
     }

@@ -78,8 +78,8 @@ class Schemadata extends AbstractModel {
 			.then(data => {
 				//@ts-ignore
 				this.error = data.error ? data.error : null;
-				this.setLoading(false);
 				this.latestrawschemadata = data.pipeline ? data.pipeline : [];
+				this.setLoading(false);
 			});
 	}
 
