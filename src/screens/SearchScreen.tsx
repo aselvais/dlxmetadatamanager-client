@@ -18,7 +18,6 @@ import Schemas from "../models/orm/Schemas";
 import NavStore from "../models/NavStore";
 import Schemadata from "../models/orm/Schemadata";
 import Reportschema from "../components/Reportschema";
-import { toJS } from "mobx";
 import StatusBarModel from "../models/StatusBarModel";
 
 interface lvlElementType {

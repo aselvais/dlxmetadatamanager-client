@@ -23,11 +23,9 @@ class Reportschema extends Component
                 <h3>Data column view</h3>
                 <SimpleGrid data={datacolumnview} includeOnlyClmns={[
                     'tablename',
-                    'schemaname',
                     'fields_length',
                     'to_lower_sum',
                     'is_cdc_field_sum',
-                    'should_ignore_sum',
                     'is_gdpr_sum',
                     'is_pii_sum',
                     'is_pci_sum',
@@ -35,7 +33,7 @@ class Reportschema extends Component
                     'is_fk_sum',
                     'group_sum',
                     'semantic_type_sum',
-                    'documentation_sum']} 
+                    'documentation_sum']}
                 />
             </div>
         );
@@ -51,7 +49,11 @@ class Reportschema extends Component
         return (
             <div>
                 <h3>Report</h3>
-                <SimpleGrid data={[report]} />
+                <SimpleGrid data={[report]} includeOnlyClmns={['has_cdc_for_each_table']}
+                            formatter={{
+                                'has_cdc_for_each_table': 'booleanled'
+                            }}
+        />
             </div>
         );
     }
@@ -63,10 +65,69 @@ class Reportschema extends Component
     getTableaggregationJSX()
     {
         let {tableaggregation} = Schemadata.datapipelinetablesvalidity;
+        // preprocessing
+        tableaggregation.documentation_sum = (tableaggregation.documentation_sum/tableaggregation.fields_length)*100;
+        tableaggregation.to_lower_sum = (tableaggregation.to_lower_sum/tableaggregation.fields_length)*100;
+        tableaggregation.is_gdpr_sum = (tableaggregation.is_gdpr_sum/tableaggregation.fields_length)*100;
+        tableaggregation.is_pii_sum = (tableaggregation.is_pii_sum/tableaggregation.fields_length)*100;
+        tableaggregation.is_pci_sum = (tableaggregation.is_pci_sum/tableaggregation.fields_length)*100;
+        tableaggregation.is_fk_sum = (tableaggregation.is_fk_sum/tableaggregation.fields_length)*100;
+        tableaggregation.is_pk_sum = (tableaggregation.is_pk_sum/tableaggregation.tables_length)*100;
+        tableaggregation.is_cdc_field_sum = (tableaggregation.is_cdc_field_sum/tableaggregation.tables_length)*100;
         return (
             <div>
-                <h3>Table Aggregation</h3>
-                <SimpleGrid data={[tableaggregation]} />
+                <h3>Tables Aggregation</h3>
+                <SimpleGrid data={[tableaggregation]} 
+                formatter={{
+                    'documentation_sum': 'precent',
+                    'is_pk_sum': 'precent',
+                    'is_cdc_field_sum': 'precent',
+                    'to_lower_sum': 'precent',
+                    'is_gdpr_sum': 'precent',
+                    'is_pii_sum': 'precent',
+                    'is_pci_sum': 'precent',
+                    'is_fk_sum': 'precent',
+                }}
+                includeOnlyClmns={[
+                    'tables_length',
+                    'is_cdc_field_sum',
+                    'fields_length',
+                    'to_lower_sum',
+                    'is_gdpr_sum',
+                    'is_pii_sum',
+                    'is_pci_sum',
+                    'is_pk_sum',
+                    'is_fk_sum',
+                    'group_sum',
+                    'semantic_type_sum',
+                    'documentation_sum'
+                ]}
+                />
+            </div>
+        );
+    }
+
+    /**
+     * 
+     * @param o 
+     */
+    getTabletableshumanreadableJSX()
+    {
+        let {tableshumanreadable} = Schemadata.datapipelinetablesvalidity;
+        return (
+            <div>
+                <h3>Tables human readable</h3>
+                <SimpleGrid data={tableshumanreadable} includeOnlyClmns={[
+                            'name',
+                            'fields_length',
+                            'to_lower_sum',
+                            'documentation_sum',
+                        ]}
+                    formatter={{
+                            'to_lower_sum': 'precent',
+                            'documentation_sum': 'precent'
+                        }}
+                />
             </div>
         );
     }
@@ -88,6 +149,7 @@ class Reportschema extends Component
                 <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
                     {this.getReportJSX()}
                     {this.getTableaggregationJSX()}
+                    {this.getTabletableshumanreadableJSX()}
                     {this.getDatacolumnviewJSX()}
                 </div>
             );    

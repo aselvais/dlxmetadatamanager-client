@@ -562,6 +562,31 @@ export interface datapipelinetablesvalidityDatacolumnviewSchema {
     documentation_sum: number
 }
 
+export interface datapipelinetablesvalidityTableshumanreadableSchema {
+    name: string,
+    schemaname: string,
+    fields_length: number,
+    to_lower_sum: number,
+    is_cdc_field_sum: number,
+    is_cdc_field_data: Array<number>,
+    should_ignore_sum: number,
+    should_ignore_data: Array<number>,
+    is_gdpr_sum: number,
+    is_gdpr_data: Array<number>,
+    is_pii_sum: number,
+    is_pii_data: Array<number>,
+    is_pci_sum: number,
+    is_pci_data: Array<number>,
+    is_pk_sum: number,
+    is_pk_data: Array<number>,
+    is_fk_sum: number,
+    is_fk_data: Array<number>,
+    documentation_sum: number,
+    documentation_data: Array<number>,
+    group_sum: number,
+    semantic_type_sum: number
+};
+
 export interface datapipelinetablesvalidityTableaggregationSchema {
     schemaname: string,
     tables_length: number,
@@ -586,5 +611,6 @@ export interface datapipelinetablesvalidityReportSchema {
 export interface datapipelinetablesvaliditySchema {
     datacolumnview: Array<datapipelinetablesvalidityDatacolumnviewSchema> | null,
     tableaggregation: datapipelinetablesvalidityTableaggregationSchema | null,
-    report: datapipelinetablesvalidityReportSchema | null
+    report: datapipelinetablesvalidityReportSchema | null,
+    tableshumanreadable: Array<datapipelinetablesvalidityTableshumanreadableSchema> | null
 }
