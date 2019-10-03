@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Dialog, Icon, IconName } from "@blueprintjs/core";
+import { Dialog, Icon, IconName, Colors } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 import FieldviewForm from "../components/FieldviewForm";
 
@@ -18,6 +18,8 @@ import Schemas from "../models/orm/Schemas";
 import NavStore from "../models/NavStore";
 import Schemadata from "../models/orm/Schemadata";
 import Reportschema from "../components/Reportschema";
+import { toJS } from "mobx";
+import StatusBarModel from "../models/StatusBarModel";
 
 interface lvlElementType {
     model : AbstractModel,
@@ -133,8 +135,21 @@ class SearchScreen extends Component
      */
     public report(row : object = {}) 
     {
-        Schemadata.loadReport(row);
-        this.lvl[NavStore.items[2].level].model.currentAction = 'report';
+        //@ts-ignore
+        if (typeof row.should_ignore !== 'undefined' && row.should_ignore === 0)
+        {
+            Schemadata.loadReport(row);
+            this.lvl[NavStore.items[2].level].model.currentAction = 'report';    
+        } else {
+            StatusBarModel.color = Colors.VERMILION4;
+            StatusBarModel.icon = 'error';
+            StatusBarModel.text = 'The schema should be "active" if you want to see the reporting.';
+            setTimeout(() => {
+                StatusBarModel.color = '#FFFFFF';
+                StatusBarModel.icon = null;
+                StatusBarModel.text = 'info-sign';
+            }, 3000);
+        }
     }
 
     /**
@@ -251,7 +266,7 @@ class SearchScreen extends Component
             return (
                 <div>
                 <Dialog title="Report"
-                        style={{ width: '70%', maxHeight: '90vh' }}
+                        style={{ width: '90%', maxHeight: '90vh' }}
                         onClose={() => this.lvl[NavStore.items[2].level].model.currentAction = null } 
                         isOpen={ (this.lvl[NavStore.items[2].level].model.currentAction === 'report') }
                         icon='chart' >

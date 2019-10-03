@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, NavbarHeading, Menu, MenuItem, Popover, Position } from "@blueprintjs/core";
+import { Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, NavbarHeading, Menu, MenuItem, Popover, Position, Icon } from "@blueprintjs/core";
 import logo from '../assets/images/Deluxe_swish.png';
 import { observer } from "mobx-react";
 import NavStore from '../models/NavStore';
@@ -106,7 +106,10 @@ class Dlxnavigation extends Component
                 </NavbarGroup>
             </Navbar>
             <div className="footer">
-                {StatusBarModel.text}
+                {(StatusBarModel.icon && StatusBarModel.text !== '') ? <Icon style={{paddingRight: 10}} color={StatusBarModel.color} icon={StatusBarModel.icon} /> : null}
+                <span style={{ backgroundColor: ((StatusBarModel.color !== '#FFFFFF' ? StatusBarModel.color : '')), padding: 3, margin: 1 }}>
+                    {StatusBarModel.text}
+                </span>
             </div>
             </div>
         );
