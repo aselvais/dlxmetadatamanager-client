@@ -55,7 +55,7 @@ class SimpleGrid extends Component<Props> {
 	 */
 	protected getRowJsx(row, i) {
 		let toret = [];
-		this.headers.map(r => toret.push(row[r] ? row[r] : ""));
+		this.headers.map(r => toret.push((typeof row[r] !== 'undefined') ? (typeof row[r] === 'string') ? row[r] : JSON.stringify(row[r]) : ""));
 		return (
 			<tr key={i}>
 				{toret.map(e => (

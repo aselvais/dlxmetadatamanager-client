@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Grid from "../components/Grid";
 import { gridConfig } from "../models/interfaces";
-import { Dialog, Icon } from "@blueprintjs/core";
+import { Dialog, Icon, IconName } from "@blueprintjs/core";
 import FieldeditionForm from "../components/FieldeditionForm";
 import FieldviewForm from "../components/FieldviewForm";
 
@@ -16,11 +16,17 @@ import Translator from "../libs/translate/Translator";
 import Form from "../components/forms/Form";
 import Schemas from "../models/orm/Schemas";
 import NavStore from "../models/NavStore";
+import Schemadata from "../models/orm/Schemadata";
+import Reportschema from "../components/Reportschema";
 
 interface lvlElementType {
     model : AbstractModel,
     gridConfig : gridConfig,
     parent : string | null
+};
+
+interface model2iconSchema {
+    [key:string]: IconName
 };
 
 /**
@@ -32,12 +38,13 @@ class SearchScreen extends Component
     /**
      * model name to icon
      */
-    public model2icon = {
+    public model2icon : model2iconSchema = {
         'origins' : 'locate',
         'databases' : 'database',
         'schemas' : 'diagram-tree',
         'tables' : 'th',
         'fields' : 'list',
+        'report': 'chart'
     };
     protected fna = '';
     /**
@@ -46,23 +53,43 @@ class SearchScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Origins, parent : null,
-            gridConfig : { showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation', 'created_date' ], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add'] }
+            gridConfig : { 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation', 'created_date' ], 
+                editable: ['documentation'], 
+                actions: ['delete', 'edit', 'drilldown', 'add'] 
+            }
         },
         {
             model : Databases,  parent : 'origins',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation', 'created_date'], editable: ['documentation'], actions: ['delete', 'edit', 'drilldown', 'add']}
+            gridConfig : {
+                showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation', 'created_date'], 
+                editable: ['documentation'], 
+                actions: ['delete', 'edit', 'drilldown', 'add']
+            }
         },
         {
             model : Schemas, parent : 'databases',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation', 'created_date'], editable: ['documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {
+                showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation', 'created_date'], 
+                editable: ['documentation'], 
+                actions: ['report', 'edit', 'drilldown']
+            }
         },
         {
             model : Tables, parent : 'schemas', 
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'documentation', 'created_date'], editable: ['documentation'], actions: ['edit', 'drilldown']}
+            gridConfig : {
+                showOnly:[ 'should_ignore', 'tags', 'name', 'documentation', 'created_date'], 
+                editable: ['documentation'], 
+                actions: ['edit', 'drilldown']
+            }
         },
         {
             model : Fields, parent : 'tables',
-            gridConfig : {showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation', 'created_date'], editable: ['documentation'], actions: ['edit']}
+            gridConfig : {
+                showOnly:[ 'should_ignore', 'tags', 'name', 'datatype', 'semantic_type', 'group', 'datalength', 'documentation', 'created_date'], 
+                editable: ['documentation'], 
+                actions: ['edit']
+            }
         }
     ];
     
@@ -98,7 +125,16 @@ class SearchScreen extends Component
         o.document = row;
         o.findRelated('schemadata');
         this.lvl[NavStore.items[2].level].model.currentAction = 'view';
-        
+    }
+
+    /**
+     * 
+     * @param row 
+     */
+    public report(row : object = {}) 
+    {
+        Schemadata.loadReport(row);
+        this.lvl[NavStore.items[2].level].model.currentAction = 'report';
     }
 
     /**
@@ -207,6 +243,28 @@ class SearchScreen extends Component
     }
 
     /**
+     * 
+     */
+    public getDialogReportJsx()
+    {
+        if (this.lvl[NavStore.items[2].level].model.currentAction === 'report') {
+            return (
+                <div>
+                <Dialog title="Report"
+                        style={{ width: '70%', maxHeight: '90vh' }}
+                        onClose={() => this.lvl[NavStore.items[2].level].model.currentAction = null } 
+                        isOpen={ (this.lvl[NavStore.items[2].level].model.currentAction === 'report') }
+                        icon='chart' >
+                            <Reportschema />
+                </Dialog>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Return the JSX for the 'documnentation' form on top of the table
      */
     public getDocumentationEntiryFormJsx()
@@ -274,6 +332,7 @@ class SearchScreen extends Component
                 {this.getErrorMessageJsx()}
                 {this.getBreadCrumbJsx()}
                 {this.getDialogJsx()}
+                {this.getDialogReportJsx()}
                 {this.getTableGridJsx()}
             </div>
         );

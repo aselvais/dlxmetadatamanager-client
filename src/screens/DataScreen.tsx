@@ -44,9 +44,7 @@ class DataScreen extends Component
                         {this.entityLevel.map((e,i) => <Button onClick={() => this._clickButtonLevel(this.entityLevel[i])}>{e}</Button>)}
                     </ButtonGroup>
                 </div>
-                { Schemadata.loading ? <Spinner /> :
-                <SimpleGrid data={Schemadata.latestrawschemadata}/>
-                }
+                { Schemadata.loading ? <Spinner /> : <SimpleGrid data={Schemadata.latestrawschemadata}/> }
             </div>
         );
     }

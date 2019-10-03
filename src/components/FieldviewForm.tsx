@@ -42,7 +42,7 @@ class FieldviewForm extends Component<Props>
         let {related} = this.props.model;
         if (!related) return null;
         return (
-            <div style={{padding: 20, margin: 20}}>
+            <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
                 <h3>Detailed meta-data from source (schemadata)</h3>
                 <table className="bp3-html-table bp3-html-table-striped bp3-html-table-condensed bp3-html-table-bordered">
                 <thead>

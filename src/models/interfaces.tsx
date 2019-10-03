@@ -473,7 +473,7 @@ export interface gridConfig {
     /** */
     showOnly?: Array<string>,
     /** */
-    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add'>,
+    actions?: Array<'view' | 'edit' | 'delete' | 'drilldown' | 'add' | 'report'>,
     /** */
     editable?: Array<string>
 };
@@ -534,3 +534,57 @@ export interface latesttokensSchema {
     "role": string, 
 }
 
+export interface datapipelinetablesvalidityDatacolumnviewSchema {
+    tablename: string,
+    schemaname: string,
+    fields_length: number,
+    to_lower: Array<number>,
+    to_lower_sum: number,
+    is_cdc_field: Array<number>,
+    is_cdc_field_sum: number,
+    should_ignore: Array<number>,
+    should_ignore_sum: number,
+    is_gdpr: Array<number>,
+    is_gdpr_sum: number,
+    is_pii: Array<number>,
+    is_pii_sum: number,
+    is_pci: Array<number>,
+    is_pci_sum: number,
+    is_pk: Array<number>,
+    is_pk_sum: number,
+    is_fk: Array<number>,
+    is_fk_sum: number,
+    group: Array<number>,
+    group_sum: number,
+    semantic_type: Array<number>,
+    semantic_type_sum: number,
+    documentation: Array<number>,
+    documentation_sum: number
+}
+
+export interface datapipelinetablesvalidityTableaggregationSchema {
+    schemaname: string,
+    tables_length: number,
+    is_cdc_field_sum: number,
+    fields_length: number,
+    to_lower_sum: number,
+    should_ignore_sum: number,
+    is_gdpr_sum: number,
+    is_pii_sum: number,
+    is_pci_sum: number,
+    is_pk_sum: number,
+    is_fk_sum: number,
+    group_sum: number,
+    semantic_type_sum: number,
+    documentation_sum: number
+}
+
+export interface datapipelinetablesvalidityReportSchema {
+    has_cdc_for_each_table: boolean
+}
+
+export interface datapipelinetablesvaliditySchema {
+    datacolumnview: Array<datapipelinetablesvalidityDatacolumnviewSchema> | null,
+    tableaggregation: datapipelinetablesvalidityTableaggregationSchema | null,
+    report: datapipelinetablesvalidityReportSchema | null
+}

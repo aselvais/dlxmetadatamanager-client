@@ -47,6 +47,7 @@ abstract class AbstractModel {
 		| "saving"
 		| "loggingin"
 		| "loggingout"
+		| "report"
 		| null = null;
 	/**
 	 * Entry (one document) selected or loaded (by findOne for eg)
@@ -192,6 +193,15 @@ abstract class AbstractModel {
 		}
 		// load the data from the server
 		this._tagFieldNames.map(n => this.loadTags(n));
+	}
+
+	/**
+	 * Load reporting function to be overriden
+	 * @param row 
+	 */
+	public loadReport(row : any)
+	{
+
 	}
 
 	/**

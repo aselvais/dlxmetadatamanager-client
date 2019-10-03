@@ -29,7 +29,8 @@ class Grid extends Component<Props> {
     view: { icon: "search", intent: Intent.NONE },
     edit: { icon: "edit", intent: Intent.WARNING },
     delete: { icon: "delete", intent: Intent.DANGER },
-    drilldown: { icon: "arrow-right", intent: Intent.PRIMARY }
+    drilldown: { icon: "arrow-right", intent: Intent.PRIMARY },
+    report: { icon: "chart", intent: Intent.NONE },
   };
   /**
    * Icons names for types
