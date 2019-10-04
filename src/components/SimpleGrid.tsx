@@ -70,9 +70,11 @@ class SimpleGrid extends Component<Props> {
 				if (vv > 1) intent = 'danger';
 				return (<ProgressBar intent={intent} value={vv} stripes={false} />);
 			case 'booleanled':
-				return (<Icon icon="full-circle" intent={
-					val ? (val > 1) ? 'warning' : 'success' : 'danger'
-				} iconSize={12} />);
+				return (
+					<Icon icon="full-circle" intent={
+						val ? ((val === 1 || val === true) ? 'success' : 'warning') : 'danger'
+					} iconSize={12} />
+				);
 			default:
 				return val;
 		}
