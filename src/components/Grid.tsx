@@ -309,6 +309,15 @@ class Grid extends Component<Props> {
           style={{ paddingRight: 10 }}
         />
       );
+    if (row["is_cdc_field"])
+      iii.push(
+        <Icon
+          icon={"time"}
+          iconSize={isize}
+          intent="primary"
+          style={{ paddingRight: 10 }}
+        />
+      );
 
     icons = <div style={{ float: "right" }}>{iii}</div>;
     return (

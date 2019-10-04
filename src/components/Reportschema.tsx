@@ -49,11 +49,10 @@ class Reportschema extends Component
         return (
             <div>
                 <h3>Report</h3>
-                <SimpleGrid data={[report]} includeOnlyClmns={['has_cdc_for_each_table']}
-                            formatter={{
-                                'has_cdc_for_each_table': 'booleanled'
-                            }}
-        />
+                <SimpleGrid 
+                        data={[report]} 
+                        includeOnlyClmns={['has_cdc_for_each_table']}
+                        formatter={{'has_cdc_for_each_table': 'booleanled'}} />
             </div>
         );
     }
@@ -78,30 +77,30 @@ class Reportschema extends Component
             <div>
                 <h3>Tables Aggregation</h3>
                 <SimpleGrid data={[tableaggregation]} 
-                formatter={{
-                    'documentation_sum': 'precent',
-                    'is_pk_sum': 'precent',
-                    'is_cdc_field_sum': 'precent',
-                    'to_lower_sum': 'precent',
-                    'is_gdpr_sum': 'precent',
-                    'is_pii_sum': 'precent',
-                    'is_pci_sum': 'precent',
-                    'is_fk_sum': 'precent',
-                }}
-                includeOnlyClmns={[
-                    'tables_length',
-                    'is_cdc_field_sum',
-                    'fields_length',
-                    'to_lower_sum',
-                    'is_gdpr_sum',
-                    'is_pii_sum',
-                    'is_pci_sum',
-                    'is_pk_sum',
-                    'is_fk_sum',
-                    'group_sum',
-                    'semantic_type_sum',
-                    'documentation_sum'
-                ]}
+                    formatter={{
+                        'documentation_sum': 'precent',
+                        'is_pk_sum': 'precent',
+                        'is_cdc_field_sum': 'precent',
+                        'to_lower_sum': 'precent',
+                        'is_gdpr_sum': 'precent',
+                        'is_pii_sum': 'precent',
+                        'is_pci_sum': 'precent',
+                        'is_fk_sum': 'precent',
+                    }}
+                    includeOnlyClmns={[
+                        'tables_length',
+                        'is_cdc_field_sum',
+                        'fields_length',
+                        'to_lower_sum',
+                        'is_gdpr_sum',
+                        'is_pii_sum',
+                        'is_pci_sum',
+                        'is_pk_sum',
+                        'is_fk_sum',
+                        'group_sum',
+                        'semantic_type_sum',
+                        'documentation_sum'
+                    ]}
                 />
             </div>
         );
@@ -117,16 +116,19 @@ class Reportschema extends Component
         return (
             <div>
                 <h3>Tables human readable</h3>
-                <SimpleGrid data={tableshumanreadable} includeOnlyClmns={[
-                            'name',
-                            'fields_length',
-                            'to_lower_sum',
-                            'documentation_sum',
-                        ]}
+                <SimpleGrid data={tableshumanreadable} 
+                    includeOnlyClmns={[
+                        'name',
+                        'fields_length',
+                        'to_lower_sum',
+                        'documentation_sum',
+                        'is_cdc_field_sum',
+                    ]}
                     formatter={{
-                            'to_lower_sum': 'precent',
-                            'documentation_sum': 'precent'
-                        }}
+                        'to_lower_sum': 'precent',
+                        'documentation_sum': 'precent',
+                        'is_cdc_field_sum': 'booleanled'
+                    }}
                 />
             </div>
         );
@@ -137,13 +139,8 @@ class Reportschema extends Component
      */
     render()
     {
-        if (!Schemadata.datapipelinetablesvalidity)
-        {
-            return (
-                <div style={{padding: 20}}>
-                    <Spinner />
-                </div>
-            );
+        if (!Schemadata.datapipelinetablesvalidity) {
+            return (<div style={{padding: 20}}><Spinner /></div>);
         } else {
             return (
                 <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
@@ -152,7 +149,7 @@ class Reportschema extends Component
                     {this.getTabletableshumanreadableJSX()}
                     {this.getDatacolumnviewJSX()}
                 </div>
-            );    
+            );
         }
     }
 }
