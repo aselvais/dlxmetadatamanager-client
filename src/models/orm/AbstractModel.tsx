@@ -341,6 +341,7 @@ abstract class AbstractModel {
 	 */
 	protected _findentity(
 		entityLevel:
+			| "systems"
 			| "origins"
 			| "databases"
 			| "schemas"

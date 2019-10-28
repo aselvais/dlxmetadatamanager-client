@@ -18,6 +18,7 @@ class Databases extends AbstractModel
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
             "name": { "shape": "text", bulkedit: false },
+            "code": { "shape": "text", bulkedit: false },
             "storageengine" : { "shape": "text", bulkedit: false},
             "vendorbrand" : { "shape": "text", bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},

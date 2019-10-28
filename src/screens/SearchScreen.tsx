@@ -8,6 +8,7 @@ import FieldviewForm from "../components/FieldviewForm";
 
 import AbstractModel from "../models/orm/AbstractModel";
 
+import Systems from "../models/orm/Systems";
 import Origins from "../models/orm/Origins";
 import Databases from "../models/orm/Databases";
 import Tables from "../models/orm/Tables";
@@ -40,6 +41,7 @@ class SearchScreen extends Component
      * model name to icon
      */
     public model2icon : model2iconSchema = {
+        'systems' : 'application',
         'origins' : 'locate',
         'databases' : 'database',
         'schemas' : 'diagram-tree',
@@ -53,7 +55,15 @@ class SearchScreen extends Component
      */
     protected lvl : Array<lvlElementType> = [
         {
-            model : Origins, parent : null,
+            model : Systems, parent : null,
+            gridConfig : { 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'code', 'organization', 'documentation', 'created_date' ], 
+                editable: ['documentation'], 
+                actions: ['delete', 'edit', 'drilldown', 'add'] 
+            }
+        },
+        {
+            model : Origins, parent : 'systems',
             gridConfig : { 
                 showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation', 'created_date' ], 
                 editable: ['documentation'], 
@@ -63,7 +73,7 @@ class SearchScreen extends Component
         {
             model : Databases,  parent : 'origins',
             gridConfig : {
-                showOnly:[ 'should_ignore', 'tags', 'name', 'app_name', 'vendorbrand', 'documentation', 'created_date'], 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'code', 'app_name', 'vendorbrand', 'documentation', 'created_date'], 
                 editable: ['documentation'], 
                 actions: ['delete', 'edit', 'drilldown', 'add']
             }

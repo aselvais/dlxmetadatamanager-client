@@ -266,6 +266,8 @@ export interface databasesSchema {
     /** */
     "name"?: string,
     /** */
+    "code"?: string,
+    /** */
     "origins_id"?: string,
     /** */
     "vendorbrand"?: string,
@@ -351,6 +353,21 @@ export interface schemasSchema {
 };
 
 /**
+ * Systems schema
+ */
+export interface systemsSchema {
+    [key:string]: any,
+    "idh"?: string,
+    "should_ignore"?: number,
+    "name"?: string,
+    "organization"?: string, 
+    "code"?: string,
+    "tags"?: Array<string>,
+    "documentation"?: string, 
+    "notes"?: string,
+};
+
+/**
  * Origins schema
  */
 export interface originsSchema {
@@ -361,6 +378,8 @@ export interface originsSchema {
     "idh"?: string,
     /** */
     "schemadata_id"?: string,
+    "systems_id"?: string,
+    "systems_idh"?: string,
     /** */
     "should_ignore"?: number,
     /** */
@@ -509,7 +528,7 @@ export interface sortparamsSchema {
 export interface requestDataGlobalSearch {
     name: string,
     ids: Array<string>,
-    properties: fieldsSchema | tablesSchema | originsSchema | databasesSchema | schemasSchema
+    properties: fieldsSchema | tablesSchema | originsSchema | systemsSchema | databasesSchema | schemasSchema
 }
 
 /**
