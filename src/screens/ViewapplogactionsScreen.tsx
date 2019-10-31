@@ -15,7 +15,7 @@ class ViewapplogactionsScreen extends Component {
 	 */
 	public componentDidMount() 
 	{
-		Viewapplogactions.find({}, "", 'id2inserteddate', null, 100);
+		Viewapplogactions.find({}, "", '', null, 100);
 	}
 
 	/**
@@ -32,7 +32,7 @@ class ViewapplogactionsScreen extends Component {
 					</div>
 					{ Viewapplogactions.loading ? <Spinner /> : <SimpleGrid data={Viewapplogactions.collection} 
 					includeOnlyClmns={[
-						"id",
+						// "id",
 						"User_id",
 						"document_id",
 						//"schemadata_id",

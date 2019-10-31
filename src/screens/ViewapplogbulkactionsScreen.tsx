@@ -15,7 +15,7 @@ class ViewapplogbulkactionsScreen extends Component {
 	 */
 	public componentDidMount() 
 	{
-		Viewapplogbulk.find({}, "", 'id2inserteddate', null, 100);
+		Viewapplogbulk.find({}, "", '', null, 100);
 	}
 
 	/**
@@ -33,7 +33,7 @@ class ViewapplogbulkactionsScreen extends Component {
 					</div>
 					{ Viewapplogbulk.loading ? <Spinner /> : <SimpleGrid data={Viewapplogbulk.collection} 
 					includeOnlyClmns={[
-						"id",
+						//"id",
 						"User_id",
 						"document_id",
 						"insertdate",
