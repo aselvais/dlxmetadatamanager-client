@@ -164,6 +164,31 @@ export interface ApplogSchema {
     "user"? : UsersSchema
 };
 
+export interface ViewapplogactionsSchema {
+    "id"?: string,
+    "User_id"?: string,
+    "document_id"?: string,
+    "schemadata_id"?: string,
+    "idh"?: string,
+    "insertdate"?: string,
+    "applog_createddate"?: string,
+    "document_createddate"?: string,
+    "schemadata_createddate"?: string,
+    "action"?: string,
+    "collection"?: string
+};
+
+export interface ViewapplogbulkactionsSchema {
+    "id"?: string,
+    "User_id"?: string,
+    "document_id"?: string,
+    "insertdate"?: string,
+    "applog_createddate"?: string,
+    "document_createddate"?: string,
+    "action"?: string,
+    "collection"?: string
+};
+
 /**
  * Fields Schema.
  * ORM to the fields/columns definition kept in the DB.

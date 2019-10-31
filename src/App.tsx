@@ -25,6 +25,8 @@ import FieldgroupsScreen from './screens/FieldgroupsScreen';
 import DataScreen from './screens/DataScreen';
 import DiagramsScreen from './screens/DiagramsScreen';
 import DocumentationScreen from './screens/DocumentationScreen';
+import ViewapplogbulkactionsScreen from './screens/ViewapplogbulkactionsScreen';
+import ViewapplogactionsScreen from './screens/ViewapplogactionsScreen';
 
 /**
  * 
@@ -56,6 +58,10 @@ class App extends Component {
           return <FieldgroupsScreen />
       case 'ApplicationcodesScreen':
         return <ApplicationcodesScreen />;
+      case 'ViewapplogbulkactionsScreen':
+        return <ViewapplogbulkactionsScreen />;
+      case 'ViewapplogactionsScreen':
+        return <ViewapplogactionsScreen />;
       case 'SemantictypesScreen':
         return <SemantictypesScreen />;
       case 'LandingdestinationsScreen':

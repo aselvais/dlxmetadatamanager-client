@@ -551,11 +551,14 @@ abstract class AbstractModel {
 	 * @param postprocess Function we want to use for post-processing each document of the returned data
 	 * @param postprocesscollection Function we want to use for post processing the whole collection
 	 */
-	public find(where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null) {
+	public find(where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null, limit = null) {
 		this.setLoading(true);
 		this.operationinprogress = true;
 		// Build query
 		let q = {};
+		if (limit !== null) {
+			q["limit"] = limit;
+		}
 		if (where !== {}) {
 			q["where"] = where;
 		}

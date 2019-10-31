@@ -29,7 +29,12 @@ class NavStore
 
         {name: 'DocumentationScreen', label: 'Documentation', active: false, icon: 'document', menuVisible: true, role: 'god'},
         {name: 'DiagramScreen', label: 'Diagrams', active: false, icon: 'diagram-tree', menuVisible: true, role: 'god'},
-        {name: 'DataScreen', label: 'Data', active: false, icon: 'database', menuVisible: true, role: 'god'},
+
+        {name: 'DataScreen', label: 'Data', active: false, icon: 'layout-skew-grid', menuVisible: true, role: 'superadmin', sublevel: [
+            {name: 'DataScreen', label: 'Schema data report', active: false, icon: 'layout-grid', menuVisible: true, role: 'god'},
+            {name: 'ViewapplogactionsScreen', label: 'Applog actions', active: false, icon: 'layout-grid', menuVisible: true, role: 'god'},
+            {name: 'ViewapplogbulkactionsScreen', label: 'Applog bulk actions', active: false, icon: 'layout-grid', menuVisible: true, role: 'god'},
+        ]},
 
         {name: 'SearchglobalScreen', label: 'Global Search', active: false, icon: 'search', menuVisible: false, role: 'admin'},
 
