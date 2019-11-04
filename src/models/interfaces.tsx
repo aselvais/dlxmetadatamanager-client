@@ -167,6 +167,7 @@ export interface ApplogSchema {
 export interface ViewapplogactionsSchema {
     "id"?: string,
     "User_id"?: string,
+    "username"?: string,
     "document_id"?: string,
     "schemadata_id"?: string,
     "idh"?: string,
@@ -175,18 +176,30 @@ export interface ViewapplogactionsSchema {
     "document_createddate"?: string,
     "schemadata_createddate"?: string,
     "action"?: string,
-    "collection"?: string
+    "collection"?: string,
+    "database_name"?: string,
+    "schema_name"?: string,
+    "table_name"?: string,
+    "column_name"?: string
 };
 
 export interface ViewapplogbulkactionsSchema {
     "id"?: string,
     "User_id"?: string,
+    "username"?: string,
     "document_id"?: string,
+    "schemadata_id"?: string,
+    "idh"?: string,
     "insertdate"?: string,
     "applog_createddate"?: string,
     "document_createddate"?: string,
+    "schemadata_createddate"?: string,
     "action"?: string,
-    "collection"?: string
+    "collection"?: string,
+    "database_name"?: string,
+    "schema_name"?: string,
+    "table_name"?: string,
+    "column_name"?: string
 };
 
 /**

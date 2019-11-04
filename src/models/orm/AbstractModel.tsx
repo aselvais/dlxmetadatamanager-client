@@ -132,6 +132,21 @@ abstract class AbstractModel {
 
 	/**
 	 * 
+	 * @param o 
+	 */
+	public mongoDateToLocalDate(o: object = {}) {
+		for (let i in o)
+		{
+			if (o[i] && i.match(/date/) && typeof o[i] === 'string' && o[i].match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$/))
+			{
+				o[i] = moment(o[i]).format("YYYY-MM-DD HH:mm");
+			}
+		}
+		return o;
+	}
+
+	/**
+	 * 
 	 * @param v 
 	 */
 	protected setLoading(v : boolean = false)
@@ -551,11 +566,14 @@ abstract class AbstractModel {
 	 * @param postprocess Function we want to use for post-processing each document of the returned data
 	 * @param postprocesscollection Function we want to use for post processing the whole collection
 	 */
-	public find(where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null, limit = null) {
+	public find(where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null, limit = null, order = null) {
 		this.setLoading(true);
 		this.operationinprogress = true;
 		// Build query
 		let q = {};
+		if (order !== null) {
+			q["order"] = order;
+		}
 		if (limit !== null) {
 			q["limit"] = limit;
 		}
