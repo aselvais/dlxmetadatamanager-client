@@ -27,6 +27,7 @@ import DiagramsScreen from './screens/DiagramsScreen';
 import DocumentationScreen from './screens/DocumentationScreen';
 import ViewapplogbulkactionsScreen from './screens/ViewapplogbulkactionsScreen';
 import ViewapplogactionsScreen from './screens/ViewapplogactionsScreen';
+import AdvancedsearchScreen from './screens/AdvancedsearchScreen';
 
 /**
  * 
@@ -74,6 +75,8 @@ class App extends Component {
           return <SearchglobalScreen />;
       case 'DocumentationScreen':
           return <DocumentationScreen />
+      case 'AdvancedsearchScreen':
+        return <AdvancedsearchScreen />
       case 'DiagramScreen':
           return <DiagramsScreen />;
       case 'LogoutScreen':
