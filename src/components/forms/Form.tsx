@@ -12,6 +12,7 @@ interface formProps {
     config: formConfigSchema,
     bulkmode?: boolean,
     elements?: string,
+    buttonAction?: string,
     documentname: string,
 };
 
@@ -279,6 +280,33 @@ class Form extends Component<formProps, any>
         }
     }
 
+    /**
+     * 
+     * @param e 
+     */
+    protected onClickSubmit()
+    {
+        if (
+            this.props.buttonAction && 
+            typeof this.props.model[this.props.buttonAction] === 'function'
+        ) 
+        {
+            return this.props.model[this.props.buttonAction](this.props.bulkmode ? true : false);
+        }
+        else if 
+        (
+            this.props.config && 
+            this.props.config.buttonAction && 
+            typeof this.props.model[this.props.config.buttonAction] === 'function'
+        )
+        { 
+            return this.props.model[this.props.config.buttonAction](this.props.bulkmode ? true : false);
+        } 
+        else 
+        {
+            return null;
+        }
+    }
 
     /**
      * 
@@ -305,13 +333,7 @@ class Form extends Component<formProps, any>
                     icon="plus" 
                     intent="success" 
                     text={Translator.t('Submit')}
-                    onClick={
-                        e => (
-                                this.props.config && 
-                                this.props.config.buttonAction && 
-                                typeof this.props.model[this.props.config.buttonAction] === 'function'
-                            ) ? this.props.model[this.props.config.buttonAction](this.props.bulkmode ? true : false) : null
-                    }
+                    onClick={ () => this.onClickSubmit() }
                 />);
     
             }

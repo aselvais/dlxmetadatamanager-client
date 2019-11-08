@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ControlGroup, HTMLSelect, Drawer, Button } from "@blueprintjs/core";
+import { ControlGroup, HTMLSelect, Drawer, Button, Spinner } from "@blueprintjs/core";
 import Form from "../components/forms/Form";
 import AccessTokens from "../models/orm/AccessTokens";
 import Applicationcodes from "../models/orm/Applicationcodes";
@@ -20,6 +20,7 @@ import Users from "../models/orm/Users";
 import Viewapplogactions from "../models/orm/Viewapplogactions";
 import Viewapplogbulk from "../models/orm/Viewapplogbulk";
 import Viewfieldsflat from "../models/orm/Viewfieldsflat";
+import { toJS } from "mobx";
 
 /**
  * Home screen
@@ -85,17 +86,34 @@ class AdvancedsearchScreen extends Component
                 <div>
                     <h3>{this.state.modelName}</h3>
                     <div>
-                    <Form model={this.state.model} config={this.state.model.formConfig} elements="elementssearch" documentname="document" />
+                    <Form 
+                        model={this.state.model} 
+                        config={this.state.model.formConfig} 
+                        elements="elementssearch" 
+                        documentname="document" 
+                        buttonAction="search"
+                    />
                     </div>
                 </div>
             );
         }
     }
 
-    onChangeModelSelection(elemName)
+    protected getGrid()
     {
+        if (!this.state.model || this.state.model.loading === true)
+        return (<Spinner />);
+        else
+        return (<div>{JSON.stringify(toJS(this.state.model.collection))}</div>);
+    }
 
-        this.setState({
+    /**
+     * 
+     * @param elemName 
+     */
+    protected onChangeModelSelection(elemName)
+    {
+       this.setState({
             modelName: elemName,
             model: this.modelinstances[elemName]
         });
@@ -129,6 +147,9 @@ class AdvancedsearchScreen extends Component
                         {this.getSearchForm()}
                     </div>
                 </Drawer>
+                <div>
+                    {this.getGrid()}
+                </div>
             </div>
         );
     }

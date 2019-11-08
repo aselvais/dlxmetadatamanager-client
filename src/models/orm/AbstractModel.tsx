@@ -319,6 +319,16 @@ abstract class AbstractModel {
 		this.operationinprogress = false;
 	}
 
+	public async search(e)
+	{
+		// (where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null, limit = null, order = null)
+		// {}, "", 'id2inserteddate', null, null, null)
+		let where = toJS(this.document);
+		console.log(where);
+		await this.find(where, "", '', null, 50, null);
+		console.log(toJS(this.collection));
+	}
+
 	/**
 	 * Take the this.document and update the same one in this.collection
 	 */
