@@ -47,6 +47,15 @@ class Users extends AbstractModel
             "company" : { shape: "text"},
             "role" : { shape: "select", options: ['god', 'superadmin', 'admin', 'editor', 'viewer'] },
             "email" : { shape: "email"},
+        },
+        elementssearch:
+        {
+            "id": { shape: "text"},
+            "realm": { shape: "text"},
+            "username": { shape: "text"},
+            "password": { shape: "text"},
+            "email": { shape: "text"},
+            "emailVerified": { shape: "text"},        
         }
     };
 

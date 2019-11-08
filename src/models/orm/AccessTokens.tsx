@@ -19,6 +19,12 @@ class AccessTokens extends AbstractModel
             "ttl": { "shape": "text"},
             "created": { "shape": "text"},
             "userId": { "shape": "text"}
+        },
+        elementssearch: {
+            "id": { "shape": "text"},
+            "ttl": { "shape": "text"},
+            "created": { "shape": "text"},
+            "userId": { "shape": "text"}
         }
     };
 

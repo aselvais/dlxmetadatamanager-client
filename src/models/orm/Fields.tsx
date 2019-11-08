@@ -33,6 +33,31 @@ class Fields extends AbstractModel
             "is_pk": { "shape": 'switch', bulkedit: true },
             "is_fk": { "shape": 'switch', bulkedit: true },
             "linked_to": {"shape": "text", disabled: true, bulkedit: false}
+        },
+        elementssearch: {
+            "id": {"shape": "text"},
+            "name": {"shape": "text"},
+            "datatype": {"shape": "text"},
+            "datalength": {"shape": "text"},
+            "charset": {"shape": "text"},
+            "tables_id": {"shape": "text"},
+            "schemadata_id": {"shape": "text"},
+            "documentation": {"shape": "text"},
+            "properties": {"shape": "text"},
+            "tags": {"shape": "text"},
+            "idh": {"shape": "text"},
+            "tables_idh": {"shape": "text"},
+            "should_ignore": {"shape": "text"},
+            "is_gdpr": {"shape": "text"},
+            "group": {"shape": "text"},
+            "semantic_type": {"shape": "text"},
+            "is_pii": {"shape": "text"},
+            "is_pci": {"shape": "text"},
+            "to_lower": {"shape": "text"},
+            "is_cdc_field": {"shape": "text"},
+            "is_pk": {"shape": "text"},
+            "is_fk": {"shape": "text"},
+            "linked_to": {"shape": "text"},
         }
     };
 

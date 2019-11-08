@@ -485,8 +485,10 @@ export interface formConfigSchema {
     fill?: boolean,
     /** */
     vertical?: boolean,
-    /** */
-    elements?: formElemObjConfigSchema
+    /** Elements definition for edition / addition form */
+    elements?: formElemObjConfigSchema,
+    /** Elements for search form */
+    elementssearch?: formElemObjConfigSchema
 };
 
 export interface gridConfigActionMethods {

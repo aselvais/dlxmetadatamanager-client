@@ -25,6 +25,20 @@ class Schemas extends AbstractModel
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
             "timezone": {"shape": "timezone", bulkedit: true},
             "parent_id": {"shape": "text", disabled: true, bulkedit: false}
+        },
+        elementssearch:{
+            "idh": {"shape": "text"},
+            "databases_idh": {"shape": "text"},
+            "schemadata_id": {"shape": "text"},
+            "name": {"shape": "text"},
+            "should_ignore": {"shape": "text"},
+            "documentation": {"shape": "text"},
+            "tags": {"shape": "text"},
+            "schema": {"shape": "text"},
+            "storageengine": {"shape": "text"},
+            "vendorbrand": {"shape": "text"},
+            "timezone": {"shape": "text"},
+            "parent_id": {"shape": "text"},
         }
     };
 

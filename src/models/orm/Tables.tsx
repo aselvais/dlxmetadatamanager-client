@@ -21,6 +21,21 @@ class Tables extends AbstractModel
             "landing_destination": { "shape": "text", bulkedit: true},
             "documentation": { "shape": "textarea", bulkedit: true},
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false}
+        },
+        elementssearch:
+        {
+            "id": { "shape": "text"},
+            "storageengine": { "shape": "text"},
+            "databases_id": { "shape": "text"},
+            "idh": { "shape": "text"},
+            "schemas_idh": { "shape": "text"},
+            "schemadata_id": { "shape": "text"},
+            "should_ignore": { "shape": "text"},
+            "is_gdpr": { "shape": "text"},
+            "name": { "shape": "text"},
+            "landing_destination": { "shape": "text"},
+            "documentation": { "shape": "text"},
+            "tags": { "shape": "text"},           
         }
     };
 

@@ -11,7 +11,8 @@ interface formProps {
     model: AbstractModel,
     config: formConfigSchema,
     bulkmode?: boolean,
-    documentname: string
+    elements?: string,
+    documentname: string,
 };
 
 /**
@@ -20,6 +21,9 @@ interface formProps {
 @observer
 class Form extends Component<formProps, any>
 {
+    static defaultProps = {
+        elements: 'elements',
+    };
 
     /**
      * 
@@ -228,9 +232,9 @@ class Form extends Component<formProps, any>
     {
         let v = (this.props.model[this.props.documentname] && this.props.model[this.props.documentname][key]) ? this.props.model[this.props.documentname][key] : '';
         // @ts-ignore
-        let c : formElementConfigSchema = (this.props.config && this.props.config.elements && typeof this.props.config.elements[key] !== 'undefined') ? this.props.config.elements[key] : false;
+        let c : formElementConfigSchema = (this.props.config && this.props.config[this.props.elements] && typeof this.props.config[this.props.elements][key] !== 'undefined') ? this.props.config[this.props.elements][key] : false;
         //@ts-ignore
-        if (this.props.bulkmode === true && this.props.config.elements[key].bulkedit === false) return null;
+        if (this.props.bulkmode === true && this.props.config[this.props.elements][key].bulkedit === false) return null;
 
         if (!c) return null;
         else if (c.shape) {
@@ -286,11 +290,11 @@ class Form extends Component<formProps, any>
         {}
         else {
             // @ts-ignore
-            this.props.config.elements = [];
-            Object.keys(this.props.model[this.props.documentname]).map( d => this.props.config.elements[d] = {shape: 'text'} );
+            this.props.config[this.props.elements] = [];
+            Object.keys(this.props.model[this.props.documentname]).map( d => this.props.config[this.props.elements][d] = {shape: 'text'} );
         }
         //@ts-ignore
-        form = Object.keys(this.props.config.elements).map((k) => this.getFormElement(k) );
+        form = Object.keys(this.props.config[this.props.elements]).map((k) => this.getFormElement(k) );
         if (this.props.config.showButton !== false)
         {
             if (this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin') {
@@ -319,5 +323,6 @@ class Form extends Component<formProps, any>
         );
     }
 }
+
 
 export default Form;

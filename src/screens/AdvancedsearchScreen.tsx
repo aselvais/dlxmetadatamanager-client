@@ -85,7 +85,7 @@ class AdvancedsearchScreen extends Component
                 <div>
                     <h3>{this.state.modelName}</h3>
                     <div>
-                    <Form model={this.state.model} config={this.state.model.formConfig} documentname="document" />
+                    <Form model={this.state.model} config={this.state.model.formConfig} elements="elementssearch" documentname="document" />
                     </div>
                 </div>
             );

@@ -27,6 +27,26 @@ class Origins extends AbstractModel
             "tags": { "shape": "tag", "leftIcon": "tag", "placeholder": "Optional tags used for categorazation...", bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
             "notes": { "shape": "textarea", bulkedit: true}
+        },
+        elementssearch:
+        {
+            "id": {"shape": "text"},
+            "idh": {"shape": "text"},
+            "schemadata_id": {"shape": "text"},
+            "systems_id": {"shape": "text"},
+            "systems_idh": {"shape": "text"},
+            "should_ignore": {"shape": "text"},
+            "name": {"shape": "text"},
+            "organization": {"shape": "text"},
+            "app_code": {"shape": "text"},
+            "cust_type": {"shape": "text"},
+            "customer_source": {"shape": "text"},
+            "business_contact": {"shape": "text"},
+            "cdc_enabled": {"shape": "text"},
+            "owner": {"shape": "text"},
+            "tags": {"shape": "text"},
+            "documentation": {"shape": "text"},
+            "notes": {"shape": "text"},
         }
     };
 

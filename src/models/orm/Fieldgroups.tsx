@@ -15,6 +15,12 @@ class Fieldgroups extends AbstractModel
             "should_ignore": { "shape": "switch" },
             "name": { "shape": "text"},
             "description": { "shape": "textarea"}
+        },
+        elementssearch: {
+            "id": { "shape": "text"},
+            "name": { "shape": "text"},
+            "description": { "shape": "text"},
+            "should_ignore": { "shape": "text"},
         }
     };
 }

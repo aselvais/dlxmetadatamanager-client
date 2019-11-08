@@ -45,7 +45,28 @@ class Schemadata extends AbstractModel {
 			"meta_connection_str": { "shape": "text"},
 			"meta_app_code": { "shape": "text"},
 			"meta_documentation": { "shape": "text"},
-        }
+		},
+		elementssearch: {
+			"id": { "shape": "text"},
+			"meta_database_name": { "shape": "text"},
+			"meta_schema_name": { "shape": "text"},
+			"meta_table_name": { "shape": "text"},
+			"meta_column_name": { "shape": "text"},
+			"meta_column_type": { "shape": "text"},
+			"meta_column_length": { "shape": "text"},
+			"meta_column_precision": { "shape": "text"},
+			"meta_is_nullable": { "shape": "text"},
+			"meta_is_pk": { "shape": "text"},
+			"meta_is_fk": { "shape": "text"},
+			"meta_is_unique": { "shape": "text"},
+			"meta_schema_acquisition_timestamp": { "shape": "text"},
+			"meta_checksum": { "shape": "text"},
+			"meta_database_engine": { "shape": "text"},
+			"meta_pipeline_name": { "shape": "text"},
+			"meta_connection_str": { "shape": "text"},
+			"meta_app_code": { "shape": "text"},
+			"meta_documentation": { "shape": "text"},
+		}
     };
 	/**
 	 *

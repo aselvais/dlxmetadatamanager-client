@@ -22,6 +22,16 @@ class Systems extends AbstractModel
             "tags": { "shape": "tag", "leftIcon": "tag", "placeholder": "Optional tags used for categorazation...", bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
             "notes": { "shape": "textarea", bulkedit: true}
+        },
+        elementssearch: {
+            "idh": { "shape": "text"},
+            "should_ignore": { "shape": "text"},
+            "name": { "shape": "text"},
+            "organization": { "shape": "text"},
+            "code": { "shape": "text"},
+            "tags": { "shape": "text"},
+            "documentation": { "shape": "text"},
+            "notes": { "shape": "text"},
         }
     };
 

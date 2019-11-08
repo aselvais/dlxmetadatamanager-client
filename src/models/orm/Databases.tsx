@@ -43,7 +43,37 @@ class Databases extends AbstractModel
             "port" : {"shape": "text", bulkedit: false},
 
             "jdbc_connection_str" : {"shape": "text", bulkedit: false}
-
+        },
+        elementssearch: {
+            "id": {"shape": "text"},
+            "name": {"shape": "text"},
+            "code": {"shape": "text"},
+            "origins_id": {"shape": "text"},
+            "vendorbrand": {"shape": "text"},
+            "storageengine": {"shape": "text"},
+            "idh": {"shape": "text"},
+            "origins_idh": {"shape": "text"},
+            "schemadata_id": {"shape": "text"},
+            "should_ignore": {"shape": "text"},
+            "documentation": {"shape": "text"},
+            "tags": {"shape": "text"},
+            "timezone": {"shape": "text"},
+            "parent_id": {"shape": "text"},
+            "app_name": {"shape": "text"},
+            "network": {"shape": "text"},
+            "hosted_area": {"shape": "text"},
+            "in_bidm": {"shape": "text"},
+            "deluxe_name": {"shape": "text"},
+            "firewall": {"shape": "text"},
+            "instance_name": {"shape": "text"},
+            "schema_name": {"shape": "text"},
+            "username": {"shape": "text"},
+            "password": {"shape": "text"},
+            "hostname": {"shape": "text"},
+            "sid": {"shape": "text"},
+            "ip": {"shape": "text"},
+            "port": {"shape": "text"},
+            "jdbc_connection_str": {"shape": "text"},
         }
     };
 
