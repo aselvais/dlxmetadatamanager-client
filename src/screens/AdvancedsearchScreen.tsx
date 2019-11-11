@@ -20,11 +20,13 @@ import Users from "../models/orm/Users";
 import Viewapplogactions from "../models/orm/Viewapplogactions";
 import Viewapplogbulk from "../models/orm/Viewapplogbulk";
 import Viewfieldsflat from "../models/orm/Viewfieldsflat";
-import { toJS } from "mobx";
+import SimpleGrid from "../components/SimpleGrid";
+import { observer } from "mobx-react";
 
 /**
  * Home screen
  */
+@observer
 class AdvancedsearchScreen extends Component
 {
     state = {
@@ -104,7 +106,9 @@ class AdvancedsearchScreen extends Component
         if (!this.state.model || this.state.model.loading === true)
         return (<Spinner />);
         else
-        return (<div>{JSON.stringify(toJS(this.state.model.collection))}</div>);
+        return (<div>
+            <SimpleGrid data={this.state.model.collection} />
+        </div>);
     }
 
     /**
