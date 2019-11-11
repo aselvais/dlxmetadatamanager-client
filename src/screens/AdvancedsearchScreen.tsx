@@ -31,9 +31,10 @@ class AdvancedsearchScreen extends Component
 {
     state = {
         modelName : '---',
-        isOpen: false,
-        model: null
+        isOpen: false
     };
+
+    protected model = null;
 
     private modellist = [
         '---',
@@ -89,8 +90,8 @@ class AdvancedsearchScreen extends Component
                     <h3>{this.state.modelName}</h3>
                     <div>
                     <Form 
-                        model={this.state.model} 
-                        config={this.state.model.formConfig} 
+                        model={this.model} 
+                        config={this.model.formConfig} 
                         elements="elementssearch" 
                         documentname="document" 
                         buttonAction="search"
@@ -103,12 +104,14 @@ class AdvancedsearchScreen extends Component
 
     protected getGrid()
     {
-        if (!this.state.model || this.state.model.loading === true)
-        return (<Spinner />);
-        else
-        return (<div>
-            <SimpleGrid data={this.state.model.collection} />
-        </div>);
+        if (!this.model) 
+            return null;
+        else if (this.model.loading === true)
+            return (<Spinner />);
+        else if (this.model.loading === false)
+            return (<SimpleGrid data={this.model.collection} />);
+        else 
+            return null;
     }
 
     /**
@@ -119,8 +122,9 @@ class AdvancedsearchScreen extends Component
     {
        this.setState({
             modelName: elemName,
-            model: this.modelinstances[elemName]
         });
+        this.model = this.modelinstances[elemName];
+        this.setState({ isOpen: true });
     }
 
     /**
@@ -135,7 +139,7 @@ class AdvancedsearchScreen extends Component
                         Entiry &nbsp;&nbsp;&nbsp;
                     <HTMLSelect options={this.modellist} onChange={(e) => this.onChangeModelSelection(e.target.value) } />
                     </label>
-                    <Button onClick={ () => this.setState({ isOpen: true })}>Show search form</Button>
+                    <Button onClick={ () => this.setState({ isOpen: true })} icon="form"></Button>
                 </ControlGroup>
                 <Drawer
                     icon="search"

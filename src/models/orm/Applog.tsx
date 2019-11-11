@@ -22,15 +22,15 @@ class Applog extends AbstractModel {
             description: { "shape": "textarea"}
 		},
 		elementssearch: {
-			"id": {"shape": "switch"},
-			"insertdate": {"shape": "switch"},
-			"action": {"shape": "switch"},
-			"model": {"shape": "switch"},
-			"query": {"shape": "switch"},
-			"tokenCreated": {"shape": "switch"},
-			"User_id": {"shape": "switch"},
-			"isNewInstance": {"shape": "switch"},
-			"user": {"shape": "switch"},
+			"id": {"shape": "text"},
+			"insertdate": {"shape": "text"},
+			"action": {"shape": "text"},
+			"model": {"shape": "text"},
+			"query": {"shape": "text"},
+			"tokenCreated": {"shape": "text"},
+			"User_id": {"shape": "text"},
+			"isNewInstance": {"shape": "text"},
+			"user": {"shape": "text"},
 		}
 	};
 

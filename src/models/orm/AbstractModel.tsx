@@ -319,12 +319,17 @@ abstract class AbstractModel {
 		this.operationinprogress = false;
 	}
 
+	/**
+	 * Search with 'like' filter
+	 * @param e 
+	 */
 	public async search(e)
 	{
-		// (where: object = {}, include: string = "", postprocess = 'id2inserteddate', postprocesscollection = null, limit = null, order = null)
-		// {}, "", 'id2inserteddate', null, null, null)
 		let where = toJS(this.document);
-		console.log(where);
+		for (let i in where)
+		{
+			where[i] = {like:where[i]};
+		}
 		await this.find(where, "", '', null, 50, null);
 		console.log(toJS(this.collection));
 	}

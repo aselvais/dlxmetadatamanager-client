@@ -1,6 +1,6 @@
 // @ts-check
 import React, { Component } from "react";
-import { Spinner, Icon, ProgressBar, Intent } from "@blueprintjs/core";
+import { Icon, ProgressBar, Intent } from "@blueprintjs/core";
 import _ from "lodash";
 import Translator from "../libs/translate/Translator";
 
@@ -151,11 +151,7 @@ class SimpleGrid extends Component<Props> {
 			this.state.data === null ||
 			(this.state.data && this.state.data.length === 0)
 		) {
-			return (
-				<div>
-					<Spinner />
-				</div>
-			);
+			return (<div></div>);
 		} else {
 			return (
 				<div className="Grid">
