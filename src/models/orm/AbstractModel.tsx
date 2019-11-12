@@ -328,7 +328,11 @@ abstract class AbstractModel {
 		let where = toJS(this.document);
 		for (let i in where)
 		{
-			where[i] = {like:where[i]};
+			if (where[i] != '')
+			{
+				if (where[i].match(/^[0-9]{1,30}$/)) where[i] = parseInt(where[i]);
+				else where[i] = {like:where[i]};	
+			}
 		}
 		await this.find(where, "", '', null, 50, null);
 		console.log(toJS(this.collection));
