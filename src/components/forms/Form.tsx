@@ -6,6 +6,7 @@ import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 import { TimezoneDisplayFormat, TimezonePicker } from "@blueprintjs/timezone";
 import MultiSelectForm from "./MultiSelectForm";
+import LinkSelectForm from "./LinkSelectForm";
 
 interface formProps {
     model: AbstractModel,
@@ -123,6 +124,33 @@ class Form extends Component<formProps, any>
                 {
                     //@ts-ignore
                     this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />) : null 
+                }
+            </FormGroup>
+        );
+    }
+    
+    /**
+     * 
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    public getLinkFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    {
+        // return <LinkSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
+        return (
+            <FormGroup>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
+                {
+                    this._shouldDisplayElement(key) ? (<LinkSelectForm 
+                        leftIcon="tag" 
+                        model={this.props.model} 
+                        documentname={this.props.documentname} 
+                        k={key} 
+                        //@ts-ignore
+                        v={v} 
+                        c={c} 
+                    />) : null
                 }
             </FormGroup>
         );
@@ -254,10 +282,12 @@ class Form extends Component<formProps, any>
                     return this.getSwitchFormElementJSX(key, v, c);
                 case 'timezone':
                     return this.getTimezoneElementJSX(key, v, c);
+                case 'link':
+                    return this.getLinkFormElementJSX(key, v, c);
                 /*
                 case 'email':
                     return null;
-                case 'checkbow':
+                case 'checkbox':
                     return null;
                 case 'radio':
                     return null;

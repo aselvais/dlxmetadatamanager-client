@@ -33,5 +33,10 @@
     "app_code" : "Application code",
     "cust_type" : "Customer type",
     "customer_source" : "Customer source",
-    "business_contact" : "Business contact"
+    "business_contact" : "Business contact",
+    "systems_id" : "System linked",
+    "origins_id": "Origin linked",
+    "databases_id": "Database linked",
+    "schemas_id": "Schema linked",
+    "tables_id": "Table linked"
 }

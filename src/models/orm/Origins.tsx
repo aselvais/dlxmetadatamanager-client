@@ -17,6 +17,7 @@ class Origins extends AbstractModel
         elements: {
             "should_ignore": { "shape": "switch", bulkedit: true },
             "name": { "shape": "text", bulkedit: true },
+            "systems_id": { "shape": "link", bulkedit: true },
             "organization": { "shape": "text", bulkedit: true},
             "app_code" : { "shape": "text", bulkedit: false },
             "cust_type" : { "shape": "text", bulkedit: true },
