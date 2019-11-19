@@ -643,7 +643,8 @@ export interface datapipelinetablesvalidityTableaggregationSchema {
 }
 
 export interface datapipelinetablesvalidityReportSchema {
-    has_cdc_for_each_table: boolean
+    has_cdc_for_each_table: boolean,
+    has_pk_for_each_table: boolean,
 }
 
 export interface datapipelinetablesvaliditySchema {

@@ -51,8 +51,8 @@ class Reportschema extends Component
                 <h3>Report</h3>
                 <SimpleGrid 
                         data={[report]} 
-                        includeOnlyClmns={['has_cdc_for_each_table']}
-                        formatter={{'has_cdc_for_each_table': 'booleanled'}} />
+                        includeOnlyClmns={['has_cdc_for_each_table', 'has_pk_for_each_table']}
+                        formatter={{'has_cdc_for_each_table': 'booleanled','has_pk_for_each_table': 'booleanled'}} />
             </div>
         );
     }
@@ -123,11 +123,13 @@ class Reportschema extends Component
                         'to_lower_sum',
                         'documentation_sum',
                         'is_cdc_field_sum',
+                        'is_pk_sum',
                     ]}
                     formatter={{
                         'to_lower_sum': 'precent',
                         'documentation_sum': 'precent',
-                        'is_cdc_field_sum': 'booleanled'
+                        'is_cdc_field_sum': 'booleanled',
+                        'is_pk_sum': 'booleanled'
                     }}
                 />
             </div>
