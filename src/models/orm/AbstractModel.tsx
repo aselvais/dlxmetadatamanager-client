@@ -328,14 +328,14 @@ abstract class AbstractModel {
 		let where = toJS(this.document);
 		for (let i in where)
 		{
-			if (where[i] != '')
+			if (where[i] !== '')
 			{
 				if (where[i].match(/^[0-9]{1,30}$/)) where[i] = parseInt(where[i]);
 				else where[i] = {like:where[i]};	
 			}
 		}
 		await this.find(where, "", '', null, 50, null);
-		console.log(toJS(this.collection));
+		//console.log(toJS(this.collection));
 	}
 
 	/**
@@ -575,6 +575,20 @@ abstract class AbstractModel {
 	{
 		this.collection_id2idx = {};
 		dd.map((e,i) => this.collection_id2idx[e.id] = i);
+	}
+
+	/**
+	 * 
+	 * @param idh 
+	 */
+	public getLocalDocumentById(id : String)
+	{
+		let c = toJS(this.collection);
+		for (var i=0; i < c.length; i++)
+		{
+			if (c[i].id === id) console.log(c[i]);
+		}
+		return {name: id, id: id};
 	}
 
 	/**

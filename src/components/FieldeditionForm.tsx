@@ -6,6 +6,7 @@ import { gridConfig } from "../models/interfaces";
 
 interface Props {
     model: AbstractModel,
+    parentmodel?: AbstractModel | null,
     config?: gridConfig
 }
 
@@ -21,7 +22,13 @@ class FieldeditionForm extends Component<Props>
         return (
         <div style={{padding: 20, margin: 20, overflow: 'auto'}}>
             {
-                this.props.model.document ? <Form model={this.props.model} config={this.props.model.formConfig} documentname="document" /> : null 
+                this.props.model.document ? 
+                <Form 
+                    model={this.props.model} 
+                    parentmodel={this.props.parentmodel} 
+                    config={this.props.model.formConfig} 
+                    documentname="document" 
+                /> : null 
             }
         </div>
         );    

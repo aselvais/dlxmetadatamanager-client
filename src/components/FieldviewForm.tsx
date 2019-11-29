@@ -6,6 +6,7 @@ import f from '../libs/translate/oracle.json';
 
 interface Props {
     model: AbstractModel,
+    parentmodel?: AbstractModel | null,
     config?: gridConfig
 }
 

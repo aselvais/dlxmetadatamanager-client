@@ -252,15 +252,35 @@ class SearchScreen extends Component
         return (
             <div>
             <Dialog title={ 
+                    this.fna + ' > ' + 
                     // @ts-ignore
-                    this.fna + ' > ' + (this.lvl[NavStore.items[2].level].model.document.name ? this.lvl[NavStore.items[2].level].model.document.name : '' )
+                    (this.lvl[NavStore.items[2].level].model.document.name ? this.lvl[NavStore.items[2].level].model.document.name : '' )
                     }
                     style={{ width: '70%', maxHeight: '90vh' }}
                     onClose={() => this.lvl[NavStore.items[2].level].model.currentAction = null } 
-                    isOpen={ (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || this.lvl[NavStore.items[2].level].model.currentAction === 'view' || this.lvl[NavStore.items[2].level].model.currentAction === 'adding') }
+                    isOpen={ 
+                        (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || 
+                        this.lvl[NavStore.items[2].level].model.currentAction === 'view' || 
+                        this.lvl[NavStore.items[2].level].model.currentAction === 'adding') 
+                    }
                     icon={ this.model2icon[this.lvl[NavStore.items[2].level].model.name] } >
-                { (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || this.lvl[NavStore.items[2].level].model.currentAction === 'adding') ? <FieldeditionForm model={this.lvl[NavStore.items[2].level].model} /> : null }
-                { (this.lvl[NavStore.items[2].level].model.currentAction === 'view') ? <FieldviewForm model={this.lvl[NavStore.items[2].level].model} /> : null }
+                { 
+                (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || 
+                this.lvl[NavStore.items[2].level].model.currentAction === 'adding') ? 
+                <FieldeditionForm 
+                    parentmodel={ 
+                        (NavStore.items[2].level-1 >= 0) ? this.lvl[(NavStore.items[2].level-1)].model : null 
+                    }
+                    model={this.lvl[NavStore.items[2].level].model} 
+                /> : null 
+                }
+                { 
+                (this.lvl[NavStore.items[2].level].model.currentAction === 'view') ? 
+                <FieldviewForm 
+                    parentmodel={ (NavStore.items[2].level-1 >= 0) ? this.lvl[(NavStore.items[2].level-1)].model : null }
+                    model={this.lvl[NavStore.items[2].level].model} 
+                /> : null 
+                }
             </Dialog>
             </div>
         );
@@ -299,11 +319,15 @@ class SearchScreen extends Component
             <h2>
             <Icon icon={ this.model2icon[this.lvl[NavStore.items[2].level-1].model.name] } style={{padding: 3, paddingRight: 8}} />
             {
+                Translator.toSingular(this.lvl[(NavStore.items[2].level)].parent) + 
+                ' : ' + 
                 // @ts-ignore
-                Translator.toSingular(this.lvl[(NavStore.items[2].level)].parent) + ' : ' + this.lvl[(NavStore.items[2].level-1)].model.document.name
-            }</h2>
+                this.lvl[(NavStore.items[2].level-1)].model.document.name
+            }
+            </h2>
             <Form 
                 model={this.lvl[(NavStore.items[2].level-1)].model} 
+                parentmodel={ (NavStore.items[2].level-1 >= 0) ? this.lvl[(NavStore.items[2].level-1)].model : null } 
                 documentname="document"
                 config={{ showButton: false, fill: true, vertical: true, elements: { 
                     documentation: { shape: "text", hideLabel: false }

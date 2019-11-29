@@ -374,6 +374,7 @@ export interface schemasSchema {
  */
 export interface systemsSchema {
     [key:string]: any,
+    "id"?: string,
     "idh"?: string,
     "should_ignore"?: number,
     "name"?: string,

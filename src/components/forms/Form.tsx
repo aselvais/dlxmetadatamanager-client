@@ -10,6 +10,7 @@ import LinkSelectForm from "./LinkSelectForm";
 
 interface formProps {
     model: AbstractModel,
+    parentmodel?: AbstractModel,
     config: formConfigSchema,
     bulkmode?: boolean,
     elements?: string,
@@ -137,14 +138,15 @@ class Form extends Component<formProps, any>
      */
     public getLinkFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
-        // return <LinkSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
         return (
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 {
+                    // const FilmSelect = Select.ofType<IFilm>();
                     this._shouldDisplayElement(key) ? (<LinkSelectForm 
                         leftIcon="tag" 
                         model={this.props.model} 
+                        parentmodel={this.props.parentmodel ? this.props.parentmodel : null} 
                         documentname={this.props.documentname} 
                         k={key} 
                         //@ts-ignore
