@@ -18,6 +18,7 @@ class Fields extends AbstractModel
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
             "name": { "shape": "text", disabled: true, bulkedit: false},
+            "tables_id": { "shape": "link", bulkedit: true },
             "datatype": { "shape": "text", disabled: true, bulkedit: false},
             "datalength": { "shape": "text", disabled: true, bulkedit: false},
             "charset": { "shape": "text", disabled: true, bulkedit: false},
