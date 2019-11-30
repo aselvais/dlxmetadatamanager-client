@@ -36,15 +36,12 @@ class LinkSelectForm extends Component<TagsFormProps>
     public render()
     {
         // const { ...props } = this.state;
-        console.log('------------------------------------------------------------');
-        console.log(this.props.parentmodel);
-        console.log('------------------------------------------------------------');
         return (
             <FormGroup>
                 <EntitySelect 
                     itemRenderer={(elem) => (
                         <MenuItem
-                            active={false}
+                            active={(elem.id === this.props.v) ? true : false}
                             disabled={false}
                             text={elem.name}
                             key={elem.id}

@@ -586,7 +586,7 @@ abstract class AbstractModel {
 		let c = toJS(this.collection);
 		for (var i=0; i < c.length; i++)
 		{
-			if (c[i].id === id) console.log(c[i]);
+			if (c[i].id === id) return (c[i]);
 		}
 		return {name: id, id: id};
 	}
