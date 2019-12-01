@@ -4,11 +4,13 @@ import { formElementConfigSchema, systemsSchema } from "../../models/interfaces"
 import AbstractModel from "../../models/orm/AbstractModel";
 import { observer } from "mobx-react";
 import { Select } from "@blueprintjs/select";
+import { toJS } from "mobx";
 
 interface TagsFormProps {
     model: AbstractModel,
     parentmodel?: AbstractModel | null,
     k:string,
+    disabled?: boolean,
     v:Array<string> | '',
     c : formElementConfigSchema,
     leftIcon: IconName,
@@ -27,7 +29,11 @@ class LinkSelectForm extends Component<TagsFormProps>
 
     protected onElementItemSelect(e:any)
     {
-        console.log(e);
+        try {
+            let ename = this.props.k.split('_');
+            this.props.model[this.props.documentname][ename[0] + '_id'] = e.id;
+            this.props.model[this.props.documentname][ename[0] + '_idh'] = e.idh;    
+        } catch (ee) {}
     }
 
     /**
@@ -39,22 +45,21 @@ class LinkSelectForm extends Component<TagsFormProps>
         return (
             <FormGroup>
                 <EntitySelect 
+                    items={ this.props.parentmodel ? this.props.parentmodel.collection : [] }
+                    onItemSelect={(e) => console.log(e) }                 
                     itemRenderer={(elem) => (
-                        <MenuItem
-                            active={(elem.id === this.props.v) ? true : false}
-                            disabled={false}
-                            text={elem.name}
-                            key={elem.id}
-                            onClick={(e) => console.log(e) }
-                        />
-                )} 
-                items={
-                    this.props.parentmodel ? this.props.parentmodel.collection : []
-                }
-                onItemSelect={(e) => this.onElementItemSelect(e) } 
+                        (this.props.disabled !== true) ? 
+                            <MenuItem
+                                active={(elem.id === this.props.v) ? true : false}
+                                text={elem.name}
+                                key={elem.id}
+                                onClick={(e) => this.onElementItemSelect( toJS(elem) ) }
+                            /> : null
+                    )} 
                 >
                     <Button
                         icon="application"
+                        disabled={this.props.disabled}
                         rightIcon="caret-down"
                         text={
                             (this.props.v && this.props.parentmodel && this.props.parentmodel.getLocalDocumentById) ? 

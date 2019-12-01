@@ -18,7 +18,7 @@ class Schemas extends AbstractModel
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
             "name": { "shape": "text", disabled: true, bulkedit: false},
-            "databases_id": { "shape": "link", bulkedit: true },
+            "databases_id": { "shape": "link", bulkedit: false, disabled: true },
             "schema" : { "shape": "text", disabled: true, bulkedit: false},
             "storageengine" : { "shape": "text", disabled: true, bulkedit: false},
             "vendorbrand" : { "shape": "text", disabled: true, bulkedit: false},

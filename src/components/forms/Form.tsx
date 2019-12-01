@@ -148,6 +148,7 @@ class Form extends Component<formProps, any>
                         model={this.props.model} 
                         parentmodel={this.props.parentmodel ? this.props.parentmodel : null} 
                         documentname={this.props.documentname} 
+                        disabled={c.disabled ? c.disabled : false} 
                         k={key} 
                         //@ts-ignore
                         v={v} 
