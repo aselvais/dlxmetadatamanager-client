@@ -33,7 +33,13 @@ class Fields extends AbstractModel
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
             "is_pk": { "shape": 'switch', bulkedit: true },
             "is_fk": { "shape": 'switch', bulkedit: true },
-            "linked_to": {"shape": "text", disabled: true, bulkedit: false}
+            "linked_to": {"shape": "text", disabled: true, bulkedit: false},
+            "is_nullable": {"shape": "switch", disabled: true, bulkedit: false},
+            "is_unique": {"shape": "switch", disabled: true, bulkedit: false},
+            "keyorder": {"shape": "text", disabled: true, bulkedit: false},
+            "has_index": {"shape": "switch", disabled: true, bulkedit: false},
+            "index_name": {"shape": "text", disabled: true, bulkedit: false},
+            "index_position": {"shape": "switch", disabled: true, bulkedit: false},
         },
         elementssearch: {
             "id": {"shape": "text"},
@@ -59,6 +65,12 @@ class Fields extends AbstractModel
             "is_pk": {"shape": "text"},
             "is_fk": {"shape": "text"},
             "linked_to": {"shape": "text"},
+            "is_nullable": {"shape": "text"},
+            "is_unique": {"shape": "text"},
+            "keyorder": {"shape": "text"},
+            "has_index": {"shape": "text"},
+            "index_name": {"shape": "text"},
+            "index_position": {"shape": "text"}        
         }
     };
 

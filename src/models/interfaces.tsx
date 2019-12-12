@@ -239,7 +239,14 @@ export interface fieldsSchema {
     /** If 1, this field is a foreign key (link to another field in another table; see linked_to) */
     "is_fk"?: number,
     /** reference to the table:field this field is linked to */
-    "linked_to"?: string
+    "linked_to"?: string,
+    "is_nullable"?: number,
+    "is_unique"?: number,
+    "keyorder"?: string,
+    "has_index"?: number,
+    "index_name"?: string,
+    "index_position"?: number
+
 };
 
 /**
