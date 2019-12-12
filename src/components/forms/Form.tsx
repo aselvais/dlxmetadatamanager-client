@@ -245,6 +245,7 @@ class Form extends Component<formProps, any>
             <FormGroup>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ? (<Switch 
+                    disabled={c.disabled ? c.disabled : false} 
                     onChange={vv =>
                         //@ts-ignore 
                         this.props.model[this.props.documentname][key] = vv.target.checked ? 1 : 0 
