@@ -318,6 +318,15 @@ class Grid extends Component<Props> {
           style={{ paddingRight: 10 }}
         />
       );
+      if (row["has_index"])
+      iii.push(
+        <Icon
+          icon={"sort-asc"}
+          iconSize={isize}
+          intent="warning"
+          style={{ paddingRight: 10 }}
+        />
+      );
 
     icons = <div style={{ float: "right" }}>{iii}</div>;
     return (

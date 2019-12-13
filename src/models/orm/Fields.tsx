@@ -39,7 +39,7 @@ class Fields extends AbstractModel
             "keyorder": {"shape": "text", disabled: true, bulkedit: false},
             "has_index": {"shape": "switch", disabled: true, bulkedit: false},
             "index_name": {"shape": "text", disabled: true, bulkedit: false},
-            "index_position": {"shape": "switch", disabled: true, bulkedit: false},
+            "index_position": {"shape": "text", disabled: true, bulkedit: false},
         },
         elementssearch: {
             "id": {"shape": "text"},
