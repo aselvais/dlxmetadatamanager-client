@@ -31,6 +31,7 @@ class Reportschema extends Component
                     'is_pci_sum',
                     'is_pk_sum',
                     'is_fk_sum',
+                    'has_index_sum',
                     'group_sum',
                     'semantic_type_sum',
                     'documentation_sum']}
@@ -97,6 +98,7 @@ class Reportschema extends Component
                         'is_pci_sum',
                         'is_pk_sum',
                         'is_fk_sum',
+                        'has_index_sum',
                         'group_sum',
                         'semantic_type_sum',
                         'documentation_sum'
@@ -124,12 +126,14 @@ class Reportschema extends Component
                         'documentation_sum',
                         'is_cdc_field_sum',
                         'is_pk_sum',
+                        'has_index_sum'
                     ]}
                     formatter={{
                         'to_lower_sum': 'precent',
                         'documentation_sum': 'precent',
                         'is_cdc_field_sum': 'booleanled',
-                        'is_pk_sum': 'booleanled'
+                        'is_pk_sum': 'booleanled',
+                        'has_index_sum': 'booleanled'
                     }}
                 />
             </div>
