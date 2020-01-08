@@ -245,7 +245,10 @@ export interface fieldsSchema {
     "keyorder"?: string,
     "has_index"?: number,
     "index_name"?: string,
-    "index_position"?: number
+    "index_position"?: number,
+    "is_phi"?: number,
+    "is_other_special_handling"?: number,
+    "other_special_handling_type"?: string,
 
 };
 

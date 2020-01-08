@@ -40,6 +40,9 @@ class Fields extends AbstractModel
             "has_index": {"shape": "switch", disabled: true, bulkedit: false},
             "index_name": {"shape": "text", disabled: true, bulkedit: false},
             "index_position": {"shape": "text", disabled: true, bulkedit: false},
+            "is_phi": { "shape": 'switch', bulkedit: false },
+            "is_other_special_handling": { "shape": 'switch', bulkedit: false },
+            "other_special_handling_type": {"shape": "text", disabled: false, bulkedit: false},
         },
         elementssearch: {
             "id": {"shape": "text"},
