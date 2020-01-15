@@ -14,6 +14,7 @@ class Semantictypes extends AbstractModel
         elements: {
             "should_ignore": { "shape": "switch" },
             "name": { "shape": "text"},
+            "parent_id": { "shape": "link", bulkedit: false, disabled: false },
             "description": { "shape": "textarea"}
         },
         elementssearch:
@@ -22,6 +23,7 @@ class Semantictypes extends AbstractModel
             "name": { "shape": "text"},
             "description": { "shape": "text"},
             "should_ignore": { "shape": "text"},  
+            "parent_id": { "shape": "text" },  
         }
     };
     

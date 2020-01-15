@@ -268,9 +268,7 @@ class SearchScreen extends Component
                 (this.lvl[NavStore.items[2].level].model.currentAction === 'editing' || 
                 this.lvl[NavStore.items[2].level].model.currentAction === 'adding') ? 
                 <FieldeditionForm 
-                    parentmodel={ 
-                        (NavStore.items[2].level-1 >= 0) ? this.lvl[(NavStore.items[2].level-1)].model : null 
-                    }
+                    parentmodel={ (NavStore.items[2].level-1 >= 0) ? this.lvl[(NavStore.items[2].level-1)].model : null }
                     model={this.lvl[NavStore.items[2].level].model} 
                 /> : null 
                 }

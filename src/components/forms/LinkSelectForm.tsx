@@ -32,7 +32,7 @@ class LinkSelectForm extends Component<TagsFormProps>
         try {
             let ename = this.props.k.split('_');
             this.props.model[this.props.documentname][ename[0] + '_id'] = e.id;
-            this.props.model[this.props.documentname][ename[0] + '_idh'] = e.idh;    
+            if (e.idh) this.props.model[this.props.documentname][ename[0] + '_idh'] = e.idh;    
         } catch (ee) {}
     }
 

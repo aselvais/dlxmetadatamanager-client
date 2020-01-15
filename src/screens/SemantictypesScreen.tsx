@@ -110,7 +110,7 @@ class SemantictypesScreen extends Component
                     onClose={() => this.lvl[this.state.level].model.currentAction = null } 
                     isOpen={ (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'view' || this.lvl[this.state.level].model.currentAction === 'adding') }
                      >
-                { (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'adding') ? <FieldeditionForm model={this.lvl[this.state.level].model} /> : null }
+                { (this.lvl[this.state.level].model.currentAction === 'editing' || this.lvl[this.state.level].model.currentAction === 'adding') ? <FieldeditionForm model={this.lvl[this.state.level].model} parentmodel={this.lvl[this.state.level].model} /> : null }
                 { (this.lvl[this.state.level].model.currentAction === 'view') ? <FieldviewForm model={this.lvl[this.state.level].model} /> : null }
             </Dialog>
             </div>
