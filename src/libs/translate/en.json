@@ -24,8 +24,13 @@
     "email":"E-mail",
     "password1":"Password",
     "password2":"Re-type password",
+
     "is_pii" : "Is Personally identifiable information (PII)?",
     "is_pci" : "Is Payment Card Information (PCI)?",
+    "is_phi" : "Is Protected Health Information (PHI)?",
+    "is_other_special_handling": "Has other special handling defined?",
+    "other_special_handling_type": "Special handling description",
+
     "should_encrypt": "Should be encrypted?",
     "should_ignore": "Should be ignored?",
     "is_cdc_field": "Field used for CDC (change data capture)?",
