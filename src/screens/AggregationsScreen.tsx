@@ -29,6 +29,11 @@ class AggregationsScreen extends Component
         {title: 'Field is PCI', statePropName: 'fieldsispci', collectionName: 'fields', fieldName: 'is_pci', limit: 30 },
         {title: 'Field should be ignored', statePropName: 'fieldsshouldignore', collectionName: 'fields', fieldName: 'should_ignore', limit: 30 },
 
+        {title: 'System code', statePropName: 'systemcode', collectionName: 'systems', fieldName: 'code', limit: 30 },
+        {title: 'Origin code', statePropName: 'originappcode', collectionName: 'origins', fieldName: 'app_code', limit: 30 },
+        {title: 'Database code', statePropName: 'databasecode', collectionName: 'databases', fieldName: 'code', limit: 30 },
+
+
     ];
     /**
      * 
@@ -46,7 +51,11 @@ class AggregationsScreen extends Component
         fieldsispci: [],
         fieldsshouldignore: [],
         fieldsdatatype: [],
-        fieldgroupstypes: []
+        fieldgroupstypes: [],
+
+        systemcode: [],
+        originappcode: [],
+        databasecode: [],
     };
 
     /**
