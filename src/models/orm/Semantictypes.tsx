@@ -16,7 +16,8 @@ class Semantictypes extends AbstractModel
             "name": { "shape": "text"},
             "parent_id": { "shape": "link", bulkedit: false, disabled: false },
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
-            "description": { "shape": "textarea"}
+            "description": { "shape": "textarea"},
+            "processing_description": { "shape": "textarea"},
         },
         elementssearch:
         {

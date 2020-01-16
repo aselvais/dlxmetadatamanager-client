@@ -36,7 +36,7 @@ class SemantictypesScreen extends Component
         {
             model : Semantictypes, selected_id : null, parent : null,
             gridConfig : { 
-                showOnly:['should_ignore', 'tags', 'name', 'description'], 
+                showOnly:['should_ignore', 'tags', 'name', 'description', 'processing_description'], 
                 actions: ['delete', 'edit', 'add'] 
             }
         }
