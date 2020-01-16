@@ -272,6 +272,8 @@ class Grid extends Component<Props> {
     let icons = null;
     let isize: number = 15;
     let iintent: "warning" = "warning";
+    let isChild : boolean = false;
+    if (row['parent_id']) isChild = true; //console.log('---------- ' + row['parent_id'] + ' : ' + v + ' ----------');
 
     if (row["is_pii"])
       iii.push(
@@ -327,8 +329,8 @@ class Grid extends Component<Props> {
           style={{ paddingRight: 10 }}
         />
       );
-
     icons = <div style={{ float: "right" }}>{iii}</div>;
+
     return (
       <td
         key={k}
@@ -339,7 +341,7 @@ class Grid extends Component<Props> {
           maxWidth: 300
         }}
       >
-        <div style={{ float: "left" }} className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</div>
+        <div style={{ float: "left", paddingLeft: (isChild ? 30 : 0) }} className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</div>
         {icons}
       </td>
     );

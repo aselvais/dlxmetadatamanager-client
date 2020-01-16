@@ -35,7 +35,10 @@ class SemantictypesScreen extends Component
     protected lvl : Array<lvlElementType> = [
         {
             model : Semantictypes, selected_id : null, parent : null,
-            gridConfig : { showOnly:['should_ignore', 'name', 'description'], actions: ['delete', 'edit', 'add'] }
+            gridConfig : { 
+                showOnly:['should_ignore', 'tags', 'name', 'description'], 
+                actions: ['delete', 'edit', 'add'] 
+            }
         }
     ];
     
