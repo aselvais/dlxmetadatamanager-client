@@ -172,7 +172,7 @@ class Schemadata extends AbstractModel {
 	public getlatesttokens() {
 		this.setLoading(true);
 		this.latesttokens = [];
-		return this.fetchAutenticated(this.getApiUrl() + "/getlatesttokens")
+		return this.fetchAutenticated(this.getApiUrl() + "/getlatesttokens?limit=30")
 			.then(response => response.json())
 			.then(data => {
 				//@ts-ignore
