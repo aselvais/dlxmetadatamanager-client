@@ -68,34 +68,34 @@ class SimpleGridSearch extends Component<Props>
      */
     protected _handleDrilldownClick(row)
     {
-        Origins.pagination.searchstr = '';
-        Databases.pagination.searchstr = '';
-        Schemas.pagination.searchstr = '';
-        Tables.pagination.searchstr = '';
-        Fields.pagination.searchstr = '';
+        Origins.pagination_searchstr = '';
+        Databases.pagination_searchstr = '';
+        Schemas.pagination_searchstr = '';
+        Tables.pagination_searchstr = '';
+        Fields.pagination_searchstr = '';
 
         // set params for search screen
         switch(this.props.model.name)
         {
             case 'origins':
                 NavStore.items[2].level = 0;
-                Origins.pagination.searchstr = row.name;
+                Origins.pagination_searchstr = row.name;
                 break;
             case 'databases':
                 NavStore.items[2].level = 1;
-                Databases.pagination.searchstr = row.name;
+                Databases.pagination_searchstr = row.name;
                 break;
             case 'schemas':
                 NavStore.items[2].level = 2;
-                Schemas.pagination.searchstr = row.name;
+                Schemas.pagination_searchstr = row.name;
                 break;
             case 'tables':
                 NavStore.items[2].level = 3;
-                Tables.pagination.searchstr = row.name;
+                Tables.pagination_searchstr = row.name;
                 break;
             case 'fields':
                 NavStore.items[2].level = 4;
-                Fields.pagination.searchstr = row.name;
+                Fields.pagination_searchstr = row.name;
                 break;
         }
 

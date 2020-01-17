@@ -106,7 +106,7 @@ class SimpleGrid extends Component<Props> {
 		));
 		return (
 			<tr key={i}>
-				{toret.map(e => <td>{e}</td>)}
+				{toret.map((e,ii) => <td key={e+i+ii}>{e}</td>)}
 			</tr>
 		);
 	}

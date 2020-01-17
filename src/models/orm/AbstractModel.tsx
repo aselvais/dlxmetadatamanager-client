@@ -1,11 +1,10 @@
 import Config from "../Config";
-import { toJS, observable, remove } from "mobx";
+import { toJS, observable, remove, computed } from "mobx";
 import {
 	formConfigSchema,
 	modelErrorSchema,
 	tagObjectSchema,
 	sortparamsSchema,
-	paginationSchema,
 	requestDataGlobalSearch,
 	responseDataGlobalSearch
 } from "../interfaces";
@@ -20,25 +19,15 @@ import StatusBarModel from "../StatusBarModel";
  * and containing a document or a collection of documents.
  */
 abstract class AbstractModel {
-	/**
-	 * Name of the model / collection to be defined in the inheriting classes
-	 */
+	/** Name of the model / collection to be defined in the inheriting classes */
 	public name: string = "";
-	/**
-	 * Container for the error object coming back from the API
-	 */
+	/** Container for the error object coming back from the API */
 	@observable public error: modelErrorSchema = null;
-	/**
-	 * Will be true when we are loading the data from the API
-	 */
+	/** Will be true when we are loading the data from the API */
 	@observable public loading: boolean = false;
-	/**
-	 * Time Consuming Operation is in progress so we mask or skeleton something
-	 */
+	/** Time Consuming Operation is in progress so we mask or skeleton something */
 	@observable public operationinprogress: boolean = false;
-	/**
-	 * Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do.
-	 */
+	/** Status of the model, eg: 'editing', 'saving', ... so the GUI knows what to do. */
 	@observable public currentAction:
 		| "view"
 		| "deleting"
@@ -49,79 +38,51 @@ abstract class AbstractModel {
 		| "loggingout"
 		| "report"
 		| null = null;
-	/**
-	 * Entry (one document) selected or loaded (by findOne for eg)
-	 */
+	/** Entry (one document) selected or loaded (by findOne for eg) */
 	@observable public document: null | object = null;
-	/**
-	 *
-	 */
+	/** */
 	@observable public multiple_document: object = {};
-	/**
-	 * Labels selected ready for bulk update
-	 */
+	/** Labels selected ready for bulk update */
 	@observable public selected_labels = {};
-	/**
-	 * Container for the related entries (linked to the current model)
-	 */
+	/** Container for the related entries (linked to the current model) */
 	@observable public related: object | Array<object> | null = null;
-	/**
-	 * Collection (array) of documents/entries
-	 */
+	/** Collection (array) of documents/entries */
 	@observable public collection: null | Array<any> = null;
 	public collection_id2idx : Object = {};
-	/**
-	 * Container object for the possible values of the 'tag' property (if any) of a document
-	 */
+	/** Container object for the possible values of the 'tag' property (if any) of a document */
 	@observable public tags: tagObjectSchema = {};
-	/**
-	 * Container for the aggregations. The key will be the field and the
-	 * value is the aggragated data
-	 */
+	/** Container for the aggregations. The key will be the field and the value is the aggragated data */
 	@observable public aggragateddata: object = {};
-	/**
-	 * ID selected for the navigation inside of the explore screen
-	 */
+	/** ID selected for the navigation inside of the explore screen */
 	@observable public selected_parent_id: string = "";
-	/**
-	 * Selected _id(s) in a collection
-	 */
+	/** Selected _id(s) in a collection */
 	@observable public selected_items = {};
-	/**
-	 * Number for pagination and filters
-	 */
-	@observable public pagination: paginationSchema = {
-		perpages: 100,
-		pages: 0,
-		selected: 1,
-		searchstr: "",
-		should_ignore: 1,
-		tagsfilter: {}
-	};
-	@observable public sortparams: sortparamsSchema = {
-		columnName: "",
-		asc: false
-	};
-	/**
-	 *
-	 */
+	/** Pagination: Number of element per pages */
+	@observable public pagination_perpages : number = 100;
+	/** Pagination: selected page */
+	@observable public pagination_selected : number = 1;
+	/** Search string filter */
+	@observable public pagination_searchstr : string = "";
+	/** Should be ignored filter */
+	@observable public pagination_should_ignore : number = 1;
+	/** Tags filters */
+	@observable public pagination_tagsfilter : object = {};
+	/** Sorting params on column name and ascending/descending */
+	@observable public sortparams: sortparamsSchema = { columnName: "", asc: false };
+	/** */
 	@observable public findentitydata = [];
-	/**
-	 * Definition of the form for the edition of a this.document
-	 */
+	/** Definition of the form for the edition of a this.document */
 	public formConfig: formConfigSchema = {
 		showButton: true,
 		fill: true,
 		vertical: true,
 		elements: {}
 	};
-	/**
-	 * Array of properties that are of tag type
-	 */
+	/** Array of properties that are of tag type */
 	protected _tagFieldNames: Array<string> = [];
 
 	/**
-	 * 
+	 * Returns the date from a mongoDB ObjectId
 	 * @param o 
 	 */
 	public id2inserteddate(o: object = {}) {
@@ -335,7 +296,6 @@ abstract class AbstractModel {
 			}
 		}
 		await this.find(where, "", '', null, 50, null);
-		//console.log(toJS(this.collection));
 	}
 
 	/**
@@ -355,7 +315,6 @@ abstract class AbstractModel {
 			} catch (ee) {}
 		}
 		this.collection.push(this.document);
-		this.onCollectionUpdated();
 		return false;
 	}
 
@@ -630,7 +589,6 @@ abstract class AbstractModel {
 				}
 				this.updateCollectionId2idx(dd);
 				this.collection = dd;
-				this.onCollectionUpdated();
 				this.operationinprogress = false;
 				if (
 					data.error &&
@@ -646,13 +604,8 @@ abstract class AbstractModel {
 	/**
 	 * Run this when the collection is updated
 	 */
-	public onCollectionUpdated(d: Array<object> | null = null) {
-		let l = d ? d.length : this.collection.length;
-		try {
-			this.pagination.pages = Math.ceil(l / this.pagination.perpages);
-		} catch (ee) {
-			// @todo Fix this non-sense
-		}
+	@computed get pagination_pages() {
+		return Math.ceil(this.collection.length / this.pagination_perpages);
 	}
 
 	/**
@@ -661,8 +614,8 @@ abstract class AbstractModel {
 	 */
 	public onClickPage(p: number) {
 		if (p < 1) p = 1;
-		if (p > this.pagination.pages) p = this.pagination.pages;
-		this.pagination.selected = p;
+		if (p > this.pagination_pages) p = this.pagination_pages;
+		this.pagination_selected = p;
 	}
 
 	/**
@@ -670,8 +623,8 @@ abstract class AbstractModel {
 	 */
 	protected _findDataInLocalCollection(): Array<object> {
 		let toret = [];
-		this.collection.map(e => {
-			var re = new RegExp(this.pagination.searchstr + "", "gi");
+		toJS(this.collection).map(e => {
+			var re = new RegExp(this.pagination_searchstr + "", "gi");
 			for (let i in e) {
 				if (typeof e[i] === "string" && (e[i] + "").match(re)) {
 					toret.push(e);
@@ -689,9 +642,9 @@ abstract class AbstractModel {
 	 */
 	protected _filterCollectionOnIgnore(d: Array<any>): Array<object> {
 		let toret = [];
-		if (this.pagination.should_ignore === 1) return d;
+		if (this.pagination_should_ignore === 1) return d;
 		d.map(e => {
-			if (e.should_ignore === this.pagination.should_ignore) {
+			if (e.should_ignore === this.pagination_should_ignore) {
 				toret.push(e);
 			}
 			return true;
@@ -706,15 +659,15 @@ abstract class AbstractModel {
 	protected _filterCollectionOnTags(d: Array<any>): Array<object> {
 		let toret = [];
 		let totfilters = 0;
-		if (this.pagination.tagsfilter === {}) return d;
-		let columns = Object.keys(this.pagination.tagsfilter);
-		columns.map(e => (totfilters += this.pagination.tagsfilter[e].length));
+		if (this.pagination_tagsfilter === {}) return d;
+		let columns = Object.keys(this.pagination_tagsfilter);
+		columns.map(e => (totfilters += this.pagination_tagsfilter[e].length));
 		if (totfilters === 0) return d;
 		d.map(e => {
 			let tagfound = 0;
 			columns.map(colname => {
 				if (e[colname] && e[colname].length > 0)
-					this.pagination.tagsfilter[colname].map(tagname => {
+					this.pagination_tagsfilter[colname].map(tagname => {
 						if (_.indexOf(e[colname], tagname) > -1) {
 							tagfound++;
 						}
@@ -729,27 +682,31 @@ abstract class AbstractModel {
 	}
 
 	/**
-	 *
+	 * Return the collection after filtering
 	 */
-	public getDislpayCollection() {
+	public getDislpayCollection() 
+	{
 		let d = toJS(this.collection);
-		if (this.pagination.searchstr !== "") d = this._findDataInLocalCollection();
-		if (this.pagination.should_ignore !== null)
+		//--- Manage search string filter ---//
+		if (this.pagination_searchstr !== "") 
+		{
+			d = this._findDataInLocalCollection();
+		}
+		//--- Manage should_ignore filter ---//
+		if (this.pagination_should_ignore !== null)
+		{
 			d = this._filterCollectionOnIgnore(d);
-		if (this.pagination.tagsfilter !== {}) d = this._filterCollectionOnTags(d);
-		if (
-			this.pagination.searchstr !== "" ||
-			this.pagination.should_ignore !== null
-		) {
-			this.onCollectionUpdated(d);
 		}
-
-		let p_to = this.pagination.selected * this.pagination.perpages;
-		let p_from = p_to - this.pagination.perpages;
+		//--- Manage tags filter ---//
+		if (this.pagination_tagsfilter !== {}) {
+			d = this._filterCollectionOnTags(d);
+		}
+		
+		let p_to = this.pagination_selected * this.pagination_perpages;
+		let p_from = p_to - this.pagination_perpages;
 		let toret = [];
-		for (var i = p_from; i < p_to; i++) {
-			if (d[i]) toret.push(d[i]);
-		}
+		for (var i = p_from; i < p_to; i++) { if (d[i]) { toret.push(d[i]); } }
+
 		return toret;
 	}
 
@@ -759,11 +716,11 @@ abstract class AbstractModel {
 	 * @param columnName
 	 */
 	public filterOnTag(tagName: string = "", columnName: string = "") {
-		if (!this.pagination.tagsfilter[columnName])
-			this.pagination.tagsfilter[columnName] = [];
-		let theIndexOf = _.indexOf(this.pagination.tagsfilter[columnName], tagName);
-		if (theIndexOf === -1) this.pagination.tagsfilter[columnName].push(tagName);
-		else remove(this.pagination.tagsfilter[columnName], theIndexOf);
+		if (!this.pagination_tagsfilter[columnName])
+			this.pagination_tagsfilter[columnName] = [];
+		let theIndexOf = _.indexOf(this.pagination_tagsfilter[columnName], tagName);
+		if (theIndexOf === -1) this.pagination_tagsfilter[columnName].push(tagName);
+		else remove(this.pagination_tagsfilter[columnName], theIndexOf);
 	}
 
 	/**

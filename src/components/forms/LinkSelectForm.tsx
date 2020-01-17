@@ -46,7 +46,7 @@ class LinkSelectForm extends Component<TagsFormProps>
             <FormGroup>
                 <EntitySelect 
                     items={ this.props.parentmodel ? this.props.parentmodel.collection : [] }
-                    onItemSelect={(e) => console.log(e) }                 
+                    onItemSelect={(e) => console.log(e) } 
                     itemRenderer={(elem) => (
                         (this.props.disabled !== true) ? 
                             <MenuItem

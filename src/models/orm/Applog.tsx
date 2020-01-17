@@ -63,7 +63,7 @@ class Applog extends AbstractModel {
 			toret.push(ee);
 			return true;
 		});
-		console.log(oo);
+		//console.log(oo);
 		var tt = [];
 		for (let ddt in oo)
 		{

@@ -538,15 +538,6 @@ export interface modelErrorSchema {
 export interface tagObjectSchema {
     [key:string]: Array<string>
 };
-export interface paginationSchema {
-    perpages: number,
-    pages: number,
-    selected: number,
-    searchstr: string,
-    should_ignore: number,
-    tagsfilter: object
-};
-
 export interface sortparamsSchema {
     columnName: string,
     asc: boolean

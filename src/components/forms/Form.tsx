@@ -53,6 +53,7 @@ class Form extends Component<formProps, any>
         //@ts-ignore
         return (this.props.bulkmode === true) ? (<Checkbox 
             label={Translator.t(key)}
+            key={key}
             onChange={ () => this._onClickCheckboxLabel(key) }
             selected={true}
         />) : (Translator.t(key));
@@ -72,14 +73,16 @@ class Form extends Component<formProps, any>
     public getDefaultFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ?
                 (<input className="bp3-input" 
                 style={{ width: '100%'}} 
                 disabled={c.disabled ? c.disabled : false} 
                 type="text"
+                autoComplete={key}
                 name={key}
+                key={key}
                 value={v} 
                 onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} 
                 />) : null
@@ -97,11 +100,12 @@ class Form extends Component<formProps, any>
     public getTextareaFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ?
                 (<TextArea 
                     name={key} 
+                    key={key} 
                     value={v}
                     onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} 
                     growVertically={true} 
@@ -120,11 +124,11 @@ class Form extends Component<formProps, any>
     {
         // return <MultiSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 {
                     //@ts-ignore
-                    this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />) : null 
+                    this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} key={key} v={v} c={c} />) : null 
                 }
             </FormGroup>
         );
@@ -139,7 +143,7 @@ class Form extends Component<formProps, any>
     public getLinkFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 {
                     // const FilmSelect = Select.ofType<IFilm>();
@@ -150,6 +154,7 @@ class Form extends Component<formProps, any>
                         documentname={this.props.documentname} 
                         disabled={c.disabled ? c.disabled : false} 
                         k={key} 
+                        key={key} 
                         //@ts-ignore
                         v={v} 
                         c={c} 
@@ -168,13 +173,15 @@ class Form extends Component<formProps, any>
     public getPasswordFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ?
                 (<InputGroup 
                     rightElement={(<Icon icon="lock" />)} 
                     type="password" 
+                    autoComplete="current-password"
                     name={key} 
+                    key={key} 
                     value={v} 
                     onChange={vv => this.props.model[this.props.documentname][key] = vv.target.value} 
                     />) : null }
@@ -193,10 +200,11 @@ class Form extends Component<formProps, any>
     public getTimezoneElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ? (<TimezonePicker
                     value={v}
+                    key={key}
                     onChange={vv => this.props.model[this.props.documentname][key] = vv}
                     valueDisplayFormat={TimezoneDisplayFormat.COMPOSITE}
                     popoverProps={{ position: Position.TOP }}
@@ -215,7 +223,7 @@ class Form extends Component<formProps, any>
     public getSelectFormElementJSX(key:string, v:string, c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ?
                 (<div className="bp3-select">
@@ -242,9 +250,10 @@ class Form extends Component<formProps, any>
     public getSwitchFormElementJSX(key:string, v:Array<string> | '', c : formElementConfigSchema)
     {
         return (
-            <FormGroup>
+            <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 { this._shouldDisplayElement(key) ? (<Switch 
+                    key={key}
                     disabled={c.disabled ? c.disabled : false} 
                     onChange={vv =>
                         //@ts-ignore 
@@ -364,6 +373,7 @@ class Form extends Component<formProps, any>
             } else {
                 // disabled={(this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin')}
                 form.push(<Button 
+                    key={'buttonsubmit'}
                     icon="plus" 
                     intent="success" 
                     text={Translator.t('Submit')}
@@ -373,9 +383,11 @@ class Form extends Component<formProps, any>
             }
         }
         return (
+            <form>
             <ControlGroup fill={this.props.config.fill} vertical={this.props.config.vertical}>
             {form}
             </ControlGroup>
+            </form>
         );
     }
 }

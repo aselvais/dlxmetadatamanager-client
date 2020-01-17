@@ -443,11 +443,11 @@ class Grid extends Component<Props> {
           </td>
         );
       }
-      // let ppn = (this.props.model.pagination.selected*this.props.model.pagination.perpages)-this.props.model.pagination.perpages+1;
+      // let ppn = (this.props.model.pagination_selected*this.props.model.pagination_perpages)-this.props.model.pagination_perpages+1;
       let ppn =
         i +
-        (this.props.model.pagination.selected - 1) *
-          this.props.model.pagination.perpages +
+        (this.props.model.pagination_selected - 1) *
+          this.props.model.pagination_perpages +
         1;
       return (
         <tr key={ppn}>
@@ -502,36 +502,20 @@ class Grid extends Component<Props> {
    *
    */
   public getPaginationJSX() {
-    if (this.props.model.pagination.pages <= 1) return null;
+    if (this.props.model.pagination_pages <= 1) return null;
     let pgx = [];
-    for (let e = 1; e <= this.props.model.pagination.pages; e++)
+    for (let e = 1; e <= this.props.model.pagination_pages; e++)
+    {
       pgx.push(
-        <Button
-          text={e}
-          active={this.props.model.pagination.selected === e}
-          onClick={() => this.props.model.onClickPage(e)}
-        />
+        <Button text={e} active={this.props.model.pagination_selected === e} onClick={() => this.props.model.onClickPage(e)} />
       );
+    }
     return (
       <div style={{ textAlign: "center", padding: 10 }}>
         <ButtonGroup minimal={false} fill={false}>
-          <Button
-            text="<"
-            onClick={() =>
-              this.props.model.onClickPage(
-                this.props.model.pagination.selected - 1
-              )
-            }
-          />
+          <Button text="<" onClick={() =>this.props.model.onClickPage(this.props.model.pagination_selected - 1) } />
           {pgx}
-          <Button
-            text=">"
-            onClick={() =>
-              this.props.model.onClickPage(
-                this.props.model.pagination.selected + 1
-              )
-            }
-          />
+          <Button text=">" onClick={() => this.props.model.onClickPage( this.props.model.pagination_selected + 1 ) } />
         </ButtonGroup>
       </div>
     );
@@ -542,7 +526,7 @@ class Grid extends Component<Props> {
    * @param e
    */
   public onSearchModel(e) {
-    this.props.model.pagination.searchstr = e.target.value;
+    this.props.model.pagination_searchstr = e.target.value;
     //this.props.model.getDislpayCollection();
   }
 
@@ -557,7 +541,7 @@ class Grid extends Component<Props> {
           className="bp3-input"
           type="search"
           placeholder="Local search"
-          value={this.props.model.pagination.searchstr}
+          value={this.props.model.pagination_searchstr}
           dir="auto"
           onChange={e => this.onSearchModel(e)}
         />
@@ -574,12 +558,12 @@ class Grid extends Component<Props> {
         <Switch
           onChange={vv =>
             //@ts-ignore
-            (this.props.model.pagination.should_ignore = vv.target.checked
+            (this.props.model.pagination_should_ignore = vv.target.checked
               ? 0
               : 1)
           }
-          value={this.props.model.pagination.should_ignore}
-          checked={!this.props.model.pagination.should_ignore ? true : false}
+          value={this.props.model.pagination_should_ignore}
+          checked={!this.props.model.pagination_should_ignore ? true : false}
           labelElement={<strong>Show active only</strong>}
         />
       </div>
@@ -599,8 +583,8 @@ class Grid extends Component<Props> {
           style={{ cursor: "pointer", padding: 2, margin: 2 }}
           minimal={false}
           intent={
-            this.props.model.pagination.tagsfilter[i] &&
-            _.indexOf(this.props.model.pagination.tagsfilter[i], e) > -1
+            this.props.model.pagination_tagsfilter[i] &&
+            _.indexOf(this.props.model.pagination_tagsfilter[i], e) > -1
               ? "primary"
               : "none"
           }

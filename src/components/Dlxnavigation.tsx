@@ -38,7 +38,7 @@ class Dlxnavigation extends Component
         if (i.sublevel && i.sublevel.length > 0)
         {
             return Users.isAuthorized(i.role) ? (
-                <Popover content={
+                <Popover key={i.name} content={
                         <Menu className={Classes.ELEVATION_1} style={{maxWidth: 280, position: 'absolute'}}> 
                             {i.sublevel.map(e => <MenuItem icon={e.icon} key={e.name} text={e.label} onClick={() => NavStore.setActive(e.name)} />)}
                         </Menu>
