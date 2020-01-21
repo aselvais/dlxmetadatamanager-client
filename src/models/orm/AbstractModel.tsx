@@ -405,26 +405,54 @@ abstract class AbstractModel {
 	 * Sort the local collection on the column name passed as param
 	 * @param columnName
 	 */
-	public sortLocalCollection(columnName: string = "", collectionType = "") {
-		if (this.sortparams.columnName === columnName)
-			this.sortparams.asc = !this.sortparams.asc;
-		else this.sortparams.columnName = columnName;
-		if (collectionType === "search") {
-			this.findentitydata = _.orderBy(
-				toJS(this.findentitydata),
-				[this.sortparams.columnName],
-				[this.sortparams.asc ? "asc" : "desc"]
-			);
-		} else {
+	public sortLocalCollection(columnName: string = "", collectionType = "") 
+	{
+		// manage the asc/desc and set columname
+		if (this.sortparams.columnName === columnName) this.sortparams.asc = !this.sortparams.asc; else this.sortparams.columnName = columnName;
+
+		if (collectionType === "search") 
+			this.findentitydata = this._doLocalSort( toJS(this.findentitydata), [this.sortparams.columnName], [this.sortparams.asc ? "asc" : "desc"] );
+		else 
+		{
 			// do the sort of the collection here ...
-			let dd = _.orderBy(
-				toJS(this.collection),
-				[this.sortparams.columnName],
-				[this.sortparams.asc ? "asc" : "desc"]
-			);
+			let dd = this._doLocalSort( toJS(this.collection), [this.sortparams.columnName], [this.sortparams.asc ? "asc" : "desc"] );
 			this.updateCollectionId2idx(dd);
 			this.collection = dd;
 		}
+
+	}
+
+	/**
+	 * Do the sorting of collection and manage parent_id if any
+	 * @param data 
+	 * @param sortColumName 
+	 * @param sortDirection 
+	 */
+	protected _doLocalSort(data : Array<object>, sortColumName : Array<string>, sortDirection : Array<'asc' | 'desc'>)
+	{
+		// sort taking parent_id into account and put kids under the parent
+		if (this.formConfig && this.formConfig.elements && this.formConfig.elements.parent_id)
+		{
+			let o : any = {root:[]};
+			let toret : Array<object> = [];
+			data.map((e : any) => {
+				if (e.parent_id && e.parent_id != '') {
+					if (!o[e.parent_id]) o[e.parent_id] = [];
+					o[e.parent_id].push(e)
+				} else o.root.push(e);
+			});
+			o.root = _.orderBy( o.root, sortColumName, sortDirection );
+			for (let i in o.root)
+			{
+				toret.push(o.root[i]);
+				if (o.root[i].id && o[o.root[i].id]) toret = toret.concat(_.orderBy(o[o.root[i].id], sortColumName, sortDirection ));
+			}
+			return toret;
+		}
+		else 
+		{
+			return _.orderBy( data, sortColumName, sortDirection );
+		}		
 	}
 
 	/**
@@ -587,8 +615,9 @@ abstract class AbstractModel {
 				{
 					dd = this[postprocesscollection](dd);
 				}
-				this.updateCollectionId2idx(dd);
 				this.collection = dd;
+				this.updateCollectionId2idx(dd);
+				if (dd.length > 0 && dd[0] && dd[0].name) { this.sortLocalCollection('name'); }
 				this.operationinprogress = false;
 				if (
 					data.error &&
