@@ -373,7 +373,6 @@ class Form extends Component<formProps, any>
             } else {
                 // disabled={(this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin')}
                 form.push(<Button 
-                    type="submit"
                     key={'buttonsubmit'}
                     icon="plus" 
                     intent="success" 
