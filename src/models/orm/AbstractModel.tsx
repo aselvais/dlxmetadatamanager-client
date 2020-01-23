@@ -618,7 +618,10 @@ abstract class AbstractModel {
 				}
 				this.collection = dd;
 				this.updateCollectionId2idx(dd);
-				if (dd.length > 0 && dd[0] && dd[0].name) { this.sortLocalCollection('name'); }
+				if (dd.length > 0 && dd[0] && dd[0].name) {
+					this.sortparams.asc = false; 
+					this.sortLocalCollection('name'); 
+				}
 				this.operationinprogress = false;
 				if (
 					data.error &&
