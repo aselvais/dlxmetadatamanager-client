@@ -128,7 +128,7 @@ class Form extends Component<formProps, any>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 {
                     //@ts-ignore
-                    this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} key={key} v={v} c={c} />) : null 
+                    this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />) : null 
                 }
             </FormGroup>
         );

@@ -436,10 +436,11 @@ abstract class AbstractModel {
 			let o : any = {root:[]};
 			let toret : Array<object> = [];
 			data.map((e : any) => {
-				if (e.parent_id && e.parent_id != '') {
+				if (e.parent_id && e.parent_id !== '') {
 					if (!o[e.parent_id]) o[e.parent_id] = [];
 					o[e.parent_id].push(e)
 				} else o.root.push(e);
+				return null;
 			});
 			o.root = _.orderBy( o.root, sortColumName, sortDirection );
 			for (let i in o.root)
@@ -617,7 +618,10 @@ abstract class AbstractModel {
 				}
 				this.collection = dd;
 				this.updateCollectionId2idx(dd);
-				if (dd.length > 0 && dd[0] && dd[0].name) { this.sortLocalCollection('name'); }
+				if (dd.length > 0 && dd[0] && dd[0].name) {
+					this.sortparams.asc = false; 
+					this.sortLocalCollection('name'); 
+				}
 				this.operationinprogress = false;
 				if (
 					data.error &&
