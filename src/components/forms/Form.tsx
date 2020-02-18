@@ -7,6 +7,7 @@ import { observer } from "mobx-react";
 import { TimezoneDisplayFormat, TimezonePicker } from "@blueprintjs/timezone";
 import MultiSelectForm from "./MultiSelectForm";
 import LinkSelectForm from "./LinkSelectForm";
+import SemantictypesForm from "./SemantictypesForm";
 
 interface formProps {
     model: AbstractModel,
@@ -55,10 +56,13 @@ class Form extends Component<formProps, any>
             label={Translator.t(key)}
             key={key}
             onChange={ () => this._onClickCheckboxLabel(key) }
-            selected={true}
         />) : (Translator.t(key));
     }
 
+    /**
+     * 
+     * @param key 
+     */
     protected _shouldDisplayElement(key)
     {
         return ( (!this.props.bulkmode) || (this.props.bulkmode === true && this.props.model.selected_labels[key]) );
@@ -120,19 +124,42 @@ class Form extends Component<formProps, any>
      * @param v 
      * @param c 
      */
-    public getTagFormElementJSX(key:string, v:string, c : formElementConfigSchema)
+    public getTagFormElementJSX(key:string, v:Array<string> | '', c : formElementConfigSchema)
     {
         // return <MultiSelectForm leftIcon="tag" model={this.props.model} k={key} v={v} c={c} />
         return (
             <FormGroup key={'formgroup'+key}>
                 { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
                 {
-                    //@ts-ignore
-                    this._shouldDisplayElement(key) ? (<MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />) : null 
+                    this._shouldDisplayElement(key) ? (
+                        <MultiSelectForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />
+                    ) : null 
                 }
             </FormGroup>
         );
     }
+
+    /**
+     * semantictypes
+     * @param key 
+     * @param v 
+     * @param c 
+     */
+    public getSemantictypesFormElementJSX(key:string, v:Array<string> | '', c : formElementConfigSchema)
+    {
+        return (
+            <FormGroup key={'formgroup'+key}>
+                { c.hideLabel === false ? null : <Label>{this.getLabel(key)}</Label>}
+                {
+                    this._shouldDisplayElement(key) ? (
+                        <SemantictypesForm leftIcon="tag" model={this.props.model} documentname={this.props.documentname} k={key} v={v} c={c} />
+                    ) : null 
+                }
+            </FormGroup>
+        );
+    }
+
+
     
     /**
      * 
@@ -291,6 +318,8 @@ class Form extends Component<formProps, any>
                     return this.getTextareaFormElementJSX(key, v, c);
                 case 'tag':
                     return this.getTagFormElementJSX(key, v, c);
+                case 'semantictypes':
+                    return this.getSemantictypesFormElementJSX(key, v, c);
                 case 'switch':
                     return this.getSwitchFormElementJSX(key, v, c);
                 case 'timezone':

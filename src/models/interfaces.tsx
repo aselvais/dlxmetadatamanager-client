@@ -462,7 +462,7 @@ export interface MenuItem {
  */
 export interface formElementConfigSchema {
     /** */
-    shape: 'text' | 'select' | 'link' | 'password' | 'email' | 'checkbox' | 'radio' | 'slider' | 'switch' | 'file' | 'numeric' | 'textarea'  | 'tag'  | 'datetime'  | 'timezone' | 'submit',
+    shape: 'text' | 'select' | 'link' | 'password' | 'semantictypes' | 'email' | 'checkbox' | 'radio' | 'slider' | 'switch' | 'file' | 'numeric' | 'textarea'  | 'tag'  | 'datetime'  | 'timezone' | 'submit',
     /** */
     showLabel?: boolean,
     /** */
