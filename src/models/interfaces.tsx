@@ -65,6 +65,21 @@ export interface datadictSchema {
     "should_ignore"?: number
 };
 
+export interface semantictypesSchema {
+    [key:string]: any,
+    /** PK */
+    "id"?: string,
+    /** Tag name/label */
+    "name"?: string,
+    /** Optional description */
+    "description"?: object,
+    /** Active on/off */
+    "should_ignore"?: number
+    "created_date"?: string,
+    "processing_description"?: string,
+    "tags"?: Array<string>
+}
+
 /**
  * Access token used for validating requests against authentication.
  * This data is kept in memory on the server side.
