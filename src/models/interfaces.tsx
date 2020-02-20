@@ -77,6 +77,7 @@ export interface semantictypesSchema {
     "should_ignore"?: number
     "created_date"?: string,
     "processing_description"?: string,
+    "parent_id"?: string,
     "tags"?: Array<string>
 }
 

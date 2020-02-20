@@ -1,11 +1,11 @@
 import AbstractModel from "./AbstractModel";
-import { formConfigSchema, datadictSchema } from "../interfaces";
+import { formConfigSchema, semantictypesSchema } from "../interfaces";
 
 class Semantictypes extends AbstractModel
 {
     public name : string = 'semantictypes';
-    public document : datadictSchema = {};
-    public collection : Array<datadictSchema> = [];
+    public document : semantictypesSchema = {};
+    public collection : Array<semantictypesSchema> = [];
     public formConfig : formConfigSchema = {
         showButton: true,
         buttonAction: 'updateOne',
