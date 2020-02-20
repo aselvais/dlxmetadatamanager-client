@@ -90,10 +90,29 @@ class SemantictypesForm extends Component<TagsFormProps>
     }
 
     /**
+     * Remove 2 linked elements while clicking on the X
+     * @param name 
+     * @param idx 
+     */
+    public removeElement(name : string, idx: number)
+    {
+        let tag : semantictypesSchema = toJS(this.state.values[idx]);
+        let values = this.state.values.filter((tag : semantictypesSchema, tidx : number ) => {
+            if (tidx === idx || (idx%2 === 1 && tidx === idx-1) || (idx%2 === 0 && tidx === idx+1)) return false;
+            else return true;
+        });
+        this.setState({values: values});
+    }
+
+    /**
      * 
      */
     public render()
     {
+        const getTagProps = (_value: string, idx: number) => ({
+            minimal: !(idx%2 === 0),
+        });
+
         return (
             <FormGroup>
                 <MultiSelect 
@@ -114,6 +133,7 @@ class SemantictypesForm extends Component<TagsFormProps>
                     noResults={<MenuItem disabled={true} text="No results." />}
                     onItemSelect={() => null }
                     selectedItems={this.state.values}
+                    tagInputProps={{ onRemove: (e, a) => this.removeElement(e, a), tagProps: getTagProps }}
                 />
             </FormGroup>
         );
