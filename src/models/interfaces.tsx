@@ -653,6 +653,7 @@ export interface datapipelinetablesvalidityTableaggregationSchema {
     is_gdpr_sum: number,
     is_pii_sum: number,
     is_pci_sum: number,
+    is_phi_sum: number,
     is_pk_sum: number,
     is_fk_sum: number,
     group_sum: number,

@@ -225,7 +225,7 @@ class Users extends AbstractModel
     public initUserFromToken()
     {
         return AccessTokens.tokenToUser(this.getToken()).then(u => {
-            // console.log(u);
+            //console.log(u);
         });
 
     }

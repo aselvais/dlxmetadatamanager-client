@@ -461,7 +461,8 @@ abstract class AbstractModel {
 	 * @param id .
 	 * @param related_model_name
 	 */
-	public findRelated(related_model_name: string = "", this_model_id = null) {
+	public findRelated(related_model_name: string = "", this_model_id = null) : Promise<Response>
+	{
 		//@ts-ignore
 		if (this_model_id === null && this.document && this.document.id) {
 			//@ts-ignore
@@ -471,8 +472,8 @@ abstract class AbstractModel {
 		this.setLoading(true);
 		this.operationinprogress = true;
 		return this.fetchAutenticated(
-			this.getApiUrl(this_model_id) + "/" + related_model_name
-		)
+				this.getApiUrl(this_model_id) + "/" + related_model_name
+			)
 			.then(response => response.json())
 			.then(data => {
 				//@ts-ignore

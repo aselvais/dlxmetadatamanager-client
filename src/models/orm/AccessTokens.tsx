@@ -32,8 +32,9 @@ class AccessTokens extends AbstractModel
      * 
      * @param token 
      */
-    public tokenToUser(token: string = null)
+    public tokenToUser(token: string = null) : Promise<Response>
     {
+        // @todo This doesn't work and should be fixed
         return this.findRelated('user', token);
     }
 

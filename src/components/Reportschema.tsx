@@ -29,6 +29,7 @@ class Reportschema extends Component
                     'is_gdpr_sum',
                     'is_pii_sum',
                     'is_pci_sum',
+                    'is_phi_sum',
                     'is_pk_sum',
                     'is_fk_sum',
                     'has_index_sum',
@@ -71,9 +72,11 @@ class Reportschema extends Component
         tableaggregation.is_gdpr_sum = (tableaggregation.is_gdpr_sum/tableaggregation.fields_length)*100;
         tableaggregation.is_pii_sum = (tableaggregation.is_pii_sum/tableaggregation.fields_length)*100;
         tableaggregation.is_pci_sum = (tableaggregation.is_pci_sum/tableaggregation.fields_length)*100;
+        tableaggregation.is_phi_sum = (tableaggregation.is_phi_sum/tableaggregation.fields_length)*100;
         tableaggregation.is_fk_sum = (tableaggregation.is_fk_sum/tableaggregation.fields_length)*100;
         tableaggregation.is_pk_sum = (tableaggregation.is_pk_sum/tableaggregation.tables_length)*100;
         tableaggregation.is_cdc_field_sum = (tableaggregation.is_cdc_field_sum/tableaggregation.tables_length)*100;
+        
         return (
             <div>
                 <h3>Tables Aggregation</h3>
@@ -86,6 +89,7 @@ class Reportschema extends Component
                         'is_gdpr_sum': 'precent',
                         'is_pii_sum': 'precent',
                         'is_pci_sum': 'precent',
+                        'is_phi_sum': 'precent',
                         'is_fk_sum': 'precent',
                     }}
                     includeOnlyClmns={[
@@ -96,6 +100,7 @@ class Reportschema extends Component
                         'is_gdpr_sum',
                         'is_pii_sum',
                         'is_pci_sum',
+                        'is_phi_sum',
                         'is_pk_sum',
                         'is_fk_sum',
                         'has_index_sum',
