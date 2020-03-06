@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, NavbarHeading, Menu, MenuItem, Popover, Position, Icon } from "@blueprintjs/core";
+import { Alignment, Button, Classes, Navbar, NavbarDivider, NavbarGroup, NavbarHeading, Menu, MenuItem, Popover, Position, Icon, Tooltip } from "@blueprintjs/core";
 import logo from '../assets/images/Deluxe_swish.png';
 import { observer } from "mobx-react";
 import NavStore from '../models/NavStore';
@@ -85,9 +85,10 @@ class Dlxnavigation extends Component
                     
                 </NavbarGroup>
                 <NavbarGroup align={Alignment.RIGHT}>
+
                     <NavbarDivider />
                     <div className="bp3-input-group .modifier">
-                        <span className="bp3-icon bp3-icon-search"></span>
+                        <span className="bp3-icon bp3-icon-search"></span>                        
                         <input className="bp3-input" 
                             type="search" 
                             placeholder="Global search" 
@@ -96,13 +97,26 @@ class Dlxnavigation extends Component
                             onKeyDown={(e) => this._handleSearchInputKeydown(e) }
                             dir="auto"/>
                     </div>
+                    <Tooltip content="Exact match" position={Position.BOTTOM}>
+                        <Button minimal={true} icon='menu' key={'matchtype: exact'} active={!!(Searchglobal.matchtype === 'exact')} className={Classes.MINIMAL}  onClick={() => Searchglobal.matchtype = 'exact' } />
+                    </Tooltip>
+                    <Tooltip content="Starts with ..." position={Position.BOTTOM}>
+                        <Button minimal={true} icon='menu-open' key={'matchtype: starts'} active={!!(Searchglobal.matchtype === 'starts')} className={Classes.MINIMAL}  onClick={() => Searchglobal.matchtype = 'starts' } />
+                        </Tooltip>
+                    <Tooltip content="Ends with ..." position={Position.BOTTOM}>
+                        <Button minimal={true} icon='menu-closed' key={'matchtype: ends'} active={!!(Searchglobal.matchtype === 'ends')} className={Classes.MINIMAL} onClick={() => Searchglobal.matchtype = 'ends' }/>
+                        </Tooltip>
+                    <Tooltip content="Case sensitive search" position={Position.BOTTOM}>
+                        <Button minimal={true} icon='asterisk' key={'casesensitive: yes/no'} active={Searchglobal.casesensitive} className={Classes.MINIMAL} onClick={() => Searchglobal.toggleCasesensitive()} />
+                    </Tooltip>
+
                     <NavbarDivider />
-                    {[10,11,12,13].map(i => (NavStore.items[i].name === 'LogoutScreen' || Users.isAuthorized(NavStore.items[i].role) ) ? <Button 
+                    {[10,11,12,13].map(i => (NavStore.items[i].name === 'LogoutScreen' || Users.isAuthorized(NavStore.items[i].role) ) ? <Tooltip content={NavStore.items[i].tip} position={Position.BOTTOM}><Button 
                                             key={NavStore.items[i].name} 
                                             className={Classes.MINIMAL} 
                                             icon={NavStore.items[i].icon} 
                                             active={NavStore.items[i].active}  
-                                            onClick={() => NavStore.setActive(NavStore.items[i].name)} /> : null)}
+                                            onClick={() => NavStore.setActive(NavStore.items[i].name)} /></Tooltip> : null)}
                 </NavbarGroup>
             </Navbar>
             <div className="footer">

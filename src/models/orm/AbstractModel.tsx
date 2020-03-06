@@ -341,17 +341,19 @@ abstract class AbstractModel {
 			| "tables"
 			| "fields" = "origins",
 		name: string = "",
-		filter: object = {}
+		filter: object = {},
+        casesensitive: boolean = false,
+        matchtype: 'exact' | 'starts' | 'ends' | 'any' = 'any'
 	) {
 		this.setLoading(true);
 		this.operationinprogress = true;
 		this.findentitydata = [];
 		return this.fetchAutenticated(
 			Config.getApiUrl() +
-				"schemadata/generic/findentity?entityLevel=" +
-				entityLevel +
-				"&name=" +
-				name
+				"schemadata/generic/findentity?entityLevel=" + entityLevel +
+				"&name=" + name +
+				"&casesensitive=" + casesensitive.toString() +
+				"&matchtype=" + matchtype
 		)
 			.then(response => response.json())
 			.then(data => {

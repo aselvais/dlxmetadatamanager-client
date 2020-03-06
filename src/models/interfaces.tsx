@@ -456,6 +456,8 @@ export interface originsSchema {
 export interface MenuItem {
     /** name/id */
     name: string,
+    /** Tooltip text */
+    tip?: string,
     /** Label to display in the menu bar */
     label: string,
     /** The group from which this item can be displayed */

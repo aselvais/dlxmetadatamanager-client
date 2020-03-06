@@ -45,9 +45,11 @@ class Tables extends AbstractModel
      * @param name 
      * @param filter 
      */
-    public findentity(name : string = '', filter : object = {})
+    public findentity(name : string = '', filter : object = {},
+    casesensitive: boolean = false,
+    matchtype: 'exact' | 'starts' | 'ends' | 'any' = 'any')
     {
-        return this._findentity('tables', name, filter);
+        return this._findentity('tables', name, filter, casesensitive, matchtype);
     }
 
 }
