@@ -18,13 +18,16 @@ class Schemas extends AbstractModel
         elements: {
             "should_ignore": { "shape": 'switch', bulkedit: true },
             "name": { "shape": "text", disabled: true, bulkedit: false},
+            "code": { "shape": "text", disabled: true, bulkedit: false},
             "databases_id": { "shape": "link", bulkedit: false, disabled: true },
             "schema" : { "shape": "text", disabled: true, bulkedit: false},
-            "storageengine" : { "shape": "text", disabled: true, bulkedit: false},
-            "vendorbrand" : { "shape": "text", disabled: true, bulkedit: false},
+            "destination_lake" : { "shape": "text", disabled: false, bulkedit: false, placeholder: "lake_p01_snapshots"},
+            "destination_storage" : { "shape": "select", options: ['hive','snowflake','all'], disabled: false, bulkedit: false},
+            // "storageengine" : { "shape": "text", disabled: true, bulkedit: false},
+            // "vendorbrand" : { "shape": "text", disabled: true, bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
-            "timezone": {"shape": "timezone", bulkedit: true},
+            // "timezone": {"shape": "timezone", bulkedit: true},
             "parent_id": {"shape": "text", disabled: true, bulkedit: false}
         },
         elementssearch:{

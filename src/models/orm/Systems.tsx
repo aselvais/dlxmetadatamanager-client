@@ -17,8 +17,8 @@ class Systems extends AbstractModel
         elements: {
             "should_ignore": { "shape": "switch", bulkedit: true },
             "name": { "shape": "text", bulkedit: true },
-            "organization": { "shape": "text", bulkedit: true},
-            "code" : { "shape": "text", bulkedit: false },
+            // "organization": { "shape": "text", bulkedit: true},
+            // "code" : { "shape": "text", bulkedit: false },
             "tags": { "shape": "tag", "leftIcon": "tag", "placeholder": "Optional tags used for categorazation...", bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
             "notes": { "shape": "textarea", bulkedit: true}

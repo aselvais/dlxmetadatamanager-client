@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.metals/metals.log
+.metals/metals.h2.db
+yarn.lock

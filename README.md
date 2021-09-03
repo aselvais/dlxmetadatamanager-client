@@ -51,3 +51,59 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+
+# TODO front end fine tuning (sprint 29)
+
+## new fields
+
+- Schemas
+  - code
+  - destination_lake : with lake_p01_snapshots as default
+  - destination_storage : with choices of HIVE or Snowflaque (with HIVE as default)
+- Fields
+  - is_obfuscated
+  - is_partition
+
+## remove fields
+
+- Systems
+  - organization (organization)
+  - code (code)
+- Origins
+  - code (app_code)
+  - customer type (cust_type)
+  - business contact (business_contact)
+  - cdc enable (cdc_enabled)
+- Databases
+  - code (code)
+  - timezone (timezone)
+  - app name (app_name)
+  - network (network)
+  - hosted area (hosted_area)
+  - in bidm (in_bidm)
+  - deluxe name (deluxe_name)
+  - firewall (firewall)
+  - instance name (instance_name)
+  - schema name (schema_name)
+- Schemas
+  - storage engine (storageengine)
+  - vendor brand (vendorbrand)
+  - timezone (timezone)
+- Tables
+  - is_gdpr (is_gdpr)
+  - landing destination (landing_destination)
+- Fields
+  - Has other special handling defined? (is_other_special_handling)
+  - Special handling description (other_special_handling_type)
+
+## Top menus remove
+
+- Users (but for admins?)
+- data dict
+- docs (but for devs)
+- data
+
+

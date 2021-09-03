@@ -15,9 +15,10 @@ class NavStore
         
         {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true, role: 'admin'},
         {name: 'SearchScreen', label: 'Explore', active: false, icon: 'database', menuVisible: true, role: 'admin', level: 0},
-        {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true, role: 'god'},
+        // {name: 'UsersmanagementScreen', label: 'Users', active: false, icon: 'key', menuVisible: true, role: 'god'},
 
         {name: 'AggregationsScreen', label: 'Aggr.', active: false, icon: 'horizontal-bar-chart', menuVisible: true, role: 'admin'},
+        /*
         {name: 'DatadictionariesScreen', label: 'Data dict.', active: false, icon: 'th-list', menuVisible: true, role: 'superadmin', sublevel: [
             {name: 'ApplicationcodesScreen', label: 'Application codes', active: false, icon: 'code', menuVisible: true, role: 'superadmin'},
             {name: 'TagsScreen', label: 'Tags', active: false, icon: 'tag', menuVisible: true, role: 'superadmin'},
@@ -26,16 +27,16 @@ class NavStore
             {name: 'LandingdestinationsScreen', label: 'Landing destinations', active: false, icon: 'locate', menuVisible: true, role: 'superadmin'},
             {name: 'AuthenticationresourcesScreen', label: 'Authentication resources', active: false, icon: 'shield', menuVisible: true, role: 'superadmin'},
         ]},
-
-        {name: 'DocumentationScreen', label: 'Docs', active: false, icon: 'document', menuVisible: true, role: 'god'},
+        */
+        // {name: 'DocumentationScreen', label: 'Docs', active: false, icon: 'document', menuVisible: true, role: 'god'},
         {name: 'DiagramScreen', label: 'Diag.', active: false, icon: 'diagram-tree', menuVisible: true, role: 'god'},
-
+        /*
         {name: 'DataScreen', label: 'Data', active: false, icon: 'layout-skew-grid', menuVisible: true, role: 'superadmin', sublevel: [
             {name: 'DataScreen', label: 'Schema data report', active: false, icon: 'layout-grid', menuVisible: true, role: 'god'},
             {name: 'ViewapplogactionsScreen', label: 'Applog actions', active: false, icon: 'layout-grid', menuVisible: true, role: 'god'},
             {name: 'ViewapplogbulkactionsScreen', label: 'Applog bulk actions', active: false, icon: 'layout-grid', menuVisible: true, role: 'god'},
         ]},
-
+        */
         {name: 'SearchglobalScreen', label: 'Global Search', active: false, icon: 'search', menuVisible: false, role: 'admin'},
 
         {name: 'AdvancedsearchScreen', label: 'Search', tip: 'Advanced search', active: false, icon: 'search-template', menuVisible: false, role: 'admin'},
