@@ -75,6 +75,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Origins
   - code (app_code)
   - customer type (cust_type)
+  - customer source (customer_source)
   - business contact (business_contact)
   - cdc enable (cdc_enabled)
 - Databases

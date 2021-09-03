@@ -39,9 +39,9 @@ class Schemas extends AbstractModel
             "documentation": {"shape": "text"},
             "tags": {"shape": "text"},
             "schema": {"shape": "text"},
-            "storageengine": {"shape": "text"},
-            "vendorbrand": {"shape": "text"},
-            "timezone": {"shape": "text"},
+            // "storageengine": {"shape": "text"},
+            // "vendorbrand": {"shape": "text"},
+            // "timezone": {"shape": "text"},
             "parent_id": {"shape": "text"},
         }
     };

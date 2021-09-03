@@ -21,7 +21,7 @@ class Databases extends AbstractModel
             "origins_id": { "shape": "link", bulkedit: false, disabled: false },
             // "code": { "shape": "text", bulkedit: false },
             "storageengine" : { "shape": "text", bulkedit: false},
-            "vendorbrand" : { "shape": "text", bulkedit: false},
+            // "vendorbrand" : { "shape": "text", bulkedit: false},
             "documentation": { "shape": "textarea", bulkedit: true},
             "tags": { "shape": "tag", leftIcon: 'tag', placeholder: 'Optional tags used for categorazation...', bulkedit: false},
             // "timezone": {"shape": "timezone", bulkedit: true},
@@ -48,9 +48,9 @@ class Databases extends AbstractModel
         elementssearch: {
             "id": {"shape": "text"},
             "name": {"shape": "text"},
-            "code": {"shape": "text"},
+            //"code": {"shape": "text"},
             "origins_id": {"shape": "text"},
-            "vendorbrand": {"shape": "text"},
+            //"vendorbrand": {"shape": "text"},
             "storageengine": {"shape": "text"},
             "idh": {"shape": "text"},
             "origins_idh": {"shape": "text"},
@@ -58,16 +58,16 @@ class Databases extends AbstractModel
             "should_ignore": {"shape": "text"},
             "documentation": {"shape": "text"},
             "tags": {"shape": "text"},
-            "timezone": {"shape": "text"},
+            //"timezone": {"shape": "text"},
             "parent_id": {"shape": "text"},
-            "app_name": {"shape": "text"},
-            "network": {"shape": "text"},
-            "hosted_area": {"shape": "text"},
-            "in_bidm": {"shape": "text"},
-            "deluxe_name": {"shape": "text"},
-            "firewall": {"shape": "text"},
-            "instance_name": {"shape": "text"},
-            "schema_name": {"shape": "text"},
+            //"app_name": {"shape": "text"},
+            //"network": {"shape": "text"},
+            //"hosted_area": {"shape": "text"},
+            //"in_bidm": {"shape": "text"},
+            //"deluxe_name": {"shape": "text"},
+            //"firewall": {"shape": "text"},
+            //"instance_name": {"shape": "text"},
+            //"schema_name": {"shape": "text"},
             "username": {"shape": "text"},
             "password": {"shape": "text"},
             "hostname": {"shape": "text"},
@@ -78,6 +78,7 @@ class Databases extends AbstractModel
         }
     };
 
+    
     /**
      * 
      * @param name 

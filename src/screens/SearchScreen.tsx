@@ -57,7 +57,7 @@ class SearchScreen extends Component
         {
             model : Systems, parent : null,
             gridConfig : { 
-                showOnly:[ 'should_ignore', 'tags', 'name', 'code', 'organization', 'documentation', 'created_date' ], 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'documentation', 'created_date' ], 
                 editable: ['documentation'], 
                 actions: ['delete', 'edit', 'drilldown', 'add'] 
             }
@@ -65,7 +65,7 @@ class SearchScreen extends Component
         {
             model : Origins, parent : 'systems',
             gridConfig : { 
-                showOnly:[ 'should_ignore', 'tags', 'name', 'app_code', 'organization', 'owner', 'documentation', 'created_date' ], 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'organization', 'owner', 'documentation', 'created_date' ], 
                 editable: ['documentation'], 
                 actions: ['delete', 'edit', 'drilldown', 'add'] 
             }
@@ -73,7 +73,7 @@ class SearchScreen extends Component
         {
             model : Databases,  parent : 'origins',
             gridConfig : {
-                showOnly:[ 'should_ignore', 'tags', 'name', 'code', 'app_name', 'vendorbrand', 'documentation', 'created_date'], 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'storageengine', 'documentation', 'created_date'], 
                 editable: ['documentation'], 
                 actions: ['delete', 'edit', 'drilldown', 'add']
             }
@@ -81,7 +81,7 @@ class SearchScreen extends Component
         {
             model : Schemas, parent : 'databases',
             gridConfig : {
-                showOnly:[ 'should_ignore', 'tags', 'name', 'schema','storageengine', 'vendorbrand', 'documentation', 'created_date'], 
+                showOnly:[ 'should_ignore', 'tags', 'name', 'schema', 'documentation', 'created_date'], 
                 editable: ['documentation'], 
                 actions: ['report', 'edit', 'drilldown']
             }
