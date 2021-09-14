@@ -293,6 +293,24 @@ class Grid extends Component<Props> {
           style={{ paddingRight: 10 }}
         />
       );
+    if (row["is_partition"])
+      iii.push(
+        <Icon
+          icon={"multi-select"}
+          iconSize={isize}
+          intent={iintent}
+          style={{ paddingRight: 10 }}
+        />
+      );
+    if (row["is_obfuscated"])
+      iii.push(
+        <Icon
+          icon={"eye-off"}
+          iconSize={isize}
+          intent={iintent}
+          style={{ paddingRight: 10 }}
+        />
+      );
     if (row["is_fk"])
       iii.push(
         <Icon
