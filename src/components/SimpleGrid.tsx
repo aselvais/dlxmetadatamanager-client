@@ -75,6 +75,10 @@ class SimpleGrid extends Component<Props> {
 						val ? ((val === 1 || val === true) ? 'success' : 'warning') : 'danger'
 					} iconSize={12} />
 				);
+			case 'datetime':
+				// 2021-11-30T21:10:40.000Z
+				var str = val.replace("T", " ").replace(".000Z", "");
+				return str.substring(0, str.length - 3);
 			default:
 				return val;
 		}

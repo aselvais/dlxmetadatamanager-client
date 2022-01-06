@@ -4,6 +4,8 @@ import SimpleGrid from "../components/SimpleGrid";
 import Schemadata from "../models/orm/Schemadata";
 import { Spinner } from "@blueprintjs/core";
 import Applog from "../models/orm/Applog";
+import Viewlastinserteddata from "../models/orm/Viewlastinserteddata";
+
 
 /**
  * Home screen
@@ -11,7 +13,8 @@ import Applog from "../models/orm/Applog";
 @observer
 class HomeScreen extends Component {
 
-	private _numberOfDays = 30;
+	private _numberOfDays = 60;
+	private _lastEntries = 50;
 
 
 	/**
@@ -20,6 +23,7 @@ class HomeScreen extends Component {
 	public componentDidMount() {
 		Schemadata.getlatesttokens();
 		Applog.find({"insertdate":{"gte": Date.now() - this._numberOfDays * 24 * 3600 * 1000 }});
+		Viewlastinserteddata.find({}, "", '', null, this._lastEntries, "date_field DESC");
 	}
 
 	/**
@@ -29,6 +33,22 @@ class HomeScreen extends Component {
 
 		return (
 			<div>
+				<div>
+					<h3>Latest created fields / columns (last {this._lastEntries} entries)</h3>
+					{
+						Viewlastinserteddata.loading 
+						? 
+							<Spinner /> 
+						: 
+							<SimpleGrid data={Viewlastinserteddata.collection} includeOnlyClmns={[
+								"name_systems", "name_origins", "name_databases", "name_schemas", "name_table", "name_field",
+								// "date_systems", "date_origins",
+								"date_schemas", "date_tables", "date_field"
+							]} formatter={{
+								"date_schemas": "datetime", "date_tables": "datetime", "date_field": "datetime"
+							}}/>
+					}
+				</div>
 				<div>
 					<h3>Latest create / update / delete operations (past {this._numberOfDays} days)</h3>
 					{

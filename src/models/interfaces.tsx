@@ -130,6 +130,22 @@ export interface ViewapplogactionsSchema {
     "column_name"?: string
 };
 
+export interface ViewlastinserteddataSchema {
+    "id"?: string,
+    "name_systems"?: string,
+    "name_origins"?: string,
+    "name_databases"?: string,
+    "name_schemas"?: string,
+    "name_table"?: string,
+    "name_field"?: string,
+    "date_systems"?: string,
+    "date_origins"?: string,
+    "date_schemas"?: string,
+    "date_tables"?: string,
+    "date_field"?: string,
+};
+
+
 export interface ViewapplogbulkactionsSchema {
     "id"?: string,
     "User_id"?: string,
