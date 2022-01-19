@@ -145,6 +145,12 @@ export interface ViewlastinserteddataSchema {
     "date_field"?: string,
 };
 
+export interface ViewhivetablesSchema {
+    "id"?: string,
+    "database"?: string,
+    "table"?: string,
+};
+
 
 export interface ViewapplogbulkactionsSchema {
     "id"?: string,

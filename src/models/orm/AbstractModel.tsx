@@ -86,9 +86,14 @@ abstract class AbstractModel {
 	 * @param o 
 	 */
 	public id2inserteddate(o: object = {}) {
+		try {
 		//@ts-ignore
 		o.created_date = o.id ? moment(objectIdToTimestamp(o.id)).format("YYYY-MM-DD") : '';
 		return o;
+		} catch(ee)
+		{
+			return o;
+		}
 	}
 
 	/**

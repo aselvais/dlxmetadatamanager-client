@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Schemadata from "../models/orm/Schemadata";
 import { observer } from 'mobx-react';
 import SimpleGrid from "../components/SimpleGrid";
-import { ButtonGroup, Button, Spinner } from "@blueprintjs/core";
+import Viewhivetables from "../models/orm/Viewhivetables";
+import { Spinner } from "@blueprintjs/core";
 
 /**
  * Home screen
@@ -10,44 +10,40 @@ import { ButtonGroup, Button, Spinner } from "@blueprintjs/core";
 @observer
 class DataScreen extends Component
 {
-    /**
-     * 
-     */
+    /*
     protected entityLevel : Array<'origin' | 'database' | 'schema' | 'table' | 'column'> = ['origin', 'database', 'schema', 'table', 'column'];
-
-    /**
-     * 
-     */
-    componentDidMount()
-    {
-        Schemadata.getlatestrawschemadata(this.entityLevel[0]);
+    componentDidMount() { Schemadata.getlatestrawschemadata(this.entityLevel[0]); }
+    _clickButtonLevel(e) { Schemadata.getlatestrawschemadata(e); }
+    public render() {
+        return (<div><div style={{padding: 20}}><ButtonGroup>{this.entityLevel.map((e,i) => <Button onClick={() => this._clickButtonLevel(this.entityLevel[i])}>{e}</Button>)}</ButtonGroup></div>
+            { Schemadata.loading ? <Spinner /> : <SimpleGrid data={Schemadata.latestrawschemadata}/> }</div>);
     }
+    */
 
-    /**
-     * 
-     * @param e 
-     */
-    _clickButtonLevel(e)
-    {
-        Schemadata.getlatestrawschemadata(e);
-    }
-    
-    /**
-     * 
-     */
+    private _lastEntries = 50;
+
+    public componentDidMount() {
+		Viewhivetables.find();
+	}
+
     public render()
     {
-        return (
+        return (			<div>
             <div>
-                <div style={{padding: 20}}>
-                    <ButtonGroup>
-                        {this.entityLevel.map((e,i) => <Button onClick={() => this._clickButtonLevel(this.entityLevel[i])}>{e}</Button>)}
-                    </ButtonGroup>
-                </div>
-                { Schemadata.loading ? <Spinner /> : <SimpleGrid data={Schemadata.latestrawschemadata}/> }
+                <h2>This is in development ... more coming soon...</h2>
+                <h3>Lakes and tables in HIVE</h3>
+                {
+                    Viewhivetables.loading 
+                    ? 
+                        <Spinner />
+                    : 
+                        <SimpleGrid data={Viewhivetables.collection} includeOnlyClmns={["database", "table"]} />
+                }
             </div>
-        );
+        </div>);
     }
+
+
 }
 
 export default DataScreen;

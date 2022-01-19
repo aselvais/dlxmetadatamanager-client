@@ -111,7 +111,7 @@ class Dlxnavigation extends Component
                     </Tooltip>
 
                     <NavbarDivider />
-                    {[6,7,8,9].map(i => (NavStore.items[i].name === 'LogoutScreen' || Users.isAuthorized(NavStore.items[i].role) ) ? <Tooltip content={NavStore.items[i].tip} position={Position.BOTTOM}><Button 
+                    {[7,8,9,10].map(i => (NavStore.items[i].name === 'LogoutScreen' || Users.isAuthorized(NavStore.items[i].role) ) ? <Tooltip content={NavStore.items[i].tip} position={Position.BOTTOM}><Button 
                                             key={NavStore.items[i].name} 
                                             className={Classes.MINIMAL} 
                                             icon={NavStore.items[i].icon} 
