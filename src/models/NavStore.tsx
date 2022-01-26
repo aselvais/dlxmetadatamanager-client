@@ -44,17 +44,17 @@ class NavStore
      * 
      */
     @observable items : Array<MenuItem> = [
-        {name: 'LoadingScreen', label: 'Loading', active: false, icon: 'home', menuVisible: false, role: 'admin'},
-        {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true, role: 'admin'},
-        {name: 'SearchScreen', label: 'Explore', active: false, icon: 'database', menuVisible: true, role: 'admin', level: 0},
+        {name: 'LoadingScreen', label: 'Loading', active: false, icon: 'home', menuVisible: false, role: 'viewer'},
+        {name: 'HomeScreen', label: 'Home', active: false, icon: 'home', menuVisible: true, role: 'viewer'},
+        {name: 'SearchScreen', label: 'Explore', active: false, icon: 'database', menuVisible: true, role: 'viewer', level: 0},
         {name: 'AggregationsScreen', label: 'Aggr.', active: false, icon: 'horizontal-bar-chart', menuVisible: true, role: 'admin'},
         {name: 'DiagramScreen', label: 'Diag.', active: false, icon: 'diagram-tree', menuVisible: true, role: 'god'},
         {name: 'DataScreen', label: 'Data', active: false, icon: 'layout-skew-grid', menuVisible: true, role: 'admin'},
-        {name: 'SearchglobalScreen', label: 'Global Search', active: false, icon: 'search', menuVisible: false, role: 'admin'},
-        {name: 'AdvancedsearchScreen', label: 'Search', tip: 'Advanced search', active: false, icon: 'search-template', menuVisible: false, role: 'admin'},
+        {name: 'SearchglobalScreen', label: 'Global Search', active: false, icon: 'search', menuVisible: false, role: 'viewer'},
+        {name: 'AdvancedsearchScreen', label: 'Search', tip: 'Advanced search', active: false, icon: 'search-template', menuVisible: false, role: 'viewer'},
         {name: 'ConfigScreen', label: 'Config', tip: 'Configuration', active: false, icon: 'cog', menuVisible: false, role: 'admin'},
         {name: 'ProfileScreen', label: 'Profile', tip: 'Profile', active: false, icon: 'user', menuVisible: false, role: 'admin'},
-        {name: 'LogoutScreen', label: 'Log-out', tip: 'Log-out', active: false, icon: 'log-out', menuVisible: false, role: 'admin'},
+        {name: 'LogoutScreen', label: 'Log-out', tip: 'Log-out', active: false, icon: 'log-out', menuVisible: false, role: 'viewer'},
     ];
     @observable active : string = 'LoadingScreen';
 

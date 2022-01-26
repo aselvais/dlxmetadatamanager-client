@@ -211,10 +211,13 @@ class Users extends AbstractModel
         else if (!this.token && this.cookies.get('dlxmttoken'))
         {
             try {
-                this.token = this.cookies.get('dlxmttoken');
-                AccessTokens.tokenToUser(this.cookies.get('dlxmttoken'));
-                return this.cookies.get('dlxmttoken');
-            } catch(ee) {}
+                // console.log('---------------- 3 -------------------');
+                // this.token = this.cookies.get('dlxmttoken');
+                // AccessTokens.tokenToUser(this.cookies.get('dlxmttoken'));
+                // return this.cookies.get('dlxmttoken');
+            } catch(ee) {
+                // console.error('Error getting token');
+            }
         }
         return this.token;
     }

@@ -23,12 +23,17 @@ class DataScreen extends Component
     private _lastEntries = 50;
 
     public componentDidMount() {
-		Viewhivetables.find();
+		Viewhivetables.init();
 	}
 
+    /**
+     * 
+     * @returns 
+     */
     public render()
     {
-        return (			<div>
+        return (
+        <div>
             <div>
                 <h2>This is in development ... more coming soon...</h2>
                 <h3>Lakes and tables in HIVE</h3>

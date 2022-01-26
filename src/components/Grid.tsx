@@ -216,13 +216,13 @@ class Grid extends Component<Props> {
           <td
             key={k}
             style={{
-              whiteSpace: "nowrap",
+              //whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
               maxWidth: 300
             }}
           >
-            {this.props.config.editable &&
+            {(this.props.config.editable && Users.isAuthorized("admin")) &&
             _.indexOf(this.props.config.editable, k) > -1 ? (
               <EditableText
                 className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}
@@ -234,7 +234,7 @@ class Grid extends Component<Props> {
                 maxLines={10}
                 minLines={1}
                 multiline={true}
-              />
+              /> 
             ) : (
               <div className={this.props.model.operationinprogress ? 'bp3-skeleton' : ''}>{v}</div>              
             )}
@@ -446,9 +446,8 @@ class Grid extends Component<Props> {
         jsx.push(
           <td key={'bodycell'+i} style={{ textAlign: "right", width: l * 40 }}>
             {this.props.config.actions.map(a =>
-              a !== "add" &&
-              ((a === "delete" && Users.isAuthorized("superadmin")) ||
-                a !== "delete") ? (
+                a !== "add" &&
+                ((a === "delete" && Users.isAuthorized("superadmin")) || a !== "delete") ? (
                 <Button
                   // @ts-ignore
                   icon={this.actions2icons[a].icon}
@@ -503,6 +502,7 @@ class Grid extends Component<Props> {
   public getAddentryButtonJSX() {
     return this.props.config.actions &&
       _.indexOf(this.props.config.actions, "add") >= 0 ? (
+        Users.isAuthorized("admin") ? 
       <div style={{ textAlign: "right" }}>
         <Button
           // @ts-ignore
@@ -513,6 +513,7 @@ class Grid extends Component<Props> {
           onClick={() => this.onClickActionButton("add")}
         />
       </div>
+      : null
     ) : null;
   }
 

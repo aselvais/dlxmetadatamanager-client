@@ -18,8 +18,31 @@ class Viewhivetables extends AbstractModel {
 			"id": {"shape": "text"},
 			"database": {"shape": "text"},
 			"table": {"shape": "text"}
-		}		
+		}
 	};
+
+
+	public setDatabasesList(o: object = {}) {
+		try {
+			//@ts-ignore
+			// o.created_date = o.id ? moment(objectIdToTimestamp(o.id)).format("YYYY-MM-DD") : '';
+			console.log(o);
+			return o;
+		} catch(ee)
+		{
+			return o;
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public init()
+	{
+		this.find({}, "", 'setDatabasesList');
+
+	}
+
 }
 
 export default new Viewhivetables();

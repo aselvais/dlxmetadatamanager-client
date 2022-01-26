@@ -23,7 +23,7 @@ class Fields extends AbstractModel
             "datalength": { "shape": "text", disabled: true, bulkedit: false},
             "charset": { "shape": "text", disabled: true, bulkedit: false},
             "group": { "shape": "tag", leftIcon: "folder-close", placeholder: 'Optional group in which this field is part of...', bulkedit: true},
-            "semantic_type": { "shape": "semantictypes", leftIcon: "comment", placeholder: 'Meaning of the field (Address, zip, customer, ...)', bulkedit: true},
+            "semantic_type": { "shape": "tag", leftIcon: "comment", placeholder: 'Meaning of the field (Address, zip, customer, ...)', bulkedit: true},
             "is_obfuscated": {"shape": 'switch', bulkedit: true},
             "is_gdpr": {"shape": 'switch', bulkedit: true},
             "is_pii": { "shape": 'switch', bulkedit: true },

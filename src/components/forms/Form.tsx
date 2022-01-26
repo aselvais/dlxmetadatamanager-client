@@ -8,6 +8,7 @@ import { TimezoneDisplayFormat, TimezonePicker } from "@blueprintjs/timezone";
 import MultiSelectForm from "./MultiSelectForm";
 import LinkSelectForm from "./LinkSelectForm";
 import SemantictypesForm from "./SemantictypesForm";
+import Users from "../../models/orm/Users";
 
 interface formProps {
     model: AbstractModel,
@@ -401,14 +402,15 @@ class Form extends Component<formProps, any>
                 form.push(<div style={{margin: 'auto'}}><Spinner size={20} /></div>);
             } else {
                 // disabled={(this.props.model.currentAction === 'saving' || this.props.model.currentAction === 'loggingin')}
-                form.push(<Button 
-                    key={'buttonsubmit'}
-                    icon="plus" 
-                    intent="success" 
-                    text={Translator.t('Submit')}
-                    onClick={ () => this.onClickSubmit() }
-                />);
-    
+                if (Users.isAuthorized("superadmin")) {
+                    form.push(<Button 
+                        key={'buttonsubmit'}
+                        icon="plus" 
+                        intent="success" 
+                        text={Translator.t('Submit')}
+                        onClick={ () => this.onClickSubmit() }
+                    />);
+                }
             }
         }
         return (
